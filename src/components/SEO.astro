@@ -1,0 +1,73 @@
+---
+export interface Props {
+	title: string;
+	description?: string;
+	image?: string;
+	canonical?: string;
+	noindex?: boolean;
+}
+
+const { 
+	title, 
+	description = "Formation complète en marketing digital et stratégies de croissance pour entrepreneurs ambitieux",
+	image = "/og-image.jpg",
+	canonical,
+	noindex = false
+} = Astro.props;
+
+const siteUrl = "https://systemeviral.com";
+const fullTitle = `${title} | Système Viral`;
+const fullUrl = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
+---
+
+<!-- SEO Meta Tags -->
+<meta name="description" content={description} />
+<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={fullUrl} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={`${siteUrl}${image}`} />
+<meta property="og:site_name" content="Système Viral" />
+<meta property="og:locale" content="fr_FR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={fullUrl} />
+<meta property="twitter:title" content={fullTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={`${siteUrl}${image}`} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={fullUrl} />
+
+<!-- Additional Meta Tags -->
+<meta name="author" content="Système Viral" />
+<meta name="keywords" content="marketing digital, formation entrepreneur, croissance entreprise, stratégie business, système viral" />
+<meta name="language" content="fr" />
+<meta name="revisit-after" content="7 days" />
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json" set:html={JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	"name": "Système Viral",
+	"url": siteUrl,
+	"logo": `${siteUrl}/logo.png`,
+	"description": description,
+	"address": {
+		"@type": "PostalAddress",
+		"addressCountry": "FR"
+	},
+	"contactPoint": {
+		"@type": "ContactPoint",
+		"contactType": "customer service",
+		"email": "contact@systemeviral.com"
+	},
+	"sameAs": [
+		"https://linkedin.com/company/systemeviral",
+		"https://youtube.com/@systemeviral"
+	]
+})} />
