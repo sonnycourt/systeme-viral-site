@@ -1,5 +1,6 @@
 ---
 import SEO from '../components/SEO.astro';
+import '../styles/global.css';
 
 export interface Props {
 	title: string;
@@ -29,13 +30,7 @@ const { title, description, image, canonical, noindex } = Astro.props;
 			noindex={noindex}
 		/>
 	</head>
-	<body class="min-h-screen bg-gray-50 font-sans">
+	<body>
 		<slot />
 	</body>
 </html>
-
-<style is:global>
-	html {
-		font-family: system-ui, sans-serif;
-	}
-</style>

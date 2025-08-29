@@ -1,107 +1,416 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<Layout 
-	title="Système Viral - Formation Marketing Digital et Croissance d'Entreprise"
-	description="Formation complète pour entrepreneurs ambitieux qui veulent créer un système viral de croissance avec des stratégies de marketing digital éprouvées"
+<Layout
+	title="Système Viral - La méthode sans bullshit pour monétiser vos contenus courts"
+	description="Sans budget pub. Sans équipe. Sans bullshit. Juste un système qui transforme des vues TikTok en cash."
 	canonical="/"
 >
-	<Header />
-	
-	<!-- Hero Section -->
-	<main>
-		<section class="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-20">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-				<h1 class="text-4xl md:text-6xl font-bold mb-6">
-					Maîtrise le Marketing Digital
-				</h1>
-				<p class="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
-					Formation complète pour entrepreneurs ambitieux qui veulent créer un système viral de croissance
-				</p>
-				<div class="flex flex-col sm:flex-row gap-4 justify-center">
-					<a
-						href="/formation"
-						class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors duration-200"
-					>
-						Découvrir la Formation
-					</a>
-					<a
-						href="/programme"
-						class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-blue-600 transition-colors duration-200"
-					>
-						Voir le Programme
-					</a>
+	<!-- Background effects -->
+	<div class="gradient-bg"></div>
+
+	<!-- Navigation -->
+	<nav id="navbar" class="navbar">
+		<div class="container">
+			<div class="nav-content">
+				<div class="logo">SYSTÈME VIRAL</div>
+				<div class="nav-actions">
+					<a href="/login" class="login-btn">Se connecter</a>
 				</div>
 			</div>
-		</section>
+		</div>
+	</nav>
 
-		<!-- Features Section -->
-		<section class="py-20 bg-white">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="text-center mb-16">
-					<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-						Pourquoi Choisir Système Viral ?
-					</h2>
-					<p class="text-xl text-gray-600 max-w-2xl mx-auto">
-						Une approche pratique et éprouvée pour transformer ton business
+	<!-- Hero Section -->
+	<section class="hero">
+		<div class="container">
+			<div class="hero-content">
+				<div class="badge">
+					<div class="badge-icon"></div>
+					<span class="badge-text">100k€ générés • Méthode testée</span>
+				</div>
+
+				<h1>
+					Je ne vais pas vous promettre 10k€/mois.
+					<span class="gradient-text">Mais j'ai fait +100k€ en 1 mois avec des vidéos d'1 minute.</span>
+				</h1>
+
+				<p class="hero-subtitle">
+					Sans budget pub. Sans équipe. Sans bullshit.<br>
+					Juste un système qui transforme des vues TikTok en cash.
+				</p>
+
+				<div class="cta-wrapper">
+					<button class="cta-btn" onclick="openModal()">
+						Découvrir la méthode →
+					</button>
+				</div>
+
+				<div class="trust-points">
+					<div class="trust-item">
+						<span class="trust-check">✓</span>
+						<span>Pas de bullshit</span>
+					</div>
+					<div class="trust-item">
+						<span class="trust-check">✓</span>
+						<span>Résultats prouvés</span>
+					</div>
+					<div class="trust-item">
+						<span class="trust-check">✓</span>
+						<span>Système automatisé</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Stats Section -->
+	<section class="stats">
+		<div class="container">
+			<div class="stats-grid">
+				<div class="stat-card">
+					<div class="stat-number">+100k€</div>
+					<div class="stat-desc">En 1 mois</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-number">1min</div>
+					<div class="stat-desc">Par vidéo</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-number">0€</div>
+					<div class="stat-desc">Budget pub</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Features Section -->
+	<section class="features">
+		<div class="container">
+			<h2 class="section-title">Le système en 3 étapes</h2>
+
+			<div class="features-grid">
+				<div class="feature-card">
+					<div class="step-number">1</div>
+					<h3 class="feature-title">Créer du contenu viral</h3>
+					<p class="feature-text">
+						Des vidéos d'1 minute qui font des millions de vues.<br>
+						La formule exacte testée sur TikTok, Reels et Shorts.
 					</p>
 				</div>
 
-				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-					<div class="text-center p-6">
-						<div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-							<svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-							</svg>
-						</div>
-						<h3 class="text-xl font-semibold text-gray-900 mb-2">Résultats Rapides</h3>
-						<p class="text-gray-600">Méthodes testées et approuvées pour des résultats concrets en 30 jours</p>
-					</div>
+				<div class="feature-card">
+					<div class="step-number">2</div>
+					<h3 class="feature-title">Capturer les emails</h3>
+					<p class="feature-text">
+						Transformer vos viewers en liste email qualifiée.<br>
+						Système automatisé qui tourne 24/7 sans vous.
+					</p>
+				</div>
 
-					<div class="text-center p-6">
-						<div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-							<svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-							</svg>
-						</div>
-						<h3 class="text-xl font-semibold text-gray-900 mb-2">Contenu Pratique</h3>
-						<p class="text-gray-600">Théorie + pratique avec des exercices concrets et des études de cas réels</p>
-					</div>
-
-					<div class="text-center p-6">
-						<div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-							<svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-							</svg>
-						</div>
-						<h3 class="text-xl font-semibold text-gray-900 mb-2">Communauté Active</h3>
-						<p class="text-gray-600">Rejoins une communauté d'entrepreneurs motivés et partage tes expériences</p>
-					</div>
+				<div class="feature-card">
+					<div class="step-number">3</div>
+					<h3 class="feature-title">Monétiser à fond</h3>
+					<p class="feature-text">
+						Produit digital à 2000€ ou affiliation premium.<br>
+						La stratégie exacte pour faire +100k€/mois.
+					</p>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<!-- CTA Section -->
-		<section class="py-20 bg-gray-50">
-			<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-				<h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-					Prêt à Transformer ton Business ?
-				</h2>
-				<p class="text-xl text-gray-600 mb-8">
-					Rejoins des centaines d'entrepreneurs qui ont déjà transformé leur entreprise avec nos méthodes
-				</p>
-				<a
-					href="/formation"
-					class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-lg font-semibold text-lg transition-colors duration-200 inline-block"
-				>
-					Commencer Maintenant
-				</a>
+	<!-- Popup Modal -->
+	<div class="modal-overlay" id="modalOverlay">
+		<div class="modal-content">
+			<button class="modal-close" onclick="closeModal()">×</button>
+
+			<div class="progress-bar">
+				<div class="progress-step active" id="progress1"></div>
+				<div class="progress-step" id="progress2"></div>
 			</div>
-		</section>
-	</main>
+
+			<form id="accessForm" onsubmit="handleSubmit(event)">
+				<!-- Step 1: Name and Email -->
+				<div class="form-step active" id="step1">
+					<h3 class="modal-title">Accès immédiat</h3>
+					<p class="modal-subtitle">Étape 1/2 - Vos informations</p>
+
+					<div class="input-group">
+						<label class="input-label">Prénom</label>
+						<input type="text" id="firstName" placeholder="John" required>
+					</div>
+
+					<div class="input-group">
+						<label class="input-label">Email</label>
+						<input type="email" id="email" placeholder="john@exemple.com" required>
+					</div>
+
+					<button type="button" class="form-button" onclick="nextStep()">
+						Continuer →
+					</button>
+				</div>
+
+				<!-- Step 2: Phone -->
+				<div class="form-step hidden" id="step2">
+					<h3 class="modal-title">Une dernière étape</h3>
+					<p class="modal-subtitle">Étape 2/2 - Numéro de téléphone</p>
+
+					<div class="input-group">
+						<label class="input-label">Téléphone</label>
+						<input type="tel" id="phone" placeholder="+33 6 12 34 56 78" required>
+					</div>
+
+					<button type="submit" class="form-button" id="submitBtn">
+						<span id="btnText">Accéder maintenant →</span>
+						<div class="hidden" id="loader">⏳</div>
+					</button>
+				</div>
+
+				<!-- Success Message -->
+				<div class="form-step hidden" id="successStep" style="text-align: center;">
+					<div style="font-size: 64px; margin-bottom: 24px;">✅</div>
+					<h3 class="modal-title">Accès confirmé !</h3>
+					<p class="modal-subtitle">Vous allez recevoir les détails par email dans quelques instants.</p>
+				</div>
+			</form>
+		</div>
+	</div>
 
 	<Footer />
+
+	<script>
+		// Navbar scroll effect
+		window.addEventListener('scroll', () => {
+			const navbar = document.getElementById('navbar');
+			if (window.scrollY > 50) {
+				navbar.classList.add('scrolled');
+			} else {
+				navbar.classList.remove('scrolled');
+			}
+		});
+
+		// Modal functions
+		let audioContext;
+		let openSoundStyle = 'pop';
+		function setOpenSoundStyle(style) { openSoundStyle = style; }
+		function ensureAudio() {
+			const AudioCtx = window.AudioContext || window.webkitAudioContext;
+			if (!audioContext || audioContext.state === 'closed') audioContext = new AudioCtx();
+			if (audioContext.state === 'suspended') audioContext.resume();
+			return audioContext;
+		}
+		function playOpenSound(style = openSoundStyle) {
+			try {
+				const ctx = ensureAudio();
+				const now = ctx.currentTime;
+				if (style === 'pop') {
+					const duration = 0.25;
+					const osc = ctx.createOscillator();
+					const gain = ctx.createGain();
+					osc.type = 'sine';
+					osc.frequency.setValueAtTime(880, now);
+					osc.frequency.exponentialRampToValueAtTime(1320, now + 0.12);
+					osc.frequency.exponentialRampToValueAtTime(660, now + duration);
+					gain.gain.setValueAtTime(0.0001, now);
+					gain.gain.linearRampToValueAtTime(0.18, now + 0.02);
+					gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+					osc.connect(gain);
+					gain.connect(ctx.destination);
+					osc.start(now);
+					osc.stop(now + duration);
+					return;
+				}
+				if (style === 'blip') {
+					const duration = 0.18;
+					const osc = ctx.createOscillator();
+					const gain = ctx.createGain();
+					osc.type = 'triangle';
+					osc.frequency.setValueAtTime(1500, now);
+					osc.frequency.exponentialRampToValueAtTime(600, now + duration);
+					gain.gain.setValueAtTime(0.0001, now);
+					gain.gain.linearRampToValueAtTime(0.2, now + 0.02);
+					gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+					osc.connect(gain);
+					gain.connect(ctx.destination);
+					osc.start(now);
+					osc.stop(now + duration);
+					return;
+				}
+				if (style === 'shimmer') {
+					const duration = 0.3;
+					const osc1 = ctx.createOscillator();
+					const osc2 = ctx.createOscillator();
+					const gain = ctx.createGain();
+					osc1.type = 'sine'; osc2.type = 'sine';
+					osc1.frequency.setValueAtTime(880, now);
+					osc2.frequency.setValueAtTime(1760, now);
+					osc2.detune.setValueAtTime(10, now);
+					gain.gain.setValueAtTime(0.0001, now);
+					gain.gain.linearRampToValueAtTime(0.16, now + 0.03);
+					gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+					osc1.connect(gain); osc2.connect(gain);
+					gain.connect(ctx.destination);
+					osc1.start(now);
+					osc2.start(now + 0.02);
+					osc1.stop(now + duration);
+					osc2.stop(now + duration);
+					return;
+				}
+				if (style === 'whoosh') {
+					const duration = 0.25;
+					const sampleRate = ctx.sampleRate;
+					const frameCount = Math.floor(sampleRate * duration);
+					const buffer = ctx.createBuffer(1, frameCount, sampleRate);
+					const data = buffer.getChannelData(0);
+					for (let i = 0; i < frameCount; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / frameCount);
+					const src = ctx.createBufferSource(); src.buffer = buffer;
+					const filter = ctx.createBiquadFilter(); filter.type = 'bandpass'; filter.Q.value = 1;
+					const gain = ctx.createGain();
+					filter.frequency.setValueAtTime(500, now);
+					filter.frequency.exponentialRampToValueAtTime(4000, now + duration);
+					gain.gain.setValueAtTime(0.0001, now);
+					gain.gain.linearRampToValueAtTime(0.14, now + 0.03);
+					gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+					src.connect(filter); filter.connect(gain); gain.connect(ctx.destination);
+					src.start(now);
+					src.stop(now + duration);
+					return;
+				}
+				playOpenSound('pop');
+			} catch (e) { }
+		}
+		function openModal() {
+			playOpenSound();
+			document.getElementById('modalOverlay').classList.add('active');
+			document.body.style.overflow = 'hidden';
+		}
+
+		function closeModal() {
+			document.getElementById('modalOverlay').classList.remove('active');
+			document.body.style.overflow = 'auto';
+			// Reset form
+			document.getElementById('accessForm').reset();
+			document.getElementById('step1').classList.remove('hidden');
+			document.getElementById('step2').classList.add('hidden');
+			document.getElementById('successStep').classList.add('hidden');
+			document.getElementById('progress1').classList.add('active');
+			document.getElementById('progress2').classList.remove('active');
+		}
+
+		// Close modal on overlay click
+		document.getElementById('modalOverlay').addEventListener('click', function(e) {
+			if (e.target === this) {
+				closeModal();
+			}
+		});
+
+		// Form navigation
+		function nextStep() {
+			const firstName = document.getElementById('firstName').value;
+			const email = document.getElementById('email').value;
+			
+			if (firstName && email) {
+				const step1 = document.getElementById('step1');
+				const step2 = document.getElementById('step2');
+				step1.classList.remove('active');
+				step1.classList.add('hidden');
+				step2.classList.remove('hidden');
+				step2.classList.add('active');
+				document.getElementById('progress2').classList.add('active');
+			}
+		}
+
+		// Form submission
+		async function handleSubmit(event) {
+			event.preventDefault();
+			
+			const btnText = document.getElementById('btnText');
+			const loader = document.getElementById('loader');
+			const submitBtn = document.getElementById('submitBtn');
+			
+			// Show loading
+			btnText.style.display = 'none';
+			loader.classList.remove('hidden');
+			submitBtn.disabled = true;
+			
+			// Simulate API call
+			await new Promise(resolve => setTimeout(resolve, 2000));
+			
+			// Show success
+			document.getElementById('step2').classList.add('hidden');
+			document.getElementById('successStep').classList.remove('hidden');
+			
+			// Reset after delay
+			setTimeout(() => {
+				closeModal();
+				btnText.style.display = 'inline';
+				loader.classList.add('hidden');
+				submitBtn.disabled = false;
+			}, 3000);
+		}
+
+		// Parallax on scroll
+		window.addEventListener('scroll', () => {
+			const scrolled = window.pageYOffset;
+			const parallax = document.querySelector('.gradient-bg');
+			if (parallax) {
+				parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+			}
+		});
+
+		// Animate numbers on scroll
+		const animateValue = (element, start, end, duration) => {
+			const startTimestamp = Date.now();
+			const step = () => {
+				const timestamp = Date.now();
+				const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+				const value = Math.floor(progress * (end - start) + start);
+				
+				if (element.textContent.includes('€')) {
+					element.textContent = value.toLocaleString('fr-FR') + 'k€';
+				} else {
+					element.textContent = value;
+				}
+				
+				if (progress < 1) {
+					window.requestAnimationFrame(step);
+				}
+			};
+			window.requestAnimationFrame(step);
+		};
+
+		// Intersection observer for animations
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					const statNumbers = entry.target.querySelectorAll('.stat-number');
+					statNumbers.forEach(stat => {
+						if (stat.textContent === '+100k€') {
+							animateValue(stat, 0, 100, 2000);
+						}
+					});
+					observer.unobserve(entry.target);
+				}
+			});
+		});
+
+		document.querySelectorAll('.stats').forEach(section => {
+			observer.observe(section);
+		});
+
+		// Expose functions globally for inline onclick handlers
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		(window as any).openModal = openModal;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		(window as any).closeModal = closeModal;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		(window as any).nextStep = nextStep;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		(window as any).handleSubmit = handleSubmit;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		(window as any).setOpenSoundStyle = setOpenSoundStyle;
+	</script>
 </Layout>

@@ -1,0 +1,291 @@
+---
+// Composant Hero pour la page d'accueil Système Viral
+---
+
+<!-- Background effects -->
+<div class="gradient-bg"></div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      
+      <!-- Badge -->
+      <div class="badge">
+        <div class="badge-icon"></div>
+        <span class="badge-text">100k€ générés • Méthode testée</span>
+      </div>
+
+      <!-- Titre principal -->
+      <h1>
+        Je ne vais pas vous promettre 10k€/mois.
+        <span class="gradient-text">
+          Mais j'ai fait +100k€ en 1 mois avec des vidéos d'1 minute.
+        </span>
+      </h1>
+
+      <!-- Sous-titre -->
+      <p class="hero-subtitle">
+        Sans budget pub. Sans équipe. Sans bullshit.<br>
+        Juste un système qui transforme des vues TikTok en cash.
+      </p>
+
+      <!-- CTA Button -->
+      <div class="cta-wrapper">
+        <button class="cta-btn" onclick="openModal()">
+          Découvrir la méthode →
+        </button>
+      </div>
+
+      <!-- Trust Points -->
+      <div class="trust-points">
+        <div class="trust-item">
+          <span class="trust-check">✓</span>
+          <span>Pas de bullshit</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-check">✓</span>
+          <span>Résultats prouvés</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-check">✓</span>
+          <span>Système automatisé</span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      
+      <!-- Stat 1 -->
+      <div class="stat-card">
+        <div class="stat-number">+100k€</div>
+        <div class="stat-desc">En 1 mois</div>
+      </div>
+
+      <!-- Stat 2 -->
+      <div class="stat-card">
+        <div class="stat-number">1min</div>
+        <div class="stat-desc">Par vidéo</div>
+      </div>
+
+      <!-- Stat 3 -->
+      <div class="stat-card">
+        <div class="stat-number">0€</div>
+        <div class="stat-desc">Budget pub</div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+  <div class="container">
+    <h2 class="section-title">Le système en 3 étapes</h2>
+    
+    <div class="features-grid">
+      
+      <!-- Feature 1 -->
+      <div class="feature-card">
+        <div class="step-number">1</div>
+        <h3 class="feature-title">Créer du contenu viral</h3>
+        <p class="feature-text">
+          Des vidéos d'1 minute qui font des millions de vues.<br>
+          La formule exacte testée sur TikTok, Reels et Shorts.
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="feature-card">
+        <div class="step-number">2</div>
+        <h3 class="feature-title">Capturer les emails</h3>
+        <p class="feature-text">
+          Transformer vos viewers en liste email qualifiée.<br>
+          Système automatisé qui tourne 24/7 sans vous.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="feature-card">
+        <div class="step-number">3</div>
+        <h3 class="feature-title">Monétiser à fond</h3>
+        <p class="feature-text">
+          Produit digital à 2000€ ou affiliation premium.<br>
+          La stratégie exacte pour faire +100k€/mois.
+        </p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Modal Popup -->
+<div id="modalOverlay" class="modal-overlay hidden">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div id="progress1" class="progress-step active"></div>
+      <div id="progress2" class="progress-step"></div>
+    </div>
+
+    <form id="accessForm" onsubmit="handleSubmit(event)">
+      <!-- Step 1: Name and Email -->
+      <div id="step1" class="form-step">
+        <h3 class="modal-title">Accès immédiat</h3>
+        <p class="modal-subtitle">Étape 1/2 - Vos informations</p>
+        
+        <div class="input-group">
+          <label class="input-label">Prénom</label>
+          <input type="text" id="firstName" placeholder="John" required>
+        </div>
+        
+        <div class="input-group">
+          <label class="input-label">Email</label>
+          <input type="email" id="email" placeholder="john@exemple.com" required>
+        </div>
+        
+        <button type="button" class="form-button" onclick="nextStep()">
+          Continuer →
+        </button>
+      </div>
+
+      <!-- Step 2: Phone -->
+      <div id="step2" class="form-step hidden">
+        <h3 class="modal-title">Une dernière étape</h3>
+        <p class="modal-subtitle">Étape 2/2 - Numéro de téléphone</p>
+        
+        <div class="input-group">
+          <label class="input-label">Téléphone</label>
+          <input type="tel" id="phone" placeholder="+33 6 12 34 56 78" required>
+        </div>
+        
+        <button type="submit" class="form-button" id="submitBtn">
+          <span id="btnText">Accéder maintenant →</span>
+          <div id="loader" class="hidden">⏳</div>
+        </button>
+      </div>
+
+      <!-- Success Message -->
+      <div id="successStep" class="form-step hidden text-center">
+        <div style="font-size: 64px; margin-bottom: 24px;">✅</div>
+        <h3 class="modal-title">Accès confirmé !</h3>
+        <p class="modal-subtitle">Vous allez recevoir les détails par email dans quelques instants.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Modal functions
+  function openModal() {
+    document.getElementById('modalOverlay').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    // Reset form
+    document.getElementById('accessForm').reset();
+    document.getElementById('step1').classList.remove('hidden');
+    document.getElementById('step2').classList.add('hidden');
+    document.getElementById('successStep').classList.add('hidden');
+    document.getElementById('progress1').classList.add('active');
+    document.getElementById('progress2').classList.remove('active');
+  }
+
+  // Close modal on overlay click
+  document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeModal();
+    }
+  });
+
+  // Form navigation
+  function nextStep() {
+    const firstName = document.getElementById('firstName').value;
+    const email = document.getElementById('email').value;
+    
+    if (firstName && email) {
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+      document.getElementById('progress2').classList.add('active');
+    }
+  }
+
+  // Form submission
+  async function handleSubmit(event) {
+    event.preventDefault();
+    
+    const btnText = document.getElementById('btnText');
+    const loader = document.getElementById('loader');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // Show loading
+    btnText.classList.add('hidden');
+    loader.classList.remove('hidden');
+    submitBtn.disabled = true;
+    
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // Show success
+    document.getElementById('step2').classList.add('hidden');
+    document.getElementById('successStep').classList.remove('hidden');
+    
+    // Reset after delay
+    setTimeout(() => {
+      closeModal();
+      btnText.classList.remove('hidden');
+      loader.classList.add('hidden');
+      submitBtn.disabled = false;
+    }, 3000);
+  }
+
+  // Animate numbers on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const statNumbers = entry.target.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+          if (stat.textContent.includes('100k€')) {
+            animateValue(stat, 0, 100, 2000);
+          }
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  function animateValue(element, start, end, duration) {
+    const startTimestamp = Date.now();
+    const step = () => {
+      const timestamp = Date.now();
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const value = Math.floor(progress * (end - start) + start);
+      
+      if (element.textContent.includes('€')) {
+        element.textContent = value.toLocaleString('fr-FR') + 'k€';
+      } else {
+        element.textContent = value;
+      }
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+
+  document.querySelectorAll('.stats').forEach(section => {
+    observer.observe(section);
+  });
+</script>
