@@ -1,21 +1,233 @@
 ---
-// Header personnalisé pour Système Viral
+import { siteConfig } from "../config/site";
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
 ---
 
-<header class="navbar" id="navbar">
+<header class="header">
   <div class="container">
-    <div class="logo">SYSTÈME VIRAL</div>
+    <nav class="nav">
+      <a href="/" class="logo">
+        <span class="logo-text">SYSTÈME VIRAL</span>
+      </a>
+
+      <ul class="nav-menu">
+        {
+          siteConfig.nav.map((item) => (
+            <li class="nav-item">
+              <a
+                href={item.href}
+                class={`nav-link ${currentPath === item.href ? "active" : ""}`}
+              >
+                {item.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="nav-actions">
+        <a href="/login" class="login-btn">Se connecter</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
   </div>
 </header>
 
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+  }
+
+  .logo {
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(
+      135deg,
+      var(--accent) 0%,
+      var(--accent-glow) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s ease;
+  }
+
+  .logo:hover .logo-text {
+    transform: scale(1.05);
+  }
+
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+  }
+
+  .nav-link.active {
+    color: var(--accent);
+  }
+
+  .nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .login-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 9999px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--bg);
+    background: linear-gradient(
+      135deg,
+      var(--accent) 0%,
+      var(--accent-bright) 100%
+    );
+    border: 1px solid rgba(0, 220, 130, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 220, 130, 0.25);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      opacity 0.2s ease;
+    text-decoration: none;
+  }
+
+  .login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(0, 220, 130, 0.35);
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .mobile-menu-btn span {
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .nav-menu {
+      display: none;
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+    }
+
+    .nav-menu.mobile-open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      padding: 20px;
+      gap: 16px;
+    }
+  }
+</style>
+
 <script>
-  // Navbar scroll effect
-  window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+  document.addEventListener("DOMContentLoaded", function () {
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const navMenu = document.querySelector(".nav-menu");
+
+    if (mobileMenuBtn && navMenu) {
+      mobileMenuBtn.addEventListener("click", function () {
+        navMenu.classList.toggle("mobile-open");
+
+        // Animation du bouton hamburger
+        const spans = this.querySelectorAll("span");
+        if (navMenu.classList.contains("mobile-open")) {
+          spans[0].style.transform = "rotate(45deg) translate(6px, 6px)";
+          spans[1].style.opacity = "0";
+          spans[2].style.transform = "rotate(-45deg) translate(6px, -6px)";
+        } else {
+          spans[0].style.transform = "none";
+          spans[1].style.opacity = "1";
+          spans[2].style.transform = "none";
+        }
+      });
+
+      // Fermer le menu quand on clique sur un lien
+      const navLinks = navMenu.querySelectorAll(".nav-link");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navMenu.classList.remove("mobile-open");
+          const spans = mobileMenuBtn.querySelectorAll("span");
+          spans[0].style.transform = "none";
+          spans[1].style.opacity = "1";
+          spans[2].style.transform = "none";
+        });
+      });
     }
   });
 </script>

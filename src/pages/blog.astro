@@ -1,0 +1,798 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+// Récupérer tous les articles du blog
+const allPosts = await getCollection("blog");
+
+// Trier par date de publication (plus récent en premier)
+const posts = allPosts.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// Paramètres de recherche et filtrage (pour l'instant statiques)
+const searchQuery = "";
+const selectedCategory = "Tous les articles";
+---
+
+<Layout
+    title="Blog - Stratégies Marketing Digital & Viral"
+    description="Découvre les meilleures stratégies de marketing digital, techniques de viralisation et méthodes pour monétiser tes contenus courts."
+>
+    <div class="blog-page">
+        <!-- Background effects -->
+        <div class="gradient-bg"></div>
+
+        <!-- Hero Section -->
+        <section class="blog-hero">
+            <div class="hero-content">
+                <div class="badge">
+                    <div class="badge-icon"></div>
+                    <span class="badge-text"
+                        >Stratégies testées • Résultats prouvés</span
+                    >
+                </div>
+
+                <h1>Stratégies Marketing Digital</h1>
+                <p class="hero-subtitle">
+                    Découvre les meilleures techniques de viralisation, méthodes
+                    de monétisation<br />
+                    et stratégies pour transformer tes contenus courts en machine
+                    à cash.
+                </p>
+            </div>
+        </section>
+
+        <!-- Search and Filters Section -->
+        <section class="search-filters">
+            <div class="container">
+                <div class="search-bar" id="searchBar">
+                    <svg
+                        class="search-icon"
+                        id="searchIcon"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                    >
+                        <path
+                            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                        ></path>
+                    </svg>
+                    <input
+                        type="text"
+                        placeholder="Rechercher une stratégie, une technique..."
+                        class="search-input"
+                        id="searchInput"
+                    />
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Articles Section -->
+        <section class="articles-section">
+            <div class="container">
+                {
+                    posts.length > 0 ? (
+                        <div class="articles-grid" id="articlesGrid">
+                            {posts.map((post) => (
+                                <article
+                                    class="article-card"
+                                    data-title={post.data.title.toLowerCase()}
+                                    data-description={post.data.description.toLowerCase()}
+                                >
+                                    <a
+                                        href={`/blog/${post.slug}`}
+                                        class="article-link"
+                                    >
+                                        <div class="article-image">
+                                            {post.data.heroImage ? (
+                                                <img
+                                                    src={post.data.heroImage}
+                                                    alt={post.data.title}
+                                                />
+                                            ) : (
+                                                <div class="image-placeholder">
+                                                    <svg
+                                                        width="60"
+                                                        height="60"
+                                                        viewBox="0 0 24 24"
+                                                        fill="currentColor"
+                                                    >
+                                                        <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                                                    </svg>
+                                                </div>
+                                            )}
+                                            {post.data.featured && (
+                                                <div class="featured-badge">
+                                                    <span>
+                                                        ⭐ Article vedette
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div class="article-content">
+                                            <div class="article-meta">
+                                                <span class="date">
+                                                    {post.data.pubDate.toLocaleDateString(
+                                                        "fr-FR",
+                                                        {
+                                                            day: "2-digit",
+                                                            month: "long",
+                                                            year: "numeric",
+                                                        },
+                                                    )}
+                                                </span>
+                                                {post.data.readTime && (
+                                                    <span class="read-time">
+                                                        📖 {post.data.readTime}{" "}
+                                                        min
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <h2 class="article-title">
+                                                {post.data.title}
+                                            </h2>
+                                            <p class="article-description">
+                                                {post.data.description}
+                                            </p>
+                                            <div class="article-footer">
+                                                <div class="author">
+                                                    <div class="author-avatar">
+                                                        <svg
+                                                            width="16"
+                                                            height="16"
+                                                            viewBox="0 0 24 24"
+                                                            fill="currentColor"
+                                                        >
+                                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                                                        </svg>
+                                                    </div>
+                                                    <span class="author-name">
+                                                        {post.data.author}
+                                                    </span>
+                                                </div>
+                                                <div class="read-more">
+                                                    Lire →
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </article>
+                            ))}
+                        </div>
+                    ) : (
+                        <div class="no-articles">
+                            <div class="no-articles-icon">
+                                <svg
+                                    width="80"
+                                    height="80"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                >
+                                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                                </svg>
+                            </div>
+                            <h2>De nouveaux articles arrivent bientôt !</h2>
+                            <p>
+                                Nous préparons du contenu de qualité pour
+                                t'aider à maîtriser le marketing digital et
+                                créer ton système viral. Reviens bientôt pour
+                                découvrir nos premiers articles sur les
+                                stratégies de viralisation.
+                            </p>
+                            <div class="newsletter-reminder">
+                                <p>
+                                    💡 <strong>Conseil :</strong> Abonne-toi à
+                                    notre newsletter pour être notifié dès qu'un
+                                    nouvel article sera publié.
+                                </p>
+                            </div>
+                        </div>
+                    )
+                }
+            </div>
+        </section>
+    </div>
+</Layout>
+
+<style>
+    .blog-page {
+        min-height: 100vh;
+        padding-top: 100px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .gradient-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+                circle at 20% 50%,
+                rgba(0, 220, 130, 0.12) 0%,
+                transparent 50%
+            ),
+            radial-gradient(
+                circle at 80% 80%,
+                rgba(0, 245, 142, 0.08) 0%,
+                transparent 50%
+            ),
+            radial-gradient(
+                circle at 40% 20%,
+                rgba(0, 184, 110, 0.08) 0%,
+                transparent 50%
+            );
+        animation: gradientShift 20s ease infinite;
+        z-index: 0;
+    }
+
+    @keyframes gradientShift {
+        0%,
+        100% {
+            transform: scale(1) rotate(0deg);
+        }
+        33% {
+            transform: scale(1.1) rotate(120deg);
+        }
+        66% {
+            transform: scale(0.95) rotate(240deg);
+        }
+    }
+
+    .blog-hero {
+        text-align: center;
+        padding: 80px 20px 60px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 20px;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 220, 130, 0.1) 0%,
+            rgba(0, 245, 142, 0.05) 100%
+        );
+        border: 1px solid rgba(0, 220, 130, 0.3);
+        border-radius: 100px;
+        margin-bottom: 40px;
+        animation: fadeInUp 0.8s ease;
+    }
+
+    .badge-icon {
+        width: 16px;
+        height: 16px;
+        background: var(--accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: rotate 4s linear infinite;
+        box-shadow: 0 0 15px var(--accent);
+    }
+
+    .badge-icon::before {
+        content: "✦";
+        color: var(--bg);
+        font-size: 10px;
+    }
+
+    .badge-text {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--accent-bright);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    @keyframes rotate {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .blog-hero h1 {
+        font-size: clamp(48px, 8vw, 72px);
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 24px;
+        letter-spacing: -0.04em;
+        background: linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bright) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: fadeInUp 1s ease 0.2s both;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        animation: fadeInUp 1.2s ease 0.4s both;
+    }
+
+    .search-filters {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px 60px;
+    }
+
+    .search-bar {
+        position: relative;
+        max-width: 600px;
+        margin: 0 auto 30px;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-secondary);
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 16px 20px 16px 50px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        color: var(--text);
+        font-size: 16px;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+
+    .search-input::placeholder {
+        color: var(--text-muted);
+    }
+
+    .search-input:focus {
+        border-color: var(--accent);
+        background: var(--bg-elevated);
+        box-shadow: 0 0 0 4px rgba(0, 220, 130, 0.1);
+    }
+
+    .search-bar.searching .search-input {
+        border-color: var(--accent);
+        background: rgba(0, 220, 130, 0.1);
+    }
+
+    .search-bar.searching .search-icon {
+        color: var(--accent);
+    }
+
+    .search-bar:focus-within .search-icon {
+        color: var(--accent);
+    }
+
+    .search-results {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 220, 130, 0.1);
+        color: var(--accent);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        display: none;
+    }
+
+    .search-results.visible {
+        display: block;
+    }
+
+    .articles-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px 80px;
+    }
+
+    .articles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 400px));
+        gap: 30px;
+        justify-content: center;
+    }
+
+    .article-card {
+        background: var(--bg-card);
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        position: relative;
+    }
+
+    .article-card:hover {
+        background: var(--bg-elevated);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(0, 220, 130, 0.2);
+        border-color: rgba(0, 220, 130, 0.3);
+    }
+
+    .article-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        height: 100%;
+    }
+
+    .article-image {
+        height: 180px;
+        background: var(--bg-elevated);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .article-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .article-card:hover .article-image img {
+        transform: scale(1.05);
+    }
+
+    .image-placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        color: var(--text-secondary);
+    }
+
+    .featured-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: linear-gradient(
+            135deg,
+            var(--accent) 0%,
+            var(--accent-bright) 100%
+        );
+        color: var(--bg);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(0, 220, 130, 0.3);
+    }
+
+    .article-content {
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 180px);
+    }
+
+    .article-meta {
+        display: flex;
+        gap: 18px;
+        margin-bottom: 20px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .date,
+    .read-time {
+        color: var(--text-secondary);
+        font-size: 14px;
+    }
+
+    .article-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.4;
+        margin-bottom: 12px;
+        letter-spacing: -0.01em;
+        flex-grow: 1;
+    }
+
+    .article-description {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .article-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+    }
+
+    .author {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .author-avatar {
+        width: 24px;
+        height: 24px;
+        background: rgba(0, 220, 130, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+    }
+
+    .author-name {
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .read-more {
+        color: var(--accent);
+        font-size: 14px;
+        font-weight: 500;
+        transition: transform 0.2s ease;
+    }
+
+    .article-card:hover .read-more {
+        transform: translateX(2px);
+    }
+
+    .no-articles {
+        text-align: center;
+        padding: 80px 20px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .no-articles-icon {
+        color: var(--accent);
+        margin-bottom: 24px;
+    }
+
+    .no-articles h2 {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 16px;
+        letter-spacing: -0.02em;
+    }
+
+    .no-articles p {
+        font-size: 16px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 24px;
+    }
+
+    .newsletter-reminder {
+        background: rgba(0, 220, 130, 0.05);
+        border: 1px solid rgba(0, 220, 130, 0.1);
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .newsletter-reminder p {
+        margin: 0;
+        font-size: 14px;
+        color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+        .blog-hero {
+            padding: 60px 20px 40px;
+        }
+
+        .blog-hero h1 {
+            font-size: 42px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+        }
+
+        .search-filters {
+            padding: 0 20px 40px;
+        }
+
+        .articles-section {
+            padding: 0 20px 60px;
+        }
+
+        .articles-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-title {
+            font-size: 16px;
+        }
+
+        .article-description {
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .search-filters {
+            padding: 0 15px 30px;
+        }
+
+        .articles-section {
+            padding: 0 15px 40px;
+        }
+
+        .article-content {
+            padding: 16px;
+        }
+
+        .article-title {
+            font-size: 15px;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("searchInput");
+        const articles = document.querySelectorAll(".article-card");
+        const articlesGrid = document.getElementById("articlesGrid");
+
+        let currentSearch = "";
+
+        // Fonction pour filtrer les articles
+        function filterArticles() {
+            console.log("Filtrage des articles...");
+            console.log("Recherche actuelle:", currentSearch);
+
+            articles.forEach((article) => {
+                const title = article.getAttribute("data-title");
+                const description = article.getAttribute("data-description");
+
+                console.log("Article:", title, "Recherche:", currentSearch);
+
+                const matchesSearch =
+                    currentSearch === "" ||
+                    (title && title.includes(currentSearch.toLowerCase())) ||
+                    (description &&
+                        description.includes(currentSearch.toLowerCase()));
+
+                console.log("Matches search:", matchesSearch);
+
+                if (matchesSearch) {
+                    (article as HTMLElement).style.display = "block";
+                    (article as HTMLElement).style.animation =
+                        "fadeIn 0.3s ease-in-out";
+                } else {
+                    (article as HTMLElement).style.display = "none";
+                }
+            });
+
+            // Afficher un message si aucun article trouvé
+            const visibleArticles = Array.from(articles).filter(
+                (article) => (article as HTMLElement).style.display !== "none",
+            );
+
+            console.log("Articles visibles:", visibleArticles.length);
+
+            if (visibleArticles.length === 0) {
+                if (!document.getElementById("no-results")) {
+                    const noResults = document.createElement("div");
+                    noResults.id = "no-results";
+                    noResults.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px; color: var(--text-secondary);">
+                            <h3 style="margin-bottom: 16px; color: var(--text);">Aucun article trouvé</h3>
+                            <p>Essaie de modifier tes critères de recherche.</p>
+                        </div>
+                    `;
+                    if (articlesGrid) {
+                        articlesGrid.appendChild(noResults);
+                    }
+                }
+            } else {
+                const noResults = document.getElementById("no-results");
+                if (noResults) {
+                    noResults.remove();
+                }
+            }
+        }
+
+        // Gestionnaire d'événements pour la recherche
+        if (searchInput) {
+            searchInput.addEventListener("input", function (e) {
+                currentSearch = (e.target as HTMLInputElement).value;
+                console.log("Recherche:", currentSearch);
+
+                // Afficher l'état "Recherche..." pendant la saisie
+                const searchBar = document.getElementById("searchBar");
+                const searchResults = document.getElementById("searchResults");
+
+                if (currentSearch.length > 0) {
+                    if (searchBar) searchBar.classList.add("searching");
+                    if (searchResults) {
+                        searchResults.textContent = "Recherche...";
+                        searchResults.classList.add("visible");
+                    }
+                } else {
+                    if (searchBar) searchBar.classList.remove("searching");
+                    if (searchResults)
+                        searchResults.classList.remove("visible");
+                }
+
+                // Délai pour simuler la recherche
+                clearTimeout((searchInput as any).searchTimeout);
+                (searchInput as any).searchTimeout = setTimeout(() => {
+                    filterArticles();
+
+                    // Afficher le nombre de résultats
+                    const visibleArticles = Array.from(articles).filter(
+                        (article) =>
+                            (article as HTMLElement).style.display !== "none",
+                    );
+
+                    if (currentSearch.length > 0 && searchResults) {
+                        const resultCount = visibleArticles.length;
+                        searchResults.textContent = `${resultCount} résultat${resultCount > 1 ? "s" : ""}`;
+                    } else if (searchResults) {
+                        searchResults.classList.remove("visible");
+                    }
+                }, 300);
+            });
+        }
+
+        // Animation CSS pour l'apparition des articles
+        const style = document.createElement("style");
+        style.textContent = `
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    });
+</script>

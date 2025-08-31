@@ -13,6 +13,7 @@ export const siteConfig = {
 	},
 	nav: [
 		{ title: 'Accueil', href: '/' },
+		{ title: 'Blog', href: '/blog' },
 		{ title: 'Formation', href: '/formation' },
 		{ title: 'Programme', href: '/programme' },
 		{ title: 'Témoignages', href: '/temoignages' },

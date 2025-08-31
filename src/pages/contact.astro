@@ -1,46 +1,554 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout 
+<Layout
 	title="Contact - Système Viral"
-	description="Prends contact avec nous pour en savoir plus sur notre formation en marketing digital"
-	canonical="/contact"
+	description="Contacte l'équipe Système Viral pour tes questions sur le marketing digital, la viralisation et la monétisation de contenus."
 >
-	<Header />
-	
-	<main class="min-h-screen bg-gray-50">
-		<!-- Hero Section -->
-		<section class="bg-white py-20">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-				<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-					Contact
-				</h1>
-				<p class="text-xl text-gray-600 max-w-3xl mx-auto">
-					Prends contact avec nous pour en savoir plus
+	<div class="contact-page">
+		<div class="contact-hero">
+			<div class="hero-content">
+				<h1>Contacte-nous</h1>
+				<p class="hero-subtitle">
+					Prêt à transformer tes contenus en machine à cash ? Parlons
+					de tes objectifs et de comment on peut t'aider.
 				</p>
 			</div>
-		</section>
+		</div>
 
-		<!-- Content Section - À personnaliser -->
-		<section class="py-16">
-			<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="bg-white rounded-lg shadow-lg p-8">
-					<h2 class="text-2xl font-bold text-gray-900 mb-6">
-						Informations de Contact
-					</h2>
-					<p class="text-gray-600 mb-4">
-						Cette page est prête à être personnalisée avec Claude Opus 4.1.
-					</p>
-					<p class="text-gray-600">
-						Tu peux ajouter ici un formulaire de contact, tes coordonnées, etc.
-					</p>
+		<div class="contact-content">
+			<div class="contact-grid">
+				<div class="contact-info">
+					<h2>Informations de contact</h2>
+					<div class="contact-item">
+						<div class="contact-icon">📧</div>
+						<div>
+							<h3>Email</h3>
+							<p>contact@systemeviral.com</p>
+						</div>
+					</div>
+
+					<div class="contact-item">
+						<div class="contact-icon">📱</div>
+						<div>
+							<h3>Réseaux sociaux</h3>
+							<p>@systemeviral</p>
+						</div>
+					</div>
+
+					<div class="contact-item">
+						<div class="contact-icon">⏰</div>
+						<div>
+							<h3>Réponse</h3>
+							<p>Sous 24h en semaine</p>
+						</div>
+					</div>
+
+					<div class="contact-item">
+						<div class="contact-icon">🎯</div>
+						<div>
+							<h3>Formation</h3>
+							<p>Accès immédiat après inscription</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="contact-form">
+					<h2>Envoie-nous un message</h2>
+					<form
+						name="contact"
+						method="POST"
+						data-netlify="true"
+						netlify-honeypot="bot-field"
+					>
+						<input type="hidden" name="form-name" value="contact" />
+						<!-- Champ anti-spam (caché) -->
+						<p style="display: none;">
+							<label
+								>Ne pas remplir ce champ si vous êtes humain : <input
+									name="bot-field"
+								/></label
+							>
+						</p>
+
+						<div class="form-group">
+							<label for="name">Nom complet</label>
+							<input type="text" id="name" name="name" required />
+						</div>
+
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								required
+							/>
+						</div>
+
+						<div class="form-group">
+							<label for="subject">Sujet</label>
+							<select id="subject" name="subject" required>
+								<option value="">Choisis un sujet</option>
+								<option value="formation"
+									>Formation Système Viral</option
+								>
+								<option value="viralisation"
+									>Stratégies de viralisation</option
+								>
+								<option value="monetisation"
+									>Monétisation de contenus</option
+								>
+								<option value="support"
+									>Support technique</option
+								>
+								<option value="partnership">Partenariat</option>
+								<option value="other">Autre</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="message">Message</label>
+							<textarea
+								id="message"
+								name="message"
+								rows="6"
+								required
+								placeholder="Décris-nous tes objectifs, tes questions ou ton projet..."
+							></textarea>
+						</div>
+
+						<button type="submit" class="submit-btn">
+							Envoyer le message
+						</button>
+
+						<!-- Message de confirmation -->
+						<div
+							id="form-message"
+							class="form-message"
+							style="display: none;"
+							role="status"
+							aria-live="polite"
+						>
+							<div class="form-message-icon">✅</div>
+							<div class="form-message-content">
+								<h3>Message envoyé avec succès</h3>
+								<p>
+									Merci pour ton message. <strong
+										>Notre équipe</strong
+									> te répond sous 24h (jours ouvrés).
+								</p>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
-		</section>
-	</main>
-
-	<Footer />
+		</div>
+	</div>
 </Layout>
+
+<style>
+	.contact-page {
+		min-height: 100vh;
+		padding-top: 100px;
+		position: relative;
+		z-index: 10;
+	}
+
+	.contact-hero {
+		text-align: center;
+		padding: 80px 20px 60px;
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	.contact-hero h1 {
+		font-size: clamp(48px, 8vw, 72px);
+		font-weight: 700;
+		line-height: 1.1;
+		margin-bottom: 24px;
+		letter-spacing: -0.04em;
+		background: linear-gradient(
+			180deg,
+			#ffffff 0%,
+			var(--accent-bright) 100%
+		);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hero-subtitle {
+		font-size: 20px;
+		color: var(--text-secondary);
+		line-height: 1.5;
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	.contact-content {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 40px 80px;
+	}
+
+	.contact-grid {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: 80px;
+		margin-top: 60px;
+	}
+
+	.contact-info h2,
+	.contact-form h2 {
+		font-size: 28px;
+		font-weight: 700;
+		color: var(--text);
+		margin-bottom: 32px;
+		letter-spacing: -0.02em;
+	}
+
+	.contact-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 16px;
+		margin-bottom: 32px;
+		padding: 24px;
+		background: var(--bg-card);
+		border-radius: 16px;
+		border: 1px solid var(--border);
+		backdrop-filter: blur(10px);
+		transition: all 0.3s ease;
+	}
+
+	.contact-item:hover {
+		background: var(--bg-elevated);
+		border-color: rgba(0, 220, 130, 0.3);
+		transform: translateY(-2px);
+	}
+
+	.contact-icon {
+		font-size: 24px;
+		width: 48px;
+		height: 48px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 220, 130, 0.1);
+		border-radius: 12px;
+		color: var(--accent);
+	}
+
+	.contact-item h3 {
+		font-size: 18px;
+		font-weight: 600;
+		color: var(--text);
+		margin-bottom: 8px;
+	}
+
+	.contact-item p {
+		font-size: 16px;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+
+	.contact-form {
+		background: var(--bg-card);
+		border-radius: 24px;
+		padding: 48px;
+		border: 1px solid var(--border);
+		backdrop-filter: blur(10px);
+	}
+
+	.form-group {
+		margin-bottom: 24px;
+	}
+
+	.form-group label {
+		display: block;
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--text);
+		margin-bottom: 8px;
+	}
+
+	.form-group input,
+	.form-group select,
+	.form-group textarea {
+		width: 100%;
+		padding: 16px;
+		background: var(--bg-elevated);
+		border: 1px solid var(--border);
+		border-radius: 12px;
+		color: var(--text);
+		font-size: 16px;
+		outline: none;
+		transition: all 0.3s ease;
+	}
+
+	.form-group input:focus,
+	.form-group select:focus,
+	.form-group textarea:focus {
+		border-color: var(--accent);
+		background: var(--bg-elevated);
+		box-shadow: 0 0 0 4px rgba(0, 220, 130, 0.1);
+	}
+
+	.form-group textarea {
+		resize: vertical;
+		min-height: 120px;
+	}
+
+	.submit-btn {
+		width: 100%;
+		padding: 16px 32px;
+		background: var(--accent);
+		border: none;
+		border-radius: 12px;
+		color: var(--bg);
+		font-size: 16px;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		margin-top: 16px;
+	}
+
+	.submit-btn:hover {
+		background: var(--accent-bright);
+		transform: translateY(-2px);
+		box-shadow: 0 8px 24px rgba(0, 220, 130, 0.3);
+	}
+
+	.submit-btn:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+		transform: none;
+	}
+
+	.form-message {
+		margin-top: 24px;
+		padding: 20px;
+		border-radius: 12px;
+		display: flex;
+		align-items: flex-start;
+		gap: 16px;
+		background: rgba(0, 220, 130, 0.1);
+		border: 1px solid rgba(0, 220, 130, 0.2);
+	}
+
+	.form-message.show {
+		display: flex;
+	}
+
+	.form-message.error {
+		background: rgba(255, 59, 48, 0.1);
+		border-color: rgba(255, 59, 48, 0.2);
+	}
+
+	.form-message-icon {
+		font-size: 20px;
+		margin-top: 2px;
+	}
+
+	.form-message-content h3 {
+		font-size: 18px;
+		font-weight: 600;
+		color: var(--text);
+		margin-bottom: 8px;
+	}
+
+	.form-message-content p {
+		font-size: 14px;
+		color: var(--text-secondary);
+		line-height: 1.5;
+	}
+
+	@media (max-width: 768px) {
+		.contact-hero {
+			padding: 60px 20px 40px;
+		}
+
+		.contact-hero h1 {
+			font-size: 42px;
+			line-height: 1.1;
+			margin-bottom: 20px;
+		}
+
+		.hero-subtitle {
+			font-size: 18px;
+		}
+
+		.contact-content {
+			padding: 0 20px 60px;
+		}
+
+		.contact-grid {
+			grid-template-columns: 1fr;
+			gap: 40px;
+			margin-top: 40px;
+		}
+
+		.contact-form {
+			padding: 32px 24px;
+		}
+
+		.contact-info h2,
+		.contact-form h2 {
+			font-size: 24px;
+			margin-bottom: 24px;
+		}
+
+		.contact-item {
+			padding: 20px;
+			margin-bottom: 24px;
+		}
+
+		.contact-icon {
+			width: 40px;
+			height: 40px;
+			font-size: 20px;
+		}
+
+		.contact-item h3 {
+			font-size: 16px;
+		}
+
+		.contact-item p {
+			font-size: 14px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.contact-content {
+			padding: 0 15px 40px;
+		}
+
+		.contact-form {
+			padding: 24px 20px;
+		}
+
+		.form-group input,
+		.form-group select,
+		.form-group textarea {
+			padding: 14px;
+			font-size: 16px;
+		}
+
+		.submit-btn {
+			padding: 14px 24px;
+			font-size: 16px;
+		}
+	}
+</style>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const form = document.querySelector(
+			'form[name="contact"]',
+		) as HTMLFormElement;
+		const submitBtn = form?.querySelector(
+			".submit-btn",
+		) as HTMLButtonElement;
+		const formMessage = document.getElementById("form-message");
+
+		if (!form || !submitBtn || !formMessage) return;
+
+		form.addEventListener("submit", async function (e) {
+			e.preventDefault();
+
+			submitBtn.disabled = true;
+			submitBtn.textContent = "Envoi en cours...";
+
+			const formData = new FormData(form);
+			const encoded = new URLSearchParams();
+
+			for (const [key, value] of formData.entries()) {
+				encoded.append(key, value);
+			}
+
+			try {
+				// IMPORTANT: envoyer sur la racine, pas /contact (Netlify requirement)
+				const res = await fetch("/", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded",
+					},
+					body: encoded.toString(),
+				});
+
+				// Considérer 200/302 comme succès (Netlify peut répondre 302)
+				if (res.ok || res.status === 302) {
+					formMessage.innerHTML =
+						'<div class="form-message-icon">✅</div><div class="form-message-content"><h3>Message envoyé avec succès</h3><p>Merci pour ton message. <strong>Notre équipe</strong> te répond sous 24h (jours ouvrés).</p></div>';
+					formMessage.className = "form-message show";
+					form.reset();
+					formMessage.scrollIntoView({
+						behavior: "smooth",
+						block: "center",
+					});
+				} else {
+					throw new Error("Netlify response " + res.status);
+				}
+			} catch (err) {
+				formMessage.innerHTML =
+					"<p>❌ Erreur lors de l'envoi. Réessaie ou contacte-nous à contact@systemeviral.com</p>";
+				formMessage.className = "form-message show error";
+			} finally {
+				submitBtn.disabled = false;
+				submitBtn.textContent = "Envoyer le message";
+			}
+		});
+
+		// Validation en temps réel
+		const inputs = form.querySelectorAll(
+			"input[required], select[required], textarea[required]",
+		);
+		inputs.forEach((input) => {
+			input.addEventListener(
+				"blur",
+				function (
+					this:
+						| HTMLInputElement
+						| HTMLSelectElement
+						| HTMLTextAreaElement,
+				) {
+					if (this.value.trim() === "") {
+						this.style.borderColor = "#FF3B30";
+					} else {
+						this.style.borderColor = "#34C759";
+					}
+				},
+			);
+
+			input.addEventListener(
+				"input",
+				function (
+					this:
+						| HTMLInputElement
+						| HTMLSelectElement
+						| HTMLTextAreaElement,
+				) {
+					if (this.value.trim() !== "") {
+						this.style.borderColor = "var(--border)";
+					}
+				},
+			);
+		});
+
+		// Validation email
+		const emailInput = document.getElementById("email") as HTMLInputElement;
+		if (emailInput) {
+			emailInput.addEventListener("blur", function () {
+				const email = this.value.trim();
+				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+				if (email && !emailRegex.test(email)) {
+					this.style.borderColor = "#FF3B30";
+				} else if (email) {
+					this.style.borderColor = "#34C759";
+				}
+			});
+		}
+	});
+</script>

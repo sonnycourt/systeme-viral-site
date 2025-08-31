@@ -1,0 +1,469 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+// Générer les chemins pour tous les articles
+export async function getStaticPaths() {
+    const posts = await getCollection("blog");
+    return posts.map((post) => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+    <div class="article-page">
+        <!-- Background effects -->
+        <div class="gradient-bg"></div>
+
+        <!-- Hero Section -->
+        <section class="article-hero">
+            <div class="container">
+                <div class="article-meta">
+                    <span class="category-tag">{post.data.category}</span>
+                    <span class="date"
+                        >{
+                            post.data.pubDate.toLocaleDateString("fr-FR", {
+                                day: "2-digit",
+                                month: "long",
+                                year: "numeric",
+                            })
+                        }</span
+                    >
+                    <span class="author">Par {post.data.author}</span>
+                    {
+                        post.data.readTime && (
+                            <span class="read-time">
+                                📖 {post.data.readTime} min de lecture
+                            </span>
+                        )
+                    }
+                </div>
+
+                <h1 class="article-title">{post.data.title}</h1>
+
+                {
+                    post.data.heroImage && (
+                        <div class="hero-image">
+                            <img
+                                src={post.data.heroImage}
+                                alt={post.data.title}
+                            />
+                        </div>
+                    )
+                }
+            </div>
+        </section>
+
+        <!-- Article Content -->
+        <section class="article-content">
+            <div class="container">
+                <div class="content-wrapper">
+                    <Content />
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Articles Section -->
+        <section class="related-articles">
+            <div class="container">
+                <h2 class="section-title">Articles similaires</h2>
+                <div class="related-grid">
+                    <div class="related-card">
+                        <div class="related-image">
+                            <svg
+                                width="40"
+                                height="40"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div class="related-content">
+                            <h3>Comment créer du contenu viral</h3>
+                            <p>
+                                Les techniques secrètes pour faire exploser tes
+                                vues sur TikTok, Reels et Shorts.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="related-card">
+                        <div class="related-image">
+                            <svg
+                                width="40"
+                                height="40"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div class="related-content">
+                            <h3>Monétiser tes contenus courts</h3>
+                            <p>
+                                Transforme tes vues en cash avec ces stratégies
+                                de monétisation éprouvées.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</Layout>
+
+<style>
+    .article-page {
+        min-height: 100vh;
+        padding-top: 100px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .gradient-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+                circle at 20% 50%,
+                rgba(0, 220, 130, 0.12) 0%,
+                transparent 50%
+            ),
+            radial-gradient(
+                circle at 80% 80%,
+                rgba(0, 245, 142, 0.08) 0%,
+                transparent 50%
+            ),
+            radial-gradient(
+                circle at 40% 20%,
+                rgba(0, 184, 110, 0.08) 0%,
+                transparent 50%
+            );
+        animation: gradientShift 20s ease infinite;
+        z-index: 0;
+    }
+
+    @keyframes gradientShift {
+        0%,
+        100% {
+            transform: scale(1) rotate(0deg);
+        }
+        33% {
+            transform: scale(1.1) rotate(120deg);
+        }
+        66% {
+            transform: scale(0.95) rotate(240deg);
+        }
+    }
+
+    .article-hero {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 60px 40px 40px;
+    }
+
+    .article-meta {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 24px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .category-tag {
+        background: rgba(0, 220, 130, 0.1);
+        color: var(--accent);
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .date,
+    .author,
+    .read-time {
+        color: var(--text-secondary);
+        font-size: 14px;
+    }
+
+    .article-title {
+        font-size: clamp(32px, 6vw, 48px);
+        font-weight: 900;
+        line-height: 1.2;
+        margin-bottom: 30px;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        background: linear-gradient(
+            180deg,
+            #ffffff 0%,
+            var(--accent-bright) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero-image {
+        margin-top: 30px;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .article-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 40px 80px;
+    }
+
+    .content-wrapper {
+        background: linear-gradient(
+            145deg,
+            var(--bg-card),
+            rgba(0, 220, 130, 0.05)
+        );
+        border-radius: 24px;
+        padding: 60px;
+        border: 1px solid var(--border);
+        backdrop-filter: blur(10px);
+    }
+
+    /* Styles pour le contenu Markdown */
+    .content-wrapper :global(h1) {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 24px;
+        margin-top: 40px;
+    }
+
+    .content-wrapper :global(h2) {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 20px;
+        margin-top: 32px;
+    }
+
+    .content-wrapper :global(h3) {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 16px;
+        margin-top: 24px;
+    }
+
+    .content-wrapper :global(p) {
+        font-size: 16px;
+        color: var(--text-secondary);
+        line-height: 1.7;
+        margin-bottom: 16px;
+    }
+
+    .content-wrapper :global(ul),
+    .content-wrapper :global(ol) {
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+
+    .content-wrapper :global(li) {
+        font-size: 16px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 8px;
+    }
+
+    .content-wrapper :global(strong) {
+        color: var(--text);
+        font-weight: 600;
+    }
+
+    .content-wrapper :global(em) {
+        color: var(--text-muted);
+        font-style: italic;
+    }
+
+    .content-wrapper :global(blockquote) {
+        border-left: 4px solid var(--accent);
+        padding-left: 20px;
+        margin: 24px 0;
+        font-style: italic;
+        color: var(--text-secondary);
+        background: rgba(0, 220, 130, 0.05);
+        padding: 20px;
+        border-radius: 0 12px 12px 0;
+    }
+
+    .content-wrapper :global(code) {
+        background: rgba(0, 220, 130, 0.1);
+        color: var(--accent);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .content-wrapper :global(pre) {
+        background: var(--bg-elevated);
+        padding: 20px;
+        border-radius: 12px;
+        overflow-x: auto;
+        margin: 20px 0;
+        border: 1px solid var(--border);
+    }
+
+    .content-wrapper :global(pre code) {
+        background: none;
+        color: var(--text-secondary);
+        padding: 0;
+    }
+
+    .related-articles {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px 80px;
+    }
+
+    .section-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .related-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+    }
+
+    .related-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 24px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .related-card:hover {
+        background: var(--bg-elevated);
+        transform: translateY(-2px);
+        border-color: rgba(0, 220, 130, 0.3);
+        box-shadow: 0 8px 24px rgba(0, 220, 130, 0.1);
+    }
+
+    .related-image {
+        width: 60px;
+        height: 60px;
+        background: rgba(0, 220, 130, 0.1);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        margin-bottom: 16px;
+    }
+
+    .related-content h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
+    }
+
+    .related-content p {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+        .article-hero {
+            padding: 40px 20px 30px;
+        }
+
+        .article-title {
+            font-size: 28px;
+            line-height: 1.3;
+        }
+
+        .article-content {
+            padding: 0 20px 60px;
+        }
+
+        .content-wrapper {
+            padding: 40px 30px;
+        }
+
+        .content-wrapper :global(h1) {
+            font-size: 28px;
+        }
+
+        .content-wrapper :global(h2) {
+            font-size: 22px;
+        }
+
+        .content-wrapper :global(h3) {
+            font-size: 18px;
+        }
+
+        .content-wrapper :global(p),
+        .content-wrapper :global(li) {
+            font-size: 15px;
+        }
+
+        .related-articles {
+            padding: 0 20px 60px;
+        }
+
+        .related-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .content-wrapper {
+            padding: 30px 20px;
+        }
+
+        .content-wrapper :global(h1) {
+            font-size: 24px;
+        }
+
+        .content-wrapper :global(h2) {
+            font-size: 20px;
+        }
+
+        .content-wrapper :global(h3) {
+            font-size: 16px;
+        }
+
+        .content-wrapper :global(p),
+        .content-wrapper :global(li) {
+            font-size: 14px;
+        }
+
+        .related-articles {
+            padding: 0 15px 40px;
+        }
+    }
+</style>
