@@ -1,0 +1,222 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Conditions d'utilisation - Système Viral"
+    description="Découvre les conditions d'utilisation du site systemeviral.com et de nos services."
+>
+    <div class="legal-page">
+        <div class="container">
+            <div class="legal-content">
+                <h1>Conditions d'utilisation</h1>
+                <p class="last-updated">
+                    Dernière mise à jour : {
+                        new Date().toLocaleDateString("fr-FR", {
+                            day: "2-digit",
+                            month: "long",
+                            year: "numeric",
+                        })
+                    }
+                </p>
+
+                <section>
+                    <h2>1. Objet</h2>
+                    <p>
+                        Les présentes conditions d'utilisation régissent
+                        l'utilisation du site <strong>systemeviral.com</strong> et
+                        des services proposés par Système Viral.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>2. Acceptation des conditions</h2>
+                    <p>
+                        L'utilisation du site implique l'acceptation pleine et
+                        entière des présentes conditions d'utilisation. Si tu
+                        n'acceptes pas ces conditions, tu ne dois pas utiliser
+                        ce site.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>3. Description des services</h2>
+                    <p>Système Viral propose :</p>
+                    <ul>
+                        <li>Des articles de blog sur le marketing digital</li>
+                        <li>Des stratégies de viralisation de contenu</li>
+                        <li>Des méthodes de monétisation</li>
+                        <li>Un formulaire de contact pour les demandes</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>4. Utilisation du site</h2>
+                    <p>Tu t'engages à :</p>
+                    <ul>
+                        <li>Utiliser le site conformément à la loi</li>
+                        <li>Ne pas porter atteinte aux droits de tiers</li>
+                        <li>Ne pas diffuser de contenu illégal ou offensant</li>
+                        <li>Respecter la propriété intellectuelle</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>5. Propriété intellectuelle</h2>
+                    <p>
+                        Tous les contenus du site (textes, images, vidéos,
+                        design) sont protégés par le droit d'auteur et
+                        appartiennent à Système Viral ou à ses partenaires.
+                    </p>
+                    <p>
+                        Tu peux partager nos articles en mentionnant la source
+                        et en créant un lien vers notre site.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>6. Responsabilité</h2>
+                    <p>
+                        Système Viral s'efforce de fournir des informations
+                        exactes et à jour, mais ne peut garantir :
+                    </p>
+                    <ul>
+                        <li>L'exactitude complète des informations</li>
+                        <li>La disponibilité permanente du site</li>
+                        <li>L'absence d'erreurs techniques</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>7. Liens externes</h2>
+                    <p>
+                        Notre site peut contenir des liens vers d'autres sites
+                        web. Nous ne sommes pas responsables du contenu de ces
+                        sites externes.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>8. Modification des conditions</h2>
+                    <p>
+                        Nous nous réservons le droit de modifier ces conditions
+                        d'utilisation à tout moment. Les modifications prendront
+                        effet dès leur publication sur le site.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>9. Droit applicable</h2>
+                    <p>
+                        Les présentes conditions sont régies par le droit
+                        français. En cas de litige, les tribunaux français
+                        seront compétents.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>10. Contact</h2>
+                    <p>
+                        Pour toute question concernant ces conditions
+                        d'utilisation :
+                    </p>
+                    <p>
+                        <strong>Email :</strong>
+                        <a href="mailto:contact@systemeviral.com"
+                            >contact@systemeviral.com</a>
+                    </p>
+                    <p>
+                        <strong>Site :</strong>
+                        <a href="https://systemeviral.com">systemeviral.com</a>
+                    </p>
+                </section>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .legal-page {
+        padding: 120px 0 80px;
+        min-height: 100vh;
+    }
+
+    .legal-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .legal-content h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: linear-gradient(
+            135deg,
+            var(--accent) 0%,
+            var(--accent-glow) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .last-updated {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .legal-content section {
+        margin-bottom: 2.5rem;
+    }
+
+    .legal-content h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--text);
+    }
+
+    .legal-content p {
+        line-height: 1.7;
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+    }
+
+    .legal-content ul {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+    }
+
+    .legal-content li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+        color: var(--text-secondary);
+    }
+
+    .legal-content a {
+        color: var(--accent);
+        text-decoration: none;
+    }
+
+    .legal-content a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .legal-page {
+            padding: 100px 0 60px;
+        }
+
+        .legal-content h1 {
+            font-size: 2rem;
+        }
+
+        .legal-content h2 {
+            font-size: 1.3rem;
+        }
+    }
+</style>

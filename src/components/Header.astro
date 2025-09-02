@@ -15,28 +15,30 @@ const { currentPath = Astro.url.pathname } = Astro.props;
         <span class="logo-text">SYSTÈME VIRAL</span>
       </a>
 
-      <ul class="nav-menu">
-        {
-          siteConfig.nav.map((item) => (
-            <li class="nav-item">
-              <a
-                href={item.href}
-                class={`nav-link ${currentPath === item.href ? "active" : ""}`}
-              >
-                {item.title}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+      <div class="nav-right">
+        <ul class="nav-menu">
+          {
+            siteConfig.nav.map((item) => (
+              <li class="nav-item">
+                <a
+                  href={item.href}
+                  class={`nav-link ${currentPath === item.href ? "active" : ""}`}
+                >
+                  {item.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
 
-      <div class="nav-actions">
-        <a href="/login" class="login-btn">Se connecter</a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <div class="nav-actions">
+          <a href="/login" class="login-btn">Se connecter</a>
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
     </nav>
   </div>
@@ -59,6 +61,12 @@ const { currentPath = Astro.url.pathname } = Astro.props;
     align-items: center;
     justify-content: space-between;
     padding: 16px 0;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
   }
 
   .logo {

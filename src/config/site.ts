@@ -12,11 +12,7 @@ export const siteConfig = {
 		phone: '+33 1 23 45 67 89',
 	},
 	nav: [
-		{ title: 'Accueil', href: '/' },
 		{ title: 'Blog', href: '/blog' },
-		{ title: 'Formation', href: '/formation' },
-		{ title: 'Programme', href: '/programme' },
-		{ title: 'Témoignages', href: '/temoignages' },
 		{ title: 'Contact', href: '/contact' },
 	],
 } as const;

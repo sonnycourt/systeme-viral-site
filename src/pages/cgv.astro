@@ -1,0 +1,266 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Conditions générales de vente - Système Viral"
+    description="Découvre les conditions générales de vente des formations et services proposés par Système Viral."
+>
+    <div class="legal-page">
+        <div class="container">
+            <div class="legal-content">
+                <h1>Conditions générales de vente</h1>
+                <p class="last-updated">
+                    Dernière mise à jour : {
+                        new Date().toLocaleDateString("fr-FR", {
+                            day: "2-digit",
+                            month: "long",
+                            year: "numeric",
+                        })
+                    }
+                </p>
+
+                <section>
+                    <h2>1. Objet</h2>
+                    <p>
+                        Les présentes conditions générales de vente régissent la
+                        vente de formations et services proposés par <strong
+                            >Système Viral</strong
+                        >.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>2. Identification du vendeur</h2>
+                    <p><strong>Système Viral</strong></p>
+                    <p>
+                        Email : <a href="mailto:contact@systemeviral.com"
+                            >contact@systemeviral.com</a>
+                    </p>
+                    <p>
+                        Site web : <a href="https://systemeviral.com"
+                            >systemeviral.com</a>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>3. Produits et services</h2>
+                    <p>Nous proposons :</p>
+                    <ul>
+                        <li>Formations en marketing digital</li>
+                        <li>Stratégies de viralisation de contenu</li>
+                        <li>Méthodes de monétisation</li>
+                        <li>Accompagnement personnalisé</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>4. Commandes</h2>
+                    <p>Les commandes sont passées via :</p>
+                    <ul>
+                        <li>Formulaire de contact sur le site</li>
+                        <li>Email direct</li>
+                        <li>Réseaux sociaux</li>
+                    </ul>
+                    <p>
+                        Chaque commande fait l'objet d'une confirmation par
+                        email.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>5. Prix et paiement</h2>
+                    <p>
+                        Les prix sont indiqués en euros TTC. Les modes de
+                        paiement acceptés :
+                    </p>
+                    <ul>
+                        <li>Virement bancaire</li>
+                        <li>PayPal</li>
+                        <li>Stripe</li>
+                    </ul>
+                    <p>Le paiement est exigible à la commande.</p>
+                </section>
+
+                <section>
+                    <h2>6. Livraison</h2>
+                    <p>Les formations numériques sont livrées :</p>
+                    <ul>
+                        <li>Immédiatement après paiement (accès en ligne)</li>
+                        <li>Par email avec les liens d'accès</li>
+                        <li>Dans un délai maximum de 24h</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>7. Droit de rétractation</h2>
+                    <p>
+                        Conformément à l'article L.221-28 du Code de la
+                        consommation, le droit de rétractation ne s'applique pas
+                        aux :
+                    </p>
+                    <ul>
+                        <li>
+                            Services pleinement exécutés avant la fin du délai
+                            de rétractation
+                        </li>
+                        <li>
+                            Contenus numériques non fournis sur support matériel
+                        </li>
+                    </ul>
+                    <p>
+                        Pour les formations non encore commencées, tu as 14
+                        jours pour te rétracter.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>8. Garanties</h2>
+                    <p>Nous garantissons :</p>
+                    <ul>
+                        <li>La qualité de nos formations</li>
+                        <li>L'accès aux contenus pendant la durée prévue</li>
+                        <li>Le support technique en cas de problème</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>9. Propriété intellectuelle</h2>
+                    <p>
+                        Les formations et contenus restent la propriété de
+                        Système Viral. Tu obtiens :
+                    </p>
+                    <ul>
+                        <li>Un droit d'usage personnel</li>
+                        <li>L'accès aux contenus pendant la durée prévue</li>
+                        <li>L'interdiction de redistribution</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>10. Responsabilité</h2>
+                    <p>
+                        Notre responsabilité est limitée au montant de la
+                        formation achetée. Nous ne sommes pas responsables :
+                    </p>
+                    <ul>
+                        <li>Des résultats obtenus par l'utilisateur</li>
+                        <li>Des dommages indirects</li>
+                        <li>De la perte de données</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>11. Litiges</h2>
+                    <p>
+                        En cas de litige, nous privilégions la résolution
+                        amiable. À défaut, les tribunaux français seront
+                        compétents.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>12. Contact</h2>
+                    <p>
+                        Pour toute question concernant ces conditions de vente :
+                    </p>
+                    <p>
+                        <strong>Email :</strong>
+                        <a href="mailto:contact@systemeviral.com"
+                            >contact@systemeviral.com</a>
+                    </p>
+                    <p>
+                        <strong>Site :</strong>
+                        <a href="https://systemeviral.com">systemeviral.com</a>
+                    </p>
+                </section>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .legal-page {
+        padding: 120px 0 80px;
+        min-height: 100vh;
+    }
+
+    .legal-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .legal-content h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: linear-gradient(
+            135deg,
+            var(--accent) 0%,
+            var(--accent-glow) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .last-updated {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .legal-content section {
+        margin-bottom: 2.5rem;
+    }
+
+    .legal-content h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--text);
+    }
+
+    .legal-content p {
+        line-height: 1.7;
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+    }
+
+    .legal-content ul {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+    }
+
+    .legal-content li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+        color: var(--text-secondary);
+    }
+
+    .legal-content a {
+        color: var(--accent);
+        text-decoration: none;
+    }
+
+    .legal-content a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .legal-page {
+            padding: 100px 0 60px;
+        }
+
+        .legal-content h1 {
+            font-size: 2rem;
+        }
+
+        .legal-content h2 {
+            font-size: 1.3rem;
+        }
+    }
+</style>

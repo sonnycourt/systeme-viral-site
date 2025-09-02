@@ -1,6 +1,8 @@
 ---
 import SEO from "../components/SEO.astro";
 import Header from "../components/Header.astro";
+import CookieConsent from "../components/CookieConsent.astro";
+import GAConsentMode from "../components/GAConsentMode.astro";
 import "../styles/global.css";
 
 export interface Props {
@@ -32,9 +34,11 @@ const { title, description, image, canonical, noindex } = Astro.props;
 		/>
 	</head>
 	<body>
+		<GAConsentMode />
 		<Header />
 		<main>
 			<slot />
 		</main>
+		<CookieConsent />
 	</body>
 </html>
