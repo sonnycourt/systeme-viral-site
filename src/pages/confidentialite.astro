@@ -3,160 +3,871 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-    title="Politique de confidentialité - Système Viral"
-    description="Découvre comment Système Viral collecte, utilise et protège tes données personnelles conformément au RGPD."
+    title="Politique de Confidentialité - Système Viral"
+    description="Consultez notre politique de confidentialité pour comprendre comment nous protégeons vos données personnelles. Dernière mise à jour : 02/09/2025."
 >
     <div class="legal-page">
         <div class="container">
             <div class="legal-content">
-                <h1>Politique de confidentialité</h1>
-                <p class="last-updated">
-                    Dernière mise à jour : {
-                        new Date().toLocaleDateString("fr-FR", {
-                            day: "2-digit",
-                            month: "long",
-                            year: "numeric",
-                        })
-                    }
-                </p>
+                <h1>Politique de Confidentialité</h1>
+                <p class="last-updated">Dernière mise à jour : 02/09/2025</p>
 
                 <section>
-                    <h2>1. Collecte des données</h2>
-                    <p>Nous collectons les données suivantes :</p>
+                    <h2>1. Introduction</h2>
+
+                    <h3>1.1 Notre engagement</h3>
+                    <p>
+                        ArgEntrepreneur Sàrl ("nous", "notre", "nos") s'engage à
+                        protéger la confidentialité et la sécurité de vos
+                        données personnelles. Cette Politique de Confidentialité
+                        explique comment nous collectons, utilisons, partageons
+                        et protégeons vos informations lorsque vous utilisez
+                        notre site web systemeviral.com et notre plateforme de
+                        formation sur Circle.so (collectivement, les
+                        "Services").
+                    </p>
+
+                    <h3>1.2 Responsable du traitement</h3>
+                    <p><strong>ArgEntrepreneur Sàrl</strong></p>
+                    <p>
+                        Chemin du Marais 13<br />
+                        1040 Echallens, Vaud, Suisse<br />
+                        Numéro d'identification : CH-550.1.182.756-8<br />
+                        Email : <a href="mailto:contact@systemeviral.com"
+                            >contact@systemeviral.com</a
+                        >
+                    </p>
+
+                    <h3>1.3 Consentement</h3>
+                    <p>
+                        En utilisant nos Services, vous consentez à la collecte
+                        et à l'utilisation de vos informations conformément à
+                        cette politique. Si vous n'acceptez pas cette politique,
+                        veuillez ne pas utiliser nos Services.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>2. Bases légales et conformité</h2>
+
+                    <h3>2.1 Cadre réglementaire</h3>
+                    <p>Nous traitons vos données en conformité avec :</p>
                     <ul>
                         <li>
-                            <strong>Données de contact :</strong> nom, email, téléphone
-                            (via formulaire de contact)
+                            <strong>LPD</strong> : Loi fédérale suisse sur la protection
+                            des données
                         </li>
                         <li>
-                            <strong>Données de navigation :</strong> pages visitées,
-                            durée de session (via cookies analytiques)
+                            <strong>RGPD</strong> : Règlement Général sur la Protection
+                            des Données (UE) 2016/679
                         </li>
                         <li>
-                            <strong>Données techniques :</strong> adresse IP, navigateur,
-                            système d'exploitation
+                            <strong>ePrivacy</strong> : Directive européenne sur
+                            la vie privée électronique
+                        </li>
+                        <li>
+                            <strong>CCPA</strong> : California Consumer Privacy Act
+                            (si applicable)
+                        </li>
+                    </ul>
+
+                    <h3>2.2 Bases légales du traitement</h3>
+                    <p>Nous traitons vos données sur les bases suivantes :</p>
+                    <ul>
+                        <li>
+                            <strong>Consentement</strong> : Pour les communications
+                            marketing et cookies non essentiels
+                        </li>
+                        <li>
+                            <strong>Contrat</strong> : Pour fournir nos Services
+                            et gérer votre compte
+                        </li>
+                        <li>
+                            <strong>Obligations légales</strong> : Pour la comptabilité
+                            et les obligations fiscales
+                        </li>
+                        <li>
+                            <strong>Intérêts légitimes</strong> : Pour la sécurité,
+                            l'amélioration des Services et la prévention de la fraude
                         </li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2>2. Utilisation des données</h2>
-                    <p>Nous utilisons tes données pour :</p>
+                    <h2>3. Données collectées</h2>
+
+                    <h3>3.1 Données que vous nous fournissez directement</h3>
+
+                    <h4>Lors de l'inscription</h4>
                     <ul>
-                        <li>Répondre à tes demandes de contact</li>
-                        <li>Améliorer notre site et nos services</li>
-                        <li>Analyser l'audience (Google Analytics)</li>
+                        <li>Nom et prénom</li>
+                        <li>Adresse email</li>
+                        <li>Mot de passe (crypté)</li>
+                        <li>Pays de résidence</li>
+                        <li>Numéro de téléphone (optionnel)</li>
+                        <li>Photo de profil (optionnelle)</li>
+                    </ul>
+
+                    <h4>Lors de l'achat</h4>
+                    <ul>
+                        <li>Informations de facturation</li>
+                        <li>Adresse postale (si requise)</li>
+                        <li>Numéro de TVA (entreprises UE)</li>
+                        <li>Historique des commandes</li>
+                        <li>Préférences de paiement</li>
+                    </ul>
+
+                    <h4>Lors de l'utilisation</h4>
+                    <ul>
+                        <li>Messages et commentaires dans la communauté</li>
+                        <li>Témoignages et retours d'expérience</li>
+                        <li>Questions posées au support</li>
+                        <li>Participations aux webinaires</li>
+                        <li>Résultats partagés (optionnel)</li>
+                        <li>Préférences de communication</li>
+                    </ul>
+
+                    <h3>3.2 Données collectées automatiquement</h3>
+
+                    <h4>Données de navigation</h4>
+                    <ul>
+                        <li>Adresse IP</li>
+                        <li>Type et version du navigateur</li>
+                        <li>Système d'exploitation</li>
+                        <li>Pages visitées et durée</li>
+                        <li>Source de trafic (référent)</li>
+                        <li>Clicks et interactions</li>
+                        <li>Date et heure d'accès</li>
+                        <li>Localisation approximative (pays/ville)</li>
+                    </ul>
+
+                    <h4>Données de performance</h4>
+                    <ul>
+                        <li>Progression dans la formation</li>
+                        <li>Vidéos visionnées</li>
+                        <li>Ressources téléchargées</li>
+                        <li>Taux de complétion</li>
+                        <li>Temps passé sur la plateforme</li>
+                        <li>Engagement communautaire</li>
+                    </ul>
+
+                    <h4>Cookies et technologies similaires</h4>
+                    <ul>
+                        <li>Cookies de session</li>
+                        <li>Cookies persistants</li>
+                        <li>Pixels de tracking</li>
+                        <li>Local storage</li>
+                        <li>Identifiants uniques</li>
+                    </ul>
+
+                    <h3>3.3 Données provenant de tiers</h3>
+
+                    <h4>Services de paiement</h4>
+                    <ul>
+                        <li>Confirmation de paiement</li>
+                        <li>Statut de transaction</li>
+                        <li>Méthode de paiement (masquée)</li>
+                        <li>Historique des paiements</li>
+                    </ul>
+
+                    <h4>Réseaux sociaux (si connexion sociale)</h4>
+                    <ul>
+                        <li>Nom et photo de profil</li>
+                        <li>Email</li>
+                        <li>Identifiant social</li>
+                    </ul>
+
+                    <h4>Partenaires affiliés</h4>
+                    <ul>
+                        <li>Source de référence</li>
+                        <li>Code affilié utilisé</li>
+                        <li>Date de référencement</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>4. Utilisation des données</h2>
+
+                    <h3>4.1 Finalités principales</h3>
+
+                    <h4>Fourniture des Services</h4>
+                    <ul>
+                        <li>Création et gestion de votre compte</li>
+                        <li>Accès à la formation et aux ressources</li>
+                        <li>Traitement des paiements</li>
+                        <li>Support client et assistance</li>
+                        <li>Communications transactionnelles</li>
+                    </ul>
+
+                    <h4>Amélioration des Services</h4>
+                    <ul>
+                        <li>Analyse de l'utilisation et des performances</li>
+                        <li>Développement de nouvelles fonctionnalités</li>
+                        <li>Personnalisation de l'expérience</li>
+                        <li>Optimisation du contenu pédagogique</li>
+                        <li>Tests A/B et recherche utilisateur</li>
+                    </ul>
+
+                    <h4>Marketing et communication</h4>
+                    <ul>
+                        <li>Newsletter et mises à jour (avec consentement)</li>
+                        <li>Offres promotionnelles (avec consentement)</li>
+                        <li>Invitations aux événements</li>
+                        <li>Témoignages et études de cas (avec accord)</li>
+                        <li>Remarketing et publicité ciblée</li>
+                    </ul>
+
+                    <h4>Sécurité et conformité</h4>
+                    <ul>
+                        <li>Prévention de la fraude</li>
+                        <li>Protection contre le piratage</li>
+                        <li>Respect des obligations légales</li>
+                        <li>Application des CGU/CGV</li>
+                        <li>Résolution des litiges</li>
+                    </ul>
+
+                    <h3>4.2 Profilage et décisions automatisées</h3>
+                    <ul>
                         <li>
-                            Personnaliser le contenu marketing (avec ton
-                            consentement)
+                            Nous n'effectuons pas de profilage à des fins de
+                            décisions automatisées ayant des effets juridiques
+                        </li>
+                        <li>
+                            Personnalisation limitée basée sur votre progression
+                            et préférences
+                        </li>
+                        <li>
+                            Vous pouvez demander une intervention humaine à tout
+                            moment
                         </li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2>3. Cookies</h2>
-                    <p>Notre site utilise des cookies pour :</p>
+                    <h2>5. Partage des données</h2>
+
+                    <h3>5.1 Catégories de destinataires</h3>
+
+                    <h4>Prestataires de services essentiels</h4>
                     <ul>
                         <li>
-                            <strong>Cookies nécessaires :</strong> fonctionnement
-                            du site (toujours actifs)
+                            <strong>Circle.so</strong> : Hébergement de la plateforme
+                            de formation
                         </li>
                         <li>
-                            <strong>Cookies statistiques :</strong> mesure d'audience
-                            anonyme (avec consentement)
+                            <strong>Stripe/PayPal</strong> : Traitement des paiements
                         </li>
                         <li>
-                            <strong>Cookies marketing :</strong> personnalisation
-                            publicitaire (avec consentement)
+                            <strong>Google Workspace</strong> : Email et stockage
+                        </li>
+                        <li>
+                            <strong>Hébergeurs web</strong> : Infrastructure technique
+                        </li>
+                        <li>
+                            <strong>Services cloud</strong> : Sauvegarde et sécurité
                         </li>
                     </ul>
-                    <p>
-                        Tu peux gérer tes préférences de cookies via la bannière
-                        de consentement.
-                    </p>
-                </section>
 
-                <section>
-                    <h2>4. Partage des données</h2>
-                    <p>
-                        Nous ne vendons jamais tes données. Nous les partageons
-                        uniquement avec :
-                    </p>
+                    <h4>Partenaires marketing (avec consentement)</h4>
                     <ul>
                         <li>
-                            <strong>Google Analytics :</strong> pour l'analyse d'audience
-                            (données anonymisées)
+                            <strong>Google Analytics</strong> : Analyse du trafic
                         </li>
                         <li>
-                            <strong>Prestataires techniques :</strong> hébergement,
-                            maintenance (sous contrat de confidentialité)
+                            <strong>Facebook/Meta</strong> : Publicité et remarketing
+                        </li>
+                        <li>
+                            <strong>Email marketing</strong> : Envoi de newsletters
+                        </li>
+                        <li>
+                            <strong>Affiliés</strong> : Programme de partenariat
                         </li>
                     </ul>
-                </section>
 
-                <section>
-                    <h2>5. Tes droits</h2>
-                    <p>Conformément au RGPD, tu as le droit de :</p>
+                    <h4>Autorités et tiers autorisés</h4>
                     <ul>
-                        <li>Accéder à tes données personnelles</li>
-                        <li>Rectifier des données inexactes</li>
-                        <li>Supprimer tes données</li>
-                        <li>Limiter le traitement</li>
-                        <li>Portabilité des données</li>
-                        <li>Retirer ton consentement</li>
+                        <li>Autorités fiscales (obligations légales)</li>
+                        <li>Forces de l'ordre (sur demande légale valide)</li>
+                        <li>Conseillers juridiques et comptables</li>
+                        <li>Acquéreurs potentiels (en cas de vente)</li>
                     </ul>
-                    <p>
-                        Pour exercer ces droits, contacte-nous à : <a
-                            href="mailto:contact@systemeviral.com"
-                            >contact@systemeviral.com</a>
-                    </p>
-                </section>
 
-                <section>
-                    <h2>6. Sécurité</h2>
-                    <p>
-                        Nous mettons en place des mesures techniques et
-                        organisationnelles pour protéger tes données contre :
-                    </p>
-                    <ul>
-                        <li>L'accès non autorisé</li>
-                        <li>La divulgation</li>
-                        <li>La modification</li>
-                        <li>La destruction</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>7. Conservation</h2>
-                    <p>Nous conservons tes données :</p>
+                    <h3>5.2 Garanties et restrictions</h3>
                     <ul>
                         <li>
-                            <strong>Données de contact :</strong> 3 ans après le
-                            dernier contact
+                            Contrats de traitement des données avec tous les
+                            prestataires
                         </li>
                         <li>
-                            <strong>Données analytiques :</strong> 26 mois maximum
+                            Interdiction d'utilisation pour leurs propres fins
                         </li>
-                        <li><strong>Cookies :</strong> 12 mois maximum</li>
+                        <li>Respect des standards de sécurité</li>
+                        <li>Limitation aux données strictement nécessaires</li>
+                    </ul>
+
+                    <h3>5.3 Transferts internationaux</h3>
+                    <ul>
+                        <li>Certains prestataires sont basés hors UE/Suisse</li>
+                        <li>Utilisation de clauses contractuelles types</li>
+                        <li>
+                            Vérification de l'adéquation du niveau de protection
+                        </li>
+                        <li>Information spécifique sur demande</li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2>8. Contact</h2>
-                    <p>
-                        Pour toute question sur cette politique de
-                        confidentialité :
-                    </p>
-                    <p>
-                        <strong>Email :</strong>
-                        <a href="mailto:contact@systemeviral.com"
-                            >contact@systemeviral.com</a>
-                    </p>
-                    <p>
-                        <strong>Site :</strong>
-                        <a href="https://systemeviral.com">systemeviral.com</a>
-                    </p>
+                    <h2>6. Conservation des données</h2>
+
+                    <h3>6.1 Durées de conservation</h3>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type de données</th>
+                                    <th>Durée de conservation</th>
+                                    <th>Base légale</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Compte actif</td>
+                                    <td>Durée de l'abonnement + 2 ans</td>
+                                    <td>Réactivation possible</td>
+                                </tr>
+                                <tr>
+                                    <td>Données de facturation</td>
+                                    <td>10 ans</td>
+                                    <td>Obligations comptables</td>
+                                </tr>
+                                <tr>
+                                    <td>Logs de connexion</td>
+                                    <td>12 mois</td>
+                                    <td>Sécurité</td>
+                                </tr>
+                                <tr>
+                                    <td>Cookies analytiques</td>
+                                    <td>13 mois</td>
+                                    <td>Consentement</td>
+                                </tr>
+                                <tr>
+                                    <td>Communications support</td>
+                                    <td>3 ans</td>
+                                    <td>Intérêts légitimes</td>
+                                </tr>
+                                <tr>
+                                    <td>Témoignages</td>
+                                    <td>Indéfinie (jusqu'à retrait)</td>
+                                    <td>Consentement</td>
+                                </tr>
+                                <tr>
+                                    <td>Données de paiement</td>
+                                    <td>5 ans</td>
+                                    <td>Litiges potentiels</td>
+                                </tr>
+                                <tr>
+                                    <td>Newsletter</td>
+                                    <td>Jusqu'à désinscription</td>
+                                    <td>Consentement</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>6.2 Critères de détermination</h3>
+                    <ul>
+                        <li>Nature des données</li>
+                        <li>Finalités du traitement</li>
+                        <li>Obligations légales</li>
+                        <li>Risques pour les personnes</li>
+                        <li>Nécessité opérationnelle</li>
+                    </ul>
+
+                    <h3>6.3 Suppression et anonymisation</h3>
+                    <ul>
+                        <li>Suppression automatique après expiration</li>
+                        <li>Anonymisation possible pour statistiques</li>
+                        <li>Purge régulière des données obsolètes</li>
+                        <li>Procédure de suppression sur demande</li>
+                    </ul>
                 </section>
+
+                <section>
+                    <h2>7. Vos droits</h2>
+
+                    <h3>7.1 Droits RGPD/LPD</h3>
+
+                    <h4>Droit d'accès</h4>
+                    <ul>
+                        <li>Obtenir confirmation du traitement</li>
+                        <li>Recevoir une copie de vos données</li>
+                        <li>Connaître les finalités et destinataires</li>
+                        <li>Format : électronique structuré</li>
+                    </ul>
+
+                    <h4>Droit de rectification</h4>
+                    <ul>
+                        <li>Corriger les données inexactes</li>
+                        <li>Compléter les données incomplètes</li>
+                        <li>Mise à jour immédiate</li>
+                    </ul>
+
+                    <h4>Droit à l'effacement ("droit à l'oubli")</h4>
+                    <ul>
+                        <li>Suppression de vos données</li>
+                        <li>
+                            Exceptions : obligations légales, défense de droits
+                        </li>
+                        <li>Délai : 30 jours maximum</li>
+                    </ul>
+
+                    <h4>Droit à la limitation</h4>
+                    <ul>
+                        <li>Suspendre certains traitements</li>
+                        <li>Pendant vérification ou contestation</li>
+                        <li>Conservation sans utilisation</li>
+                    </ul>
+
+                    <h4>Droit à la portabilité</h4>
+                    <ul>
+                        <li>Recevoir vos données dans un format standard</li>
+                        <li>Transfert direct à un autre responsable</li>
+                        <li>Données fournies et générées</li>
+                    </ul>
+
+                    <h4>Droit d'opposition</h4>
+                    <ul>
+                        <li>Marketing direct : opposition absolue</li>
+                        <li>Autres traitements : motifs légitimes</li>
+                        <li>Profilage : opposition possible</li>
+                    </ul>
+
+                    <h4>Droit de retirer le consentement</h4>
+                    <ul>
+                        <li>À tout moment</li>
+                        <li>Sans affecter la légalité passée</li>
+                        <li>Aussi simple que de donner</li>
+                    </ul>
+
+                    <h3>7.2 Comment exercer vos droits</h3>
+
+                    <h4>Procédure</h4>
+                    <ol>
+                        <li>
+                            Envoyez votre demande à : <a
+                                href="mailto:contact@systemeviral.com"
+                                >contact@systemeviral.com</a>
+                        </li>
+                        <li>Indiquez clairement le droit exercé</li>
+                        <li>Joignez une pièce d'identité si nécessaire</li>
+                        <li>Nous répondons sous 30 jours</li>
+                        <li>Gratuit (sauf demandes excessives)</li>
+                    </ol>
+
+                    <h4>Formulaires disponibles</h4>
+                    <ul>
+                        <li>Modèles de demande sur simple requête</li>
+                        <li>Assistance pour formulation</li>
+                        <li>Accompagnement personnalisé</li>
+                    </ul>
+
+                    <h3>7.3 Réclamation</h3>
+                    <p>Si vous n'êtes pas satisfait, vous pouvez :</p>
+                    <ul>
+                        <li>Nous contacter pour résolution amiable</li>
+                        <li>
+                            Saisir l'autorité de contrôle :
+                            <ul>
+                                <li>
+                                    <strong>Suisse</strong> : PFPDT (Préposé fédéral
+                                    à la protection des données)
+                                </li>
+                                <li><strong>France</strong> : CNIL</li>
+                                <li><strong>Belgique</strong> : APD</li>
+                                <li>
+                                    Ou l'autorité de votre pays de résidence
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>8. Cookies et technologies similaires</h2>
+
+                    <h3>8.1 Types de cookies utilisés</h3>
+
+                    <h4>Cookies essentiels (toujours actifs)</h4>
+                    <ul>
+                        <li>Authentification et sécurité</li>
+                        <li>Préférences de base</li>
+                        <li>Navigation sur le site</li>
+                        <li>Panier et processus d'achat</li>
+                    </ul>
+
+                    <h4>Cookies analytiques (consentement)</h4>
+                    <ul>
+                        <li>Google Analytics</li>
+                        <li>Statistiques d'utilisation</li>
+                        <li>Performance du site</li>
+                        <li>Comportement utilisateur</li>
+                    </ul>
+
+                    <h4>Cookies marketing (consentement)</h4>
+                    <ul>
+                        <li>Facebook Pixel</li>
+                        <li>Google Ads</li>
+                        <li>Remarketing</li>
+                        <li>Publicité personnalisée</li>
+                    </ul>
+
+                    <h4>Cookies fonctionnels (consentement)</h4>
+                    <ul>
+                        <li>Personnalisation</li>
+                        <li>Préférences avancées</li>
+                        <li>Historique de navigation</li>
+                        <li>Recommandations</li>
+                    </ul>
+
+                    <h3>8.2 Gestion des cookies</h3>
+
+                    <h4>Paramétrage</h4>
+                    <ul>
+                        <li>Bannière de consentement à la première visite</li>
+                        <li>Centre de préférences accessible</li>
+                        <li>Modification à tout moment</li>
+                        <li>Granularité par catégorie</li>
+                    </ul>
+
+                    <h4>Désactivation</h4>
+                    <ul>
+                        <li>Via les paramètres du navigateur</li>
+                        <li>Extensions de blocage</li>
+                        <li>Mode navigation privée</li>
+                        <li>Opt-out spécifique par service</li>
+                    </ul>
+
+                    <h3>8.3 Conséquences du refus</h3>
+                    <ul>
+                        <li>Site fonctionnel sans cookies non essentiels</li>
+                        <li>Expérience potentiellement dégradée</li>
+                        <li>Statistiques non collectées</li>
+                        <li>Pas de personnalisation</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>9. Sécurité des données</h2>
+
+                    <h3>9.1 Mesures techniques</h3>
+
+                    <h4>Infrastructure</h4>
+                    <ul>
+                        <li>Hébergement sécurisé certifié</li>
+                        <li>Serveurs en Suisse/UE</li>
+                        <li>Redondance et sauvegardes</li>
+                        <li>Protection DDoS</li>
+                    </ul>
+
+                    <h4>Chiffrement</h4>
+                    <ul>
+                        <li>HTTPS/TLS pour toutes les connexions</li>
+                        <li>Chiffrement des mots de passe (bcrypt)</li>
+                        <li>Chiffrement des données sensibles au repos</li>
+                        <li>Clés de chiffrement rotatives</li>
+                    </ul>
+
+                    <h4>Contrôle d'accès</h4>
+                    <ul>
+                        <li>Authentification forte</li>
+                        <li>2FA disponible</li>
+                        <li>Sessions sécurisées</li>
+                        <li>Logs d'accès</li>
+                    </ul>
+
+                    <h3>9.2 Mesures organisationnelles</h3>
+
+                    <h4>Personnel</h4>
+                    <ul>
+                        <li>Accès limité aux données</li>
+                        <li>Clauses de confidentialité</li>
+                        <li>Formation à la protection des données</li>
+                        <li>Principe du moindre privilège</li>
+                    </ul>
+
+                    <h4>Processus</h4>
+                    <ul>
+                        <li>Évaluation des risques régulière</li>
+                        <li>Tests de sécurité</li>
+                        <li>Plan de réponse aux incidents</li>
+                        <li>Audits périodiques</li>
+                    </ul>
+
+                    <h4>Partenaires</h4>
+                    <ul>
+                        <li>Due diligence sécurité</li>
+                        <li>Contrats de traitement</li>
+                        <li>Audits des sous-traitants</li>
+                        <li>Certifications requises</li>
+                    </ul>
+
+                    <h3>9.3 Notification de violation</h3>
+                    <ul>
+                        <li>Évaluation sous 24h</li>
+                        <li>Notification autorités sous 72h si risque</li>
+                        <li>Notification utilisateurs si risque élevé</li>
+                        <li>Mesures correctives immédiates</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>10. Mineurs</h2>
+
+                    <h3>10.1 Politique relative aux mineurs</h3>
+                    <ul>
+                        <li>Services interdits aux moins de 18 ans</li>
+                        <li>Sauf autorisation parentale explicite</li>
+                        <li>
+                            Nous ne collectons pas sciemment de données de
+                            mineurs
+                        </li>
+                        <li>Suppression immédiate si découverte</li>
+                    </ul>
+
+                    <h3>10.2 Vérification et contrôle parental</h3>
+                    <ul>
+                        <li>Pas de vérification d'âge systématique</li>
+                        <li>Responsabilité de l'utilisateur/parent</li>
+                        <li>Droit des parents d'accès/suppression</li>
+                        <li>
+                            Contact : <a href="mailto:contact@systemeviral.com"
+                                >contact@systemeviral.com</a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>11. Communications</h2>
+
+                    <h3>11.1 Types de communications</h3>
+
+                    <h4>Transactionnelles (obligatoires)</h4>
+                    <ul>
+                        <li>Confirmation de commande</li>
+                        <li>Accès et identifiants</li>
+                        <li>Mises à jour de sécurité</li>
+                        <li>Modifications légales</li>
+                        <li>Renouvellements/expirations</li>
+                    </ul>
+
+                    <h4>Marketing (optionnelles)</h4>
+                    <ul>
+                        <li>Newsletter hebdomadaire</li>
+                        <li>Offres spéciales</li>
+                        <li>Nouveaux contenus</li>
+                        <li>Webinaires et événements</li>
+                        <li>Témoignages de réussite</li>
+                    </ul>
+
+                    <h3>11.2 Gestion des préférences</h3>
+                    <ul>
+                        <li>Centre de préférences dans le compte</li>
+                        <li>Liens de désinscription dans chaque email</li>
+                        <li>Choix granulaire par type</li>
+                        <li>Mise à jour immédiate</li>
+                    </ul>
+
+                    <h3>11.3 Fréquence et engagement</h3>
+                    <ul>
+                        <li>Maximum 2-3 emails marketing/semaine</li>
+                        <li>Pas de spam</li>
+                        <li>Contenu de valeur uniquement</li>
+                        <li>Respect des préférences</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>12. Modifications de la politique</h2>
+
+                    <h3>12.1 Processus de mise à jour</h3>
+                    <ul>
+                        <li>Révision annuelle minimum</li>
+                        <li>Modifications selon évolution légale</li>
+                        <li>Notification par email si changement majeur</li>
+                        <li>Historique des versions disponible</li>
+                    </ul>
+
+                    <h3>12.2 Acceptation</h3>
+                    <ul>
+                        <li>Information 30 jours avant changements majeurs</li>
+                        <li>Utilisation continue = acceptation</li>
+                        <li>Droit de clôturer le compte si désaccord</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>13. Données spécifiques par pays</h2>
+
+                    <h3>13.1 Résidents UE</h3>
+                    <ul>
+                        <li>Droits RGPD complets</li>
+                        <li>
+                            Représentant UE non requis (établissement en Suisse)
+                        </li>
+                        <li>Transferts selon clauses contractuelles types</li>
+                    </ul>
+
+                    <h3>13.2 Résidents suisses</h3>
+                    <ul>
+                        <li>Protection selon LPD révisée</li>
+                        <li>Pas de transfert hors Suisse sans garanties</li>
+                        <li>PFPDT comme autorité de contrôle</li>
+                    </ul>
+
+                    <h3>13.3 Résidents USA</h3>
+                    <ul>
+                        <li>Respect du CCPA pour la Californie</li>
+                        <li>Opt-out de la vente de données (non pratiquée)</li>
+                        <li>Privacy Shield non applicable</li>
+                    </ul>
+
+                    <h3>13.4 Autres pays</h3>
+                    <ul>
+                        <li>Respect des lois locales applicables</li>
+                        <li>Niveau de protection équivalent garanti</li>
+                        <li>Information spécifique sur demande</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>14. Services tiers et plugins</h2>
+
+                    <h3>14.1 Intégrations actuelles</h3>
+
+                    <h4>Circle.so</h4>
+                    <ul>
+                        <li>Hébergement de la plateforme</li>
+                        <li>Données partagées : profil, activité</li>
+                        <li>Politique : circle.so/privacy</li>
+                    </ul>
+
+                    <h4>Stripe</h4>
+                    <ul>
+                        <li>Traitement des paiements</li>
+                        <li>Données partagées : facturation</li>
+                        <li>Politique : stripe.com/privacy</li>
+                    </ul>
+
+                    <h4>Google Analytics</h4>
+                    <ul>
+                        <li>Analyse du trafic</li>
+                        <li>Données : navigation anonymisée</li>
+                        <li>Politique : policies.google.com</li>
+                    </ul>
+
+                    <h4>Vimeo/YouTube</h4>
+                    <ul>
+                        <li>Hébergement vidéo</li>
+                        <li>Données : visionnage</li>
+                        <li>Politiques respectives</li>
+                    </ul>
+
+                    <h3>14.2 Responsabilités</h3>
+                    <ul>
+                        <li>Nous ne contrôlons pas ces services</li>
+                        <li>Consultez leurs politiques</li>
+                        <li>Liens directs fournis</li>
+                        <li>Questions : contactez-nous</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>15. Contact et DPO</h2>
+
+                    <h3>15.1 Responsable de la protection des données</h3>
+                    <p><strong>ArgEntrepreneur Sàrl</strong></p>
+                    <p>
+                        À l'attention de : Protection des données<br />
+                        Chemin du Marais 13<br />
+                        1040 Echallens, Suisse<br />
+                        Email : <a href="mailto:contact@systemeviral.com"
+                            >contact@systemeviral.com</a
+                        >
+                    </p>
+
+                    <h3>15.2 Délais de réponse</h3>
+                    <ul>
+                        <li>Accusé de réception : 48h</li>
+                        <li>Réponse complète : 30 jours</li>
+                        <li>Extension possible : 60 jours si complexe</li>
+                        <li>Gratuit sauf demandes manifestement infondées</li>
+                    </ul>
+
+                    <h3>15.3 Informations requises</h3>
+                    <p>Pour traiter votre demande efficacement :</p>
+                    <ul>
+                        <li>Identité et coordonnées</li>
+                        <li>Description claire de la demande</li>
+                        <li>Contexte et dates pertinentes</li>
+                        <li>Preuve d'identité si nécessaire</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>16. Glossaire</h2>
+                    <ul>
+                        <li>
+                            <strong>Données personnelles</strong> : Toute information
+                            relative à une personne identifiée ou identifiable
+                        </li>
+                        <li>
+                            <strong>Traitement</strong> : Toute opération sur des
+                            données (collecte, stockage, utilisation, etc.)
+                        </li>
+                        <li>
+                            <strong>Responsable du traitement</strong> : ArgEntrepreneur
+                            Sàrl, qui détermine les finalités et moyens
+                        </li>
+                        <li>
+                            <strong>Sous-traitant</strong> : Entité traitant des
+                            données pour notre compte
+                        </li>
+                        <li>
+                            <strong>Consentement</strong> : Manifestation de volonté
+                            libre, spécifique, éclairée et univoque
+                        </li>
+                        <li>
+                            <strong>Violation de données</strong> : Incident de sécurité
+                            entraînant accès non autorisé aux données
+                        </li>
+                        <li>
+                            <strong>Anonymisation</strong> : Processus rendant impossible
+                            l'identification
+                        </li>
+                        <li>
+                            <strong>Pseudonymisation</strong> : Remplacement des
+                            identifiants par des pseudonymes
+                        </li>
+                    </ul>
+                </section>
+
+                <div class="footer-note">
+                    <p>
+                        <em
+                            >Cette Politique de Confidentialité fait partie
+                            intégrante de nos Conditions Générales
+                            d'Utilisation. En cas de conflit, cette politique
+                            prévaut pour les questions de confidentialité.</em>
+                    </p>
+                    <p><em>Dernière révision : 02/09/2025</em></p>
+                    <p><em>Version : 2.0</em></p>
+                    <p><em>Entrée en vigueur : Immédiate</em></p>
+                    <p>
+                        <strong
+                            >© 2025 ArgEntrepreneur Sàrl - Tous droits réservés</strong>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -165,10 +876,11 @@ import Layout from "../layouts/Layout.astro";
 <style>
     .legal-page {
         padding: 120px 0 80px;
+        background: var(--bg);
         min-height: 100vh;
     }
 
-    .legal-content {
+    .container {
         max-width: 800px;
         margin: 0 auto;
         padding: 0 20px;
@@ -177,7 +889,9 @@ import Layout from "../layouts/Layout.astro";
     .legal-content h1 {
         font-size: 2.5rem;
         font-weight: 800;
+        color: var(--text);
         margin-bottom: 1rem;
+        text-align: center;
         background: linear-gradient(
             135deg,
             var(--accent) 0%,
@@ -189,48 +903,139 @@ import Layout from "../layouts/Layout.astro";
     }
 
     .last-updated {
+        text-align: center;
         color: var(--text-secondary);
         font-size: 0.9rem;
-        margin-bottom: 3rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid var(--border);
+        margin-bottom: 2rem;
+        font-style: italic;
     }
 
     .legal-content section {
         margin-bottom: 2.5rem;
+        padding: 1.5rem;
+        background: var(--bg-elevated);
+        border-radius: 12px;
+        border: 1px solid var(--border);
     }
 
     .legal-content h2 {
         font-size: 1.5rem;
         font-weight: 700;
+        color: var(--accent);
         margin-bottom: 1rem;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 0.5rem;
+    }
+
+    .legal-content h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 1.5rem 0 0.8rem 0;
+        color: var(--text);
+    }
+
+    .legal-content h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 1rem 0 0.5rem 0;
         color: var(--text);
     }
 
     .legal-content p {
+        color: var(--text);
         line-height: 1.7;
         margin-bottom: 1rem;
-        color: var(--text-secondary);
     }
 
     .legal-content ul {
+        color: var(--text);
+        line-height: 1.7;
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+    }
+
+    .legal-content ol {
+        color: var(--text);
+        line-height: 1.7;
         margin: 1rem 0;
         padding-left: 1.5rem;
     }
 
     .legal-content li {
         margin-bottom: 0.5rem;
-        line-height: 1.6;
-        color: var(--text-secondary);
+    }
+
+    .legal-content strong {
+        color: var(--accent);
+        font-weight: 600;
     }
 
     .legal-content a {
         color: var(--accent);
         text-decoration: none;
+        transition: color 0.3s ease;
     }
 
     .legal-content a:hover {
         text-decoration: underline;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        margin: 1rem 0;
+    }
+
+    .legal-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        background: var(--bg);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .legal-content th {
+        background: var(--accent);
+        color: white;
+        padding: 12px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .legal-content td {
+        padding: 12px;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .legal-content tr:nth-child(even) {
+        background: rgba(0, 220, 130, 0.05);
+    }
+
+    .legal-content tr:hover {
+        background: rgba(0, 220, 130, 0.1);
+    }
+
+    .footer-note {
+        background: rgba(0, 220, 130, 0.1);
+        border: 1px solid rgba(0, 220, 130, 0.3);
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    .footer-note p {
+        margin: 0 0 0.5rem 0;
+        color: var(--text);
+        font-weight: 500;
+        font-style: italic;
+    }
+
+    .footer-note p:last-child {
+        margin-bottom: 0;
     }
 
     @media (max-width: 768px) {
@@ -244,6 +1049,20 @@ import Layout from "../layouts/Layout.astro";
 
         .legal-content h2 {
             font-size: 1.3rem;
+        }
+
+        .legal-content section {
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .legal-content table {
+            font-size: 0.8rem;
+        }
+
+        .legal-content th,
+        .legal-content td {
+            padding: 8px;
         }
     }
 </style>
