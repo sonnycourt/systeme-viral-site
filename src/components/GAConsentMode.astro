@@ -1,14 +1,15 @@
 ---
 // Google Analytics Consent Mode pour Système Viral
 // IMPORTANT: Remplacer par le nouveau GA Measurement ID pour systemeviral.com
-const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "";
+const GA_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "G-EN1Y8Y7QLM";
 ---
 
 <script
     is:inline
     set:html={`(function(){
   var GA_MEASUREMENT_ID = ${JSON.stringify(GA_ID)};
-  if(!GA_MEASUREMENT_ID){
+  if(!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID === "G-XXXXXXXXXX"){
+    // Désactiver GA si pas d'ID valide
     window.dataLayer = window.dataLayer || [];
     window.gtag = function(){ window.dataLayer.push(arguments); };
     window.__consent = { accept:function(){}, refuse:function(){} };
