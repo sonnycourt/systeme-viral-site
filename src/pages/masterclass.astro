@@ -1,0 +1,1067 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Webinaire Exclusif - Comment j'ai fait +100k€ en 1 mois | Système Viral"
+    description="Découvrez la méthode exacte pour générer +100k€ en 1 mois avec des vidéos d'1 minute. Webinaire gratuit avec chat en direct."
+    canonical="/masterclass"
+>
+    <!-- Background effects -->
+    <div class="gradient-bg"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">SYSTÈME VIRAL</div>
+            <div class="session-info">
+                <div class="viewer-count">
+                    <div class="live-dot"></div>
+                    <span class="viewer-text"
+                        ><span id="viewerCount">847</span> participants</span
+                    >
+                </div>
+                <div class="timer" id="timer">00:00</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Video Section -->
+        <div class="video-section">
+            <div class="video-wrapper">
+                <iframe
+                    id="youtube-player"
+                    src="https://www.youtube.com/embed/CFiUE5JKusc?enablejsapi=1&start=27&rel=0&modestbranding=1&controls=1"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                >
+                </iframe>
+                <div class="reactions-overlay" id="reactionsOverlay"></div>
+            </div>
+
+            <div class="video-info">
+                <h1 class="video-title">
+                    Comment j'ai généré +100k€ en 1 mois avec des vidéos d'1
+                    minute
+                </h1>
+                <div class="video-chapters">
+                    <div class="chapter active" data-time="0">Introduction</div>
+                    <div class="chapter" data-time="300">Le Problème</div>
+                    <div class="chapter" data-time="600">Ma Méthode</div>
+                    <div class="chapter" data-time="1200">Cas Pratiques</div>
+                    <div class="chapter" data-time="1500">
+                        Votre Plan d'Action
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Section -->
+        <div class="chat-section">
+            <div class="chat-header">
+                <div class="chat-title">💬 Discussion en Direct</div>
+                <div class="chat-status">
+                    <div class="live-dot"></div>
+                    <span>Replay interactif</span>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="system-message join">La session a commencé</div>
+            </div>
+
+            <div class="chat-input-wrapper">
+                <form class="chat-input-form" id="chatForm">
+                    <input
+                        type="text"
+                        class="chat-input"
+                        id="chatInput"
+                        placeholder="Posez votre question..."
+                        required
+                    />
+                    <button type="submit" class="chat-send">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Popup -->
+    <div class="cta-popup" id="ctaPopup">
+        <span class="cta-text">🎁 Téléchargez le guide PDF gratuit</span>
+        <button class="cta-button" onclick="handleCTA()">TÉLÉCHARGER</button>
+        <button class="cta-close" onclick="closeCTA()">×</button>
+    </div>
+</Layout>
+
+<style>
+    /* Variables CSS adaptées au branding Système Viral */
+    :root {
+        --bg: #0f172a;
+        --bg-card: #1e293b;
+        --bg-elevated: #334155;
+        --text: #ffffff;
+        --text-secondary: #94a3b8;
+        --text-muted: #64748b;
+        --accent: #10b981;
+        --accent-bright: #34d399;
+        --accent-glow: #6ee7b7;
+        --accent-dark: #059669;
+        --success: #10b981;
+        --border: rgba(148, 163, 184, 0.1);
+        --glow: rgba(16, 185, 129, 0.3);
+        --danger: #ef4444;
+    }
+
+    /* Background effects */
+    .gradient-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0f172a;
+        z-index: -1;
+    }
+
+    /* Header */
+    .header {
+        background: rgba(30, 41, 59, 0.9);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+    }
+
+    .header-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 16px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        background: linear-gradient(
+            135deg,
+            var(--accent) 0%,
+            var(--accent-glow) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .session-info {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .viewer-count {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 16px;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        border-radius: 100px;
+    }
+
+    .live-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+        animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+        0%,
+        100% {
+            opacity: 1;
+            box-shadow: 0 0 0 0 var(--accent);
+        }
+        50% {
+            opacity: 0.7;
+            box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+        }
+    }
+
+    .viewer-text {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--accent-bright);
+    }
+
+    .timer {
+        font-size: 14px;
+        color: var(--text-secondary);
+        font-weight: 500;
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* Main Layout */
+    .main-container {
+        max-width: 1400px;
+        margin: 80px auto 0;
+        padding: 24px;
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 24px;
+        min-height: calc(100vh - 80px);
+    }
+
+    /* Video Section */
+    .video-section {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .video-wrapper {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+        aspect-ratio: 16/9;
+    }
+
+    .video-wrapper iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    /* Reactions overlay */
+    .reactions-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    .floating-reaction {
+        position: absolute;
+        font-size: 24px;
+        animation: floatUp 3s ease-out forwards;
+        pointer-events: none;
+    }
+
+    @keyframes floatUp {
+        0% {
+            opacity: 0;
+            transform: translateY(0) scale(0);
+        }
+        20% {
+            opacity: 1;
+            transform: translateY(-20px) scale(1);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-100px) scale(0.5);
+        }
+    }
+
+    /* Video Info */
+    .video-info {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+    .video-title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        letter-spacing: -0.5px;
+        color: var(--text);
+    }
+
+    .video-chapters {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .chapter {
+        padding: 6px 14px;
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-size: 12px;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .chapter:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+
+    .chapter.active {
+        background: rgba(16, 185, 129, 0.1);
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+
+    /* Chat Section */
+    .chat-section {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 120px);
+        position: sticky;
+        top: 100px;
+    }
+
+    .chat-header {
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .chat-title {
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text);
+    }
+
+    .chat-status {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--text-secondary);
+    }
+
+    .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+        background: var(--bg-elevated);
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 3px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb:hover {
+        background: var(--text-muted);
+    }
+
+    .chat-message {
+        animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .message-header {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+    }
+
+    .message-author {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--accent-bright);
+    }
+
+    /* Couleurs différentes pour les noms */
+    .message-author.color-1 {
+        color: #34d399 !important;
+    }
+    .message-author.color-2 {
+        color: #60a5fa !important;
+    }
+    .message-author.color-3 {
+        color: #f472b6 !important;
+    }
+    .message-author.color-4 {
+        color: #a78bfa !important;
+    }
+    .message-author.color-5 {
+        color: #fb7185 !important;
+    }
+    .message-author.color-6 {
+        color: #4ade80 !important;
+    }
+    .message-author.color-7 {
+        color: #fbbf24 !important;
+    }
+    .message-author.color-8 {
+        color: #38bdf8 !important;
+    }
+    .message-author.color-9 {
+        color: #c084fc !important;
+    }
+    .message-author.color-10 {
+        color: #fb923c !important;
+    }
+    .message-author.color-11 {
+        color: #86efac !important;
+    }
+    .message-author.color-12 {
+        color: #93c5fd !important;
+    }
+    .message-author.color-13 {
+        color: #f9a8d4 !important;
+    }
+    .message-author.color-14 {
+        color: #a3e635 !important;
+    }
+    .message-author.color-15 {
+        color: #fde047 !important;
+    }
+    .message-author.color-16 {
+        color: #7dd3fc !important;
+    }
+    .message-author.color-17 {
+        color: #fda4af !important;
+    }
+    .message-author.color-18 {
+        color: #d8b4fe !important;
+    }
+    .message-author.color-19 {
+        color: #fed7aa !important;
+    }
+    .message-author.color-20 {
+        color: #6ee7b7 !important;
+    }
+    .message-author.color-user {
+        color: var(--accent) !important;
+    }
+
+    .message-badge {
+        padding: 2px 6px;
+        background: rgba(16, 185, 129, 0.1);
+        color: var(--accent);
+        border-radius: 4px;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .message-content {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+    }
+
+    .message-time {
+        font-size: 9px;
+        color: var(--text-muted);
+        margin: 0;
+        opacity: 0.45;
+        font-style: italic;
+    }
+
+    /* System messages */
+    .system-message {
+        text-align: center;
+        padding: 8px;
+        background: var(--bg-elevated);
+        border-radius: 8px;
+        font-size: 12px;
+        color: var(--text-muted);
+        font-style: italic;
+    }
+
+    .system-message.join {
+        color: var(--accent);
+        background: rgba(16, 185, 129, 0.1);
+    }
+
+    /* Chat Input */
+    .chat-input-wrapper {
+        padding: 16px;
+        border-top: 1px solid var(--border);
+    }
+
+    .chat-input-form {
+        display: flex;
+        gap: 8px;
+    }
+
+    .chat-input {
+        flex: 1;
+        padding: 10px 16px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text);
+        font-size: 14px;
+        font-family: inherit;
+        transition: all 0.2s ease;
+    }
+
+    .chat-input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+
+    .chat-input::placeholder {
+        color: var(--text-muted);
+    }
+
+    .chat-send {
+        padding: 10px 20px;
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .chat-send:hover {
+        background: var(--accent-bright);
+        transform: translateY(-1px);
+    }
+
+    /* CTA Popup */
+    .cta-popup {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%) translateY(200px);
+        background: linear-gradient(
+            135deg,
+            var(--accent) 0%,
+            var(--accent-dark) 100%
+        );
+        padding: 16px 24px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+        z-index: 200;
+        transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .cta-popup.show {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .cta-text {
+        color: var(--bg);
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .cta-button {
+        padding: 8px 16px;
+        background: var(--bg);
+        color: var(--accent);
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    .cta-close {
+        width: 24px;
+        height: 24px;
+        background: rgba(0, 0, 0, 0.2);
+        border: none;
+        border-radius: 50%;
+        color: var(--bg);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .main-container {
+            grid-template-columns: 1fr;
+        }
+
+        .chat-section {
+            height: 400px;
+            position: static;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .header-content {
+            padding: 0 16px;
+        }
+
+        .main-container {
+            padding: 16px;
+            margin-top: 70px;
+        }
+
+        .session-info {
+            gap: 16px;
+        }
+
+        .viewer-count {
+            padding: 4px 12px;
+        }
+
+        .video-title {
+            font-size: 18px;
+        }
+
+        .chapter {
+            font-size: 11px;
+            padding: 4px 10px;
+        }
+    }
+</style>
+
+<script>
+    // Simulated chat messages with timestamps (in seconds)
+    const scheduledMessages = [
+        {
+            time: 5,
+            author: "Marie L.",
+            message: "Super excité de voir ça !",
+            badge: null,
+        },
+        { time: 15, type: "system", message: "Pierre D. vient de rejoindre" },
+        {
+            time: 30,
+            author: "Thomas B.",
+            message: "Wow, +100k€ en 1 mois? 🤯",
+            badge: null,
+        },
+        {
+            time: 45,
+            author: "Sophie M.",
+            message: "J'ai hâte de voir la méthode",
+            badge: "VIP",
+        },
+        { time: 60, type: "reaction", emoji: "🔥" },
+        {
+            time: 90,
+            author: "Lucas R.",
+            message: "Est-ce que ça marche pour tous les niches?",
+            badge: null,
+        },
+        {
+            time: 120,
+            author: "Emma K.",
+            message: "Je prends des notes 📝",
+            badge: null,
+        },
+        { time: 150, type: "reaction", emoji: "💰" },
+        {
+            time: 180,
+            author: "Alex V.",
+            message: "C'est exactement ce dont j'avais besoin!",
+            badge: "VIP",
+        },
+        { time: 210, type: "system", message: "Sarah T. vient de rejoindre" },
+        {
+            time: 240,
+            author: "Julie P.",
+            message: "Quelle plateforme tu recommandes pour commencer?",
+            badge: null,
+        },
+        {
+            time: 300,
+            author: "Marc D.",
+            message: "La qualité de la vidéo c'est important?",
+            badge: null,
+        },
+        { time: 360, type: "reaction", emoji: "🚀" },
+        {
+            time: 420,
+            author: "Clara F.",
+            message: "OMG cette astuce! 🤯",
+            badge: "VIP",
+        },
+        {
+            time: 480,
+            author: "Paul H.",
+            message: "Combien de temps ça prend par jour?",
+            badge: null,
+        },
+        { time: 540, type: "system", message: "150 nouveaux participants!" },
+        {
+            time: 600,
+            author: "Nina S.",
+            message: "Je vais tester dès demain",
+            badge: null,
+        },
+        { time: 660, type: "reaction", emoji: "🔥" },
+        {
+            time: 720,
+            author: "David L.",
+            message: "Tu utilises quel logiciel de montage?",
+            badge: null,
+        },
+        {
+            time: 800,
+            author: "Léa M.",
+            message: "Cette méthode est DINGUE",
+            badge: "VIP",
+        },
+        {
+            time: 900,
+            author: "Tom W.",
+            message: "Merci pour ces conseils en or!",
+            badge: null,
+        },
+        { time: 1000, type: "reaction", emoji: "💎" },
+        {
+            time: 1100,
+            author: "Alice B.",
+            message: "J'ai déjà des résultats avec ta méthode!",
+            badge: "VIP",
+        },
+        {
+            time: 1200,
+            author: "Max G.",
+            message: "Le mindset c'est 80% du game",
+            badge: null,
+        },
+        { time: 1300, type: "system", message: "Plus de 1000 participants!" },
+        {
+            time: 1400,
+            author: "Chloé R.",
+            message: "Quand est-ce qu'on peut rejoindre la formation?",
+            badge: null,
+        },
+        { time: 1500, type: "reaction", emoji: "🎯" },
+        {
+            time: 1600,
+            author: "Louis K.",
+            message: "Shut up and take my money! 💸",
+            badge: "VIP",
+        },
+        {
+            time: 1700,
+            author: "Eva J.",
+            message: "J'ai pris 10 pages de notes",
+            badge: null,
+        },
+        {
+            time: 1800,
+            author: "Hugo N.",
+            message: "C'est le meilleur webinaire que j'ai vu",
+            badge: null,
+        },
+    ];
+
+    // Video player state
+    let videoStartTime = Date.now();
+    let videoPlaying = false;
+    let currentVideoTime = 0;
+    let processedMessages = new Set();
+
+    // Viewer count animation
+    let viewerCount = 847;
+    const viewerCountElement = document.getElementById("viewerCount");
+
+    setInterval(() => {
+        const change = Math.floor(Math.random() * 21) - 10;
+        viewerCount = Math.max(800, Math.min(1200, viewerCount + change));
+        if (viewerCountElement) {
+            viewerCountElement.textContent = viewerCount.toString();
+        }
+    }, 5000);
+
+    // Timer
+    const timerElement = document.getElementById("timer");
+    setInterval(() => {
+        const elapsed = Math.floor((Date.now() - videoStartTime) / 1000);
+        const minutes = Math.floor(elapsed / 60)
+            .toString()
+            .padStart(2, "0");
+        const seconds = (elapsed % 60).toString().padStart(2, "0");
+        if (timerElement) {
+            timerElement.textContent = `${minutes}:${seconds}`;
+        }
+        currentVideoTime = elapsed;
+
+        // Check for scheduled messages
+        scheduledMessages.forEach((msg, index) => {
+            if (msg.time <= elapsed && !processedMessages.has(index)) {
+                processedMessages.add(index);
+                if (msg.type === "system") {
+                    addSystemMessage(
+                        msg.message || "",
+                        msg.type === "system" &&
+                            msg.message?.includes("rejoint"),
+                    );
+                } else if (msg.type === "reaction") {
+                    showFloatingReaction(msg.emoji || "🔥");
+                } else {
+                    addChatMessage(
+                        msg.author || "",
+                        msg.message || "",
+                        msg.badge || null,
+                    );
+                }
+            }
+        });
+    }, 1000);
+
+    // Chat functions
+    const chatMessages = document.getElementById("chatMessages");
+
+    // Palette cohérente avec le site (20 couleurs)
+    const authorPalette = [
+        "#34d399",
+        "#60a5fa",
+        "#f472b6",
+        "#a78bfa",
+        "#fb7185",
+        "#4ade80",
+        "#fbbf24",
+        "#38bdf8",
+        "#c084fc",
+        "#fb923c",
+        "#86efac",
+        "#93c5fd",
+        "#f9a8d4",
+        "#a3e635",
+        "#fde047",
+        "#7dd3fc",
+        "#fda4af",
+        "#d8b4fe",
+        "#fed7aa",
+        "#6ee7b7",
+    ];
+
+    // Renvoie une couleur hex (ou var) selon un hash du nom
+    function getAuthorColor(author: string): string {
+        if (author === "Vous") return "var(--accent)";
+        let hash = 0;
+        for (let i = 0; i < author.length; i++) {
+            hash = ((hash << 5) - hash + author.charCodeAt(i)) & 0xffffffff;
+        }
+        const index = Math.abs(hash) % authorPalette.length;
+        return authorPalette[index];
+    }
+
+    function addChatMessage(
+        author: string,
+        message: string,
+        badge: string | null = null,
+    ) {
+        if (!chatMessages) return;
+        const messageDiv = document.createElement("div");
+        messageDiv.className = "chat-message";
+        const colorValue = getAuthorColor(author);
+        messageDiv.innerHTML = `
+			<div class="message-header">
+				<div class="message-author" style="color: ${colorValue};">
+					${author}
+					${badge ? `<span class="message-badge">${badge}</span>` : ""}
+				</div>
+				<div class="message-time">il y a quelques secondes</div>
+			</div>
+			<div class="message-content">${message}</div>
+		`;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function addSystemMessage(message: string, isJoin = false) {
+        if (!chatMessages) return;
+        const messageDiv = document.createElement("div");
+        messageDiv.className = `system-message ${isJoin ? "join" : ""}`;
+        messageDiv.textContent = message;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // User chat input
+    const chatForm = document.getElementById("chatForm");
+    if (chatForm) {
+        chatForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const input = document.getElementById(
+                "chatInput",
+            ) as HTMLInputElement;
+            if (!input) return;
+            const message = input.value.trim();
+            if (message) {
+                addChatMessage("Vous", message, null);
+                input.value = "";
+
+                // Simulate response
+                setTimeout(
+                    () => {
+                        const responses = [
+                            "Excellente question!",
+                            "Je me posais la même chose",
+                            "Trop bien! 🔥",
+                            "+1 pour cette question",
+                            "Hâte de tester ça!",
+                        ];
+                        const randomResponse =
+                            responses[
+                                Math.floor(Math.random() * responses.length)
+                            ];
+                        const randomName = [
+                            "Julie P.",
+                            "Marc D.",
+                            "Sophie L.",
+                            "Alex T.",
+                        ][Math.floor(Math.random() * 4)];
+                        addChatMessage(randomName, randomResponse);
+                    },
+                    2000 + Math.random() * 3000,
+                );
+            }
+        });
+    }
+
+    // Floating reactions
+    function showFloatingReaction(emoji: string) {
+        const overlay = document.getElementById("reactionsOverlay");
+        if (!overlay) return;
+        const reaction = document.createElement("div");
+        reaction.className = "floating-reaction";
+        reaction.textContent = emoji;
+        reaction.style.left = Math.random() * 80 + 10 + "%";
+        reaction.style.bottom = "20px";
+        overlay.appendChild(reaction);
+
+        setTimeout(() => {
+            reaction.remove();
+        }, 3000);
+    }
+
+    // Random reactions
+    setInterval(() => {
+        if (Math.random() < 0.3) {
+            const emojis = ["🔥", "💰", "🚀", "❤️", "👏", "🎯"];
+            showFloatingReaction(
+                emojis[Math.floor(Math.random() * emojis.length)],
+            );
+        }
+    }, 8000);
+
+    // CTA Popup timing
+    const ctaSchedule = [
+        {
+            time: 600,
+            text: "🎁 Téléchargez le guide PDF gratuit",
+            button: "TÉLÉCHARGER",
+        },
+        {
+            time: 1200,
+            text: "⚡ Accès early bird -30% (15 places)",
+            button: "RÉSERVER",
+        },
+        {
+            time: 1800,
+            text: "🚀 Dernière chance -20% (expire dans 10min)",
+            button: "PROFITER",
+        },
+    ];
+
+    let currentCTA = 0;
+    setInterval(() => {
+        if (
+            currentCTA < ctaSchedule.length &&
+            currentVideoTime >= ctaSchedule[currentCTA].time
+        ) {
+            showCTA(
+                ctaSchedule[currentCTA].text,
+                ctaSchedule[currentCTA].button,
+            );
+            currentCTA++;
+        }
+    }, 1000);
+
+    function showCTA(text: string, buttonText: string) {
+        const popup = document.getElementById("ctaPopup");
+        if (!popup) return;
+        const textElement = popup.querySelector(".cta-text") as HTMLElement;
+        const buttonElement = popup.querySelector(".cta-button") as HTMLElement;
+        if (textElement) textElement.textContent = text;
+        if (buttonElement) buttonElement.textContent = buttonText;
+        popup.classList.add("show");
+
+        setTimeout(() => {
+            if (popup.classList.contains("show")) {
+                popup.classList.remove("show");
+            }
+        }, 10000);
+    }
+
+    function closeCTA() {
+        const popup = document.getElementById("ctaPopup");
+        if (popup) {
+            popup.classList.remove("show");
+        }
+    }
+
+    function handleCTA() {
+        alert("Fonctionnalité à implémenter : capture email + téléchargement");
+        closeCTA();
+    }
+
+    // Chapter navigation
+    document.querySelectorAll(".chapter").forEach((chapter) => {
+        chapter.addEventListener("click", () => {
+            const time = parseInt((chapter as HTMLElement).dataset.time || "0");
+            // Would need YouTube API to seek to time
+            document
+                .querySelectorAll(".chapter")
+                .forEach((c) => c.classList.remove("active"));
+            chapter.classList.add("active");
+        });
+    });
+</script>
