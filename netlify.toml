@@ -10,5 +10,12 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
+# Password protection configuration
+[[redirects]]
+  from = "/*"
+  to = "/password-protection.html"
+  status = 200
+  conditions = {password = "true"}
+
 [functions]
   directory = "netlify/functions"
