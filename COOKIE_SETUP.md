@@ -126,7 +126,7 @@ Le système de cookies complet a été implémenté avec succès sur `systemevir
 ## 📞 Support
 
 Pour toute question sur l'implémentation :
-- **Email** : contact@systemeviral.com
+- **Email** : support@systemeviral.com
 - **Documentation** : Ce fichier et les commentaires dans le code
 
 ---

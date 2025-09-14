@@ -539,6 +539,177 @@ input::placeholder {
   display: none !important;
 }
 
+/* Avatar Selection */
+.avatar-selection {
+  margin-bottom: 32px;
+}
+
+.avatar-option {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 12px;
+  background: var(--bg);
+}
+
+.avatar-option:hover {
+  border-color: rgba(0, 220, 130, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 220, 130, 0.1);
+}
+
+.avatar-option.selected {
+  border-color: var(--accent);
+  background: rgba(0, 220, 130, 0.05);
+  box-shadow: 0 0 0 4px rgba(0, 220, 130, 0.1);
+}
+
+.avatar-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.avatar-content h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+.avatar-content p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.avatar-radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.avatar-option.selected .avatar-radio {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.avatar-option.selected .avatar-radio::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* intl-tel-input Styles */
+.iti {
+  width: 100% !important;
+  margin-bottom: 15px !important;
+}
+
+.iti input {
+  width: 100% !important;
+  padding: 15px !important;
+  padding-left: 100px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  color: var(--text) !important;
+  font-size: 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+.iti input:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 4px rgba(0, 220, 130, 0.1) !important;
+  outline: none !important;
+}
+
+.iti input::placeholder {
+  color: var(--text-secondary) !important;
+}
+
+/* Container du drapeau sélectionné */
+.iti .iti__selected-flag {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-right: 1px solid var(--border) !important;
+  border-radius: 12px 0 0 12px !important;
+  padding: 15px 12px !important;
+  width: 95px !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+}
+
+.iti .iti__selected-flag:hover {
+  background: rgba(0, 220, 130, 0.05) !important;
+}
+
+/* Flèche de la liste déroulante */
+.iti .iti__arrow {
+  border-top: 4px solid var(--text-secondary) !important;
+  border-left: 4px solid transparent !important;
+  border-right: 4px solid transparent !important;
+  margin-left: 4px !important;
+}
+
+/* Liste déroulante avec glassmorphism */
+.iti .iti__country-list {
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 50px rgba(0, 220, 130, 0.3), 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  z-index: 99999 !important;
+  position: fixed !important;
+  max-height: 200px !important;
+}
+
+/* Pays dans la liste */
+.iti .iti__country {
+  color: var(--text) !important;
+  padding: 12px 15px !important;
+  border-bottom: 1px solid var(--border) !important;
+  transition: all 0.3s ease !important;
+}
+
+.iti .iti__country:hover {
+  background: rgba(0, 220, 130, 0.1) !important;
+  color: var(--accent) !important;
+  transform: translateX(5px) !important;
+}
+
+.iti .iti__country.iti__highlight {
+  background: rgba(0, 220, 130, 0.15) !important;
+  color: var(--accent) !important;
+}
+
+/* Code du pays */
+.iti .iti__dial-code {
+  color: var(--text-secondary) !important;
+  font-weight: 300 !important;
+}
+
+/* Nom du pays */
+.iti .iti__country-name {
+  color: inherit !important;
+  font-weight: 400 !important;
+}
+
 /* Footer */
 .footer {
   background: var(--bg-card);

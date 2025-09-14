@@ -7,12 +7,12 @@ export interface Props {
 	noindex?: boolean;
 }
 
-const { 
-	title, 
+const {
+	title,
 	description = "Formation complète en marketing digital et stratégies de croissance pour entrepreneurs ambitieux",
 	image = "/og-image.jpg",
 	canonical,
-	noindex = false
+	noindex = false,
 } = Astro.props;
 
 const siteUrl = "https://systemeviral.com";
@@ -45,29 +45,35 @@ const fullUrl = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
 
 <!-- Additional Meta Tags -->
 <meta name="author" content="Système Viral" />
-<meta name="keywords" content="marketing digital, formation entrepreneur, croissance entreprise, stratégie business, système viral" />
+<meta
+	name="keywords"
+	content="marketing digital, formation entrepreneur, croissance entreprise, stratégie business, système viral"
+/>
 <meta name="language" content="fr" />
 <meta name="revisit-after" content="7 days" />
 
 <!-- Schema.org structured data -->
-<script type="application/ld+json" set:html={JSON.stringify({
-	"@context": "https://schema.org",
-	"@type": "Organization",
-	"name": "Système Viral",
-	"url": siteUrl,
-	"logo": `${siteUrl}/logo.png`,
-	"description": description,
-	"address": {
-		"@type": "PostalAddress",
-		"addressCountry": "FR"
-	},
-	"contactPoint": {
-		"@type": "ContactPoint",
-		"contactType": "customer service",
-		"email": "contact@systemeviral.com"
-	},
-	"sameAs": [
-		"https://linkedin.com/company/systemeviral",
-		"https://youtube.com/@systemeviral"
-	]
-})} />
+<script
+	type="application/ld+json"
+	set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		name: "Système Viral",
+		url: siteUrl,
+		logo: `${siteUrl}/logo.png`,
+		description: description,
+		address: {
+			"@type": "PostalAddress",
+			addressCountry: "FR",
+		},
+		contactPoint: {
+			"@type": "ContactPoint",
+			contactType: "customer service",
+			email: "support@systemeviral.com",
+		},
+		sameAs: [
+			"https://linkedin.com/company/systemeviral",
+			"https://youtube.com/@systemeviral",
+		],
+	})}
+/>

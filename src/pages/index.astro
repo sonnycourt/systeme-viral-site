@@ -124,13 +124,14 @@ import Footer from "../components/Footer.astro";
 			<div class="progress-bar">
 				<div class="progress-step active" id="progress1"></div>
 				<div class="progress-step" id="progress2"></div>
+				<div class="progress-step" id="progress3"></div>
 			</div>
 
 			<form id="accessForm" onsubmit="handleSubmit(event)">
 				<!-- Step 1: Name and Email -->
 				<div class="form-step active" id="step1">
 					<h3 class="modal-title">Accès immédiat</h3>
-					<p class="modal-subtitle">Étape 1/2 - Vos informations</p>
+					<p class="modal-subtitle">Étape 1/3 - Vos informations</p>
 
 					<div class="input-group">
 						<label class="input-label">Prénom</label>
@@ -161,11 +162,79 @@ import Footer from "../components/Footer.astro";
 					</button>
 				</div>
 
-				<!-- Step 2: Phone -->
+				<!-- Step 2: Avatar Selection -->
 				<div class="form-step hidden" id="step2">
+					<h3 class="modal-title">Vous êtes...</h3>
+					<p class="modal-subtitle">
+						Étape 2/3 - Quel profil vous correspond ?
+					</p>
+
+					<div class="avatar-selection">
+						<div
+							class="avatar-option"
+							onclick="selectAvatar('entrepreneur')"
+							id="avatar-entrepreneur"
+						>
+							<div class="avatar-icon">🏆</div>
+							<div class="avatar-content">
+								<h4>L'Entrepreneur ambitieux</h4>
+								<p>
+									Tu fais déjà du CA et veux scaler à 10K€
+									sans travailler plus
+								</p>
+							</div>
+							<div class="avatar-radio"></div>
+						</div>
+
+						<div
+							class="avatar-option"
+							onclick="selectAvatar('influenceur')"
+							id="avatar-influenceur"
+						>
+							<div class="avatar-icon">📱</div>
+							<div class="avatar-content">
+								<h4>L'Influenceur à 50K vues</h4>
+								<p>
+									Tu as 50K vues mais pas de ventes, tu veux
+									monétiser
+								</p>
+							</div>
+							<div class="avatar-radio"></div>
+						</div>
+
+						<div
+							class="avatar-option"
+							onclick="selectAvatar('employe')"
+							id="avatar-employe"
+						>
+							<div class="avatar-icon">💼</div>
+							<div class="avatar-content">
+								<h4>L'Employé frustré</h4>
+								<p>
+									Tu détestes ton job et rêves de lancer ton
+									business
+								</p>
+							</div>
+							<div class="avatar-radio"></div>
+						</div>
+					</div>
+
+					<button
+						type="button"
+						class="form-button"
+						onclick="nextStep()"
+						id="avatarNextBtn"
+						disabled
+					>
+						Continuer →
+					</button>
+				</div>
+
+				<!-- Step 3: Phone -->
+				<div class="form-step hidden" id="step3">
 					<h3 class="modal-title">Une dernière étape</h3>
 					<p class="modal-subtitle">
-						Étape 2/2 - Numéro de téléphone
+						Étape 3/3 - Numéro de téléphone
 					</p>
 
 					<div class="input-group">
@@ -173,7 +242,7 @@ import Footer from "../components/Footer.astro";
 						<input
 							type="tel"
 							id="phone"
-							placeholder="+33 6 12 34 56 78"
+							placeholder="Ton numéro de téléphone"
 							required
 						/>
 					</div>
@@ -202,6 +271,16 @@ import Footer from "../components/Footer.astro";
 	</div>
 
 	<Footer />
+
+	<!-- intl-tel-input CSS -->
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"
+	/>
+	<!-- intl-tel-input JS -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"
+	></script>
 
 	<script>
 		// Modal functions
@@ -341,11 +420,29 @@ import Footer from "../components/Footer.astro";
 			document.body.style.overflow = "auto";
 			// Reset form
 			document.getElementById("accessForm").reset();
+			selectedAvatar = null;
 			document.getElementById("step1").classList.remove("hidden");
 			document.getElementById("step2").classList.add("hidden");
+			document.getElementById("step3").classList.add("hidden");
 			document.getElementById("successStep").classList.add("hidden");
 			document.getElementById("progress1").classList.add("active");
 			document.getElementById("progress2").classList.remove("active");
+			document.getElementById("progress3").classList.remove("active");
+			// Reset avatar selection
+			document.querySelectorAll(".avatar-option").forEach((option) => {
+				option.classList.remove("selected");
+			});
+			document.getElementById("avatarNextBtn").disabled = true;
+
+			// Reset country selector
+			selectedCountryCode = "33";
+			document.getElementById("selectedFlag").textContent = "🇫🇷";
+			document.querySelector(
+				".selected-country .country-code",
+			).textContent = "+33";
+			document
+				.getElementById("countryDropdown")
+				.classList.remove("active");
 		}
 
 		// Close modal on overlay click
@@ -358,18 +455,196 @@ import Footer from "../components/Footer.astro";
 			});
 
 		// Form navigation
-		function nextStep() {
-			const firstName = document.getElementById("firstName").value;
-			const email = document.getElementById("email").value;
+		let selectedAvatar = null;
+		let selectedCountryCode = "33";
 
-			if (firstName && email) {
-				const step1 = document.getElementById("step1");
-				const step2 = document.getElementById("step2");
-				step1.classList.remove("active");
-				step1.classList.add("hidden");
-				step2.classList.remove("hidden");
-				step2.classList.add("active");
-				document.getElementById("progress2").classList.add("active");
+		function selectAvatar(avatar) {
+			selectedAvatar = avatar;
+
+			// Remove selected class from all avatars
+			document.querySelectorAll(".avatar-option").forEach((option) => {
+				option.classList.remove("selected");
+			});
+
+			// Add selected class to clicked avatar
+			const avatarElement = document.getElementById(`avatar-${avatar}`);
+			if (avatarElement) {
+				avatarElement.classList.add("selected");
+			}
+
+			// Enable next button
+			document.getElementById("avatarNextBtn").disabled = false;
+		}
+
+		// Initialize phone input when step 3 is shown
+		function initPhoneInput() {
+			const phoneInput = document.getElementById("phone");
+			if (phoneInput && typeof window.intlTelInput !== "undefined") {
+				window.iti = window.intlTelInput(phoneInput, {
+					initialCountry: "auto",
+					geoIpLookup: function (callback) {
+						fetch("https://ipapi.co/json/")
+							.then((res) => res.json())
+							.then((data) => callback(data.country_code))
+							.catch(() => callback("fr"));
+					},
+					preferredCountries: ["fr", "ch", "be", "ca"],
+					separateDialCode: true,
+					utilsScript:
+						"https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+				});
+			}
+		}
+
+		// Store user data across steps
+		let userData = {
+			firstName: "",
+			email: "",
+			avatar: "",
+		};
+
+		async function nextStep() {
+			const currentStep = document.querySelector(".form-step.active");
+			const currentStepId = currentStep.id;
+
+			if (currentStepId === "step1") {
+				const firstName = document
+					.getElementById("firstName")
+					.value.trim();
+				const email = document.getElementById("email").value.trim();
+
+				if (!firstName || !email) {
+					alert("Veuillez remplir tous les champs");
+					return;
+				}
+
+				// Basic email validation
+				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				if (!emailRegex.test(email)) {
+					alert("Veuillez entrer un email valide");
+					return;
+				}
+
+				// Store data
+				userData.firstName = firstName;
+				userData.email = email;
+
+				try {
+					// Send to MailerLite - Step 1
+					const response = await fetch(
+						"/.netlify/functions/subscribe",
+						{
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({
+								name: firstName,
+								email: email,
+								step: "1",
+							}),
+						},
+					);
+
+					const data = await response.json();
+
+					if (!response.ok) {
+						console.error("MailerLite Step 1 Error:", data);
+						// Continue anyway to not block the user
+					}
+
+					console.log("Step 1 completed:", data);
+
+					// Move to step 2
+					const step1 = document.getElementById("step1");
+					const step2 = document.getElementById("step2");
+					step1.classList.remove("active");
+					step1.classList.add("hidden");
+					step2.classList.remove("hidden");
+					step2.classList.add("active");
+					document
+						.getElementById("progress2")
+						.classList.add("active");
+				} catch (error) {
+					console.error("Error in step 1:", error);
+					// Continue to step 2 even if API fails
+					const step1 = document.getElementById("step1");
+					const step2 = document.getElementById("step2");
+					step1.classList.remove("active");
+					step1.classList.add("hidden");
+					step2.classList.remove("hidden");
+					step2.classList.add("active");
+					document
+						.getElementById("progress2")
+						.classList.add("active");
+				}
+			} else if (currentStepId === "step2") {
+				if (!selectedAvatar) {
+					alert("Veuillez sélectionner un profil");
+					return;
+				}
+
+				// Store avatar
+				userData.avatar = selectedAvatar;
+
+				try {
+					// Send to MailerLite - Step 2
+					const response = await fetch(
+						"/.netlify/functions/subscribe",
+						{
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({
+								email: userData.email,
+								avatar: selectedAvatar,
+								step: "2",
+							}),
+						},
+					);
+
+					const data = await response.json();
+
+					if (!response.ok) {
+						console.error("MailerLite Step 2 Error:", data);
+						// Continue anyway to not block the user
+					}
+
+					console.log("Step 2 completed:", data);
+
+					// Move to step 3
+					const step2 = document.getElementById("step2");
+					const step3 = document.getElementById("step3");
+					step2.classList.remove("active");
+					step2.classList.add("hidden");
+					step3.classList.remove("hidden");
+					step3.classList.add("active");
+					document
+						.getElementById("progress3")
+						.classList.add("active");
+
+					// Initialize phone input when step 3 is shown
+					setTimeout(function () {
+						initPhoneInput();
+					}, 100);
+				} catch (error) {
+					console.error("Error in step 2:", error);
+					// Continue to step 3 even if API fails
+					const step2 = document.getElementById("step2");
+					const step3 = document.getElementById("step3");
+					step2.classList.remove("active");
+					step2.classList.add("hidden");
+					step3.classList.remove("hidden");
+					step3.classList.add("active");
+					document
+						.getElementById("progress3")
+						.classList.add("active");
+
+					setTimeout(function () {
+						initPhoneInput();
+					}, 100);
+				}
 			}
 		}
 
@@ -381,25 +656,81 @@ import Footer from "../components/Footer.astro";
 			const loader = document.getElementById("loader");
 			const submitBtn = document.getElementById("submitBtn");
 
+			// Validate phone number
+			const phoneInput = document.getElementById("phone");
+			if (!phoneInput || !phoneInput.value.trim()) {
+				alert("Veuillez entrer votre numéro de téléphone");
+				return;
+			}
+
+			if (window.iti && !window.iti.isValidNumber()) {
+				alert("Veuillez entrer un numéro de téléphone valide");
+				return;
+			}
+
 			// Show loading
 			btnText.style.display = "none";
 			loader.classList.remove("hidden");
 			submitBtn.disabled = true;
 
-			// Simulate API call
-			await new Promise((resolve) => setTimeout(resolve, 2000));
+			// Get formatted phone number
+			let phoneNumber = "";
+			if (window.iti) {
+				phoneNumber = window.iti.getNumber(); // Get full international number like +41789482376
+			} else {
+				phoneNumber = phoneInput.value.trim();
+			}
 
-			// Show success
-			document.getElementById("step2").classList.add("hidden");
-			document.getElementById("successStep").classList.remove("hidden");
+			console.log("Submitting with phone:", phoneNumber);
 
-			// Reset after delay
-			setTimeout(() => {
-				closeModal();
-				btnText.style.display = "inline";
-				loader.classList.add("hidden");
-				submitBtn.disabled = false;
-			}, 3000);
+			try {
+				// Send to MailerLite - Step 3 (Final)
+				const response = await fetch("/.netlify/functions/subscribe", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						email: userData.email,
+						phone: phoneNumber,
+						step: "3",
+					}),
+				});
+
+				const data = await response.json();
+
+				if (!response.ok) {
+					console.error("MailerLite Step 3 Error:", data);
+					// Continue with success flow even if API fails
+				}
+
+				console.log("Step 3 completed:", data);
+
+				// Show success
+				document.getElementById("step3").classList.add("hidden");
+				document
+					.getElementById("successStep")
+					.classList.remove("hidden");
+
+				// Redirect to masterclass after success message
+				setTimeout(() => {
+					window.location.href =
+						"https://systemeviral.com/100k-masterclass";
+				}, 2500);
+			} catch (error) {
+				console.error("Error in step 3:", error);
+
+				// Show success anyway and redirect
+				document.getElementById("step3").classList.add("hidden");
+				document
+					.getElementById("successStep")
+					.classList.remove("hidden");
+
+				setTimeout(() => {
+					window.location.href =
+						"https://systemeviral.com/100k-masterclass";
+				}, 2500);
+			}
 		}
 
 		// Parallax on scroll
@@ -462,6 +793,8 @@ import Footer from "../components/Footer.astro";
 		(window as any).closeModal = closeModal;
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(window as any).nextStep = nextStep;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		(window as any).selectAvatar = selectAvatar;
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		(window as any).handleSubmit = handleSubmit;
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -8,7 +8,7 @@ export const siteConfig = {
 		youtube: 'https://youtube.com/@systemeviral',
 	},
 	contact: {
-		email: 'contact@systemeviral.com',
+		email: 'support@systemeviral.com',
 		phone: '+33 1 23 45 67 89',
 	},
 	nav: [
