@@ -104,6 +104,7 @@ export async function handler(event, context) {
             email: email,
             fields: {
               avatar: avatar,
+              tag: avatarTag,
               step: '2'
             }
           };
