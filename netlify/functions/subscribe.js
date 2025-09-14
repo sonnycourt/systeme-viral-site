@@ -57,8 +57,10 @@ export async function handler(event, context) {
     return new Promise((resolve, reject) => {
       // Gestion des différentes étapes
       let requestData;
-      let requestPath;
-      let requestMethod = 'POST';
+      // Use MailerLite (new) API: https://connect.mailerlite.com/api
+      // We will always POST to /api/subscribers (upsert by email)
+      const requestPath = '/api/subscribers';
+      const requestMethod = 'POST';
 
       switch(step) {
         case '1':
@@ -78,11 +80,9 @@ export async function handler(event, context) {
               name: name,
               step: '1'
             },
-            groups: [GROUP_ID],
-            tags: ['etape-1', 'inscription-commencee']
+            // Add to group on first step
+            groups: [GROUP_ID]
           };
-
-          requestPath = '/api/v2/subscribers';
           break;
 
         case '2':
@@ -101,15 +101,12 @@ export async function handler(event, context) {
                             avatar === 'influenceur' ? 'influenceur' : 'employe';
 
           requestData = {
+            email: email,
             fields: {
               avatar: avatar,
               step: '2'
-            },
-            tags: ['etape-2', avatarTag, 'avatar-selectionne']
+            }
           };
-
-          requestPath = `/api/v2/subscribers/${encodeURIComponent(email)}`;
-          requestMethod = 'PUT';
           break;
 
         case '3':
@@ -124,15 +121,12 @@ export async function handler(event, context) {
           }
 
           requestData = {
+            email: email,
             fields: {
               phone: phone,
               step: '3'
-            },
-            tags: ['etape-3', 'inscription-complete']
+            }
           };
-
-          requestPath = `/api/v2/subscribers/${encodeURIComponent(email)}`;
-          requestMethod = 'PUT';
           break;
 
         default:
@@ -151,7 +145,7 @@ export async function handler(event, context) {
       const postData = JSON.stringify(requestData);
 
       const options = {
-        hostname: 'api.mailerlite.com',
+        hostname: 'connect.mailerlite.com',
         port: 443,
         path: requestPath,
         method: requestMethod,
