@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+const https = require('https');
 
 export async function handler(event, context) {
   // Headers CORS pour toutes les réponses
@@ -54,166 +54,173 @@ export async function handler(event, context) {
 
     console.log(`Processing step ${step} for email: ${email}`);
 
-    // Configuration de l'API MailerLite
-    const mailerliteHeaders = {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`,
-      'Accept': 'application/json'
-    };
+    return new Promise((resolve, reject) => {
+      // Gestion des différentes étapes
+      let requestData;
+      let requestPath;
+      let requestMethod = 'POST';
 
-    let response;
-    let tags = ['source-systeme-viral-site'];
+      switch(step) {
+        case '1':
+          // Étape 1 : Créer le contact avec prénom et email
+          if (!name) {
+            resolve({
+              statusCode: 400,
+              headers,
+              body: JSON.stringify({ error: 'Name is required for step 1' })
+            });
+            return;
+          }
 
-    // Gestion des différentes étapes
-    switch(step) {
-      case '1':
-        // Étape 1 : Créer le contact avec prénom et email
-        if (!name) {
-          return {
+          requestData = {
+            email: email,
+            fields: {
+              name: name,
+              step: '1'
+            },
+            groups: [GROUP_ID],
+            tags: ['etape-1', 'inscription-commencee']
+          };
+
+          requestPath = '/api/v2/subscribers';
+          break;
+
+        case '2':
+          // Étape 2 : Mettre à jour avec l'avatar sélectionné
+          if (!avatar) {
+            resolve({
+              statusCode: 400,
+              headers,
+              body: JSON.stringify({ error: 'Avatar is required for step 2' })
+            });
+            return;
+          }
+
+          // Déterminer le tag selon l'avatar
+          const avatarTag = avatar === 'entrepreneur' ? 'entrepreneur' :
+                            avatar === 'influenceur' ? 'influenceur' : 'employe';
+
+          requestData = {
+            fields: {
+              avatar: avatar,
+              step: '2'
+            },
+            tags: ['etape-2', avatarTag, 'avatar-selectionne']
+          };
+
+          requestPath = `/api/v2/subscribers/${encodeURIComponent(email)}`;
+          requestMethod = 'PUT';
+          break;
+
+        case '3':
+          // Étape 3 : Finaliser avec le numéro de téléphone et redirection
+          if (!phone) {
+            resolve({
+              statusCode: 400,
+              headers,
+              body: JSON.stringify({ error: 'Phone is required for step 3' })
+            });
+            return;
+          }
+
+          requestData = {
+            fields: {
+              phone: phone,
+              step: '3'
+            },
+            tags: ['etape-3', 'inscription-complete']
+          };
+
+          requestPath = `/api/v2/subscribers/${encodeURIComponent(email)}`;
+          requestMethod = 'PUT';
+          break;
+
+        default:
+          resolve({
             statusCode: 400,
             headers,
-            body: JSON.stringify({ error: 'Name is required for step 1' })
-          };
+            body: JSON.stringify({ error: 'Invalid step' })
+          });
+          return;
+      }
+
+      console.log(`Step ${step} - ${requestMethod} request to:`, requestPath);
+      console.log('Request data:', JSON.stringify(requestData, null, 2));
+
+      // Préparer les données pour la requête
+      const postData = JSON.stringify(requestData);
+
+      const options = {
+        hostname: 'api.mailerlite.com',
+        port: 443,
+        path: requestPath,
+        method: requestMethod,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${API_KEY}`,
+          'Accept': 'application/json',
+          'Content-Length': Buffer.byteLength(postData)
         }
+      };
 
-        const subscriberDataStep1 = {
-          email: email,
-          fields: {
-            name: name,
-            step: '1'
-          },
-          groups: [GROUP_ID],
-          tags: ['etape-1', 'inscription-commencee']
-        };
+      const req = https.request(options, (res) => {
+        let data = '';
 
-        console.log('Step 1 - Creating subscriber:', subscriberDataStep1);
+        console.log(`MailerLite API Response Status: ${res.statusCode}`);
 
-        response = await fetch('https://api.mailerlite.com/api/v2/subscribers', {
-          method: 'POST',
-          headers: mailerliteHeaders,
-          body: JSON.stringify(subscriberDataStep1)
+        res.on('data', (chunk) => {
+          data += chunk;
         });
 
-        if (!response.ok) {
-          const errorData = await response.text();
-          console.error('MailerLite Step 1 Error:', errorData);
-          return {
-            statusCode: response.status,
-            headers,
-            body: JSON.stringify({ error: 'Failed to create subscriber in step 1' })
-          };
-        }
+        res.on('end', () => {
+          console.log(`MailerLite API Response Body: ${data}`);
 
-        break;
-
-      case '2':
-        // Étape 2 : Mettre à jour avec l'avatar sélectionné
-        if (!avatar) {
-          return {
-            statusCode: 400,
-            headers,
-            body: JSON.stringify({ error: 'Avatar is required for step 2' })
-          };
-        }
-
-        // Déterminer le tag selon l'avatar
-        const avatarTag = avatar === 'entrepreneur' ? 'entrepreneur' :
-                          avatar === 'influenceur' ? 'influenceur' : 'employe';
-
-        const updateDataStep2 = {
-          fields: {
-            avatar: avatar,
-            step: '2'
-          },
-          tags: ['etape-2', avatarTag, 'avatar-selectionne']
-        };
-
-        console.log('Step 2 - Updating subscriber:', updateDataStep2);
-
-        response = await fetch(`https://api.mailerlite.com/api/v2/subscribers/${encodeURIComponent(email)}`, {
-          method: 'PUT',
-          headers: mailerliteHeaders,
-          body: JSON.stringify(updateDataStep2)
+          if (res.statusCode >= 200 && res.statusCode < 300) {
+            console.log(`Step ${step} completed successfully for ${email}`);
+            resolve({
+              statusCode: 200,
+              headers,
+              body: JSON.stringify({
+                success: true,
+                step: step,
+                message: `Step ${step} completed successfully`,
+                redirect: step === '3' ? 'https://systemeviral.com/100k-masterclass' : null
+              })
+            });
+          } else {
+            console.error(`MailerLite Step ${step} Error (${res.statusCode}):`, data);
+            resolve({
+              statusCode: res.statusCode || 500,
+              headers,
+              body: JSON.stringify({
+                error: `Failed to process step ${step}`,
+                details: data
+              })
+            });
+          }
         });
+      });
 
-        if (!response.ok) {
-          const errorData = await response.text();
-          console.error('MailerLite Step 2 Error:', errorData);
-          return {
-            statusCode: response.status,
-            headers,
-            body: JSON.stringify({ error: 'Failed to update subscriber in step 2' })
-          };
-        }
-
-        break;
-
-      case '3':
-        // Étape 3 : Finaliser avec le numéro de téléphone et redirection
-        if (!phone) {
-          return {
-            statusCode: 400,
-            headers,
-            body: JSON.stringify({ error: 'Phone is required for step 3' })
-          };
-        }
-
-        const updateDataStep3 = {
-          fields: {
-            phone: phone,
-            step: '3'
-          },
-          tags: ['etape-3', 'inscription-complete']
-        };
-
-        console.log('Step 3 - Finalizing subscriber:', updateDataStep3);
-
-        response = await fetch(`https://api.mailerlite.com/api/v2/subscribers/${encodeURIComponent(email)}`, {
-          method: 'PUT',
-          headers: mailerliteHeaders,
-          body: JSON.stringify(updateDataStep3)
-        });
-
-        if (!response.ok) {
-          const errorData = await response.text();
-          console.error('MailerLite Step 3 Error:', errorData);
-          return {
-            statusCode: response.status,
-            headers,
-            body: JSON.stringify({ error: 'Failed to finalize subscriber in step 3' })
-          };
-        }
-
-        break;
-
-      default:
-        return {
-          statusCode: 400,
+      req.on('error', (error) => {
+        console.error('Request error:', error);
+        resolve({
+          statusCode: 500,
           headers,
-          body: JSON.stringify({ error: 'Invalid step' })
-        };
-    }
+          body: JSON.stringify({ error: 'Request failed', details: error.message })
+        });
+      });
 
-    const responseData = await response.json();
-    console.log(`Step ${step} completed successfully for ${email}`);
-
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({
-        success: true,
-        step: step,
-        message: `Step ${step} completed successfully`,
-        redirect: step === '3' ? 'https://systemeviral.com/100k-masterclass' : null
-      })
-    };
+      // Envoyer les données
+      req.write(postData);
+      req.end();
+    });
 
   } catch (error) {
     console.error('Server error:', error);
     return {
       statusCode: 500,
       headers,
-      body: JSON.stringify({ error: 'Internal server error' })
+      body: JSON.stringify({ error: 'Internal server error', details: error.message })
     };
   }
 };
