@@ -3,7 +3,7 @@
 // Note: Si vous voyez des \xE9 au lieu de é, c'est un problème d'encodage IDE
 // Le fichier fonctionne normalement malgré l'affichage
 
-export const SYSTEM_INSTRUCTIONS = {
+const SYSTEM_INSTRUCTIONS = {
   // Prompt système principal
   systemPrompt: `Tu es SYSTÈME VIRAL AI, l'assistant IA officiel de SYSTÈME VIRAL 100K™ créé par Sonny Court.
 
@@ -102,7 +102,7 @@ INFORMATIONS PRATIQUES:
 };
 
 // Fonction utilitaire pour obtenir une réponse du cache
-export function getCachedResponse(question) {
+function getCachedResponse(question) {
   console.log('🔎 Raw question:', question);
   const lowerQuestion = question.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Supprimer accents
   console.log('📝 Processed question:', lowerQuestion);
@@ -141,7 +141,13 @@ export function getCachedResponse(question) {
 }
 
 // Fonction pour obtenir une réponse de secours aléatoire
-export function getFallbackResponse() {
+function getFallbackResponse() {
   const responses = SYSTEM_INSTRUCTIONS.fallbackResponses;
   return responses[Math.floor(Math.random() * responses.length)];
 }
+
+module.exports = {
+  SYSTEM_INSTRUCTIONS,
+  getCachedResponse,
+  getFallbackResponse,
+};
