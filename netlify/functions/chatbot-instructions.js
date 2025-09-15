@@ -101,12 +101,27 @@ INFORMATIONS PRATIQUES:
 
 // Fonction utilitaire pour obtenir une réponse du cache
 export function getCachedResponse(question) {
-  const lowerQuestion = question.toLowerCase();
+  const lowerQuestion = question.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Supprimer accents
 
-  // Recherche par mots-clés dans le cache
-  for (const [key, response] of Object.entries(SYSTEM_INSTRUCTIONS.faqCache)) {
-    if (lowerQuestion.includes(key)) {
-      return response;
+  // Mots-clés étendus pour chaque réponse
+  const keywordsMap = {
+    "prix": ["prix", "coût", "cout", "tarif", "combien", "euros", "€", "payer", "coute", "coûte", "formatin", "formation"],
+    "garantie": ["garantie", "rembours", "risque", "sécuris", "securis", "protég", "proteg", "confiance", "fiable"],
+    "duree": ["durée", "duree", "longtemps", "temps", "mois", "semaines", "jours", "vite", "rapide"],
+    "debutant": ["débutant", "debutant", "expérience", "experience", "niveau", "début", "debut", "facile"],
+    "support": ["support", "aide", "communauté", "communaute", "groupe", "equipe", "équipe", "contact"],
+    "contenu": ["contenu", "module", "apprendre", "apprend", "couvre", "inclu", "comprend"]
+  };
+
+  // Recherche par mots-clés étendus
+  for (const [cacheKey, response] of Object.entries(SYSTEM_INSTRUCTIONS.faqCache)) {
+    const keywords = keywordsMap[cacheKey] || [cacheKey];
+
+    // Vérifier si au moins un mot-clé est présent dans la question
+    for (const keyword of keywords) {
+      if (lowerQuestion.includes(keyword)) {
+        return response;
+      }
     }
   }
 
