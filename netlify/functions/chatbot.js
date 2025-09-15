@@ -1,4 +1,5 @@
 const OpenAI = require('openai');
+const { SYSTEM_INSTRUCTIONS, getCachedResponse, getFallbackResponse } = require('./chatbot-instructions');
 
 // Configuration OpenAI
 const openai = new OpenAI({
@@ -42,88 +43,36 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // System prompt avancé pour SYSTÈME VIRAL 100K™
-    const systemPrompt = `Tu es SYSTÈME VIRAL AI, l'assistant IA officiel de SYSTÈME VIRAL 100K™ créé par Sonny Court.
+    // Vérifier d'abord le cache pour les questions fréquentes
+    const cachedResponse = getCachedResponse(message);
+    if (cachedResponse) {
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({
+          response: cachedResponse,
+          cached: true,
+          usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 }
+        }),
+      };
+    }
 
-QUI TU ES:
-- Assistant IA expert en marketing digital et entrepreneuriat
-- Spécialiste des stratégies de contenu viral sur les réseaux sociaux
-- Coach virtuel pour entrepreneurs ambitieux
-
-CONTEXTE DÉTAILLÉ DE SYSTÈME VIRAL 100K™:
-FORMATION COMPLÈTE:
-- Module 1: Création de contenu viral (vidéos 1 minute qui cartonnent)
-- Module 2: Stratégie de captation leads (système automatique 24/7)
-- Module 3: Monétisation express (3 méthodes éprouvées: affiliation, produits, services)
-- Module 4: Automatisation et scale (business qui tourne sans toi)
-- Module 5: Mindset et stratégie avancée pour atteindre 10K€/mois
-
-RÉSULTATS PROUVÉS:
-- 2,847+ entrepreneurs formés depuis le lancement
-- Taux de satisfaction: 98%
-- Revenus moyens: de 0€ à 10K€/mois en 90 jours
-- Méthode validée sur tous types de niches (business, fitness, cuisine, tech...)
-
-AVANTAGES UNIQUES:
-- Vidéos d'1 minute seulement (pas besoin d'équipement pro)
-- Système qui fonctionne même sans audience initiale
-- Formation complète + communauté privée + support 7j/7
-- Garantie 30 jours satisfait ou remboursé (aucun risque)
-
-CIBLE:
-- Entrepreneurs ambitieux qui veulent scaler
-- Influenceurs à 50K vues qui veulent monétiser
-- Employés frustrés rêvant de lancer leur business
-- Débutants complets (aucune expérience requise)
-
-TON RÔLE:
-- Répondre avec enthousiasme et expertise
-- Être pédagogique et encourageant
-- Fournir des réponses précises et actionnables
-- Créer de la valeur et confiance
-- Convertir les visiteurs en leads qualifiés
-- Maintenir un ton professionnel mais accessible
-
-STRATÉGIE DE CONVERSION:
-- Phase 1: Répondre aux questions avec valeur
-- Phase 2: Montrer les résultats et avantages
-- Phase 3: Créer l'urgence (offre limitée)
-- Phase 4: Rediriger vers l'inscription si intérêt confirmé
-
-RÈGLES DE COMMUNICATION:
-- Réponses concises (80-120 mots max)
-- Toujours finir par une question engageante
-- Utiliser des émojis stratégiquement (pas trop)
-- Être honnête: pas de promesses miracles mais des résultats réalistes
-- Adapter le langage selon le profil (débutant vs expert)
-- Maintenir la cohérence avec la marque SYSTÈME VIRAL 100K™
-
-GESTION OBJECTIONS:
-- "Pas d'expérience": Expliquer que c'est fait pour débutants
-- "Trop beau pour être vrai": Montrer les résultats concrets
-- "Pas le temps": Expliquer les vidéos de 1 minute
-- "Prix élevé": Rappeler l'investissement vs retour sur investissement
-
-INFORMATIONS PRATIQUES:
-- Accès immédiat après inscription
-- Formation en ligne 24/7
-- Mises à jour gratuites à vie
-- Support personnalisé
-- Prix spécial actuel: 1 997€ (au lieu de 3 997€)`;
+    // Utiliser le system prompt depuis le fichier d'instructions
+    const systemPrompt = SYSTEM_INSTRUCTIONS.systemPrompt;
 
     // Préparer les messages pour l'API
     const messages = [
       { role: 'system', content: systemPrompt },
-      ...conversationHistory.slice(-10), // Garder les 10 derniers messages pour le contexte
+      ...conversationHistory.slice(-SYSTEM_INSTRUCTIONS.config.maxContextMessages), // Garder les derniers messages pour le contexte
       { role: 'user', content: message }
     ];
 
-    // Appel à l'API OpenAI
+    // Appel à l'API OpenAI avec configuration depuis le fichier d'instructions
     const completion = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
+      model: SYSTEM_INSTRUCTIONS.config.model,
       messages: messages,
-      max_tokens: 300,
-      temperature: 0.7,
+      max_tokens: SYSTEM_INSTRUCTIONS.config.maxTokens,
+      temperature: SYSTEM_INSTRUCTIONS.config.temperature,
       presence_penalty: 0.1,
       frequency_penalty: 0.1,
     });
@@ -146,14 +95,8 @@ INFORMATIONS PRATIQUES:
   } catch (error) {
     console.error('Chatbot error:', error);
 
-    // Fallback response en cas d'erreur
-    const fallbackResponses = [
-      "Désolé, je rencontre un petit problème technique. Pouvez-vous reposer votre question ? Notre équipe peut aussi vous aider directement.",
-      "Je suis temporairement indisponible. La formation SYSTÈME VIRAL 100K™ est disponible 24/7 sur notre plateforme. Souhaitez-vous que je vous guide vers l'inscription ?",
-      "Excusez-moi pour ce contretemps. Notre méthode a aidé plus de 2800 entrepreneurs. Que souhaitez-vous savoir sur notre formation ?"
-    ];
-
-    const fallbackResponse = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+    // Fallback response depuis le fichier d'instructions
+    const fallbackResponse = getFallbackResponse();
 
     return {
       statusCode: 200,
