@@ -7,6 +7,10 @@ const openai = new OpenAI({
 });
 
 exports.handler = async (event, context) => {
+  console.log('🚀 CHATBOT FUNCTION CALLED');
+  console.log('📨 HTTP Method:', event.httpMethod);
+  console.log('📦 Body:', event.body);
+
   // Headers CORS
   const headers = {
     'Access-Control-Allow-Origin': '*',
@@ -16,6 +20,7 @@ exports.handler = async (event, context) => {
 
   // Handle preflight requests
   if (event.httpMethod === 'OPTIONS') {
+    console.log('✅ OPTIONS request handled');
     return {
       statusCode: 200,
       headers,
@@ -25,6 +30,7 @@ exports.handler = async (event, context) => {
 
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
+    console.log('❌ Method not allowed:', event.httpMethod);
     return {
       statusCode: 405,
       headers,
@@ -33,7 +39,9 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    console.log('📥 Parsing request body...');
     const { message, conversationHistory = [] } = JSON.parse(event.body);
+    console.log('💬 Message received:', message);
 
     if (!message || message.trim().length === 0) {
       return {
