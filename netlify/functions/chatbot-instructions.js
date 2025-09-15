@@ -1,5 +1,7 @@
 // Instructions et configuration pour SYSTÈME VIRAL AI
 // Modifiez ce fichier pour adapter le comportement de l'IA
+// Note: Si vous voyez des \xE9 au lieu de é, c'est un problème d'encodage IDE
+// Le fichier fonctionne normalement malgré l'affichage
 
 export const SYSTEM_INSTRUCTIONS = {
   // Prompt système principal
