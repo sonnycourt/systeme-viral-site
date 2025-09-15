@@ -103,7 +103,9 @@ INFORMATIONS PRATIQUES:
 
 // Fonction utilitaire pour obtenir une réponse du cache
 export function getCachedResponse(question) {
+  console.log('🔎 Raw question:', question);
   const lowerQuestion = question.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Supprimer accents
+  console.log('📝 Processed question:', lowerQuestion);
 
   // Mots-clés étendus pour chaque réponse
   const keywordsMap = {
@@ -115,18 +117,26 @@ export function getCachedResponse(question) {
     "contenu": ["contenu", "module", "apprendre", "apprend", "couvre", "inclu", "comprend"]
   };
 
+  console.log('🔍 Checking cache keywords...');
+
   // Recherche par mots-clés étendus
   for (const [cacheKey, response] of Object.entries(SYSTEM_INSTRUCTIONS.faqCache)) {
+    console.log(`🔎 Checking ${cacheKey}...`);
     const keywords = keywordsMap[cacheKey] || [cacheKey];
+    console.log(`📋 Keywords for ${cacheKey}:`, keywords);
 
     // Vérifier si au moins un mot-clé est présent dans la question
     for (const keyword of keywords) {
+      console.log(`🔍 Testing keyword "${keyword}" in "${lowerQuestion}"`);
       if (lowerQuestion.includes(keyword)) {
+        console.log(`✅ FOUND: "${keyword}" found in question!`);
+        console.log(`💰 Returning cached response for ${cacheKey}`);
         return response;
       }
     }
   }
 
+  console.log('❌ No cache match found');
   return null; // Pas de réponse en cache
 }
 

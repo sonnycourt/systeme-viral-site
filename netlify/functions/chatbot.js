@@ -44,8 +44,12 @@ exports.handler = async (event, context) => {
     }
 
     // Vérifier d'abord le cache pour les questions fréquentes
+    console.log('🔍 Checking cache for:', message);
     const cachedResponse = getCachedResponse(message);
+    console.log('📦 Cache result:', cachedResponse ? 'HIT' : 'MISS');
+
     if (cachedResponse) {
+      console.log('✅ Returning cached response');
       return {
         statusCode: 200,
         headers,
