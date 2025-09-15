@@ -43,13 +43,38 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Vérifier d'abord le cache pour les questions fréquentes
-    console.log('🔍 Checking cache for:', message);
-    const cachedResponse = getCachedResponse(message);
-    console.log('📦 Cache result:', cachedResponse ? 'HIT' : 'MISS');
+    // Vérifier d'abord le cache pour les questions fréquentes - TEST SIMPLE
+    console.log('🔍 MESSAGE RECU:', message);
 
+    // Test direct pour les questions de prix
+    const lowerMessage = message.toLowerCase();
+    console.log('📝 Message en minuscules:', lowerMessage);
+
+    if (lowerMessage.includes('prix') ||
+        lowerMessage.includes('combien') ||
+        lowerMessage.includes('coût') ||
+        lowerMessage.includes('cout') ||
+        lowerMessage.includes('tarif') ||
+        lowerMessage.includes('€') ||
+        lowerMessage.includes('coute')) {
+
+      console.log('✅ DETECTED PRICE QUESTION - RETURNING CACHE');
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({
+          response: "Le prix spécial actuel est de 1 997€ pour la formation complète SYSTÈME VIRAL 100K™ (au lieu de 3 997€). C'est un investissement qui peut transformer votre business ! 💰",
+          cached: true,
+          usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 }
+        }),
+      };
+    }
+
+    console.log('❌ Not a price question, continuing...');
+
+    // Ancienne logique de cache si besoin
+    const cachedResponse = getCachedResponse(message);
     if (cachedResponse) {
-      console.log('✅ Returning cached response');
       return {
         statusCode: 200,
         headers,
