@@ -1,0 +1,359 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+    title="Offre Spéciale - SYSTÈME VIRAL 100K™ - Formation Complète"
+    description="Offre limitée : Formation complète + Bonus exclusifs pour générer tes premiers 10K€/mois. Garantie 30 jours satisfait ou remboursé."
+    canonical="/offre-speciale"
+>
+    <Header />
+
+    <!-- Background effects -->
+    <div class="gradient-bg"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="badge">
+                        <div class="badge-icon">⚡</div>
+                        <span class="badge-text"
+                            >OFFRE SPÉCIALE LIMITÉE - 50% DE RÉDUCTION</span
+                        >
+                    </div>
+
+                    <h1>
+                        SYSTÈME VIRAL 100K™
+                        <span class="gradient-text">FORMATION COMPLÈTE</span>
+                    </h1>
+
+                    <p class="hero-subtitle">
+                        Le système exact pour générer tes premiers 10K€/mois
+                        avec des vidéos d'une minute.
+                    </p>
+
+                    <div class="countdown-container">
+                        <div class="countdown-label">
+                            ⏰ Offre expire dans :
+                        </div>
+                        <div class="countdown-timer">
+                            <span class="countdown-item">
+                                <span class="countdown-number" id="days"
+                                    >02</span
+                                >
+                                <span class="countdown-unit">j</span>
+                            </span>
+                            <span class="countdown-separator">:</span>
+                            <span class="countdown-item">
+                                <span class="countdown-number" id="hours"
+                                    >14</span
+                                >
+                                <span class="countdown-unit">h</span>
+                            </span>
+                            <span class="countdown-separator">:</span>
+                            <span class="countdown-item">
+                                <span class="countdown-number" id="minutes"
+                                    >35</span
+                                >
+                                <span class="countdown-unit">m</span>
+                            </span>
+                            <span class="countdown-separator">:</span>
+                            <span class="countdown-item">
+                                <span class="countdown-number" id="seconds"
+                                    >22</span
+                                >
+                                <span class="countdown-unit">s</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="cta-wrapper">
+                        <button
+                            class="cta-btn"
+                            onclick="alert('Fonctionnalité à implémenter')"
+                        >
+                            ACCÉDER À L'OFFRE SPÉCIALE →
+                        </button>
+                    </div>
+
+                    <div class="trust-points">
+                        <div class="trust-item">
+                            <span class="trust-check">✓</span>
+                            <span>Accès immédiat</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-check">✓</span>
+                            <span>Paiement 100% sécurisé</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-check">✓</span>
+                            <span>Garantie 30 jours</span>
+                        </div>
+                    </div>
+
+                    <div class="social-proof">
+                        <div class="proof-item">
+                            <div class="proof-number">2 847</div>
+                            <div class="proof-label">Entrepreneurs formés</div>
+                        </div>
+                        <div class="proof-item">
+                            <div class="proof-number">4.9/5</div>
+                            <div class="proof-label">Note moyenne</div>
+                        </div>
+                        <div class="proof-item">
+                            <div class="proof-number">98%</div>
+                            <div class="proof-label">Taux de satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+
+    <style>
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .hero-content {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-bright) 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .countdown-container {
+            margin: 32px 0;
+            padding: 24px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            display: inline-block;
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .countdown-timer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 50px;
+        }
+
+        .countdown-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .countdown-unit {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .countdown-separator {
+            font-size: 24px;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .cta-wrapper {
+            margin: 32px 0;
+        }
+
+        .cta-btn {
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-dark) 100%
+            );
+            color: var(--bg);
+            border: none;
+            padding: 18px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 20px rgba(0, 220, 130, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 220, 130, 0.4);
+        }
+
+        .trust-points {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .trust-check {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .social-proof {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .proof-item {
+            text-align: center;
+        }
+
+        .proof-number {
+            font-size: clamp(24px, 3vw, 32px);
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .proof-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .social-proof {
+                gap: 24px;
+            }
+
+            .trust-points {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+
+    <script>
+        // Countdown timer
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const endDate = new Date(
+                now +
+                    2 * 24 * 60 * 60 * 1000 +
+                    14 * 60 * 60 * 1000 +
+                    35 * 60 * 1000 +
+                    22 * 1000,
+            );
+
+            const timeLeft = endDate.getTime() - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor(
+                    (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+                );
+                const minutes = Math.floor(
+                    (timeLeft % (1000 * 60 * 60)) / (1000 * 60),
+                );
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                const daysElement = document.getElementById("days");
+                const hoursElement = document.getElementById("hours");
+                const minutesElement = document.getElementById("minutes");
+                const secondsElement = document.getElementById("seconds");
+
+                if (daysElement) daysElement.textContent = days.toString();
+                if (hoursElement) hoursElement.textContent = hours.toString();
+                if (minutesElement)
+                    minutesElement.textContent = minutes.toString();
+                if (secondsElement)
+                    secondsElement.textContent = seconds.toString();
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</Layout>

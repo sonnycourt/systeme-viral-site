@@ -4,81 +4,63 @@ import Footer from "../components/Footer.astro";
 ---
 
 <Layout
-	title="SYSTÈME VIRAL 100K™ - De Zéro à 100K Vues en 30 Jours"
-	description="Comment j'ai généré 100k€ en 30 jours avec des vidéos d'une minute. La méthode complète pour exploser à 100K vues en 30 jours."
+	title="SYSTÈME VIRAL 100K™ - 90 jours pour arrêter de vendre ton temps"
+	description="90 jours pour arrêter de vendre ton temps et générer tes premiers 10K€ récurrents avec des vidéos d'une minute. Système complet."
 	canonical="/accueil"
 >
 	<!-- Background effects -->
 	<div class="gradient-bg"></div>
 
 	<!-- Hero Section -->
-	<section class="hero">
+	<section class="hero" style="min-height: auto; padding: 200px 0 40px;">
 		<div class="container">
 			<div class="hero-content">
 				<div class="badge">
 					<div class="badge-icon"></div>
 					<span class="badge-text"
-						>100k€ générés • Méthode testée</span
+						>Places limitées • Session 2025</span
 					>
 				</div>
 
 				<h1>
 					SYSTÈME VIRAL 100K™
 					<span class="gradient-text"
-						>La méthode complète pour exploser à 100K vues en 30 jours et générer 10K€/mois</span
+						>Comment j'ai généré 100k€ en 30 jours avec des vidéos
+						d'une minute</span
 					>
 				</h1>
 
 				<p class="hero-subtitle">
-					Comment j'ai généré 100k€ en 30 jours avec des vidéos d'une minute
+					90 jours pour arrêter de vendre ton temps et générer tes
+					premiers 10K€ récurrents avec des vidéos d'une minute
 				</p>
 
 				<div class="cta-wrapper">
 					<button class="cta-btn" onclick="openModal()">
-						Découvrir la méthode →
+						découvre le système
 					</button>
 				</div>
 
 				<div class="trust-points">
 					<div class="trust-item">
 						<span class="trust-check">✓</span>
-						<span>Pas de bullshit</span>
+						<span>0€ de budget pub</span>
 					</div>
 					<div class="trust-item">
 						<span class="trust-check">✓</span>
-						<span>Résultats prouvés</span>
+						<span>0 expérience requise</span>
 					</div>
 					<div class="trust-item">
 						<span class="trust-check">✓</span>
-						<span>Système automatisé</span>
+						<span>0 risque (garantie 30j)</span>
 					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Stats Section -->
-	<section class="stats">
-		<div class="container">
-			<div class="stats-grid">
-				<div class="stat-card">
-					<div class="stat-number">+100k€</div>
-					<div class="stat-desc">En 1 mois</div>
-				</div>
-				<div class="stat-card">
-					<div class="stat-number">1min</div>
-					<div class="stat-desc">Par vidéo</div>
-				</div>
-				<div class="stat-card">
-					<div class="stat-number">0€</div>
-					<div class="stat-desc">Budget pub</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
 	<!-- Features Section -->
-	<section class="features">
+	<section class="features" style="padding: 80px 0 120px;">
 		<div class="container">
 			<h2 class="section-title">Le système en 3 étapes</h2>
 
@@ -87,9 +69,12 @@ import Footer from "../components/Footer.astro";
 					<div class="step-number">1</div>
 					<h3 class="feature-title">Créer du contenu viral</h3>
 					<p class="feature-text">
-						Des vidéos d'1 minute qui font des millions de vues.<br
-						/>
-						La formule exacte testée sur TikTok, Reels et Shorts.
+						Des vidéos d'une minute qui cartonnent.<br />
+						La formule exacte pour exploser sur tous les réseaux.<br
+						/><br />
+						<span class="promise-text"
+							>→ 100K vues garanties en 30 jours</span
+						>
 					</p>
 				</div>
 
@@ -97,17 +82,27 @@ import Footer from "../components/Footer.astro";
 					<div class="step-number">2</div>
 					<h3 class="feature-title">Capturer les emails</h3>
 					<p class="feature-text">
-						Transformer vos viewers en liste email qualifiée.<br />
-						Système automatisé qui tourne 24/7 sans vous.
+						Transforme chaque vue en contact qualifié.<br />
+						Le système tourne 24/7 en automatique.<br /><br />
+						<span class="promise-text"
+							>→ 1000 leads garantis en 60 jours</span
+						>
 					</p>
 				</div>
 
 				<div class="feature-card">
 					<div class="step-number">3</div>
-					<h3 class="feature-title">Monétiser à fond</h3>
+					<h3 class="feature-title">Monétiser ta liste</h3>
 					<p class="feature-text">
-						Produit digital à 2000€ ou affiliation premium.<br />
-						La stratégie exacte pour faire +100k€/mois.
+						Convertis ta liste en revenus récurrents.<br />
+						Affiliation ou produit propre, je te guide étape par étape.<br
+						/><br />
+						<span class="promise-text"
+							>→ 10K€/mois en 90 jours<br />
+							<span class="guarantee-text"
+								>(2K€ minimum garanti)</span
+							></span
+						>
 					</p>
 				</div>
 			</div>
@@ -119,17 +114,10 @@ import Footer from "../components/Footer.astro";
 		<div class="modal-content">
 			<button class="modal-close" onclick="closeModal()">×</button>
 
-			<div class="progress-bar">
-				<div class="progress-step active" id="progress1"></div>
-				<div class="progress-step" id="progress2"></div>
-				<div class="progress-step" id="progress3"></div>
-			</div>
-
 			<form id="accessForm" onsubmit="handleSubmit(event)">
 				<!-- Step 1: Name and Email -->
 				<div class="form-step active" id="step1">
 					<h3 class="modal-title">Accès immédiat</h3>
-					<p class="modal-subtitle">Étape 1/3 - Vos informations</p>
 
 					<div class="input-group">
 						<label class="input-label">Prénom</label>
@@ -162,10 +150,7 @@ import Footer from "../components/Footer.astro";
 
 				<!-- Step 2: Avatar Selection -->
 				<div class="form-step hidden" id="step2">
-					<h3 class="modal-title">Vous êtes...</h3>
-					<p class="modal-subtitle">
-						Étape 2/3 - Quel profil vous correspond ?
-					</p>
+					<h3 class="modal-title">Tu es...</h3>
 
 					<div class="avatar-selection">
 						<div
@@ -173,12 +158,12 @@ import Footer from "../components/Footer.astro";
 							onclick="selectAvatar('entrepreneur')"
 							id="avatar-entrepreneur"
 						>
-							<div class="avatar-icon">🏆</div>
+							<div class="avatar-icon">🧑‍💼</div>
 							<div class="avatar-content">
-								<h4>L'Entrepreneur ambitieux</h4>
+								<h4>L'Entrepreneur</h4>
 								<p>
-									Tu fais déjà du CA et veux scaler à 10K€
-									sans travailler plus
+									Tu fais déjà du CA et veux scaler à
+									+10K€/mois sans t'épuiser.
 								</p>
 							</div>
 							<div class="avatar-radio"></div>
@@ -189,12 +174,12 @@ import Footer from "../components/Footer.astro";
 							onclick="selectAvatar('influenceur')"
 							id="avatar-influenceur"
 						>
-							<div class="avatar-icon">📱</div>
+							<div class="avatar-icon">🧑‍🎤</div>
 							<div class="avatar-content">
-								<h4>L'Influenceur à 50K vues</h4>
+								<h4>L'Influenceur</h4>
 								<p>
-									Tu as 50K vues mais pas de ventes, tu veux
-									monétiser
+									Tu fais des vues mais pas de ventes, tu veux
+									générer des revenus stables.
 								</p>
 							</div>
 							<div class="avatar-radio"></div>
@@ -205,12 +190,12 @@ import Footer from "../components/Footer.astro";
 							onclick="selectAvatar('employe')"
 							id="avatar-employe"
 						>
-							<div class="avatar-icon">💼</div>
+							<div class="avatar-icon">🙋</div>
 							<div class="avatar-content">
-								<h4>L'Employé frustré</h4>
+								<h4>L'employé</h4>
 								<p>
-									Tu détestes ton job et rêves de lancer ton
-									business
+									Tu n'aimes pas ton job et rêves de lancer
+									ton business.
 								</p>
 							</div>
 							<div class="avatar-radio"></div>
@@ -231,9 +216,6 @@ import Footer from "../components/Footer.astro";
 				<!-- Step 3: Phone -->
 				<div class="form-step hidden" id="step3">
 					<h3 class="modal-title">Une dernière étape</h3>
-					<p class="modal-subtitle">
-						Étape 3/3 - Numéro de téléphone
-					</p>
 
 					<div class="input-group">
 						<label class="input-label">Téléphone</label>

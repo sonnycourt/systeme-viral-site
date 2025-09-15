@@ -235,13 +235,13 @@ h1 {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-secondary);
 }
 
 .trust-check {
   color: var(--accent);
-  font-size: 16px;
+  font-size: 18px;
 }
 
 /* Stats Section */
@@ -376,6 +376,20 @@ h1 {
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+.promise-text {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.guarantee-text {
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 400;
+  display: block;
+  margin-top: 4px;
 }
 
 /* Modal */
