@@ -120,7 +120,7 @@ import Footer from "../components/Footer.astro";
     <div id="chatbot-container">
         <!-- Chatbot Toggle Button -->
         <button id="chatbot-toggle" class="chatbot-toggle">
-            <div class="chatbot-icon">🤖</div>
+            <div class="chatbot-text">Besoin d'aide ?</div>
             <div class="chatbot-pulse"></div>
         </button>
 
@@ -149,8 +149,9 @@ import Footer from "../components/Footer.astro";
                     </div>
                     <div class="message-content">
                         <div class="message-text">
-                            Bonjour ! Je suis l'assistant IA de SYSTÈME VIRAL 100K™.
-                            Je peux répondre à toutes vos questions sur la formation. Comment puis-je vous aider ?
+                            Bonjour ! Je suis l'assistant IA de SYSTÈME VIRAL
+                            100K™. Je peux répondre à toutes vos questions sur
+                            la formation. Comment puis-je vous aider ?
                         </div>
                         <div class="message-time">à l'instant</div>
                     </div>
@@ -158,7 +159,11 @@ import Footer from "../components/Footer.astro";
             </div>
 
             <!-- Typing Indicator -->
-            <div id="typing-indicator" class="typing-indicator" style="display: none;">
+            <div
+                id="typing-indicator"
+                class="typing-indicator"
+                style="display: none;"
+            >
                 <div class="typing-avatar">
                     <div class="avatar-icon-small">🧠</div>
                 </div>
@@ -180,13 +185,22 @@ import Footer from "../components/Footer.astro";
                         maxlength="500"
                     />
                     <button id="chatbot-send" class="chatbot-send">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <path d="M2 21L23 12L2 3V10L17 12L2 14V21Z" fill="currentColor"/>
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                        >
+                            <path
+                                d="M2 21L23 12L2 3V10L17 12L2 14V21Z"
+                                fill="currentColor"></path>
                         </svg>
                     </button>
                 </div>
                 <div class="input-footer">
-                    <span class="input-hint">Appuyez sur Entrée pour envoyer</span>
+                    <span class="input-hint"
+                        >Appuyez sur Entrée pour envoyer</span
+                    >
                 </div>
             </div>
         </div>
@@ -396,14 +410,18 @@ import Footer from "../components/Footer.astro";
             bottom: 20px;
             right: 20px;
             z-index: 1000;
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: "Inter", system-ui, sans-serif;
         }
 
         .chatbot-toggle {
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-dark) 100%
+            );
             border: none;
             cursor: pointer;
             display: flex;
@@ -419,10 +437,16 @@ import Footer from "../components/Footer.astro";
             box-shadow: 0 8px 30px rgba(0, 220, 130, 0.6);
         }
 
-        .chatbot-icon {
-            font-size: 24px;
+        .chatbot-text {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--bg);
             z-index: 2;
             position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            line-height: 1.2;
         }
 
         .chatbot-pulse {
@@ -437,7 +461,8 @@ import Footer from "../components/Footer.astro";
         }
 
         @keyframes chatbotPulse {
-            0%, 100% {
+            0%,
+            100% {
                 transform: scale(1);
                 opacity: 1;
             }
@@ -484,7 +509,11 @@ import Footer from "../components/Footer.astro";
         .chatbot-avatar {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-bright) 100%
+            );
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -522,8 +551,13 @@ import Footer from "../components/Footer.astro";
         }
 
         @keyframes statusPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
         }
 
         .chatbot-close {
@@ -592,7 +626,11 @@ import Footer from "../components/Footer.astro";
         .avatar-icon-small {
             width: 32px;
             height: 32px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-bright) 100%
+            );
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -601,7 +639,11 @@ import Footer from "../components/Footer.astro";
         }
 
         .bot-message .avatar-icon-small {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%);
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-bright) 100%
+            );
         }
 
         .user-message {
@@ -664,12 +706,20 @@ import Footer from "../components/Footer.astro";
             animation: typingDot 1.4s ease-in-out infinite;
         }
 
-        .typing-dots span:nth-child(1) { animation-delay: 0s; }
-        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+        .typing-dots span:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
 
         @keyframes typingDot {
-            0%, 60%, 100% {
+            0%,
+            60%,
+            100% {
                 transform: translateY(0);
                 opacity: 0.4;
             }
@@ -767,8 +817,8 @@ import Footer from "../components/Footer.astro";
                 height: 50px;
             }
 
-            .chatbot-icon {
-                font-size: 20px;
+            .chatbot-text {
+                font-size: 9px;
             }
         }
     </style>
@@ -816,22 +866,36 @@ import Footer from "../components/Footer.astro";
 
         // Chatbot functionality
         let chatbotOpen = false;
-        const chatbotToggle = document.getElementById('chatbot-toggle') as HTMLButtonElement | null;
-        const chatbotWindow = document.getElementById('chatbot-window') as HTMLDivElement | null;
-        const chatbotClose = document.getElementById('chatbot-close') as HTMLButtonElement | null;
-        const chatbotInput = document.getElementById('chatbot-input') as HTMLInputElement | null;
-        const chatbotSend = document.getElementById('chatbot-send') as HTMLButtonElement | null;
-        const chatbotMessages = document.getElementById('chatbot-messages') as HTMLDivElement | null;
-        const typingIndicator = document.getElementById('typing-indicator') as HTMLDivElement | null;
+        const chatbotToggle = document.getElementById(
+            "chatbot-toggle",
+        ) as HTMLButtonElement | null;
+        const chatbotWindow = document.getElementById(
+            "chatbot-window",
+        ) as HTMLDivElement | null;
+        const chatbotClose = document.getElementById(
+            "chatbot-close",
+        ) as HTMLButtonElement | null;
+        const chatbotInput = document.getElementById(
+            "chatbot-input",
+        ) as HTMLInputElement | null;
+        const chatbotSend = document.getElementById(
+            "chatbot-send",
+        ) as HTMLButtonElement | null;
+        const chatbotMessages = document.getElementById(
+            "chatbot-messages",
+        ) as HTMLDivElement | null;
+        const typingIndicator = document.getElementById(
+            "typing-indicator",
+        ) as HTMLDivElement | null;
 
         // Toggle chatbot window
         function toggleChatbot() {
             chatbotOpen = !chatbotOpen;
             if (chatbotOpen && chatbotWindow && chatbotInput) {
-                chatbotWindow.classList.add('show');
+                chatbotWindow.classList.add("show");
                 chatbotInput.focus();
             } else if (chatbotWindow) {
-                chatbotWindow.classList.remove('show');
+                chatbotWindow.classList.remove("show");
             }
         }
 
@@ -839,18 +903,18 @@ import Footer from "../components/Footer.astro";
         function addMessage(content: string, isUser = false) {
             if (!chatbotMessages) return;
 
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `message ${isUser ? "user-message" : "bot-message"}`;
 
             const now = new Date();
-            const timeString = now.toLocaleTimeString('fr-FR', {
-                hour: '2-digit',
-                minute: '2-digit'
+            const timeString = now.toLocaleTimeString("fr-FR", {
+                hour: "2-digit",
+                minute: "2-digit",
             });
 
             messageDiv.innerHTML = `
                 <div class="message-avatar">
-                    <div class="avatar-icon-small">${isUser ? '👤' : '🧠'}</div>
+                    <div class="avatar-icon-small">${isUser ? "👤" : "🧠"}</div>
                 </div>
                 <div class="message-content">
                     <div class="message-text">${content}</div>
@@ -865,7 +929,7 @@ import Footer from "../components/Footer.astro";
         // Show typing indicator
         function showTyping() {
             if (typingIndicator && chatbotMessages) {
-                typingIndicator.style.display = 'flex';
+                typingIndicator.style.display = "flex";
                 chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
             }
         }
@@ -873,7 +937,7 @@ import Footer from "../components/Footer.astro";
         // Hide typing indicator
         function hideTyping() {
             if (typingIndicator) {
-                typingIndicator.style.display = 'none';
+                typingIndicator.style.display = "none";
             }
         }
 
@@ -883,38 +947,42 @@ import Footer from "../components/Footer.astro";
 
             // Add user message
             addMessage(message, true);
-            chatbotInput.value = '';
+            chatbotInput.value = "";
 
             // Show typing indicator
             showTyping();
 
             // Simulate bot response (will be replaced with OpenAI API)
-            setTimeout(() => {
-                hideTyping();
-                const responses = [
-                    "Excellente question ! Le système SYSTÈME VIRAL 100K™ est conçu pour vous aider à générer vos premiers 10K€/mois avec des vidéos d'une minute. Que voulez-vous savoir de plus ?",
-                    "Je comprends votre intérêt pour cette formation. Notre méthode a déjà aidé plus de 2 800 entrepreneurs à atteindre leurs objectifs financiers. Avez-vous des questions spécifiques ?",
-                    "C'est une très bonne remarque ! Notre formation inclut tout ce dont vous avez besoin : templates, stratégies, et support personnalisé. Êtes-vous prêt à commencer ?",
-                    "Absolument ! Le système fonctionne pour tous les types de niches. Nous incluons des exemples concrets pour chaque secteur d'activité. Quelle est votre niche ?",
-                    "Notre garantie 30 jours satisfait ou remboursé montre notre confiance en notre méthode. Plus de 98% de nos élèves sont satisfaits. Qu'est-ce qui vous inquiète le plus ?"
-                ];
+            setTimeout(
+                () => {
+                    hideTyping();
+                    const responses = [
+                        "Excellente question ! Le système SYSTÈME VIRAL 100K™ est conçu pour vous aider à générer vos premiers 10K€/mois avec des vidéos d'une minute. Que voulez-vous savoir de plus ?",
+                        "Je comprends votre intérêt pour cette formation. Notre méthode a déjà aidé plus de 2 800 entrepreneurs à atteindre leurs objectifs financiers. Avez-vous des questions spécifiques ?",
+                        "C'est une très bonne remarque ! Notre formation inclut tout ce dont vous avez besoin : templates, stratégies, et support personnalisé. Êtes-vous prêt à commencer ?",
+                        "Absolument ! Le système fonctionne pour tous les types de niches. Nous incluons des exemples concrets pour chaque secteur d'activité. Quelle est votre niche ?",
+                        "Notre garantie 30 jours satisfait ou remboursé montre notre confiance en notre méthode. Plus de 98% de nos élèves sont satisfaits. Qu'est-ce qui vous inquiète le plus ?",
+                    ];
 
-                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                addMessage(randomResponse);
-            }, 1500 + Math.random() * 1000);
+                    const randomResponse =
+                        responses[Math.floor(Math.random() * responses.length)];
+                    addMessage(randomResponse);
+                },
+                1500 + Math.random() * 1000,
+            );
         }
 
         // Event listeners
         if (chatbotToggle) {
-            chatbotToggle.addEventListener('click', toggleChatbot);
+            chatbotToggle.addEventListener("click", toggleChatbot);
         }
         if (chatbotClose) {
-            chatbotClose.addEventListener('click', toggleChatbot);
+            chatbotClose.addEventListener("click", toggleChatbot);
         }
 
         if (chatbotInput) {
-            chatbotInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
+            chatbotInput.addEventListener("keypress", (e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
                     e.preventDefault();
                     sendMessage(chatbotInput.value);
                 }
@@ -922,7 +990,7 @@ import Footer from "../components/Footer.astro";
         }
 
         if (chatbotSend) {
-            chatbotSend.addEventListener('click', () => {
+            chatbotSend.addEventListener("click", () => {
                 if (chatbotInput) {
                     sendMessage(chatbotInput.value);
                 }
@@ -930,10 +998,13 @@ import Footer from "../components/Footer.astro";
         }
 
         // Close chatbot when clicking outside
-        document.addEventListener('click', (e) => {
+        document.addEventListener("click", (e) => {
             if (chatbotOpen && chatbotWindow && chatbotToggle) {
                 const target = e.target as Node;
-                if (!chatbotWindow.contains(target) && !chatbotToggle.contains(target)) {
+                if (
+                    !chatbotWindow.contains(target) &&
+                    !chatbotToggle.contains(target)
+                ) {
                     toggleChatbot();
                 }
             }
