@@ -941,35 +941,71 @@ import Footer from "../components/Footer.astro";
             }
         }
 
+        // Conversation history for context
+        let conversationHistory: Array<{ role: string; content: string }> = [];
+
         // Send message
         async function sendMessage(message: string) {
             if (!message.trim() || !chatbotInput) return;
 
             // Add user message
             addMessage(message, true);
+            conversationHistory.push({ role: "user", content: message });
             chatbotInput.value = "";
 
             // Show typing indicator
             showTyping();
 
-            // Simulate bot response (will be replaced with OpenAI API)
-            setTimeout(
-                () => {
-                    hideTyping();
-                    const responses = [
-                        "Excellente question ! Le système SYSTÈME VIRAL 100K™ est conçu pour vous aider à générer vos premiers 10K€/mois avec des vidéos d'une minute. Que voulez-vous savoir de plus ?",
-                        "Je comprends votre intérêt pour cette formation. Notre méthode a déjà aidé plus de 2 800 entrepreneurs à atteindre leurs objectifs financiers. Avez-vous des questions spécifiques ?",
-                        "C'est une très bonne remarque ! Notre formation inclut tout ce dont vous avez besoin : templates, stratégies, et support personnalisé. Êtes-vous prêt à commencer ?",
-                        "Absolument ! Le système fonctionne pour tous les types de niches. Nous incluons des exemples concrets pour chaque secteur d'activité. Quelle est votre niche ?",
-                        "Notre garantie 30 jours satisfait ou remboursé montre notre confiance en notre méthode. Plus de 98% de nos élèves sont satisfaits. Qu'est-ce qui vous inquiète le plus ?",
-                    ];
+            try {
+                // Call Netlify function
+                const response = await fetch("/.netlify/functions/chatbot", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        conversationHistory: conversationHistory.slice(-10), // Send last 10 messages for context
+                    }),
+                });
 
-                    const randomResponse =
-                        responses[Math.floor(Math.random() * responses.length)];
-                    addMessage(randomResponse);
-                },
-                1500 + Math.random() * 1000,
-            );
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Add bot response
+                hideTyping();
+                addMessage(data.response);
+
+                // Add bot response to conversation history
+                conversationHistory.push({
+                    role: "assistant",
+                    content: data.response,
+                });
+
+                // Limit conversation history to prevent it from growing too large
+                if (conversationHistory.length > 20) {
+                    conversationHistory = conversationHistory.slice(-20);
+                }
+            } catch (error) {
+                console.error("Error calling chatbot API:", error);
+                hideTyping();
+
+                // Fallback response
+                const fallbackResponses = [
+                    "Désolé, je rencontre un problème technique momentané. Pouvez-vous reposer votre question ? Notre équipe est là pour vous aider !",
+                    "Excusez-moi pour ce contretemps. La formation SYSTÈME VIRAL 100K™ est exceptionnelle pour développer votre business. Que souhaitez-vous savoir ?",
+                    "Je suis temporairement indisponible, mais notre méthode a fait ses preuves auprès de 2800+ entrepreneurs. Avez-vous des questions sur la formation ?",
+                ];
+
+                const fallbackResponse =
+                    fallbackResponses[
+                        Math.floor(Math.random() * fallbackResponses.length)
+                    ];
+                addMessage(fallbackResponse);
+            }
         }
 
         // Event listeners
