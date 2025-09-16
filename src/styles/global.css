@@ -392,6 +392,75 @@ h1 {
   margin-top: 4px;
 }
 
+/* Steps Section */
+.steps-section {
+  padding: 120px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.step-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.step-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0, 220, 130, 0.3);
+  border-color: rgba(0, 220, 130, 0.3);
+}
+
+.step-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.step-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.step-card:hover .step-image img {
+  transform: scale(1.05);
+}
+
+.step-content {
+  padding: 32px;
+  position: relative;
+}
+
+.step-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+  color: var(--text);
+}
+
+.step-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
 /* Modal */
 .modal-overlay {
   position: fixed;
@@ -803,4 +872,17 @@ input::placeholder {
   }
 
   .features-grid::before { display: none; }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .step-image {
+    height: 150px;
+  }
+
+  .step-content {
+    padding: 24px;
+  }
 }
