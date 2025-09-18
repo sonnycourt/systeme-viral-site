@@ -1,0 +1,914 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import "../../../styles/thematiques.css";
+
+export const title = "22 Thématiques Rentables - Guide Stratégique";
+export const description =
+    "Découvrez les 22 thématiques les plus rentables pour créer du contenu viral en 2025 avec analyses détaillées et stratégies éprouvées";
+
+// Données des thématiques - côté serveur
+const thematiques = [
+    {
+        id: 1,
+        title: "Finance Personnelle & Investissement",
+        description:
+            "Éducation financière, conseils d'épargne, stratégies d'investissement en bourse, crypto, immobilier. Vulgarisation des concepts financiers complexes.",
+        virality: 4,
+        financial: 5,
+        monetization: [
+            "Formations prix élevés",
+            "Mentorat",
+            "Affiliation brokers",
+            "Livres",
+        ],
+        difficulty: 4,
+        difficultyText: "Expertise et connaissances approfondies",
+    },
+    {
+        id: 2,
+        title: "Fitness & Transformation Physique",
+        description:
+            "Programmes d'entraînement, transformations avant/après, conseils nutrition, challenges fitness.",
+        virality: 5,
+        financial: 4,
+        monetization: [
+            "Programmes en ligne",
+            "Coaching 1-1",
+            "Suppléments",
+            "Équipements",
+        ],
+        difficulty: 3,
+        difficultyText: "Résultats visibles nécessaires",
+    },
+    {
+        id: 3,
+        title: "Business & Entrepreneuriat",
+        description:
+            "Conseils création d'entreprise, stratégies de croissance, mindset entrepreneur, automatisation.",
+        virality: 3,
+        financial: 5,
+        monetization: [
+            "Formations prix élevés",
+            "Consulting premium",
+            "Événements",
+            "Affiliations",
+        ],
+        difficulty: 5,
+        difficultyText: "Crédibilité et résultats prouvés",
+    },
+    {
+        id: 4,
+        title: "Immobilier & Rentabilité",
+        description:
+            "Investissement locatif, visites de biens, calculs de rentabilité, stratégies d'achat.",
+        virality: 4,
+        financial: 5,
+        monetization: [
+            "Formations prix élevés",
+            "Deals partenaires",
+            "Consultation",
+        ],
+        difficulty: 5,
+        difficultyText: "Capital et expertise juridique",
+    },
+    {
+        id: 5,
+        title: "Trading & Crypto",
+        description:
+            "Analyses techniques, signaux de trading, actualités crypto, DeFi, NFTs, prédictions.",
+        virality: 3,
+        financial: 5,
+        monetization: [
+            "Affiliation exchanges",
+            "Formation prix élevé",
+            "Workbook",
+        ],
+        difficulty: 5,
+        difficultyText: "Expertise + volatilité",
+    },
+    {
+        id: 6,
+        title: "Développement Personnel",
+        description:
+            "Conseils confiance en soi, discipline, habitudes de succès, style de vie, productivité, relations, leadership, mindset.",
+        virality: 5,
+        financial: 4,
+        monetization: [
+            "Formation prix moyen",
+            "Bootcamps",
+            "Communautés payantes",
+            "Livres",
+            "Coaching",
+        ],
+        difficulty: 2,
+        difficultyText: "Charisme et authenticité sont un plus",
+    },
+    {
+        id: 7,
+        title: "Mode & Luxe",
+        description:
+            "Conseils style haut de gamme, unboxing produits de luxe, guides d'achat, tendances fashion, looks du jour, shopping personnel.",
+        virality: 4,
+        financial: 4,
+        monetization: [
+            "Affiliations luxe",
+            "Brand deals",
+            "Personal shopping",
+            "Marque propre",
+        ],
+        difficulty: 5,
+        difficultyText:
+            "Investissement garde-robe, accessibilité à des produits de luxe",
+    },
+    {
+        id: 8,
+        title: "Tech & Intelligence Artificielle",
+        description:
+            "Tutoriels IA, prompts ChatGPT, automatisations, nouveaux outils, productivité tech, coding simplifié, innovations technologiques.",
+        virality: 4,
+        financial: 5,
+        monetization: [
+            "Outils SaaS",
+            "Formations IA",
+            "Templates",
+            "Consulting pour entreprise",
+        ],
+        difficulty: 3,
+        difficultyText: "connaissances et mise à jour permanente",
+    },
+    {
+        id: 9,
+        title: "Nutrition (Santé)",
+        description:
+            "Plans alimentaires, recettes protéinées, timing nutritionnel, supplémentation.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Marque suppléments",
+            "Plans alimentaires",
+            "Sponsoring",
+            "Coaching",
+        ],
+        difficulty: 3,
+        difficultyText: "Certifications nutritionnelles utiles",
+    },
+    {
+        id: 10,
+        title: "Dating & Relations",
+        description:
+            "Conseils séduction, psychologie relationnelle, red flags, communication couple, profils dating apps, confiance en soi amoureuse.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Coaching personnel",
+            "formations prix moyens",
+            "Événements",
+        ],
+        difficulty: 3,
+        difficultyText: "Sujet sensible, éthique importante",
+    },
+    {
+        id: 11,
+        title: "Lifestyle de Luxe",
+        description:
+            "Voyages VIP, hôtels 5 étoiles, restaurants étoilés, voitures de sport, montres de luxe, l'art de vivre premium.",
+        virality: 5,
+        financial: 4,
+        monetization: [
+            "Partenariats premium",
+            "Affiliation avec marques de luxe",
+        ],
+        difficulty: 3,
+        difficultyText: "Facile sans montrer votre visage",
+    },
+    {
+        id: 12,
+        title: "E-commerce & Dropshipping",
+        description:
+            "Product testing, stratégies Facebook Ads, scaling boutiques, études de cas.",
+        virality: 2,
+        financial: 4,
+        monetization: [
+            "Formation e-com",
+            "Mentorat",
+            "Outils",
+            "Services done-for-you",
+        ],
+        difficulty: 4,
+        difficultyText: "ROI à prouver, capital pub",
+    },
+    {
+        id: 13,
+        title: "Beauté & Skincare Premium",
+        description:
+            "Routines de soin haut de gamme, techniques maquillage pro, reviews produits luxe, transformations beauté, tendances K-beauty.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Ligne cosmétique",
+            "Sponsoring grandes marques",
+            "affiliations produits",
+            "formation prix bas",
+        ],
+        difficulty: 3,
+        difficultyText:
+            "Saturation, différenciation nécessaire + beauté aide grandement",
+    },
+    {
+        id: 14,
+        title: "Mindset Millionnaire",
+        description:
+            "Habitudes des riches, psychologie de l'abondance, visualisation, affirmations, stratégies wealth building, mentalité succès.",
+        virality: 5,
+        financial: 5,
+        monetization: [
+            "Masterminds",
+            "Séminaires",
+            "formation prix élevés",
+            "Livres",
+            "Communautés",
+        ],
+        difficulty: 4,
+        difficultyText: "Preuve sociale indispensable",
+    },
+    {
+        id: 15,
+        title: "Marketing Digital & Growth",
+        description:
+            "Stratégies growth hacking, publicités Facebook/Google, SEO, funnels de vente, copywriting, analytics, case studies.",
+        virality: 2,
+        financial: 5,
+        monetization: [
+            "Agence",
+            "Formation prix moyens à élevé",
+            "Consulting",
+            "Saas",
+        ],
+        difficulty: 5,
+        difficultyText: "Résultats mesurables requis",
+    },
+    {
+        id: 16,
+        title: "Cuisine Rapide & Meal Prep",
+        description:
+            "Recettes 60 secondes, batch cooking, organisation repas semaine, hacks cuisine, plats healthy rapides, économies alimentaires.",
+        virality: 5,
+        financial: 3,
+        monetization: [
+            "Livres recettes",
+            "Ustensiles",
+            "Meal plans",
+            "Partenariats food",
+            "suppléments",
+        ],
+        difficulty: 2,
+        difficultyText: "Production simple, créativité constante",
+    },
+    {
+        id: 17,
+        title: "Parentalité Moderne",
+        description:
+            "Tips éducation positive, activités enfants, organisation famille, astuces bébé.",
+        virality: 3,
+        financial: 2,
+        monetization: [
+            "Guides PDF",
+            "Affiliations Amazon",
+            "Sponsoring marques bébé",
+        ],
+        difficulty: 2,
+        difficultyText: "Authenticité et empathie clés",
+    },
+    {
+        id: 18,
+        title: "Voyages & Lifestyle Nomade",
+        description:
+            "Guides destinations insolites, astuces voyage low-cost, travail nomade, communautés voyage, tips sécurité.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Affiliations booking/hotels",
+            "Guides PDF",
+            "Communautés payantes",
+            "Événements voyage",
+        ],
+        difficulty: 2,
+        difficultyText: "Passion voyage indispensable",
+    },
+    {
+        id: 19,
+        title: "Psychologie Pratique",
+        description:
+            "Décryptage comportements, biais cognitifs, langage corporel, tests personnalité.",
+        virality: 5,
+        financial: 3,
+        monetization: [
+            "Consultations",
+            "Apps",
+            "Livres",
+            "Formations prix moyens",
+        ],
+        difficulty: 4,
+        difficultyText: "Rigueur scientifique, éthique",
+    },
+    {
+        id: 20,
+        title: "Gaming & Esports",
+        description:
+            "Clips épiques, tips amélioration, actualités gaming, reviews jeux, setups gaming, moments WTF, stratégies pro.",
+        virality: 5,
+        financial: 3,
+        monetization: ["Sponsoring", "Streaming", "affiliation"],
+        difficulty: 3,
+        difficultyText:
+            "Skill gaming élevé et personnalité extraverti sont un plus",
+    },
+    {
+        id: 21,
+        title: "Productivité & Organisation",
+        description:
+            "Systèmes GTD, setup Notion, morning routines, time blocking, automatisations.",
+        virality: 3,
+        financial: 3,
+        monetization: ["Templates Notion", "Apps", "Formations", "Planners"],
+        difficulty: 2,
+        difficultyText: "Contenu evergreen, facile",
+    },
+    {
+        id: 22,
+        title: "Animaux & Dressage",
+        description:
+            "Tricks chiens/chats, éducation positive, comportement animal, soins quotidiens, moments mignons, sauvetages.",
+        virality: 5,
+        financial: 3,
+        monetization: [
+            "Produits animaux",
+            "Formation dressage",
+            "Consultations",
+        ],
+        difficulty: 2,
+        difficultyText: "expérience/passion pour le dressage",
+    },
+];
+---
+
+<Layout title={title} description={description}>
+    <!-- Password Protection Modal (placé hors du contenu pour éviter display:none hérités) -->
+    <div id="password-modal" class="password-modal">
+        <div class="password-overlay"></div>
+        <div class="password-container">
+            <div class="password-header">
+                <div class="password-icon">🔒</div>
+                <h2 class="password-title">Accès Restreint</h2>
+                <p class="password-subtitle">
+                    Cette ressource est réservée aux membres autorisés du
+                    Système Viral
+                </p>
+            </div>
+
+            <div class="password-form">
+                <div class="password-input-group">
+                    <label for="password-input" class="password-label">
+                        Entrez le mot de passe
+                    </label>
+                    <input
+                        type="password"
+                        id="password-input"
+                        class="password-input"
+                        placeholder="Mot de passe..."
+                        autocomplete="off"
+                    />
+                    <div id="password-error" class="password-error"></div>
+                </div>
+
+                <button id="password-submit" class="password-submit">
+                    Accéder au Guide
+                </button>
+            </div>
+
+            <div class="password-footer">
+                <p class="password-info">
+                    🔐 Le mot de passe est valable pour toute la session
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="thematiques-page">
+        <div class="container">
+            <div class="header">
+                <h1>
+                    <span class="header-highlight">22</span> Thématiques Rentables
+                </h1>
+                <p class="subtitle">
+                    Guide stratégique pour créateurs de contenu
+                </p>
+            </div>
+
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="stat-number">22</div>
+                    <div class="stat-label">Thématiques</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Ultra Rentables</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Haute Viralité</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Facile Début</div>
+                </div>
+            </div>
+
+            <!-- Section Face/No Face -->
+            <div class="info-section">
+                <div class="info-badge">💡 INFO IMPORTANTE</div>
+                <h2 class="info-title">
+                    Montrer son visage n'est <span class="highlight"
+                        >PAS obligatoire</span
+                    >
+                </h2>
+                <p class="info-subtitle">
+                    Ces thématiques fonctionnent parfaitement avec ou sans vous
+                    montrer à la caméra.
+                </p>
+
+                <div class="info-grid">
+                    <div class="info-card pro">
+                        <div class="info-card-title">✅ Avec Visage</div>
+                        <p class="info-text">Connexion humaine plus forte</p>
+                        <p class="info-text">Fidélisation audience ++</p>
+                        <p class="info-text">Personal branding développé</p>
+                    </div>
+
+                    <div class="info-card success">
+                        <div class="info-card-title">🚀 Sans Visage</div>
+                        <p class="info-text">
+                            Des milliers de créateurs cartonnent
+                        </p>
+                        <p class="info-text">
+                            Comptes 100% IA = millions de vues
+                        </p>
+                        <p class="info-text">Anonymat = votre force</p>
+                    </div>
+                </div>
+
+                <div class="examples-section">
+                    <div class="examples-title">
+                        Formats qui marchent sans visage :
+                    </div>
+                    <div class="examples-grid">
+                        <div class="example-pill">👋 Mains uniquement</div>
+                        <div class="example-pill">🎙️ Voix off captivante</div>
+                        <div class="example-pill">🤖 Avatars IA</div>
+                        <div class="example-pill">⚡ 100% automatisé</div>
+                    </div>
+                </div>
+
+                <div class="bottom-line">
+                    <strong>Bottom line :</strong> Le choix vous appartient. Dans
+                    certaines niches, l'anonymat peut devenir votre signature.
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <button class="filter-btn active" data-filter="all"
+                    >Toutes</button
+                >
+                <button class="filter-btn" data-filter="viral"
+                    >🔥 Ultra Virales</button
+                >
+                <button class="filter-btn" data-filter="money"
+                    >💰 Plus Rentables</button
+                >
+                <button class="filter-btn" data-filter="easy">✅ Faciles</button
+                >
+            </div>
+
+            <div class="grid" id="cardsGrid">
+                <!-- Cards will be generated by JavaScript -->
+            </div>
+
+            <div class="legend">
+                <h3 class="legend-title">📊 Guide de Lecture</h3>
+                <div class="legend-grid">
+                    <div class="legend-section">
+                        <div class="legend-section-title">
+                            Système de Notation
+                        </div>
+                        <div class="legend-item">
+                            <div class="stars">
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                            </div>
+                            <span>Exceptionnel (5/5)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="stars">
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star"></div>
+                            </div>
+                            <span>Très bon (4/5)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="stars">
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <span>Bon (3/5)</span>
+                        </div>
+                    </div>
+
+                    <div class="legend-section">
+                        <div class="legend-section-title">Indicateurs</div>
+                        <div class="legend-item">
+                            <span style="color: #01F38E; font-weight: 700;"
+                                >Vert</span
+                            >
+                            <span>Élément positif</span>
+                        </div>
+                        <div class="legend-item">
+                            <span
+                                style="background: #FF4444; padding: 2px 8px; border-radius: 4px; color: white; font-size: 0.8rem;"
+                                >VIRAL</span
+                            >
+                            <span>Forte viralité</span>
+                        </div>
+                        <div class="legend-item">
+                            <span
+                                style="background: #FFD700; padding: 2px 8px; border-radius: 4px; color: black; font-size: 0.8rem;"
+                                >€€€</span
+                            >
+                            <span>Très rentable</span>
+                        </div>
+                    </div>
+
+                    <div class="legend-section">
+                        <div class="legend-section-title">Difficulté</div>
+                        <div class="legend-item">
+                            <div class="difficulty-level">
+                                <div class="difficulty-bar filled"></div>
+                                <div class="difficulty-bar filled"></div>
+                                <div class="difficulty-bar filled"></div>
+                                <div class="difficulty-bar filled"></div>
+                                <div class="difficulty-bar filled"></div>
+                            </div>
+                            <span>Expert requis</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="difficulty-level">
+                                <div class="difficulty-bar filled"></div>
+                                <div class="difficulty-bar filled"></div>
+                                <div class="difficulty-bar"></div>
+                                <div class="difficulty-bar"></div>
+                                <div class="difficulty-bar"></div>
+                            </div>
+                            <span>Accessible</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script define:vars={{ thematiquesData: thematiques }} client:load>
+            // Script côté client pour la génération des cartes et les interactions
+            const thematiques = thematiquesData;
+
+            function createStars(rating) {
+                let stars = "";
+                for (let i = 1; i <= 5; i++) {
+                    stars += `<div class="star ${i <= rating ? "filled" : ""}"></div>`;
+                }
+                return stars;
+            }
+
+            function createDifficultyBars(level) {
+                let bars = "";
+                for (let i = 1; i <= 5; i++) {
+                    bars += `<div class="difficulty-bar ${i <= level ? "filled" : ""}"></div>`;
+                }
+                return bars;
+            }
+
+            function getCategory(theme) {
+                if (theme.financial === 5) return "TOP RENTABILITÉ";
+                if (theme.virality === 5) return "TOP VIRALITÉ";
+                if (theme.difficulty <= 2) return "FACILE DÉBUT";
+                return "STANDARD";
+            }
+
+            function createCard(theme) {
+                const isViral = theme.virality === 5;
+                const isMoney = theme.financial === 5;
+                const isEasy = theme.difficulty <= 2;
+
+                let indicator = "";
+                if (isMoney) {
+                    indicator = '<div class="indicator-money">€€€</div>';
+                } else if (isViral) {
+                    indicator = '<div class="indicator-viral">VIRAL</div>';
+                }
+
+                return `
+				<div class="card" data-viral="${isViral}" data-money="${isMoney}" data-easy="${isEasy}">
+					${indicator}
+					<div class="category-badge">${getCategory(theme)}</div>
+
+					<div class="card-header">
+						<div class="card-number">${theme.id}</div>
+						<div class="card-title">${theme.title}</div>
+					</div>
+
+					<p class="card-description">${theme.description}</p>
+
+					<div class="metrics">
+						<div class="metric">
+							<div class="metric-label">Viralité</div>
+							<div class="rating">
+								<div class="stars">${createStars(theme.virality)}</div>
+								<span class="rating-number">${theme.virality}/5</span>
+							</div>
+						</div>
+						<div class="metric">
+							<div class="metric-label">Potentiel €</div>
+							<div class="rating">
+								<div class="stars">${createStars(theme.financial)}</div>
+								<span class="rating-number">${theme.financial}/5</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="monetization">
+						<div class="monetization-label">Monétisation</div>
+						<div class="monetization-tags">
+							${theme.monetization.map((m) => `<span class="tag">${m}</span>`).join("")}
+						</div>
+					</div>
+
+					<div class="difficulty">
+						<div class="difficulty-header">
+							<div class="difficulty-label">Difficulté</div>
+							<div class="difficulty-level">
+								${createDifficultyBars(theme.difficulty)}
+							</div>
+						</div>
+						<div class="difficulty-text">${theme.difficultyText}</div>
+					</div>
+				</div>
+			`;
+            }
+
+            function renderCards() {
+                const grid = document.getElementById("cardsGrid");
+                if (!grid) {
+                    console.error("Grid element not found!");
+                    return;
+                }
+
+                grid.innerHTML = thematiques
+                    .map((theme) => createCard(theme))
+                    .join("");
+            }
+
+            function filterCards(filter, clickedButton) {
+                // S'assurer que les cartes sont chargées
+                const grid = document.getElementById("cardsGrid");
+                if (!grid || grid.children.length === 0) {
+                    renderCards();
+                    setTimeout(() => filterCards(filter, clickedButton), 100);
+                    return;
+                }
+
+                const cards = document.querySelectorAll(".card");
+                const buttons = document.querySelectorAll(".filter-btn");
+
+                // Retirer la classe active de tous les boutons
+                buttons.forEach((btn) => btn.classList.remove("active"));
+
+                // Ajouter la classe active au bouton cliqué
+                if (clickedButton) {
+                    clickedButton.classList.add("active");
+                }
+
+                // Appliquer les filtres
+                cards.forEach((card) => {
+                    card.style.display = "block";
+                    card.classList.remove("pulse");
+
+                    if (filter === "viral" && card.dataset.viral !== "true") {
+                        card.style.display = "none";
+                    } else if (
+                        filter === "money" &&
+                        card.dataset.money !== "true"
+                    ) {
+                        card.style.display = "none";
+                    } else if (
+                        filter === "easy" &&
+                        card.dataset.easy !== "true"
+                    ) {
+                        card.style.display = "none";
+                    }
+
+                    if (card.style.display !== "none" && filter !== "all") {
+                        setTimeout(() => card.classList.add("pulse"), 100);
+                    }
+                });
+            }
+
+            // Initial render avec délai pour s'assurer que tout est chargé
+            setTimeout(() => {
+                renderCards();
+
+                // Initialiser le filtre "Toutes" par défaut après un délai
+                setTimeout(() => {
+                    const defaultButton =
+                        document.querySelector(".filter-btn.active");
+                    if (defaultButton) {
+                        filterCards("all", defaultButton);
+                    }
+                }, 200);
+            }, 100);
+
+            // Ajouter les event listeners aux boutons de filtrage
+            setTimeout(() => {
+                const filterButtons = document.querySelectorAll(".filter-btn");
+                filterButtons.forEach((button) => {
+                    button.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const filterType =
+                            this.getAttribute("data-filter") || "all";
+                        filterCards(filterType, this);
+                    });
+                });
+            }, 300);
+
+            // Ajouter la classe au body pour les styles spécifiques
+            document.body.classList.add("thematiques-active");
+        </script>
+
+        <script client:load>
+            // Script de protection par mot de passe - côté client uniquement
+
+            // Vérifier l'état d'authentification avant d'afficher le modal
+            setTimeout(() => {
+                // Ne pas afficher le modal si l'utilisateur est déjà authentifié
+                if (document.body.classList.contains("auth-ok")) {
+                    return;
+                }
+
+                // Afficher le modal seulement si non authentifié
+                const modal = document.getElementById("password-modal");
+                if (modal) {
+                    modal.classList.add("open");
+                }
+            }, 100);
+
+            const PASSWORD = "Viral100k!";
+            const AUTH_KEY = "systeme_viral_auth";
+            const AUTH_EXPIRY_KEY = "systeme_viral_auth_expiry";
+            const AUTH_DURATION_DAYS = 30; // 30 jours
+
+            function initPasswordProtection() {
+                // Vérifier si déjà authentifié et non expiré
+                const isAuthenticated =
+                    localStorage.getItem(AUTH_KEY) === "true";
+                const authExpiry = localStorage.getItem(AUTH_EXPIRY_KEY);
+
+                if (isAuthenticated && authExpiry) {
+                    const expiryDate = new Date(parseInt(authExpiry));
+                    const now = new Date();
+
+                    // Vérifier si l'authentification n'a pas expiré
+                    if (now < expiryDate) {
+                        document.body.classList.add("auth-ok");
+                        return;
+                    } else {
+                        // Nettoyer les données expirées
+                        localStorage.removeItem(AUTH_KEY);
+                        localStorage.removeItem(AUTH_EXPIRY_KEY);
+                    }
+                }
+
+                // Afficher le modal
+                const modal = document.getElementById("password-modal");
+                if (modal) {
+                    modal.classList.add("open");
+                    document.body.style.overflow = "hidden";
+                }
+
+                // Focus sur l'input
+                setTimeout(() => {
+                    const input = document.getElementById("password-input");
+                    if (input) {
+                        input.focus();
+                    }
+                }, 100);
+            }
+
+            function validatePassword() {
+                const input = document.getElementById("password-input");
+                const error = document.getElementById("password-error");
+                const password = input.value.trim();
+
+                if (!password) {
+                    showError("Veuillez entrer un mot de passe");
+                    return false;
+                }
+
+                if (password !== PASSWORD) {
+                    showError("Mot de passe incorrect. Veuillez réessayer.");
+                    input.value = "";
+                    input.focus();
+                    return false;
+                }
+
+                // Authentification réussie - sauvegarder avec expiration de 30 jours
+                const expiryDate = new Date();
+                expiryDate.setDate(expiryDate.getDate() + AUTH_DURATION_DAYS);
+
+                localStorage.setItem(AUTH_KEY, "true");
+                localStorage.setItem(
+                    AUTH_EXPIRY_KEY,
+                    expiryDate.getTime().toString(),
+                );
+
+                hidePasswordModal();
+                return true;
+            }
+
+            function showError(message) {
+                const error = document.getElementById("password-error");
+                if (error) {
+                    error.textContent = message;
+                    error.classList.add("visible");
+
+                    setTimeout(() => {
+                        error.classList.remove("visible");
+                    }, 3000);
+                }
+            }
+
+            function hidePasswordModal() {
+                const modal = document.getElementById("password-modal");
+                const mainContent = document.querySelector(".thematiques-page");
+
+                if (modal) {
+                    modal.style.opacity = "0";
+                    setTimeout(() => {
+                        modal.classList.remove("open");
+                        document.body.style.overflow = "";
+                        document.body.classList.add("auth-ok");
+                    }, 300);
+                }
+
+                if (mainContent) {
+                    mainContent.style.display = "block";
+                    mainContent.style.opacity = "0";
+                    setTimeout(() => {
+                        mainContent.style.opacity = "1";
+                        mainContent.style.transition = "opacity 0.5s ease";
+                    }, 100);
+                }
+            }
+
+            // Attendre que le DOM soit chargé
+            document.addEventListener("DOMContentLoaded", function () {
+                // Bouton de soumission
+                const submitBtn = document.getElementById("password-submit");
+                if (submitBtn) {
+                    submitBtn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        validatePassword();
+                    });
+                }
+
+                // Input - validation à l'appui d'Enter
+                const input = document.getElementById("password-input");
+                if (input) {
+                    input.addEventListener("keypress", (e) => {
+                        if (e.key === "Enter") {
+                            e.preventDefault();
+                            validatePassword();
+                        }
+                    });
+                }
+
+                // Initialiser la protection
+                initPasswordProtection();
+            });
+        </script>
+    </div>
+</Layout>

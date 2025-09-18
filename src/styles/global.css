@@ -57,7 +57,7 @@ body {
     radial-gradient(circle at 20% 50%, rgba(0, 220, 130, 0.12) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(0, 245, 142, 0.08) 0%, transparent 50%),
     radial-gradient(circle at 40% 20%, rgba(0, 184, 110, 0.08) 0%, transparent 50%);
-  animation: gradientShift 20s ease infinite;
+  animation: gradientShift 30s ease infinite;
   z-index: 0;
 }
 
@@ -67,12 +67,23 @@ body {
   66% { transform: scale(0.95) rotate(240deg); }
 }
 
+@keyframes gentleBlink {
+  0%, 50%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+}
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 120px 0 80px;
+  padding: 20px 0 80px;
   position: relative;
   z-index: 10;
   text-align: center;
@@ -105,7 +116,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: rotate 4s linear infinite;
   box-shadow: 0 0 15px var(--accent);
 }
 
@@ -179,7 +189,7 @@ h1 {
 /* CTA Button */
 .cta-wrapper {
   animation: fadeInUp 1.4s ease 0.6s both;
-  margin-bottom: 32px;
+  margin-bottom: 0px;
 }
 
 .cta-btn {
@@ -219,6 +229,25 @@ h1 {
 .cta-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 50px rgba(0, 220, 130, 0.4);
+}
+
+/* Urgency Message */
+.urgency-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 0 16px;
+  animation: fadeInUp 1s ease 0.6s both;
+}
+
+.urgency-text {
+  font-size: 11px;
+  font-weight: 700;
+  color: #DC2626;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  text-shadow: 0 1px 2px rgba(220, 38, 38, 0.4);
+  animation: gentleBlink 3s ease-in-out infinite;
 }
 
 /* Trust Points */
@@ -296,7 +325,7 @@ h1 {
 
 /* Features Section */
 .features {
-  padding: 120px 0;
+  padding: 30px 0 120px;
   position: relative;
   z-index: 10;
   text-align: center;
@@ -307,6 +336,8 @@ h1 {
   font-weight: 900;
   letter-spacing: -0.02em;
   margin-bottom: 60px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .features-grid {
@@ -360,9 +391,35 @@ h1 {
   font-size: 36px;
   font-weight: 900;
   color: var(--bg);
-  margin: 0 auto 24px;
+  margin: 0 auto 16px;
   position: relative;
   box-shadow: 0 10px 30px rgba(0, 220, 130, 0.3);
+}
+
+.step-image {
+  width: 100%;
+  max-width: 280px;
+  height: 200px;
+  margin: 0 auto 20px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.step-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover .step-image {
+  transform: translateY(-5px);
+}
+
+.feature-card:hover .step-image img {
+  transform: scale(1.05);
 }
 
 .feature-title {
@@ -376,6 +433,10 @@ h1 {
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+.promise-container {
+  margin-top: 16px;
 }
 
 .promise-text {
@@ -425,9 +486,13 @@ h1 {
 
 .step-image {
   width: 100%;
-  height: 200px;
+  height: 280px;
   overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
 }
 
 .step-image img {
@@ -452,6 +517,7 @@ h1 {
   margin-bottom: 16px;
   letter-spacing: -0.5px;
   color: var(--text);
+  text-align: center;
 }
 
 .step-text {
@@ -459,6 +525,7 @@ h1 {
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 /* Modal */
@@ -850,25 +917,120 @@ input::placeholder {
 
 /* Responsive */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 36px;
+  /* Hero Section Mobile */
+  .hero {
+    padding: 20px 0 60px;
+    min-height: auto;
   }
-  
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  /* CTA Button Mobile */
+  .cta-btn {
+    padding: 18px 32px;
+    font-size: 16px;
+  }
+
+  /* Badge Mobile */
+  .badge {
+    padding: 10px 18px;
+    gap: 10px;
+  }
+
+  .badge-text {
+    font-size: 12px;
+  }
+
+  /* Urgency Message Mobile */
+  .urgency-message {
+    margin: 10px 0 20px;
+  }
+
+  .urgency-text {
+    font-size: 10px;
+  }
+
+  /* Features Section Mobile */
+  .features {
+    padding: 20px 0 80px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  /* Feature Cards Mobile */
+  .feature-card {
+    padding: 30px 20px;
+    margin-bottom: 20px;
+  }
+
+  .step-number {
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+    margin-bottom: 12px;
+  }
+
+  .feature-title {
+    font-size: 18px;
+  }
+
+  .promise-text {
+    font-size: 13px;
+  }
+
+  /* Step Images Mobile */
+  .step-image {
+    width: 100%;
+    height: 180px;
+    margin: 15px auto 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .step-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .promise-container {
+    margin-top: 12px;
+  }
+
+  /* Trust Points Mobile */
+  .trust-points {
+    gap: 16px;
+    margin-top: 30px;
+  }
+
+  .trust-item {
+    font-size: 14px;
+  }
+
+  /* Grids Mobile */
   .stats-grid,
   .features-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .trust-points {
     gap: 20px;
   }
-  
+
   .container {
     padding: 0 16px;
   }
-  
+
   .modal-content {
     padding: 32px 24px;
+    max-width: 90%;
   }
 
   .features-grid::before { display: none; }
@@ -876,10 +1038,6 @@ input::placeholder {
   .steps-grid {
     grid-template-columns: 1fr;
     gap: 32px;
-  }
-
-  .step-image {
-    height: 150px;
   }
 
   .step-content {

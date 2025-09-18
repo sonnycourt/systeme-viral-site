@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Footer from "../components/Footer.astro";
 ---
 
 <Layout
@@ -12,13 +11,13 @@ import Footer from "../components/Footer.astro";
 	<div class="gradient-bg"></div>
 
 	<!-- Hero Section -->
-	<section class="hero" style="min-height: auto; padding: 200px 0 40px;">
+	<section class="hero">
 		<div class="container">
 			<div class="hero-content">
 				<div class="badge">
 					<div class="badge-icon"></div>
 					<span class="badge-text"
-						>Places limitées • Session 2025</span
+						>Meilleur business en ligne 2025</span
 					>
 				</div>
 
@@ -41,6 +40,11 @@ import Footer from "../components/Footer.astro";
 					</button>
 				</div>
 
+				<div class="urgency-message">
+					<span class="urgency-text">PLACES DISPONIBLES LIMITÉES</span
+					>
+				</div>
+
 				<div class="trust-points">
 					<div class="trust-item">
 						<span class="trust-check">✓</span>
@@ -60,7 +64,7 @@ import Footer from "../components/Footer.astro";
 	</section>
 
 	<!-- Features Section -->
-	<section class="features" style="padding: 80px 0 120px;">
+	<section class="features">
 		<div class="container">
 			<h2 class="section-title">Le système en 3 étapes</h2>
 
@@ -71,7 +75,15 @@ import Footer from "../components/Footer.astro";
 					<p class="feature-text">
 						Des vidéos d'une minute qui cartonnent.<br />
 						La formule exacte pour exploser sur tous les réseaux.<br
-						/><br />
+						/>
+					</p>
+					<div class="step-image">
+						<img
+							src="/media/SV-etape-1-ps.webp"
+							alt="Étape 1: Créer du contenu viral"
+						/>
+					</div>
+					<p class="promise-container">
 						<span class="promise-text"
 							>→ 100K vues garanties en 30 jours</span
 						>
@@ -83,7 +95,15 @@ import Footer from "../components/Footer.astro";
 					<h3 class="feature-title">Capturer les emails</h3>
 					<p class="feature-text">
 						Transforme chaque vue en contact qualifié.<br />
-						Le système tourne 24/7 en automatique.<br /><br />
+						Le système tourne 24/7 en automatique.<br />
+					</p>
+					<div class="step-image">
+						<img
+							src="/media/SV-etape-2-ps.webp"
+							alt="Étape 2: Capturer les emails"
+						/>
+					</div>
+					<p class="promise-container">
 						<span class="promise-text"
 							>→ 1000 leads garantis en 60 jours</span
 						>
@@ -96,7 +116,15 @@ import Footer from "../components/Footer.astro";
 					<p class="feature-text">
 						Convertis ta liste en revenus récurrents.<br />
 						Affiliation ou produit propre, je te guide étape par étape.<br
-						/><br />
+						/>
+					</p>
+					<div class="step-image">
+						<img
+							src="/media/SV-etape-3-ps.webp"
+							alt="Étape 3: Monétiser ta liste"
+						/>
+					</div>
+					<p class="promise-container">
 						<span class="promise-text"
 							>→ 10K€/mois en 90 jours<br />
 							<span class="guarantee-text"
@@ -249,8 +277,6 @@ import Footer from "../components/Footer.astro";
 			</form>
 		</div>
 	</div>
-
-	<Footer />
 
 	<!-- intl-tel-input CSS -->
 	<link
