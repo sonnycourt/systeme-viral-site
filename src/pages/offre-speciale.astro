@@ -187,6 +187,87 @@ import Footer from "../components/Footer.astro";
                 </div>
             </div>
         </section>
+
+        <!-- Guarantee Section -->
+        <section class="guarantee-section">
+            <div class="container">
+                <div class="guarantee-header">
+                    <h2 class="section-title">
+                        <span class="highlight">GARANTIE TRIPLE</span>
+                        <br />
+                        ZÉRO RISQUE
+                    </h2>
+                    <p class="section-subtitle">
+                        Vous ne prenez aucun risque avec SYSTÈME VIRAL 100K™
+                    </p>
+                </div>
+
+                <div class="guarantee-grid">
+                    <!-- Garantie #1 -->
+                    <div class="guarantee-card">
+                        <div class="guarantee-icon">✅</div>
+                        <div class="guarantee-content">
+                            <h3 class="guarantee-title">
+                                Garantie #1 : Remboursement 30 jours
+                            </h3>
+                            <p class="guarantee-description">
+                                Testez tout pendant 30 jours. Pas satisfait =
+                                100% remboursé, sans question.
+                            </p>
+                        </div>
+                        <div class="guarantee-badge">30 JOURS</div>
+                    </div>
+
+                    <!-- Garantie #2 -->
+                    <div class="guarantee-card">
+                        <div class="guarantee-icon">🎯</div>
+                        <div class="guarantee-content">
+                            <h3 class="guarantee-title">
+                                Garantie #2 : Résultats ou Remboursé
+                            </h3>
+                            <p class="guarantee-description">
+                                Si vous n'atteignez pas 1 million de vues en 30
+                                jours en suivant le système, je vous rembourse.
+                            </p>
+                        </div>
+                        <div class="guarantee-badge">1M VUES</div>
+                    </div>
+
+                    <!-- Garantie #3 -->
+                    <div class="guarantee-card">
+                        <div class="guarantee-icon">💰</div>
+                        <div class="guarantee-content">
+                            <h3 class="guarantee-title">
+                                Garantie #3 : ROI Garanti
+                            </h3>
+                            <p class="guarantee-description">
+                                Si vous ne rentabilisez pas votre investissement
+                                en 90 jours, j'analyse ta stratégie et t'envoie
+                                un email personnalisé pour t'aider à corriger ce
+                                qui ne va pas.
+                            </p>
+                        </div>
+                        <div class="guarantee-badge">90 JOURS</div>
+                    </div>
+                </div>
+
+                <div class="guarantee-cta">
+                    <div class="guarantee-trust">
+                        <div class="trust-icon">🛡️</div>
+                        <p class="trust-text">
+                            <strong>Zero risque.</strong> Notre taux de satisfaction
+                            client est de 97%. Vous êtes entre de bonnes mains.
+                        </p>
+                    </div>
+                    <button
+                        class="guarantee-btn"
+                        onclick="alert('Fonctionnalité à implémenter')"
+                    >
+                        ACCÉDER À LA FORMATION SÉCURISÉE →
+                    </button>
+                </div>
+            </div>
+        </section>
     </main>
 
     <Footer />
@@ -894,6 +975,205 @@ import Footer from "../components/Footer.astro";
 
             .chatbot-text {
                 font-size: 9px;
+            }
+        }
+
+        /* Guarantee Section */
+        .guarantee-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #111111 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guarantee-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(
+                    circle at 20% 80%,
+                    rgba(0, 220, 130, 0.1) 0%,
+                    transparent 50%
+                ),
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(0, 245, 142, 0.1) 0%,
+                    transparent 50%
+                );
+            pointer-events: none;
+        }
+
+        .guarantee-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .guarantee-header .section-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .guarantee-header .highlight {
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-bright) 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .guarantee-header .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .guarantee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .guarantee-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            position: relative;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .guarantee-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 220, 130, 0.2);
+        }
+
+        .guarantee-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .guarantee-content {
+            text-align: center;
+        }
+
+        .guarantee-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: white;
+            line-height: 1.3;
+        }
+
+        .guarantee-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+
+        .guarantee-badge {
+            position: absolute;
+            top: -12px;
+            right: 30px;
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-bright) 100%
+            );
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .guarantee-cta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .guarantee-trust {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .trust-icon {
+            font-size: 32px;
+        }
+
+        .trust-text {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .trust-text strong {
+            color: var(--accent);
+        }
+
+        .guarantee-btn {
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-bright) 100%
+            );
+            color: #000;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(0, 220, 130, 0.3);
+        }
+
+        .guarantee-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0, 220, 130, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .guarantee-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .guarantee-card {
+                padding: 30px 20px;
+            }
+
+            .guarantee-trust {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .guarantee-btn {
+                width: 100%;
+                max-width: 300px;
             }
         }
     </style>
