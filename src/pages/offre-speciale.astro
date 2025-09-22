@@ -205,7 +205,13 @@ import Footer from "../components/Footer.astro";
                 <div class="guarantee-grid">
                     <!-- Garantie #1 -->
                     <div class="guarantee-card">
-                        <div class="guarantee-icon">✅</div>
+                        <div class="guarantee-icon">
+                            <img
+                                src="/media/image_garantie_1.webp"
+                                alt="Garantie Remboursement 30 jours"
+                                class="guarantee-image"
+                            />
+                        </div>
                         <div class="guarantee-content">
                             <h3 class="guarantee-title">
                                 Garantie #1 : Remboursement 30 jours
@@ -220,7 +226,13 @@ import Footer from "../components/Footer.astro";
 
                     <!-- Garantie #2 -->
                     <div class="guarantee-card">
-                        <div class="guarantee-icon">🎯</div>
+                        <div class="guarantee-icon">
+                            <img
+                                src="/media/image_garantie_2.webp"
+                                alt="Garantie Résultats ou Remboursé"
+                                class="guarantee-image"
+                            />
+                        </div>
                         <div class="guarantee-content">
                             <h3 class="guarantee-title">
                                 Garantie #2 : Résultats ou Remboursé
@@ -235,7 +247,13 @@ import Footer from "../components/Footer.astro";
 
                     <!-- Garantie #3 -->
                     <div class="guarantee-card">
-                        <div class="guarantee-icon">💰</div>
+                        <div class="guarantee-icon">
+                            <img
+                                src="/media/image_garantie_3.webp"
+                                alt="Garantie ROI Garanti"
+                                class="guarantee-image"
+                            />
+                        </div>
                         <div class="guarantee-content">
                             <h3 class="guarantee-title">
                                 Garantie #3 : ROI Garanti
@@ -1061,9 +1079,16 @@ import Footer from "../components/Footer.astro";
         }
 
         .guarantee-icon {
-            font-size: 48px;
             margin-bottom: 20px;
             text-align: center;
+        }
+
+        .guarantee-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 220, 130, 0.2);
         }
 
         .guarantee-content {
