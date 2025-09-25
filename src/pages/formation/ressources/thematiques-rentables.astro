@@ -813,7 +813,7 @@ const thematiques = [
 
             <!-- Section Face/No Face -->
             <div class="info-section">
-                <div class="info-header" onclick="toggleInfoSection()">
+                <div class="info-header" id="info-header">
                     <div class="info-badge">💡 INFO IMPORTANTE</div>
                     <h2 class="info-title">
                         Montrer son visage n'est <span class="highlight"
@@ -824,17 +824,19 @@ const thematiques = [
                         <span class="toggle-icon collapsed">▼</span>
                     </button>
                 </div>
-                
+
                 <div class="info-content collapsed" id="info-content">
                     <p class="info-subtitle">
-                        Ces thématiques fonctionnent parfaitement avec ou sans vous
-                        montrer à la caméra.
+                        Ces thématiques fonctionnent parfaitement avec ou sans
+                        vous montrer à la caméra.
                     </p>
 
                     <div class="info-grid">
                         <div class="info-card pro">
                             <div class="info-card-title">✅ Avec Visage</div>
-                            <p class="info-text">Connexion humaine plus forte</p>
+                            <p class="info-text">
+                                Connexion humaine plus forte
+                            </p>
                             <p class="info-text">Fidélisation audience ++</p>
                             <p class="info-text">Personal branding développé</p>
                         </div>
@@ -857,15 +859,17 @@ const thematiques = [
                         </div>
                         <div class="examples-grid">
                             <div class="example-pill">👋 Mains uniquement</div>
-                            <div class="example-pill">🎙️ Voix off captivante</div>
+                            <div class="example-pill">
+                                🎙️ Voix off captivante
+                            </div>
                             <div class="example-pill">🤖 Avatars IA</div>
                             <div class="example-pill">⚡ 100% automatisé</div>
                         </div>
                     </div>
 
                     <div class="bottom-line">
-                        <strong>Bottom line :</strong> Le choix vous appartient. Dans
-                        certaines niches, l'anonymat peut devenir votre signature.
+                        <strong>Bottom line :</strong> Le choix vous appartient.
+                        Dans certaines niches, l'anonymat peut devenir votre signature.
                     </div>
                 </div>
             </div>
@@ -1689,6 +1693,9 @@ const thematiques = [
                 }
             }
 
+            // Rendre la fonction globale
+            window.toggleInfoSection = toggleInfoSection;
+
             // Fonction pour générer des méthodes de monétisation
             function generateMonetization(thematique) {
                 const tags = [];
@@ -1905,6 +1912,20 @@ const thematiques = [
 
             // Attendre que le DOM soit chargé
             document.addEventListener("DOMContentLoaded", function () {
+                // Event listener pour le toggle de la section info
+                const infoHeader = document.getElementById("info-header");
+                if (infoHeader) {
+                    infoHeader.addEventListener("click", function() {
+                        const content = document.getElementById("info-content");
+                        const toggleIcon = document.querySelector(".toggle-icon");
+                        
+                        if (content && toggleIcon) {
+                            content.classList.toggle("collapsed");
+                            toggleIcon.classList.toggle("collapsed");
+                        }
+                    });
+                }
+
                 // Bouton de soumission
                 const submitBtn = document.getElementById("password-submit");
                 if (submitBtn) {
