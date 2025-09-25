@@ -188,6 +188,165 @@ import Footer from "../components/Footer.astro";
             </div>
         </section>
 
+        <!-- Target Audience Section -->
+        <section class="target-audience-section">
+            <div class="container">
+                <div class="target-header">
+                    <h2 class="section-title">
+                        Cette formation est faite pour toi si tu es…
+                    </h2>
+                </div>
+
+                <div class="target-grid">
+                    <!-- Profile 1: L'Employé frustré -->
+                    <div class="target-card">
+                        <h3 class="target-title">L'Employé frustré</h3>
+                        <div class="target-avatar">
+                            <img
+                                src="/media/Avatar_1_SV.webp"
+                                alt="L'Employé frustré"
+                                class="avatar-image"
+                            />
+                        </div>
+                        <div class="target-content">
+                            <ul class="target-list">
+                                <li>
+                                    Tu en as marre de vendre ton temps contre un
+                                    salaire qui ne reflète pas ta vraie valeur.
+                                </li>
+                                <li>
+                                    Chaque matin tu te lèves sans motivation,
+                                    avec la boule au ventre.
+                                </li>
+                                <li>
+                                    Tu rêves de dire adieu à ton boss et de
+                                    reprendre le contrôle de ton temps.
+                                </li>
+                                <li>
+                                    Tu sais que tu vaux plus que ton job actuel
+                                    mais tu ne sais pas par où commencer.
+                                </li>
+                                <li>
+                                    Tu veux bâtir un projet concret qui peut
+                                    remplacer ton salaire (et bien plus).
+                                </li>
+                                <li>
+                                    Tu veux enfin prouver à toi-même que la
+                                    liberté n'est pas réservée aux autres.
+                                </li>
+                            </ul>
+                            <div class="target-cta">
+                                <button
+                                    class="profile-btn"
+                                    onclick="alert('Fonctionnalité à implémenter')"
+                                >
+                                    C'est pour moi ! →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile 2: L'Influenceur fauché -->
+                    <div class="target-card">
+                        <h3 class="target-title">L'Influenceur fauché</h3>
+                        <div class="target-avatar">
+                            <img
+                                src="/media/avatar_2_SV.webp"
+                                alt="L'Influenceur fauché"
+                                class="avatar-image"
+                            />
+                        </div>
+                        <div class="target-content">
+                            <ul class="target-list">
+                                <li>
+                                    Tu fais des vues, tu récoltes des likes,
+                                    mais ton compte en banque reste
+                                    désespérément vide.
+                                </li>
+                                <li>
+                                    Tu es fatigué de poster sans voir un seul
+                                    euro tomber.
+                                </li>
+                                <li>
+                                    Tu veux transformer ton audience en clients
+                                    réels, pas en simples spectateurs.
+                                </li>
+                                <li>
+                                    Tu veux arrêter les petits partenariats mal
+                                    payés et construire une vraie source de
+                                    revenus.
+                                </li>
+                                <li>
+                                    Tu veux un système automatique qui vend pour
+                                    toi pendant que tu crées.
+                                </li>
+                                <li>
+                                    Tu rêves de stabilité financière grâce à ton
+                                    contenu (au lieu de galérer chaque mois).
+                                </li>
+                            </ul>
+                            <div class="target-cta">
+                                <button
+                                    class="profile-btn"
+                                    onclick="alert('Fonctionnalité à implémenter')"
+                                >
+                                    C'est pour moi ! →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile 3: L'Entrepreneur invisible -->
+                    <div class="target-card">
+                        <h3 class="target-title">L'Entrepreneur invisible</h3>
+                        <div class="target-avatar">
+                            <img
+                                src="/media/Avatar_3_SV.webp"
+                                alt="L'Entrepreneur invisible"
+                                class="avatar-image"
+                            />
+                        </div>
+                        <div class="target-content">
+                            <ul class="target-list">
+                                <li>
+                                    Tu as déjà un business, mais personne ne te
+                                    remarque et tes clients se font rares.
+                                </li>
+                                <li>
+                                    Tu as un bon produit ou service… mais
+                                    personne n'en entend parler.
+                                </li>
+                                <li>
+                                    Tes posts passent inaperçus, et tu te sens
+                                    invisible sur les réseaux.
+                                </li>
+                                <li>
+                                    Tu veux arrêter de courir après les clients
+                                    et les attirer à toi.
+                                </li>
+                                <li>
+                                    Tu veux scaler ton chiffre d'affaires à
+                                    +10K€/mois sans t'épuiser.
+                                </li>
+                                <li>
+                                    Tu veux enfin être vu, reconnu et payé à ta
+                                    juste valeur.
+                                </li>
+                            </ul>
+                            <div class="target-cta">
+                                <button
+                                    class="profile-btn"
+                                    onclick="alert('Fonctionnalité à implémenter')"
+                                >
+                                    C'est pour moi ! →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Guarantee Section -->
         <section class="guarantee-section">
             <div class="container">
@@ -214,7 +373,9 @@ import Footer from "../components/Footer.astro";
                         </div>
                         <div class="guarantee-content">
                             <h3 class="guarantee-title">
-                                Garantie #1 : Remboursement 30 jours
+                                <span class="highlight-number">Garantie #1</span
+                                ><br />
+                                Remboursement 30 jours
                             </h3>
                             <p class="guarantee-description">
                                 Testez tout pendant 30 jours. Pas satisfait =
@@ -235,14 +396,17 @@ import Footer from "../components/Footer.astro";
                         </div>
                         <div class="guarantee-content">
                             <h3 class="guarantee-title">
-                                Garantie #2 : Résultats ou Remboursé
+                                <span class="highlight-number">Garantie #2</span
+                                ><br />
+                                Résultats ou Remboursé
                             </h3>
                             <p class="guarantee-description">
                                 Si vous n'atteignez pas 1 million de vues en 30
-                                jours en suivant le système, je vous rembourse.
+                                jours en suivant le système, je vous rembourse
+                                intégralement.
                             </p>
                         </div>
-                        <div class="guarantee-badge">1M VUES</div>
+                        <div class="guarantee-badge">RÉSULTATS</div>
                     </div>
 
                     <!-- Garantie #3 -->
@@ -256,13 +420,14 @@ import Footer from "../components/Footer.astro";
                         </div>
                         <div class="guarantee-content">
                             <h3 class="guarantee-title">
-                                Garantie #3 : ROI Garanti
+                                <span class="highlight-number">Garantie #3</span
+                                ><br />
+                                ROI Garanti
                             </h3>
                             <p class="guarantee-description">
                                 Si vous ne rentabilisez pas votre investissement
-                                en 90 jours, j'analyse ta stratégie et t'envoie
-                                un email personnalisé pour t'aider à corriger ce
-                                qui ne va pas.
+                                en 90 jours, nous analysons votre stratégie et
+                                vous aidons à corriger ce qui ne fonctionne pas.
                             </p>
                         </div>
                         <div class="guarantee-badge">90 JOURS</div>
@@ -271,10 +436,9 @@ import Footer from "../components/Footer.astro";
 
                 <div class="guarantee-cta">
                     <div class="guarantee-trust">
-                        <div class="trust-icon">🛡️</div>
                         <p class="trust-text">
-                            <strong>Zero risque.</strong> Notre taux de satisfaction
-                            client est de 97%. Vous êtes entre de bonnes mains.
+                            <strong>Zero risque.</strong> Testez ma méthode pendant
+                            30 jours. Sans engagement.
                         </p>
                     </div>
                     <button
@@ -996,6 +1160,198 @@ import Footer from "../components/Footer.astro";
             }
         }
 
+        /* Target Audience Section */
+        .target-audience-section {
+            padding: 80px 0;
+            background: var(--bg);
+        }
+
+        .target-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .target-header .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .target-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .target-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 600px;
+        }
+
+        .target-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
+        .target-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #666 0%, #999 100%);
+        }
+
+        .target-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 24px;
+            text-align: center;
+            line-height: 1.3;
+            order: -1;
+        }
+
+        .target-avatar {
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .avatar-image {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .avatar-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .target-cta {
+            margin: 24px 0 0 0;
+            text-align: center;
+        }
+
+        .profile-btn {
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-dark) 100%
+            );
+            color: var(--bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 220, 130, 0.3);
+        }
+
+        .profile-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 220, 130, 0.4);
+        }
+
+        .target-content {
+            text-align: left;
+            flex: 1;
+            width: 100%;
+        }
+
+        .target-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .target-list li {
+            position: relative;
+            padding: 8px 0 8px 24px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .target-list li:last-child {
+            border-bottom: none;
+        }
+
+        .target-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .target-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .target-card {
+                min-height: auto;
+                padding: 24px;
+            }
+
+            .target-header .section-title {
+                font-size: 28px;
+            }
+
+            .target-title {
+                font-size: 20px;
+            }
+
+            .avatar-image {
+                width: 140px;
+                height: 140px;
+            }
+
+            .profile-btn {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+
+            .target-list li {
+                font-size: 15px;
+                padding-left: 20px;
+            }
+
+            .target-list li::before {
+                font-size: 14px;
+                top: 6px;
+            }
+        }
+
         /* Guarantee Section */
         .guarantee-section {
             padding: 80px 0;
@@ -1087,8 +1443,6 @@ import Footer from "../components/Footer.astro";
             width: 80px;
             height: 80px;
             object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 220, 130, 0.2);
         }
 
         .guarantee-content {
@@ -1100,7 +1454,11 @@ import Footer from "../components/Footer.astro";
             font-weight: 700;
             margin-bottom: 16px;
             color: white;
-            line-height: 1.3;
+            line-height: 1.8;
+        }
+
+        .guarantee-title .highlight-number {
+            color: #01ee8a;
         }
 
         .guarantee-description {
@@ -1136,15 +1494,9 @@ import Footer from "../components/Footer.astro";
         }
 
         .guarantee-trust {
-            display: flex;
-            align-items: center;
-            gap: 16px;
             text-align: center;
             max-width: 500px;
-        }
-
-        .trust-icon {
-            font-size: 32px;
+            margin: 0 auto;
         }
 
         .trust-text {
@@ -1189,11 +1541,6 @@ import Footer from "../components/Footer.astro";
 
             .guarantee-card {
                 padding: 30px 20px;
-            }
-
-            .guarantee-trust {
-                flex-direction: column;
-                text-align: center;
             }
 
             .guarantee-btn {

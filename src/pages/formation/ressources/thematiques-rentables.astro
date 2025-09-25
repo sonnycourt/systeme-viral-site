@@ -1,0 +1,1867 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import "../../../styles/thematiques.css";
+
+export const title = "53 Thématiques Rentables - Guide Stratégique";
+export const description =
+    "Découvrez les 53 thématiques les plus rentables pour créer du contenu viral en 2025 avec analyses détaillées et stratégies éprouvées";
+
+// Données des thématiques - côté serveur
+const thematiques = [
+    {
+        id: 1,
+        title: "Finance Personnelle & Investissement",
+        description:
+            "Éducation financière, conseils d'épargne, stratégies d'investissement en bourse, crypto, immobilier. Vulgarisation des concepts financiers complexes.",
+        virality: 4,
+        financial: 5,
+        monetization: [
+            "Formations prix élevés",
+            "Mentorat",
+            "Affiliation brokers",
+            "Livres",
+        ],
+        difficulty: 4,
+        difficultyText: "Expertise et connaissances approfondies",
+    },
+    {
+        id: 2,
+        title: "Fitness & Transformation Physique",
+        description:
+            "Programmes d'entraînement, transformations avant/après, conseils nutrition, challenges fitness.",
+        virality: 5,
+        financial: 4,
+        monetization: [
+            "Programmes en ligne",
+            "Coaching 1-1",
+            "Suppléments",
+            "Équipements",
+        ],
+        difficulty: 3,
+        difficultyText: "Résultats visibles nécessaires",
+    },
+    {
+        id: 3,
+        title: "Business & Entrepreneuriat",
+        description:
+            "Conseils création d'entreprise, stratégies de croissance, mindset entrepreneur, automatisation.",
+        virality: 3,
+        financial: 5,
+        monetization: [
+            "Formations prix élevés",
+            "Consulting premium",
+            "Événements",
+            "Affiliations",
+        ],
+        difficulty: 5,
+        difficultyText: "Crédibilité et résultats prouvés",
+    },
+    {
+        id: 4,
+        title: "Immobilier & Rentabilité",
+        description:
+            "Investissement locatif, visites de biens, calculs de rentabilité, stratégies d'achat.",
+        virality: 4,
+        financial: 5,
+        monetization: [
+            "Formations prix élevés",
+            "Deals partenaires",
+            "Consultation",
+        ],
+        difficulty: 5,
+        difficultyText: "Capital et expertise juridique",
+    },
+    {
+        id: 5,
+        title: "Trading & Crypto",
+        description:
+            "Analyses techniques, signaux de trading, actualités crypto, DeFi, NFTs, prédictions.",
+        virality: 3,
+        financial: 5,
+        monetization: [
+            "Affiliation exchanges",
+            "Formation prix élevé",
+            "Workbook",
+        ],
+        difficulty: 5,
+        difficultyText: "Expertise + volatilité",
+    },
+    {
+        id: 6,
+        title: "Développement Personnel",
+        description:
+            "Conseils confiance en soi, discipline, habitudes de succès, style de vie, productivité, relations, leadership, mindset.",
+        virality: 5,
+        financial: 4,
+        monetization: [
+            "Formation prix moyen",
+            "Bootcamps",
+            "Communautés payantes",
+            "Livres",
+            "Coaching",
+        ],
+        difficulty: 2,
+        difficultyText: "Charisme et authenticité sont un plus",
+    },
+    {
+        id: 7,
+        title: "Mode & Luxe",
+        description:
+            "Conseils style haut de gamme, unboxing produits de luxe, guides d'achat, tendances fashion, looks du jour, shopping personnel.",
+        virality: 4,
+        financial: 4,
+        monetization: [
+            "Affiliations luxe",
+            "Brand deals",
+            "Personal shopping",
+            "Marque propre",
+        ],
+        difficulty: 5,
+        difficultyText:
+            "Investissement garde-robe, accessibilité à des produits de luxe",
+    },
+    {
+        id: 8,
+        title: "Tech & Intelligence Artificielle",
+        description:
+            "Tutoriels IA, prompts ChatGPT, automatisations, nouveaux outils, productivité tech, coding simplifié, innovations technologiques.",
+        virality: 4,
+        financial: 5,
+        monetization: [
+            "Outils SaaS",
+            "Formations IA",
+            "Templates",
+            "Consulting pour entreprise",
+        ],
+        difficulty: 3,
+        difficultyText: "connaissances et mise à jour permanente",
+    },
+    {
+        id: 9,
+        title: "Nutrition (Santé)",
+        description:
+            "Plans alimentaires, recettes protéinées, timing nutritionnel, supplémentation.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Marque suppléments",
+            "Plans alimentaires",
+            "Sponsoring",
+            "Coaching",
+        ],
+        difficulty: 3,
+        difficultyText: "Certifications nutritionnelles utiles",
+    },
+    {
+        id: 10,
+        title: "Dating & Relations",
+        description:
+            "Conseils séduction, psychologie relationnelle, red flags, communication couple, profils dating apps, confiance en soi amoureuse.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Coaching personnel",
+            "formations prix moyens",
+            "Événements",
+        ],
+        difficulty: 3,
+        difficultyText: "Sujet sensible, éthique importante",
+    },
+    {
+        id: 11,
+        title: "Lifestyle de Luxe",
+        description:
+            "Voyages VIP, hôtels 5 étoiles, restaurants étoilés, voitures de sport, montres de luxe, l'art de vivre premium.",
+        virality: 5,
+        financial: 4,
+        monetization: [
+            "Partenariats premium",
+            "Affiliation avec marques de luxe",
+        ],
+        difficulty: 3,
+        difficultyText: "Facile sans montrer votre visage",
+    },
+    {
+        id: 12,
+        title: "E-commerce & Dropshipping",
+        description:
+            "Product testing, stratégies Facebook Ads, scaling boutiques, études de cas.",
+        virality: 2,
+        financial: 4,
+        monetization: [
+            "Formation e-com",
+            "Mentorat",
+            "Outils",
+            "Services done-for-you",
+        ],
+        difficulty: 4,
+        difficultyText: "ROI à prouver, capital pub",
+    },
+    {
+        id: 13,
+        title: "Beauté & Skincare Premium",
+        description:
+            "Routines de soin haut de gamme, techniques maquillage pro, reviews produits luxe, transformations beauté, tendances K-beauty.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Ligne cosmétique",
+            "Sponsoring grandes marques",
+            "affiliations produits",
+            "formation prix bas",
+        ],
+        difficulty: 3,
+        difficultyText:
+            "Saturation, différenciation nécessaire + beauté aide grandement",
+    },
+    {
+        id: 14,
+        title: "Mindset Millionnaire",
+        description:
+            "Habitudes des riches, psychologie de l'abondance, visualisation, affirmations, stratégies wealth building, mentalité succès.",
+        virality: 5,
+        financial: 5,
+        monetization: [
+            "Masterminds",
+            "Séminaires",
+            "formation prix élevés",
+            "Livres",
+            "Communautés",
+        ],
+        difficulty: 4,
+        difficultyText: "Preuve sociale indispensable",
+    },
+    {
+        id: 15,
+        title: "Marketing Digital & Growth",
+        description:
+            "Stratégies growth hacking, publicités Facebook/Google, SEO, funnels de vente, copywriting, analytics, case studies.",
+        virality: 2,
+        financial: 5,
+        monetization: [
+            "Agence",
+            "Formation prix moyens à élevé",
+            "Consulting",
+            "Saas",
+        ],
+        difficulty: 5,
+        difficultyText: "Résultats mesurables requis",
+    },
+    {
+        id: 16,
+        title: "Cuisine Rapide & Meal Prep",
+        description:
+            "Recettes 60 secondes, batch cooking, organisation repas semaine, hacks cuisine, plats healthy rapides, économies alimentaires.",
+        virality: 5,
+        financial: 3,
+        monetization: [
+            "Livres recettes",
+            "Ustensiles",
+            "Meal plans",
+            "Partenariats food",
+            "suppléments",
+        ],
+        difficulty: 2,
+        difficultyText: "Production simple, créativité constante",
+    },
+    {
+        id: 17,
+        title: "Parentalité Moderne",
+        description:
+            "Tips éducation positive, activités enfants, organisation famille, astuces bébé.",
+        virality: 3,
+        financial: 2,
+        monetization: [
+            "Guides PDF",
+            "Affiliations Amazon",
+            "Sponsoring marques bébé",
+        ],
+        difficulty: 2,
+        difficultyText: "Authenticité et empathie clés",
+    },
+    {
+        id: 18,
+        title: "Voyages & Lifestyle Nomade",
+        description:
+            "Guides destinations insolites, astuces voyage low-cost, travail nomade, communautés voyage, tips sécurité.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Affiliations booking/hotels",
+            "Guides PDF",
+            "Communautés payantes",
+            "Événements voyage",
+        ],
+        difficulty: 2,
+        difficultyText: "Passion voyage indispensable",
+    },
+    {
+        id: 19,
+        title: "Psychologie & Santé Mentale",
+        description:
+            "Décryptage comportements, biais cognitifs, langage corporel, tests personnalité, gestion stress/anxiété, thérapies cognitivo-comportementales, méditation mindfulness, troubles sommeil, développement personnel, résilience émotionnelle.",
+        virality: 5,
+        financial: 5,
+        monetization: [
+            "Consultations thérapeutes",
+            "Apps santé mentale",
+            "Retraites bien-être",
+            "Formations coaching",
+            "Livres développement personnel",
+            "Consultations",
+            "Apps",
+            "Livres",
+            "Formations prix moyens",
+        ],
+        difficulty: 4,
+        difficultyText: "Formation psychologie + expérience personnelle",
+    },
+    {
+        id: 20,
+        title: "Gaming & Esports",
+        description:
+            "Clips épiques, tips amélioration, actualités gaming, reviews jeux, setups gaming, moments WTF, stratégies pro.",
+        virality: 5,
+        financial: 3,
+        monetization: ["Sponsoring", "Streaming", "affiliation"],
+        difficulty: 3,
+        difficultyText:
+            "Skill gaming élevé et personnalité extraverti sont un plus",
+    },
+    {
+        id: 21,
+        title: "Productivité & Organisation",
+        description:
+            "Systèmes GTD, setup Notion, morning routines, time blocking, automatisations.",
+        virality: 3,
+        financial: 3,
+        monetization: ["Templates Notion", "Apps", "Formations", "Planners"],
+        difficulty: 2,
+        difficultyText: "Contenu evergreen, facile",
+    },
+    {
+        id: 22,
+        title: "Animaux & Dressage",
+        description:
+            "Tricks chiens/chats, éducation positive, comportement animal, soins quotidiens, moments mignons, sauvetages.",
+        virality: 5,
+        financial: 3,
+        monetization: [
+            "Produits animaux",
+            "Formation dressage",
+            "Consultations",
+        ],
+        difficulty: 2,
+        difficultyText: "expérience/passion pour le dressage",
+    },
+    {
+        id: 23,
+        title: "Apprentissage Langues",
+        description:
+            "Mots du jour, prononciation, expressions idiomatiques, culture locale, méthodes d'apprentissage rapide, polyglotte tips.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Apps",
+            "Cours 1-1 en ligne",
+            "guides",
+            "formations prix bas",
+        ],
+        difficulty: 3,
+        difficultyText: "Maîtrise plusieurs langues",
+    },
+    {
+        id: 24,
+        title: "Art & Dessin",
+        description:
+            "Timelapses création, tutoriels techniques, digital art, challenges dessin, transformations, styles artistiques.",
+        virality: 4,
+        financial: 3,
+        monetization: ["Cours", "Commissions", "NFTs", "Prints"],
+        difficulty: 3,
+        difficultyText: "Talent artistique développé",
+    },
+    {
+        id: 25,
+        title: "Production Musicale",
+        description:
+            "Beatmaking en direct, remixes, techniques production, sound design, mixing tips, création hits en 60 secondes.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Samples packs",
+            "Ghost production",
+            "Formations",
+            "Services",
+        ],
+        difficulty: 4,
+        difficultyText: "Compétences audio avancées",
+    },
+    {
+        id: 26,
+        title: "Minimalisme",
+        description:
+            "Désencombrement maison, garde-robe capsule, achats conscients, vie simple, économies par minimalisme, Marie Kondo.",
+        virality: 3,
+        financial: 2,
+        monetization: ["Livres", "Consultations organisation", "Conférences"],
+        difficulty: 2,
+        difficultyText: "Lifestyle cohérent à maintenir",
+    },
+    {
+        id: 27,
+        title: "Développement Web",
+        description:
+            "Code snippets utiles, projets JavaScript, sites en 60 secondes, debugging, frameworks modernes, portfolios créatifs.",
+        virality: 3,
+        financial: 4,
+        monetization: ["Freelance", "Formations", "Templates", "Mentorat"],
+        difficulty: 4,
+        difficultyText: "Expertise technique requise",
+    },
+    {
+        id: 28,
+        title: "Yoga & Méditation",
+        description:
+            "Flows courts, techniques respiration, postures débutants, méditations guidées, yoga du matin, étirements bureau.",
+        virality: 3,
+        financial: 3,
+        monetization: ["Retraites", "Apps", "Cours en ligne", "Studios"],
+        difficulty: 3,
+        difficultyText: "Formation yoga recommandée",
+    },
+    {
+        id: 29,
+        title: "Photo Mobile",
+        description:
+            "Techniques iPhone/Android, editing rapide, angles créatifs, mode portrait, night mode, apps retouche, presets.",
+        virality: 4,
+        financial: 3,
+        monetization: ["Presets", "Formations", "Services photo", "Prints"],
+        difficulty: 2,
+        difficultyText: "Accessible, œil photographique",
+    },
+    {
+        id: 30,
+        title: "Bricolage & Rénovation",
+        description:
+            "DIY maison, transformations pièces, astuces bricolage, outils essentiels, erreurs débutants, projets weekend.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Affiliations outils",
+            "Guides",
+            "Consultations",
+            "Services",
+        ],
+        difficulty: 3,
+        difficultyText: "Compétences manuelles variées",
+    },
+    {
+        id: 31,
+        title: "Automobile & Detailing",
+        description:
+            "Nettoyage satisfaisant, restoration voitures, conseils entretien, products reviews, transformations véhicules, car wrapping.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Produits detailing",
+            "Services",
+            "Affiliations",
+            "Formations",
+        ],
+        difficulty: 3,
+        difficultyText: "Investissement matériel pro",
+    },
+    {
+        id: 32,
+        title: "Humour & Comedy",
+        description:
+            "Sketches courts, parodies, POV humoristiques, situations relatables, stand-up clips, personnages récurrents.",
+        virality: 5,
+        financial: 2,
+        monetization: ["Creator funds", "Sponsoring", "Spectacles", "Merch"],
+        difficulty: 3,
+        difficultyText: "Créativité constante, timing",
+    },
+    {
+        id: 33,
+        title: "ASMR",
+        description:
+            "Sons relaxants, chuchotements, tapping, roleplay ASMR, triggers variés, vidéos pour dormir, satisfying content.",
+        virality: 3,
+        financial: 2,
+        monetization: ["YouTube AdSense", "Donations", "Patreon", "Sponsoring"],
+        difficulty: 1,
+        difficultyText: "Micro de qualité suffisant",
+    },
+    {
+        id: 34,
+        title: "Life Hacks",
+        description:
+            "Astuces quotidiennes, solutions problèmes courants, DIY rapides, organisation maison, économies malignes, recyclage créatif.",
+        virality: 5,
+        financial: 1,
+        monetization: ["Affiliations Amazon", "Sponsoring", "Creator funds"],
+        difficulty: 1,
+        difficultyText: "Recherche d'idées principales",
+    },
+    {
+        id: 35,
+        title: "Danse & Chorégraphie",
+        description:
+            "Tutoriels danse TikTok, challenges chorégraphiés, freestyle, battles, tendances danse, cours express.",
+        virality: 5,
+        financial: 2,
+        monetization: [
+            "Cours",
+            "Spectacles",
+            "Brand deals",
+            "Challenges sponsorisés",
+        ],
+        difficulty: 3,
+        difficultyText: "Talent danse nécessaire",
+    },
+    {
+        id: 36,
+        title: "Cosplay",
+        description:
+            "Créations costumes, transformations personnages, making-of, conventions, comparaisons anime/manga, tutorials makeup.",
+        virality: 4,
+        financial: 2,
+        monetization: ["Commissions", "Patreon", "Conventions", "Prints"],
+        difficulty: 4,
+        difficultyText: "Coûts matériaux élevés",
+    },
+    {
+        id: 37,
+        title: "Street Food",
+        description:
+            "Découvertes food trucks, marchés locaux, spécialités régionales, tests plats insolites, bonnes adresses cachées.",
+        virality: 4,
+        financial: 2,
+        monetization: ["Partenariats locaux", "Guides food", "Sponsoring"],
+        difficulty: 1,
+        difficultyText: "Explorer et filmer",
+    },
+    {
+        id: 38,
+        title: "Nostalgie 90-2000",
+        description:
+            "Souvenirs d'enfance, jouets rétro, séries cultes, musique époque, mode Y2K, comparaisons avant/maintenant.",
+        virality: 4,
+        financial: 2,
+        monetization: ["Merch rétro", "Affiliations", "Sponsoring"],
+        difficulty: 1,
+        difficultyText: "Culture pop basique",
+    },
+    {
+        id: 39,
+        title: "Challenges & Défis",
+        description:
+            "Défis 24h, transformations 30 jours, challenges impossibles, records personnels, défis viewers, expériences extrêmes.",
+        virality: 5,
+        financial: 2,
+        monetization: ["Sponsoring", "Creator funds", "Événements"],
+        difficulty: 2,
+        difficultyText: "Idées originales régulières",
+    },
+    {
+        id: 40,
+        title: "Storytime & Faits",
+        description:
+            "Histoires vraies captivantes, faits insolites, mystères non résolus, théories conspirations, anecdotes historiques.",
+        virality: 4,
+        financial: 2,
+        monetization: ["Creator funds", "Podcasts", "Livres"],
+        difficulty: 1,
+        difficultyText: "Recherche et narration",
+    },
+    {
+        id: 41,
+        title: "Magie & Illusions",
+        description:
+            "Tours de cartes, street magic, révélations trucs, illusions d'optique, mentalisme, magie digitale.",
+        virality: 5,
+        financial: 2,
+        monetization: ["Spectacles", "Tutoriels", "Accessoires", "Events"],
+        difficulty: 4,
+        difficultyText: "Années de pratique",
+    },
+    {
+        id: 42,
+        title: "Upcycling",
+        description:
+            "Transformation objets récup, meubles relookés, vêtements customisés, déco zéro déchet, DIY écolo.",
+        virality: 3,
+        financial: 2,
+        monetization: ["Ventes créations", "Tutoriels", "Ateliers"],
+        difficulty: 2,
+        difficultyText: "Créativité et patience",
+    },
+    {
+        id: 43,
+        title: "Motivation Quotidienne",
+        description:
+            "Citations inspirantes, speeches motivants, morning motivation, success mindset, affirmations positives, visualisation.",
+        virality: 3,
+        financial: 3,
+        monetization: [
+            "Livres",
+            "Merch motivational",
+            "Conférences",
+            "Formations",
+        ],
+        difficulty: 1,
+        difficultyText: "Consistance quotidienne",
+    },
+    {
+        id: 44,
+        title: "Reviews Films/Séries",
+        description:
+            "Critiques rapides, rankings, théories fans, easter eggs, recommandations Netflix, réactions épisodes.",
+        virality: 3,
+        financial: 2,
+        monetization: ["Affiliations vpn", "Sponsoring", "YouTube"],
+        difficulty: 1,
+        difficultyText: "Culture cinéma/séries",
+    },
+    {
+        id: 45,
+        title: "Science Vulgarisée",
+        description:
+            "Expériences simples, phénomènes expliqués, myths busted, science du quotidien, découvertes récentes simplifiées.",
+        virality: 4,
+        financial: 2,
+        monetization: ["Livres", "Conférences", "Sponsoring éducatif"],
+        difficulty: 3,
+        difficultyText: "Rigueur scientifique",
+    },
+    {
+        id: 46,
+        title: "Astuces Étudiants",
+        description:
+            "Méthodes révision, organisation études, bons plans étudiants, survie campus, budget serré, jobs étudiants.",
+        virality: 4,
+        financial: 1,
+        monetization: ["Affiliations", "Apps", "Guides PDF"],
+        difficulty: 1,
+        difficultyText: "Public captif facile",
+    },
+    {
+        id: 47,
+        title: "React & Commentaires",
+        description:
+            "Réactions vidéos virales, commentary trends, duets TikTok, roast gentle, compilation fails, débats topics.",
+        virality: 4,
+        financial: 2,
+        monetization: ["affiliations", "Sponsoring"],
+        difficulty: 1,
+        difficultyText: "Personnalité attachante",
+    },
+    {
+        id: 48,
+        title: "Spiritualité Moderne",
+        description:
+            "Tarot, astrologie, cristaux, manifestation, énergies, signes univers, rituels modernes, moon phases.",
+        virality: 3,
+        financial: 3,
+        monetization: ["Consultations", "Produits spirituels", "Retraites"],
+        difficulty: 2,
+        difficultyText: "Crédibilité et éthique",
+    },
+    {
+        id: 49,
+        title: "Neuroscience & Psychologie Cognitive",
+        description:
+            "Fonctionnement du cerveau, habitudes, mémoire, apprentissage, productivité mentale, techniques nootropiques, méditation scientifique, optimisation cognitive.",
+        virality: 4,
+        financial: 4,
+        monetization: [
+            "Consultations cognitives",
+            "Formations neuroscience",
+            "Apps brain training",
+            "Retraites mentales",
+            "Produits nootropiques",
+        ],
+        difficulty: 4,
+        difficultyText: "Formation neuroscience + rigueur scientifique",
+    },
+    {
+        id: 50,
+        title: "Jardinage & Permaculture",
+        description:
+            "Cultures biologiques, permaculture urbaine, compostage, graines anciennes, jardinage zéro déchet, balcon/jardin citadin, agriculture durable.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Vente graines/légumes",
+            "Ateliers jardinage",
+            "Formations permaculture",
+            "Consultations écolo",
+            "Guides jardinage",
+        ],
+        difficulty: 2,
+        difficultyText: "Accessible + passion nature",
+    },
+    {
+        id: 51,
+        title: "Conseils Juridiques Vulgarisés",
+        description:
+            "Droits quotidiens, contrats locatifs, procédures divorce, conseils entrepreneurs, protection données personnelles, droits consommateurs, successions.",
+        virality: 3,
+        financial: 4,
+        monetization: [
+            "Consultations juridiques",
+            "Formations droit pratique",
+            "Ebooks guides juridiques",
+            "Partenariats cabinets",
+            "Webinaires droit",
+        ],
+        difficulty: 5,
+        difficultyText: "Formation juridique obligatoire + responsabilité",
+    },
+    {
+        id: 52,
+        title: "Artisanat & Métiers d'Art",
+        description:
+            "Travail du bois, poterie, verrerie, ferronnerie, techniques ancestrales, création pièces uniques, transmission savoir-faire, design artisanal.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Vente créations",
+            "Ateliers pratiques",
+            "Formations spécialisées",
+            "Consultations artisanales",
+            "Expositions virtuelles",
+        ],
+        difficulty: 4,
+        difficultyText: "Apprentissage technique long + créativité",
+    },
+    {
+        id: 53,
+        title: "Professeur de Musique (Chant & Instruments)",
+        description:
+            "Techniques vocales, respiration diaphragmatique, posture chant, interprétation scénique, préparation auditions, solfège, accompagnement piano/guitare.",
+        virality: 4,
+        financial: 3,
+        monetization: [
+            "Cours particuliers",
+            "Stages intensifs",
+            "Masterclasses en ligne",
+            "Coaching vocal",
+            "Formations pédagogiques",
+        ],
+        difficulty: 3,
+        difficultyText: "Formation musicale + pédagogie",
+    },
+];
+---
+
+<Layout title={title} description={description}>
+    <!-- Password Protection Modal (placé hors du contenu pour éviter display:none hérités) -->
+    <div id="password-modal" class="password-modal">
+        <div class="password-overlay"></div>
+        <div class="password-container">
+            <div class="password-header">
+                <div class="password-icon">🔒</div>
+                <h2 class="password-title">Accès Restreint</h2>
+                <p class="password-subtitle">
+                    Cette ressource est réservée aux membres autorisés du
+                    Système Viral
+                </p>
+            </div>
+
+            <div class="password-form">
+                <div class="password-input-group">
+                    <label for="password-input" class="password-label">
+                        Entrez le mot de passe
+                    </label>
+                    <input
+                        type="password"
+                        id="password-input"
+                        class="password-input"
+                        placeholder="Mot de passe..."
+                        autocomplete="off"
+                    />
+                    <div id="password-error" class="password-error"></div>
+                </div>
+
+                <button id="password-submit" class="password-submit">
+                    Accéder au Guide
+                </button>
+            </div>
+
+            <div class="password-footer">
+                <p class="password-info">
+                    🔐 Le mot de passe est valable pour toute la session
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="thematiques-page">
+        <div class="container">
+            <div class="header">
+                <h1>
+                    <span class="header-highlight">53</span> Thématiques Rentables
+                </h1>
+                <p class="subtitle">
+                    Guide stratégique pour créateurs de contenu
+                </p>
+            </div>
+
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="stat-number">53</div>
+                    <div class="stat-label">Thématiques</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Ultra Rentables</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Haute Viralité</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Facile Début</div>
+                </div>
+            </div>
+
+            <!-- Section Face/No Face -->
+            <div class="info-section">
+                <div class="info-badge">💡 INFO IMPORTANTE</div>
+                <h2 class="info-title">
+                    Montrer son visage n'est <span class="highlight"
+                        >PAS obligatoire</span
+                    >
+                </h2>
+                <p class="info-subtitle">
+                    Ces thématiques fonctionnent parfaitement avec ou sans vous
+                    montrer à la caméra.
+                </p>
+
+                <div class="info-grid">
+                    <div class="info-card pro">
+                        <div class="info-card-title">✅ Avec Visage</div>
+                        <p class="info-text">Connexion humaine plus forte</p>
+                        <p class="info-text">Fidélisation audience ++</p>
+                        <p class="info-text">Personal branding développé</p>
+                    </div>
+
+                    <div class="info-card success">
+                        <div class="info-card-title">🚀 Sans Visage</div>
+                        <p class="info-text">
+                            Des milliers de créateurs cartonnent
+                        </p>
+                        <p class="info-text">
+                            Comptes 100% IA = millions de vues
+                        </p>
+                        <p class="info-text">Anonymat = votre force</p>
+                    </div>
+                </div>
+
+                <div class="examples-section">
+                    <div class="examples-title">
+                        Formats qui marchent sans visage :
+                    </div>
+                    <div class="examples-grid">
+                        <div class="example-pill">👋 Mains uniquement</div>
+                        <div class="example-pill">🎙️ Voix off captivante</div>
+                        <div class="example-pill">🤖 Avatars IA</div>
+                        <div class="example-pill">⚡ 100% automatisé</div>
+                    </div>
+                </div>
+
+                <div class="bottom-line">
+                    <strong>Bottom line :</strong> Le choix vous appartient. Dans
+                    certaines niches, l'anonymat peut devenir votre signature.
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <button class="filter-btn active" data-filter="all"
+                    >Toutes</button
+                >
+                <button class="filter-btn" data-filter="viral"
+                    >🔥 Ultra Virales</button
+                >
+                <button class="filter-btn" data-filter="money"
+                    >💰 Plus Rentables</button
+                >
+                <button class="filter-btn" data-filter="easy">✅ Faciles</button
+                >
+            </div>
+
+            <!-- Search Section -->
+            <div class="search-section">
+                <div class="search-container">
+                    <div class="search-icon">🔍</div>
+                    <input
+                        type="text"
+                        id="thematiques-search"
+                        class="search-input"
+                        placeholder="Rechercher une thématique... (ex: yoga, finance, gaming)"
+                        autocomplete="off"
+                    />
+                    <div id="search-results-count" class="search-results-count">
+                        53 thématiques affichées
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid" id="cardsGrid">
+                <!-- Cards will be generated by JavaScript -->
+            </div>
+
+            <!-- AI Analyzer Section -->
+            <div class="ai-analyzer-section">
+                <div class="ai-analyzer-container">
+                    <div class="ai-analyzer-header">
+                        <div class="ai-analyzer-icon">🤖</div>
+                        <h3 class="ai-analyzer-title">
+                            Analyseur IA Thématique
+                        </h3>
+                        <p class="ai-analyzer-subtitle">
+                            Tu as une idée de thématique mais tu ne sais pas si
+                            elle est rentable ? Découvre son potentiel viral et
+                            financier !
+                        </p>
+                    </div>
+
+                    <div class="ai-analyzer-form">
+                        <div class="ai-input-group">
+                            <label for="thematique-input" class="ai-label">
+                                Décris ta thématique ou idée de contenu :
+                            </label>
+                            <textarea
+                                id="thematique-input"
+                                class="ai-input"
+                                placeholder="Ex: 'Je veux créer du contenu sur la cuisine végétalienne zéro déchet avec des recettes anti-gaspi'"
+                                rows="4"
+                                maxlength="500"></textarea>
+                            <div class="char-counter">
+                                <span id="char-count">0</span>/500 caractères
+                            </div>
+                        </div>
+
+                        <button
+                            id="analyze-btn"
+                            class="ai-analyze-btn"
+                            disabled
+                        >
+                            🔍 Analyser ma thématique
+                        </button>
+                    </div>
+
+                    <div
+                        id="ai-results"
+                        class="ai-results"
+                        style="display: none;"
+                    >
+                        <div class="ai-results-header">
+                            <h4>📊 Analyse de ta thématique</h4>
+                        </div>
+                        <div class="ai-results-content">
+                            <div class="result-metric">
+                                <div class="metric-label">Potentiel Viral</div>
+                                <div class="metric-stars" id="viral-stars">
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <div class="star"></div>
+                                </div>
+                                <div class="metric-text" id="viral-text">
+                                    Très bon potentiel
+                                </div>
+                            </div>
+                            <div class="result-metric">
+                                <div class="metric-label">
+                                    Potentiel Financier
+                                </div>
+                                <div class="metric-stars" id="finance-stars">
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <div class="star filled"></div>
+                                    <div class="star"></div>
+                                    <div class="star"></div>
+                                </div>
+                                <div class="metric-text" id="finance-text">
+                                    Bon potentiel
+                                </div>
+                            </div>
+                            <div class="result-metric">
+                                <div class="metric-label">Difficulté</div>
+                                <div
+                                    class="metric-difficulty"
+                                    id="difficulty-bars"
+                                >
+                                    <div class="difficulty-bar filled"></div>
+                                    <div class="difficulty-bar filled"></div>
+                                    <div class="difficulty-bar"></div>
+                                    <div class="difficulty-bar"></div>
+                                    <div class="difficulty-bar"></div>
+                                </div>
+                                <div class="metric-text" id="difficulty-text">
+                                    Moyen
+                                </div>
+                            </div>
+                            <div class="result-insights">
+                                <div class="insights-title">
+                                    💡 Conseils personnalisés :
+                                </div>
+                                <div class="insights-list" id="insights-list">
+                                    <!-- Insights will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            <div class="result-monetization">
+                                <div class="monetization-title">
+                                    💰 Méthodes de monétisation suggérées :
+                                </div>
+                                <div
+                                    class="monetization-tags"
+                                    id="monetization-tags"
+                                >
+                                    <!-- Tags will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend">
+                <h3 class="legend-title">📊 Guide de Lecture</h3>
+                <div class="legend-grid">
+                    <div class="legend-section">
+                        <div class="legend-section-title">
+                            Système de Notation
+                        </div>
+                        <div class="legend-item">
+                            <div class="stars">
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                            </div>
+                            <span>Exceptionnel (5/5)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="stars">
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star"></div>
+                            </div>
+                            <span>Très bon (4/5)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="stars">
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star filled"></div>
+                                <div class="star"></div>
+                                <div class="star"></div>
+                            </div>
+                            <span>Bon (3/5)</span>
+                        </div>
+                    </div>
+
+                    <div class="legend-section">
+                        <div class="legend-section-title">Indicateurs</div>
+                        <div class="legend-item">
+                            <span style="color: #01F38E; font-weight: 700;"
+                                >Vert</span
+                            >
+                            <span>Élément positif</span>
+                        </div>
+                        <div class="legend-item">
+                            <span
+                                style="background: #FF4444; padding: 2px 8px; border-radius: 4px; color: white; font-size: 0.8rem;"
+                                >VIRAL</span
+                            >
+                            <span>Forte viralité</span>
+                        </div>
+                        <div class="legend-item">
+                            <span
+                                style="background: #FFD700; padding: 2px 8px; border-radius: 4px; color: black; font-size: 0.8rem;"
+                                >€€€</span
+                            >
+                            <span>Très rentable</span>
+                        </div>
+                    </div>
+
+                    <div class="legend-section">
+                        <div class="legend-section-title">Difficulté</div>
+                        <div class="legend-item">
+                            <div class="difficulty-level">
+                                <div class="difficulty-bar filled"></div>
+                                <div class="difficulty-bar filled"></div>
+                                <div class="difficulty-bar filled"></div>
+                                <div class="difficulty-bar filled"></div>
+                                <div class="difficulty-bar filled"></div>
+                            </div>
+                            <span>Expert requis</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="difficulty-level">
+                                <div class="difficulty-bar filled"></div>
+                                <div class="difficulty-bar filled"></div>
+                                <div class="difficulty-bar"></div>
+                                <div class="difficulty-bar"></div>
+                                <div class="difficulty-bar"></div>
+                            </div>
+                            <span>Accessible</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script define:vars={{ thematiquesData: thematiques }} client:load>
+            // Script côté client pour la génération des cartes et les interactions
+            const thematiques = thematiquesData;
+
+            function createStars(rating) {
+                let stars = "";
+                for (let i = 1; i <= 5; i++) {
+                    stars += `<div class="star ${i <= rating ? "filled" : ""}"></div>`;
+                }
+                return stars;
+            }
+
+            function createDifficultyBars(level) {
+                let bars = "";
+                for (let i = 1; i <= 5; i++) {
+                    bars += `<div class="difficulty-bar ${i <= level ? "filled" : ""}"></div>`;
+                }
+                return bars;
+            }
+
+            function getCategory(theme) {
+                if (theme.financial === 5) return "TOP RENTABILITÉ";
+                if (theme.virality === 5) return "TOP VIRALITÉ";
+                if (theme.difficulty <= 2) return "FACILE DÉBUT";
+                return "STANDARD";
+            }
+
+            function createCard(theme) {
+                const isViral = theme.virality === 5;
+                const isMoney = theme.financial === 5;
+                const isEasy = theme.difficulty <= 2;
+
+                let indicator = "";
+                if (isMoney) {
+                    indicator = '<div class="indicator-money">€€€</div>';
+                } else if (isViral) {
+                    indicator = '<div class="indicator-viral">VIRAL</div>';
+                }
+
+                return `
+				<div class="card" data-viral="${isViral}" data-money="${isMoney}" data-easy="${isEasy}">
+					${indicator}
+					<div class="category-badge">${getCategory(theme)}</div>
+
+					<div class="card-header">
+						<div class="card-number">${theme.id}</div>
+						<div class="card-title">${theme.title}</div>
+					</div>
+
+					<p class="card-description">${theme.description}</p>
+
+					<div class="metrics">
+						<div class="metric">
+							<div class="metric-label">Viralité</div>
+							<div class="rating">
+								<div class="stars">${createStars(theme.virality)}</div>
+								<span class="rating-number">${theme.virality}/5</span>
+							</div>
+						</div>
+						<div class="metric">
+							<div class="metric-label">Potentiel €</div>
+							<div class="rating">
+								<div class="stars">${createStars(theme.financial)}</div>
+								<span class="rating-number">${theme.financial}/5</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="monetization">
+						<div class="monetization-label">Monétisation</div>
+						<div class="monetization-tags">
+							${theme.monetization.map((m) => `<span class="tag">${m}</span>`).join("")}
+						</div>
+					</div>
+
+					<div class="difficulty">
+						<div class="difficulty-header">
+							<div class="difficulty-label">Difficulté</div>
+							<div class="difficulty-level">
+								${createDifficultyBars(theme.difficulty)}
+							</div>
+						</div>
+						<div class="difficulty-text">${theme.difficultyText}</div>
+					</div>
+				</div>
+			`;
+            }
+
+            function renderCards() {
+                const grid = document.getElementById("cardsGrid");
+                if (!grid) {
+                    console.error("Grid element not found!");
+                    return;
+                }
+
+                grid.innerHTML = thematiques
+                    .map((theme) => createCard(theme))
+                    .join("");
+            }
+
+            function filterCards(filter, clickedButton) {
+                // S'assurer que les cartes sont chargées
+                const grid = document.getElementById("cardsGrid");
+                if (!grid || grid.children.length === 0) {
+                    renderCards();
+                    setTimeout(() => filterCards(filter, clickedButton), 100);
+                    return;
+                }
+
+                const cards = document.querySelectorAll(".card");
+                const buttons = document.querySelectorAll(".filter-btn");
+
+                // Retirer la classe active de tous les boutons
+                buttons.forEach((btn) => btn.classList.remove("active"));
+
+                // Ajouter la classe active au bouton cliqué
+                if (clickedButton) {
+                    clickedButton.classList.add("active");
+                }
+
+                // Appliquer les filtres
+                cards.forEach((card) => {
+                    card.style.display = "block";
+                    card.classList.remove("pulse");
+
+                    if (filter === "viral" && card.dataset.viral !== "true") {
+                        card.style.display = "none";
+                    } else if (
+                        filter === "money" &&
+                        card.dataset.money !== "true"
+                    ) {
+                        card.style.display = "none";
+                    } else if (
+                        filter === "easy" &&
+                        card.dataset.easy !== "true"
+                    ) {
+                        card.style.display = "none";
+                    }
+
+                    if (card.style.display !== "none" && filter !== "all") {
+                        setTimeout(() => card.classList.add("pulse"), 100);
+                    }
+                });
+            }
+
+            // Initial render avec délai pour s'assurer que tout est chargé
+            setTimeout(() => {
+                renderCards();
+
+                // Initialiser le filtre "Toutes" par défaut après un délai
+                setTimeout(() => {
+                    const defaultButton =
+                        document.querySelector(".filter-btn.active");
+                    if (defaultButton) {
+                        filterCards("all", defaultButton);
+                    }
+
+                    // Initialiser la recherche après que les cartes soient rendues
+                    initSearchFunctionality();
+                }, 200);
+            }, 100);
+
+            // Ajouter les event listeners aux boutons de filtrage
+            setTimeout(() => {
+                const filterButtons = document.querySelectorAll(".filter-btn");
+                filterButtons.forEach((button) => {
+                    button.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const filterType =
+                            this.getAttribute("data-filter") || "all";
+                        filterCards(filterType, this);
+                    });
+                });
+            }, 300);
+
+            // Fonction de recherche des thématiques
+            function initSearchFunctionality() {
+                const searchInput =
+                    document.getElementById("thematiques-search");
+                const resultsCount = document.getElementById(
+                    "search-results-count",
+                );
+                const thematiquesCards = document.querySelectorAll(".card");
+
+                if (!searchInput || !resultsCount || !thematiquesCards.length) {
+                    console.warn(
+                        "Search elements not found or no cards available",
+                    );
+                    return;
+                }
+
+                function filterThematiques(searchTerm) {
+                    const term = searchTerm.toLowerCase().trim();
+                    let visibleCount = 0;
+
+                    thematiquesCards.forEach((card) => {
+                        const title =
+                            card.querySelector(".card-title")?.textContent ||
+                            "";
+                        const description =
+                            card.querySelector(".card-description")
+                                ?.textContent || "";
+
+                        const searchableText =
+                            `${title} ${description}`.toLowerCase();
+
+                        if (searchableText.includes(term)) {
+                            card.style.display = "block";
+                            visibleCount++;
+                        } else {
+                            card.style.display = "none";
+                        }
+                    });
+
+                    // Mettre à jour le compteur
+                    const totalCount = 53; // Nombre affiché dans l'interface
+                    if (term === "") {
+                        resultsCount.textContent = `${totalCount} thématiques affichées`;
+                    } else {
+                        resultsCount.textContent = `${visibleCount} sur ${totalCount} thématiques`;
+                    }
+
+                    // Changer la couleur selon les résultats
+                    if (term !== "" && visibleCount === 0) {
+                        resultsCount.style.color = "#ff4757"; // Rouge si aucun résultat
+                    } else {
+                        resultsCount.style.color = "#01F38E"; // Vert sinon
+                    }
+                }
+
+                // Écouter les changements de recherche
+                searchInput.addEventListener("input", (e) => {
+                    filterThematiques(e.target.value);
+                });
+
+                // Effacer la recherche avec Échap
+                searchInput.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape") {
+                        searchInput.value = "";
+                        filterThematiques("");
+                        searchInput.blur();
+                    }
+                });
+            }
+
+            // Fonction d'analyse IA des thématiques
+            function initAIAnalyzer() {
+                const input = document.getElementById("thematique-input");
+                const analyzeBtn = document.getElementById("analyze-btn");
+                const charCount = document.getElementById("char-count");
+                const results = document.getElementById("ai-results");
+
+                if (!input || !analyzeBtn || !charCount || !results) {
+                    console.warn("AI analyzer elements not found");
+                    return;
+                }
+
+                // Gestionnaire du compteur de caractères
+                input.addEventListener("input", () => {
+                    const count = input.value.length;
+                    charCount.textContent = count;
+                    analyzeBtn.disabled = count === 0;
+                });
+
+                // Gestionnaire du bouton d'analyse
+                analyzeBtn.addEventListener("click", () => {
+                    const thematique = input.value.trim();
+                    if (!thematique) return;
+
+                    // Animation de chargement
+                    analyzeBtn.disabled = true;
+                    analyzeBtn.innerHTML = "⏳ Analyse en cours...";
+
+                    // Simulation d'analyse IA (remplacer par vrai appel API)
+                    setTimeout(() => {
+                        analyzeThematique(thematique);
+                        analyzeBtn.disabled = false;
+                        analyzeBtn.innerHTML = "🔍 Analyser ma thématique";
+                    }, 2000);
+                });
+            }
+
+            // Fonction d'appel API Claude
+            async function callClaudeAPI(thematique) {
+                const apiKey = import.meta.env.ANTHROPIC_API_KEY;
+                if (!apiKey) {
+                    throw new Error("Clé API Anthropic non configurée");
+                }
+
+                const prompt = `Tu es un expert en stratégie de contenu viral et monétisation sur les réseaux sociaux. Analyse cette thématique de contenu : "${thematique}"
+
+Donne-moi une analyse complète au format JSON avec cette structure exacte :
+{
+    "viral_rating": (nombre entre 1-5),
+    "viral_text": "description courte du potentiel viral",
+    "finance_rating": (nombre entre 1-5),
+    "finance_text": "description courte du potentiel financier",
+    "difficulty_rating": (nombre entre 1-5),
+    "difficulty_text": "description courte de la difficulté",
+    "insights": ["conseil personnalisé 1", "conseil personnalisé 2", "conseil personnalisé 3", "conseil personnalisé 4"],
+    "monetization_methods": ["méthode 1", "méthode 2", "méthode 3", "méthode 4", "méthode 5", "méthode 6"]
+}
+
+Sois précis, actionnable et réaliste. Considère les tendances actuelles des réseaux sociaux.`;
+
+                try {
+                    const response = await fetch('https://api.anthropic.com/v1/messages', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'x-api-key': apiKey,
+                            'anthropic-version': '2023-06-01'
+                        },
+                        body: JSON.stringify({
+                            model: 'claude-3-sonnet-20240229',
+                            max_tokens: 2000,
+                            temperature: 0.7,
+                            system: "Tu es un expert en stratégie de contenu viral et monétisation. Réponds uniquement en JSON valide.",
+                            messages: [
+                                {
+                                    role: 'user',
+                                    content: prompt
+                                }
+                            ]
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Erreur API: ${response.status} ${response.statusText}`);
+                    }
+
+                    const data = await response.json();
+                    const content = data.content[0].text;
+
+                    // Parser le JSON de la réponse
+                    try {
+                        const parsed = JSON.parse(content.trim());
+                        return parsed;
+                    } catch (parseError) {
+                        console.error('Erreur de parsing JSON:', parseError);
+                        console.log('Contenu brut:', content);
+                        throw new Error('Erreur de format dans la réponse de Claude');
+                    }
+
+                } catch (error) {
+                    console.error('Erreur API Claude:', error);
+                    throw error;
+                }
+            }
+
+            // Fonction d'analyse avec Claude
+            async function analyzeThematique(thematique) {
+                const results = document.getElementById("ai-results");
+                const viralStars = document.getElementById("viral-stars");
+                const financeStars = document.getElementById("finance-stars");
+                const difficultyBars = document.getElementById("difficulty-bars");
+                const insightsList = document.getElementById("insights-list");
+                const monetizationTags = document.getElementById("monetization-tags");
+
+                try {
+                    // Appeler l'API Claude
+                    const analysis = await callClaudeAPI(thematique);
+
+                    // Générer les étoiles virales
+                    viralStars.innerHTML = createStars(analysis.viral_rating).join("");
+                    document.getElementById("viral-text").textContent = analysis.viral_text;
+
+                    // Générer les étoiles financières
+                    financeStars.innerHTML = createStars(analysis.finance_rating).join("");
+                    document.getElementById("finance-text").textContent = analysis.finance_text;
+
+                    // Générer les barres de difficulté
+                    difficultyBars.innerHTML = createDifficultyBars(analysis.difficulty_rating).join("");
+                    document.getElementById("difficulty-text").textContent = analysis.difficulty_text;
+
+                    // Générer les insights
+                    const insights = analysis.insights || [];
+                    insightsList.innerHTML = insights
+                        .slice(0, 4) // Maximum 4 insights
+                        .map(insight => `<div class="insight-item">• ${insight}</div>`)
+                        .join("");
+
+                    // Générer les tags de monétisation
+                    const monetization = analysis.monetization_methods || [];
+                    monetizationTags.innerHTML = monetization
+                        .slice(0, 6) // Maximum 6 tags
+                        .map(tag => `<span class="monetization-tag">${tag}</span>`)
+                        .join("");
+
+                    // Afficher les résultats
+                    results.style.display = "block";
+                    results.scrollIntoView({
+                        behavior: "smooth",
+                        block: "nearest",
+                    });
+
+                } catch (error) {
+                    console.error('Erreur lors de l\'analyse:', error);
+
+                    // Afficher un message d'erreur à l'utilisateur
+                    const errorMessage = error.message.includes('API')
+                        ? 'Erreur de connexion avec l\'IA. Vérifiez votre clé API.'
+                        : 'Erreur lors de l\'analyse. Veuillez réessayer.';
+
+                    // Fallback vers l'ancienne simulation en cas d'erreur
+                    console.log('Utilisation du fallback de simulation');
+                    fallbackAnalyzeThematique(thematique);
+                }
+            }
+
+            // Fonction de fallback (simulation) en cas d'erreur API
+            function fallbackAnalyzeThematique(thematique) {
+                const results = document.getElementById('ai-results');
+                const viralStars = document.getElementById('viral-stars');
+                const financeStars = document.getElementById('finance-stars');
+                const difficultyBars = document.getElementById('difficulty-bars');
+                const insightsList = document.getElementById('insights-list');
+                const monetizationTags = document.getElementById('monetization-tags');
+
+                // Analyse basique basée sur des mots-clés (version simplifiée)
+                const lowerThematique = thematique.toLowerCase();
+
+                let viralRating = 3, financeRating = 3, difficultyRating = 3;
+                let viralText = "Potentiel correct", financeText = "Potentiel modéré", difficultyText = "Difficulté moyenne";
+
+                if (lowerThematique.includes('gaming') || lowerThematique.includes('tiktok')) {
+                    viralRating = 5; viralText = "Excellent potentiel viral";
+                }
+                if (lowerThematique.includes('finance') || lowerThematique.includes('business')) {
+                    financeRating = 5; financeText = "Excellent potentiel financier";
+                }
+                if (lowerThematique.includes('débutant') || lowerThematique.includes('simple')) {
+                    difficultyRating = 2; difficultyText = "Facile à débuter";
+                }
+
+                viralStars.innerHTML = createStars(viralRating).join("");
+                financeStars.innerHTML = createStars(financeRating).join("");
+                difficultyBars.innerHTML = createDifficultyBars(difficultyRating).join("");
+
+                document.getElementById("viral-text").textContent = viralText;
+                document.getElementById("finance-text").textContent = financeText;
+                document.getElementById("difficulty-text").textContent = difficultyText;
+
+                insightsList.innerHTML = `
+                    <div class="insight-item">• Cette analyse utilise un mode dégradé temporaire</div>
+                    <div class="insight-item">• Vérifiez votre configuration API pour des analyses complètes</div>
+                `;
+
+                monetizationTags.innerHTML = `<span class="monetization-tag">Sponsoring</span>`;
+
+                results.style.display = "block";
+                results.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+
+            // Fonction pour générer des insights personnalisés
+            function generateInsights(thematique, viral, finance, difficulty) {
+                const insights = [];
+                const lower = thematique.toLowerCase();
+
+                if (viral >= 4) {
+                    insights.push(
+                        "Ta thématique a un fort potentiel viral - pense aux tendances courtes !",
+                    );
+                }
+
+                if (finance >= 4) {
+                    insights.push(
+                        "Excellent potentiel de monétisation - plusieurs stratégies possibles",
+                    );
+                }
+
+                if (difficulty <= 2) {
+                    insights.push(
+                        "Idéal pour débuter : faible barrière à l'entrée",
+                    );
+                }
+
+                if (lower.includes("cuisine") || lower.includes("recette")) {
+                    insights.push(
+                        "Contenu visuel fort - privilégie les vidéos et photos appétissantes",
+                    );
+                }
+
+                if (lower.includes("finance") || lower.includes("business")) {
+                    insights.push(
+                        "Audience très qualifiée - conversion client élevée",
+                    );
+                }
+
+                if (lower.includes("gaming")) {
+                    insights.push(
+                        "Communauté engagée - pense aux lives et collaborations",
+                    );
+                }
+
+                if (insights.length === 0) {
+                    insights.push(
+                        "Thématique originale - différenciation concurrentielle",
+                    );
+                    insights.push(
+                        "Commence par analyser ta concurrence directe",
+                    );
+                    insights.push(
+                        "Teste différentes formes de contenu pour voir ce qui marche",
+                    );
+                }
+
+                return insights.slice(0, 4); // Maximum 4 insights
+            }
+
+            // Fonction pour générer des méthodes de monétisation
+            function generateMonetization(thematique) {
+                const tags = [];
+                const lower = thematique.toLowerCase();
+
+                // Tags de base
+                tags.push("Sponsoring");
+
+                if (
+                    lower.includes("cuisine") ||
+                    lower.includes("recette") ||
+                    lower.includes("food")
+                ) {
+                    tags.push(
+                        "Affiliation cuisine",
+                        "Livre de recettes",
+                        "Formation cuisine",
+                    );
+                }
+
+                if (lower.includes("finance") || lower.includes("business")) {
+                    tags.push("Formation payante", "Consulting", "Coaching");
+                }
+
+                if (lower.includes("fitness") || lower.includes("sport")) {
+                    tags.push(
+                        "Programme fitness",
+                        "Affiliation sport",
+                        "Partenariats marques",
+                    );
+                }
+
+                if (lower.includes("gaming")) {
+                    tags.push("Streaming", "Tournois", "Affiliation jeux");
+                }
+
+                if (lower.includes("lifestyle") || lower.includes("mode")) {
+                    tags.push(
+                        "Affiliation mode",
+                        "Partenariats marques",
+                        "Contenu sponsorisé",
+                    );
+                }
+
+                if (lower.includes("tech") || lower.includes("technologie")) {
+                    tags.push(
+                        "Affiliation tech",
+                        "Formation tech",
+                        "Consulting",
+                    );
+                }
+
+                if (lower.includes("voyage")) {
+                    tags.push(
+                        "Affiliation voyages",
+                        "Partenariats hotels",
+                        "Guides payants",
+                    );
+                }
+
+                // Toujours ajouter ces tags par défaut si pas assez
+                if (tags.length < 4) {
+                    if (!tags.includes("Creator Fund"))
+                        tags.push("Creator Fund");
+                    if (!tags.includes("Merch")) tags.push("Merch");
+                }
+
+                return tags.slice(0, 6); // Maximum 6 tags
+            }
+
+            // Initialiser l'analyseur IA après le rendu des cartes
+            setTimeout(() => {
+                initAIAnalyzer();
+            }, 500);
+
+            // Ajouter la classe au body pour les styles spécifiques
+            document.body.classList.add("thematiques-active");
+        </script>
+
+        <script client:load>
+            // Script de protection par mot de passe - côté client uniquement
+
+            // Vérifier l'état d'authentification avant d'afficher le modal
+            setTimeout(() => {
+                // Ne pas afficher le modal si l'utilisateur est déjà authentifié
+                if (document.body.classList.contains("auth-ok")) {
+                    return;
+                }
+
+                // Afficher le modal seulement si non authentifié
+                const modal = document.getElementById("password-modal");
+                if (modal) {
+                    modal.classList.add("open");
+                }
+            }, 100);
+
+            const PASSWORD = "Viral100k!";
+            const AUTH_KEY = "systeme_viral_auth";
+            const AUTH_EXPIRY_KEY = "systeme_viral_auth_expiry";
+            const AUTH_DURATION_DAYS = 30; // 30 jours
+
+            function initPasswordProtection() {
+                // Vérifier si déjà authentifié et non expiré
+                const isAuthenticated =
+                    localStorage.getItem(AUTH_KEY) === "true";
+                const authExpiry = localStorage.getItem(AUTH_EXPIRY_KEY);
+
+                if (isAuthenticated && authExpiry) {
+                    const expiryDate = new Date(parseInt(authExpiry));
+                    const now = new Date();
+
+                    // Vérifier si l'authentification n'a pas expiré
+                    if (now < expiryDate) {
+                        document.body.classList.add("auth-ok");
+                        return;
+                    } else {
+                        // Nettoyer les données expirées
+                        localStorage.removeItem(AUTH_KEY);
+                        localStorage.removeItem(AUTH_EXPIRY_KEY);
+                    }
+                }
+
+                // Afficher le modal
+                const modal = document.getElementById("password-modal");
+                if (modal) {
+                    modal.classList.add("open");
+                    document.body.style.overflow = "hidden";
+                }
+
+                // Focus sur l'input
+                setTimeout(() => {
+                    const input = document.getElementById("password-input");
+                    if (input) {
+                        input.focus();
+                    }
+                }, 100);
+            }
+
+            function validatePassword() {
+                const input = document.getElementById("password-input");
+                const error = document.getElementById("password-error");
+                const password = input.value.trim();
+
+                if (!password) {
+                    showError("Veuillez entrer un mot de passe");
+                    return false;
+                }
+
+                if (password !== PASSWORD) {
+                    showError("Mot de passe incorrect. Veuillez réessayer.");
+                    input.value = "";
+                    input.focus();
+                    return false;
+                }
+
+                // Authentification réussie - sauvegarder avec expiration de 30 jours
+                const expiryDate = new Date();
+                expiryDate.setDate(expiryDate.getDate() + AUTH_DURATION_DAYS);
+
+                localStorage.setItem(AUTH_KEY, "true");
+                localStorage.setItem(
+                    AUTH_EXPIRY_KEY,
+                    expiryDate.getTime().toString(),
+                );
+
+                hidePasswordModal();
+                return true;
+            }
+
+            function showError(message) {
+                const error = document.getElementById("password-error");
+                if (error) {
+                    error.textContent = message;
+                    error.classList.add("visible");
+
+                    setTimeout(() => {
+                        error.classList.remove("visible");
+                    }, 3000);
+                }
+            }
+
+            function hidePasswordModal() {
+                const modal = document.getElementById("password-modal");
+                const mainContent = document.querySelector(".thematiques-page");
+
+                if (modal) {
+                    modal.style.opacity = "0";
+                    setTimeout(() => {
+                        modal.classList.remove("open");
+                        document.body.style.overflow = "";
+                        document.body.classList.add("auth-ok");
+                    }, 300);
+                }
+
+                if (mainContent) {
+                    mainContent.style.display = "block";
+                    mainContent.style.opacity = "0";
+                    setTimeout(() => {
+                        mainContent.style.opacity = "1";
+                        mainContent.style.transition = "opacity 0.5s ease";
+                    }, 100);
+                }
+            }
+
+            // Attendre que le DOM soit chargé
+            document.addEventListener("DOMContentLoaded", function () {
+                // Bouton de soumission
+                const submitBtn = document.getElementById("password-submit");
+                if (submitBtn) {
+                    submitBtn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        validatePassword();
+                    });
+                }
+
+                // Input - validation à l'appui d'Enter
+                const input = document.getElementById("password-input");
+                if (input) {
+                    input.addEventListener("keypress", (e) => {
+                        if (e.key === "Enter") {
+                            e.preventDefault();
+                            validatePassword();
+                        }
+                    });
+                }
+
+                // Initialiser la protection
+                initPasswordProtection();
+            });
+        </script>
+    </div>
+</Layout>
