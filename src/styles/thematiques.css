@@ -88,6 +88,58 @@ body {
     box-shadow: 0 20px 60px rgba(1, 243, 142, 0.1) !important;
 }
 
+/* Header collapsible */
+.thematiques-page .info-header {
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+.thematiques-page .toggle-btn {
+    background: rgba(1, 243, 142, 0.1) !important;
+    border: 2px solid rgba(1, 243, 142, 0.3) !important;
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    color: #01F38E !important;
+    font-size: 1.2rem !important;
+}
+
+.thematiques-page .toggle-btn:hover {
+    background: rgba(1, 243, 142, 0.2) !important;
+    border-color: rgba(1, 243, 142, 0.5) !important;
+    transform: scale(1.05) !important;
+}
+
+.thematiques-page .toggle-icon {
+    transition: transform 0.3s ease !important;
+}
+
+.thematiques-page .toggle-icon.collapsed {
+    transform: rotate(-90deg) !important;
+}
+
+/* Contenu collapsible */
+.thematiques-page .info-content {
+    transition: all 0.3s ease !important;
+    overflow: hidden !important;
+}
+
+.thematiques-page .info-content.collapsed {
+    max-height: 0 !important;
+    opacity: 0 !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
 .thematiques-page .info-section::before {
     content: "" !important;
     position: absolute !important;
