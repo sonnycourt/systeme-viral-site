@@ -1282,6 +1282,9 @@ const thematiques = [
 
                     // Initialiser la recherche après que les cartes soient rendues
                     initSearchFunctionality();
+
+                    // Initialiser l'analyseur IA
+                    initAIAnalyzer();
                 }, 200);
             }, 100);
 
@@ -1388,7 +1391,7 @@ const thematiques = [
                 });
 
                 // Gestionnaire du bouton d'analyse
-                analyzeBtn.addEventListener("click", () => {
+                analyzeBtn.addEventListener("click", async () => {
                     const thematique = input.value.trim();
                     if (!thematique) return;
 
@@ -1396,12 +1399,16 @@ const thematiques = [
                     analyzeBtn.disabled = true;
                     analyzeBtn.innerHTML = "⏳ Analyse en cours...";
 
-                    // Simulation d'analyse IA (remplacer par vrai appel API)
-                    setTimeout(() => {
-                        analyzeThematique(thematique);
+                    try {
+                        // Appel de la vraie fonction d'analyse IA
+                        await analyzeThematique(thematique);
+                    } catch (error) {
+                        console.error("Erreur lors de l'analyse:", error);
+                    } finally {
+                        // Réactiver le bouton
                         analyzeBtn.disabled = false;
                         analyzeBtn.innerHTML = "🔍 Analyser ma thématique";
-                    }, 2000);
+                    }
                 });
             }
 
@@ -1429,29 +1436,34 @@ Donne-moi une analyse complète au format JSON avec cette structure exacte :
 Sois précis, actionnable et réaliste. Considère les tendances actuelles des réseaux sociaux.`;
 
                 try {
-                    const response = await fetch('https://api.anthropic.com/v1/messages', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'x-api-key': apiKey,
-                            'anthropic-version': '2023-06-01'
+                    const response = await fetch(
+                        "https://api.anthropic.com/v1/messages",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "x-api-key": apiKey,
+                                "anthropic-version": "2023-06-01",
+                            },
+                            body: JSON.stringify({
+                                model: "claude-3-sonnet-20240229",
+                                max_tokens: 2000,
+                                temperature: 0.7,
+                                system: "Tu es un expert en stratégie de contenu viral et monétisation. Réponds uniquement en JSON valide.",
+                                messages: [
+                                    {
+                                        role: "user",
+                                        content: prompt,
+                                    },
+                                ],
+                            }),
                         },
-                        body: JSON.stringify({
-                            model: 'claude-3-sonnet-20240229',
-                            max_tokens: 2000,
-                            temperature: 0.7,
-                            system: "Tu es un expert en stratégie de contenu viral et monétisation. Réponds uniquement en JSON valide.",
-                            messages: [
-                                {
-                                    role: 'user',
-                                    content: prompt
-                                }
-                            ]
-                        })
-                    });
+                    );
 
                     if (!response.ok) {
-                        throw new Error(`Erreur API: ${response.status} ${response.statusText}`);
+                        throw new Error(
+                            `Erreur API: ${response.status} ${response.statusText}`,
+                        );
                     }
 
                     const data = await response.json();
@@ -1462,13 +1474,14 @@ Sois précis, actionnable et réaliste. Considère les tendances actuelles des r
                         const parsed = JSON.parse(content.trim());
                         return parsed;
                     } catch (parseError) {
-                        console.error('Erreur de parsing JSON:', parseError);
-                        console.log('Contenu brut:', content);
-                        throw new Error('Erreur de format dans la réponse de Claude');
+                        console.error("Erreur de parsing JSON:", parseError);
+                        console.log("Contenu brut:", content);
+                        throw new Error(
+                            "Erreur de format dans la réponse de Claude",
+                        );
                     }
-
                 } catch (error) {
-                    console.error('Erreur API Claude:', error);
+                    console.error("Erreur API Claude:", error);
                     throw error;
                 }
             }
@@ -1478,38 +1491,55 @@ Sois précis, actionnable et réaliste. Considère les tendances actuelles des r
                 const results = document.getElementById("ai-results");
                 const viralStars = document.getElementById("viral-stars");
                 const financeStars = document.getElementById("finance-stars");
-                const difficultyBars = document.getElementById("difficulty-bars");
+                const difficultyBars =
+                    document.getElementById("difficulty-bars");
                 const insightsList = document.getElementById("insights-list");
-                const monetizationTags = document.getElementById("monetization-tags");
+                const monetizationTags =
+                    document.getElementById("monetization-tags");
 
                 try {
                     // Appeler l'API Claude
                     const analysis = await callClaudeAPI(thematique);
 
                     // Générer les étoiles virales
-                    viralStars.innerHTML = createStars(analysis.viral_rating).join("");
-                    document.getElementById("viral-text").textContent = analysis.viral_text;
+                    viralStars.innerHTML = createStars(
+                        analysis.viral_rating,
+                    ).join("");
+                    document.getElementById("viral-text").textContent =
+                        analysis.viral_text;
 
                     // Générer les étoiles financières
-                    financeStars.innerHTML = createStars(analysis.finance_rating).join("");
-                    document.getElementById("finance-text").textContent = analysis.finance_text;
+                    financeStars.innerHTML = createStars(
+                        analysis.finance_rating,
+                    ).join("");
+                    document.getElementById("finance-text").textContent =
+                        analysis.finance_text;
 
                     // Générer les barres de difficulté
-                    difficultyBars.innerHTML = createDifficultyBars(analysis.difficulty_rating).join("");
-                    document.getElementById("difficulty-text").textContent = analysis.difficulty_text;
+                    difficultyBars.innerHTML = createDifficultyBars(
+                        analysis.difficulty_rating,
+                    ).join("");
+                    document.getElementById("difficulty-text").textContent =
+                        analysis.difficulty_text;
 
                     // Générer les insights
                     const insights = analysis.insights || [];
                     insightsList.innerHTML = insights
                         .slice(0, 4) // Maximum 4 insights
-                        .map(insight => `<div class="insight-item">• ${insight}</div>`)
+                        .map(
+                            (insight) =>
+                                `<div class="insight-item">• ${insight}</div>`,
+                        )
                         .join("");
 
                     // Générer les tags de monétisation
                     const monetization = analysis.monetization_methods || [];
                     monetizationTags.innerHTML = monetization
                         .slice(0, 6) // Maximum 6 tags
-                        .map(tag => `<span class="monetization-tag">${tag}</span>`)
+                        .map(
+                            (tag) =>
+                                `<span class="monetization-tag">${tag}</span>`,
+                        )
                         .join("");
 
                     // Afficher les résultats
@@ -1518,53 +1548,73 @@ Sois précis, actionnable et réaliste. Considère les tendances actuelles des r
                         behavior: "smooth",
                         block: "nearest",
                     });
-
                 } catch (error) {
-                    console.error('Erreur lors de l\'analyse:', error);
+                    console.error("Erreur lors de l'analyse:", error);
 
                     // Afficher un message d'erreur à l'utilisateur
-                    const errorMessage = error.message.includes('API')
-                        ? 'Erreur de connexion avec l\'IA. Vérifiez votre clé API.'
-                        : 'Erreur lors de l\'analyse. Veuillez réessayer.';
+                    const errorMessage = error.message.includes("API")
+                        ? "Erreur de connexion avec l'IA. Vérifiez votre clé API."
+                        : "Erreur lors de l'analyse. Veuillez réessayer.";
 
                     // Fallback vers l'ancienne simulation en cas d'erreur
-                    console.log('Utilisation du fallback de simulation');
+                    console.log("Utilisation du fallback de simulation");
                     fallbackAnalyzeThematique(thematique);
                 }
             }
 
             // Fonction de fallback (simulation) en cas d'erreur API
             function fallbackAnalyzeThematique(thematique) {
-                const results = document.getElementById('ai-results');
-                const viralStars = document.getElementById('viral-stars');
-                const financeStars = document.getElementById('finance-stars');
-                const difficultyBars = document.getElementById('difficulty-bars');
-                const insightsList = document.getElementById('insights-list');
-                const monetizationTags = document.getElementById('monetization-tags');
+                const results = document.getElementById("ai-results");
+                const viralStars = document.getElementById("viral-stars");
+                const financeStars = document.getElementById("finance-stars");
+                const difficultyBars =
+                    document.getElementById("difficulty-bars");
+                const insightsList = document.getElementById("insights-list");
+                const monetizationTags =
+                    document.getElementById("monetization-tags");
 
                 // Analyse basique basée sur des mots-clés (version simplifiée)
                 const lowerThematique = thematique.toLowerCase();
 
-                let viralRating = 3, financeRating = 3, difficultyRating = 3;
-                let viralText = "Potentiel correct", financeText = "Potentiel modéré", difficultyText = "Difficulté moyenne";
+                let viralRating = 3,
+                    financeRating = 3,
+                    difficultyRating = 3;
+                let viralText = "Potentiel correct",
+                    financeText = "Potentiel modéré",
+                    difficultyText = "Difficulté moyenne";
 
-                if (lowerThematique.includes('gaming') || lowerThematique.includes('tiktok')) {
-                    viralRating = 5; viralText = "Excellent potentiel viral";
+                if (
+                    lowerThematique.includes("gaming") ||
+                    lowerThematique.includes("tiktok")
+                ) {
+                    viralRating = 5;
+                    viralText = "Excellent potentiel viral";
                 }
-                if (lowerThematique.includes('finance') || lowerThematique.includes('business')) {
-                    financeRating = 5; financeText = "Excellent potentiel financier";
+                if (
+                    lowerThematique.includes("finance") ||
+                    lowerThematique.includes("business")
+                ) {
+                    financeRating = 5;
+                    financeText = "Excellent potentiel financier";
                 }
-                if (lowerThematique.includes('débutant') || lowerThematique.includes('simple')) {
-                    difficultyRating = 2; difficultyText = "Facile à débuter";
+                if (
+                    lowerThematique.includes("débutant") ||
+                    lowerThematique.includes("simple")
+                ) {
+                    difficultyRating = 2;
+                    difficultyText = "Facile à débuter";
                 }
 
                 viralStars.innerHTML = createStars(viralRating).join("");
                 financeStars.innerHTML = createStars(financeRating).join("");
-                difficultyBars.innerHTML = createDifficultyBars(difficultyRating).join("");
+                difficultyBars.innerHTML =
+                    createDifficultyBars(difficultyRating).join("");
 
                 document.getElementById("viral-text").textContent = viralText;
-                document.getElementById("finance-text").textContent = financeText;
-                document.getElementById("difficulty-text").textContent = difficultyText;
+                document.getElementById("finance-text").textContent =
+                    financeText;
+                document.getElementById("difficulty-text").textContent =
+                    difficultyText;
 
                 insightsList.innerHTML = `
                     <div class="insight-item">• Cette analyse utilise un mode dégradé temporaire</div>
@@ -1574,7 +1624,10 @@ Sois précis, actionnable et réaliste. Considère les tendances actuelles des r
                 monetizationTags.innerHTML = `<span class="monetization-tag">Sponsoring</span>`;
 
                 results.style.display = "block";
-                results.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                results.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                });
             }
 
             // Fonction pour générer des insights personnalisés
