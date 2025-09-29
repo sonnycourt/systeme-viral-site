@@ -1686,7 +1686,7 @@ const thematiques = [
             function toggleInfoSection() {
                 const content = document.getElementById("info-content");
                 const toggleIcon = document.querySelector(".toggle-icon");
-                
+
                 if (content && toggleIcon) {
                     content.classList.toggle("collapsed");
                     toggleIcon.classList.toggle("collapsed");
@@ -1915,10 +1915,11 @@ const thematiques = [
                 // Event listener pour le toggle de la section info
                 const infoHeader = document.getElementById("info-header");
                 if (infoHeader) {
-                    infoHeader.addEventListener("click", function() {
+                    infoHeader.addEventListener("click", function () {
                         const content = document.getElementById("info-content");
-                        const toggleIcon = document.querySelector(".toggle-icon");
-                        
+                        const toggleIcon =
+                            document.querySelector(".toggle-icon");
+
                         if (content && toggleIcon) {
                             content.classList.toggle("collapsed");
                             toggleIcon.classList.toggle("collapsed");
