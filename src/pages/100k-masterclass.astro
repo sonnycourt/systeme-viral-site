@@ -10,25 +10,28 @@ import Layout from "../layouts/Layout.astro";
     <!-- Background effects -->
     <div class="gradient-bg"></div>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">SYSTÈME VIRAL</div>
-            <div class="session-info">
-                <div class="viewer-count">
-                    <div class="live-dot"></div>
-                    <span class="viewer-text"
-                        ><span id="viewerCount">847</span> participants</span
-                    >
-                </div>
-                <div class="timer" id="timer">00:00</div>
+    <!-- Page Title -->
+    <section class="page-title-section">
+        <div class="container">
+            <div class="title-badge">
+                <span class="badge-dot"></span>
+                <span>Session Live Exclusive</span>
             </div>
+            <h1 class="page-title">
+                Les <span class="title-highlight">3 secrets</span> pour créer ton
+                audience, obtenir tes premiers emails et générer des
+                <span class="title-highlight">revenus passifs</span>.
+            </h1>
+            <p class="title-subtitle">
+                Une masterclass d'exception pour transformer ta passion en
+                revenus récurrents
+            </p>
         </div>
-    </header>
+    </section>
 
     <!-- Main Content -->
     <div class="main-container">
-        <!-- Video Section -->
+        <!-- Left Column: Video + Info -->
         <div class="video-section">
             <div class="video-wrapper">
                 <iframe
@@ -42,48 +45,147 @@ import Layout from "../layouts/Layout.astro";
             </div>
 
             <div class="video-info">
-                <h1 class="video-title">
-                    Comment j'ai généré +100k€ en 1 mois avec des vidéos d'1
-                    minute
-                </h1>
                 <div class="video-chapters">
-                    <div class="chapter active" data-time="0">Introduction</div>
-                    <div class="chapter" data-time="300">Le Problème</div>
-                    <div class="chapter" data-time="600">Ma Méthode</div>
-                    <div class="chapter" data-time="1200">Cas Pratiques</div>
-                    <div class="chapter" data-time="1500">
-                        Votre Plan d'Action
+                    <div class="chapter active" data-time="0" data-chapter="0">
+                        L'introduction
+                    </div>
+                    <div class="chapter" data-time="300" data-chapter="1">
+                        La preuve
+                    </div>
+                    <div class="chapter" data-time="600" data-chapter="2">
+                        Le secret #1
+                    </div>
+                    <div class="chapter" data-time="900" data-chapter="3">
+                        Le secret #2
+                    </div>
+                    <div class="chapter" data-time="1200" data-chapter="4">
+                        Le secret #3
+                    </div>
+                    <div class="chapter" data-time="1500" data-chapter="5">
+                        Le mensonge
+                    </div>
+                    <div class="chapter" data-time="1800" data-chapter="6">
+                        La solution
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Chat Section -->
-        <div class="chat-section">
-            <div class="chat-header">
-                <div class="chat-title">💬 Discussion en Direct</div>
-                <div class="chat-status">
-                    <div class="live-dot"></div>
-                    <span>Replay interactif</span>
+        <!-- Right Column: Chat (same height as video) -->
+        <div class="chat-wrapper">
+            <div class="chat-section">
+                <!-- Onglets -->
+                <div class="chat-tabs">
+                    <button
+                        class="chat-tab active"
+                        id="publicTab"
+                        data-tab="public"
+                    >
+                        <div class="live-dot"></div>
+                        <span>Chat</span>
+                    </button>
+                    <button class="chat-tab" id="aiTab" data-tab="ai">
+                        <span>🎙️ Discussion</span>
+                        <span
+                            class="tab-notification hidden"
+                            id="aiNotification">1</span
+                        >
+                    </button>
+                </div>
+
+                <!-- Contenu onglet Discussion publique -->
+                <div class="tab-content active" id="publicContent">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="system-message join">
+                            <span id="welcomeMessage"></span>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-wrapper">
+                        <form class="chat-input-form" id="chatForm">
+                            <input
+                                type="text"
+                                class="chat-input"
+                                id="chatInput"
+                                placeholder="Posez votre question..."
+                                required
+                            />
+                            <button type="submit" class="chat-send">
+                                Envoyer
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Contenu onglet Animateur IA -->
+                <div class="tab-content" id="aiContent">
+                    <div class="ai-header">
+                        <div class="ai-avatar-large">🎙️</div>
+                        <div class="ai-title">
+                            <div class="ai-name-large">Animateur</div>
+                            <div class="ai-badge-live">EN DIRECT</div>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="aiMessages">
+                        <div class="system-message">
+                            Pose tes questions sur la masterclass, je suis là
+                            pour t'aider ! 🚀
+                        </div>
+                    </div>
+
+                    <div class="chat-input-wrapper">
+                        <form class="chat-input-form" id="aiChatForm">
+                            <input
+                                type="text"
+                                class="chat-input"
+                                id="aiChatInput"
+                                placeholder="Question à l'animateur..."
+                                required
+                            />
+                            <button type="submit" class="chat-send">
+                                Envoyer
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="chat-messages" id="chatMessages">
-                <div class="system-message join">La session a commencé</div>
-            </div>
-
-            <div class="chat-input-wrapper">
-                <form class="chat-input-form" id="chatForm">
-                    <input
-                        type="text"
-                        class="chat-input"
-                        id="chatInput"
-                        placeholder="Posez votre question..."
-                        required
-                    />
-                    <button type="submit" class="chat-send">Envoyer</button>
-                </form>
-            </div>
+        <!-- Timer Button -->
+        <div class="timer-section">
+            <button class="timer-button disabled" id="timerButton" disabled>
+                <div class="timer-glow"></div>
+                <div class="timer-content">
+                    <div class="timer-top">
+                        <span class="timer-label" id="timerLabel"
+                            >ACCÈS LIMITÉ</span
+                        >
+                    </div>
+                    <div class="timer-display">
+                        <span class="timer-countdown" id="timerCountdown"
+                            >12:00</span
+                        >
+                    </div>
+                    <div class="timer-cta" id="timerCTA">
+                        <span>Débloquer l'accès</span>
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M7.5 15L12.5 10L7.5 5"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                </div>
+            </button>
         </div>
     </div>
 
@@ -98,19 +200,19 @@ import Layout from "../layouts/Layout.astro";
 <style>
     /* Variables CSS adaptées au branding Système Viral */
     :root {
-        --bg: #0f172a;
-        --bg-card: #1e293b;
-        --bg-elevated: #334155;
+        --bg: #0a0a0a;
+        --bg-card: rgba(255, 255, 255, 0.02);
+        --bg-elevated: rgba(255, 255, 255, 0.05);
         --text: #ffffff;
-        --text-secondary: #94a3b8;
-        --text-muted: #64748b;
-        --accent: #10b981;
-        --accent-bright: #34d399;
-        --accent-glow: #6ee7b7;
-        --accent-dark: #059669;
-        --success: #10b981;
-        --border: rgba(148, 163, 184, 0.1);
-        --glow: rgba(16, 185, 129, 0.3);
+        --text-secondary: #aaa;
+        --text-muted: #888;
+        --accent: #00dc82;
+        --accent-bright: #00f593;
+        --accent-glow: #00dc82;
+        --accent-dark: #00b86b;
+        --success: #00dc82;
+        --border: rgba(255, 255, 255, 0.1);
+        --glow: rgba(0, 220, 130, 0.3);
         --danger: #ef4444;
     }
 
@@ -121,60 +223,160 @@ import Layout from "../layouts/Layout.astro";
         left: 0;
         width: 100%;
         height: 100%;
-        background: #0f172a;
+        background: #0a0a0a;
         z-index: -1;
     }
 
-    /* Header */
-    .header {
-        background: rgba(30, 41, 59, 0.9);
-        border-bottom: 1px solid var(--border);
-        padding: 16px 0;
-        position: fixed;
+    /* Page Title Section */
+    .page-title-section {
+        background: var(--bg);
+        padding: 80px 0 32px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .page-title-section::before {
+        content: "";
+        position: absolute;
         top: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-        backdrop-filter: blur(10px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 400px;
+        background: radial-gradient(
+            circle,
+            rgba(0, 220, 130, 0.1) 0%,
+            transparent 70%
+        );
+        pointer-events: none;
+        animation: titleGlow 8s ease-in-out infinite;
     }
 
-    .header-content {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 24px;
-        display: flex;
-        justify-content: space-between;
+    @keyframes titleGlow {
+        0%,
+        100% {
+            opacity: 0.3;
+            transform: translateX(-50%) scale(1);
+        }
+        50% {
+            opacity: 0.6;
+            transform: translateX(-50%) scale(1.2);
+        }
+    }
+
+    .title-badge {
+        display: inline-flex;
         align-items: center;
+        gap: 8px;
+        padding: 8px 20px;
+        background: rgba(0, 220, 130, 0.1);
+        border: 1px solid rgba(0, 220, 130, 0.3);
+        border-radius: 100px;
+        margin-bottom: 32px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--accent-bright);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        animation: fadeInDown 0.6s ease;
     }
 
-    .logo {
-        font-size: 16px;
-        font-weight: 800;
-        letter-spacing: -0.5px;
+    .badge-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+        animation: pulse 2s ease infinite;
+        box-shadow: 0 0 10px var(--accent);
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .page-title {
+        font-size: clamp(28px, 5vw, 48px);
+        font-weight: 900;
+        line-height: 1.2;
+        color: var(--text);
+        max-width: 900px;
+        margin: 0 auto 24px;
+        letter-spacing: -0.02em;
+        position: relative;
+        z-index: 1;
+        animation: fadeInUp 0.8s ease 0.2s both;
+        text-shadow: 0 2px 20px rgba(0, 220, 130, 0.2);
+    }
+
+    .title-highlight {
         background: linear-gradient(
             135deg,
             var(--accent) 0%,
+            var(--accent-bright) 50%,
             var(--accent-glow) 100%
         );
+        background-size: 200% 200%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        animation: gradientShift 3s ease infinite;
+        position: relative;
+        font-weight: 900;
+        display: inline-block;
     }
 
-    .session-info {
-        display: flex;
-        align-items: center;
-        gap: 24px;
+    @keyframes gradientShift {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
     }
 
-    .viewer-count {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 16px;
-        background: rgba(16, 185, 129, 0.1);
-        border: 1px solid rgba(16, 185, 129, 0.2);
-        border-radius: 100px;
+    .title-subtitle {
+        font-size: 18px;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+        animation: fadeInUp 1s ease 0.4s both;
+        position: relative;
+        z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+        .page-title {
+            font-size: 24px;
+            padding: 0 16px;
+            margin-bottom: 16px;
+        }
+
+        .page-title-section {
+            padding: 60px 0 32px;
+        }
+
+        .title-badge {
+            font-size: 11px;
+            padding: 6px 16px;
+            margin-bottom: 24px;
+        }
+
+        .title-subtitle {
+            font-size: 16px;
+            padding: 0 16px;
+        }
     }
 
     .live-dot {
@@ -197,35 +399,27 @@ import Layout from "../layouts/Layout.astro";
         }
     }
 
-    .viewer-text {
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--accent-bright);
-    }
-
-    .timer {
-        font-size: 14px;
-        color: var(--text-secondary);
-        font-weight: 500;
-        font-variant-numeric: tabular-nums;
-    }
-
     /* Main Layout */
     .main-container {
         max-width: 1400px;
-        margin: 80px auto 0;
+        margin: 40px auto 0;
         padding: 24px;
         display: grid;
         grid-template-columns: 1fr 380px;
+        grid-template-areas:
+            "video chat"
+            "video timer";
         gap: 24px;
-        min-height: calc(100vh - 80px);
+        align-items: start;
     }
 
     /* Video Section */
     .video-section {
+        grid-area: video;
         display: flex;
         flex-direction: column;
         gap: 20px;
+        align-items: start;
     }
 
     .video-wrapper {
@@ -234,6 +428,7 @@ import Layout from "../layouts/Layout.astro";
         border-radius: 16px;
         overflow: hidden;
         position: relative;
+        width: 100%;
         aspect-ratio: 16/9;
     }
 
@@ -287,9 +482,197 @@ import Layout from "../layouts/Layout.astro";
     .video-title {
         font-size: 20px;
         font-weight: 700;
-        margin-bottom: 12px;
+        margin-bottom: 20px;
         letter-spacing: -0.5px;
         color: var(--text);
+    }
+
+    /* Timer Section */
+    .timer-section {
+        grid-area: timer;
+        width: 100%;
+    }
+
+    .timer-button {
+        width: 100%;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 220, 130, 0.03) 0%,
+            rgba(0, 220, 130, 0.08) 50%,
+            rgba(0, 220, 130, 0.03) 100%
+        );
+        border: 2px solid rgba(0, 220, 130, 0.3);
+        border-radius: 24px;
+        padding: 32px 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 8px 32px rgba(0, 220, 130, 0.15);
+    }
+
+    .timer-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+            circle,
+            rgba(0, 220, 130, 0.15) 0%,
+            transparent 70%
+        );
+        animation: glowPulse 3s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    @keyframes glowPulse {
+        0%,
+        100% {
+            opacity: 0.5;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+    }
+
+    .timer-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        width: 100%;
+    }
+
+    .timer-top {
+        margin-bottom: 12px;
+    }
+
+    .timer-label {
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .timer-display {
+        margin-bottom: 20px;
+    }
+
+    .timer-countdown {
+        font-size: 56px;
+        font-weight: 900;
+        font-family: "SF Mono", "Monaco", "Courier New", monospace;
+        color: #fff;
+        letter-spacing: 4px;
+        transition: all 0.3s ease;
+        text-shadow: 0 0 40px rgba(0, 220, 130, 0.5);
+        display: block;
+        line-height: 1;
+    }
+
+    .timer-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 32px;
+        background: linear-gradient(
+            135deg,
+            var(--accent) 0%,
+            var(--accent-bright) 100%
+        );
+        color: #000;
+        border-radius: 100px;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0, 220, 130, 0.3);
+    }
+
+    .timer-cta svg {
+        transition: all 0.3s ease;
+    }
+
+    /* Hover states - actif seulement */
+    .timer-button:not(.disabled):hover {
+        transform: translateY(-8px);
+        border-color: var(--accent-bright);
+        background: linear-gradient(
+            135deg,
+            rgba(0, 220, 130, 0.08) 0%,
+            rgba(0, 220, 130, 0.15) 50%,
+            rgba(0, 220, 130, 0.08) 100%
+        );
+        box-shadow: 0 20px 60px rgba(0, 220, 130, 0.4);
+    }
+
+    .timer-button:not(.disabled):hover .timer-countdown {
+        text-shadow: 0 0 60px rgba(0, 220, 130, 0.8);
+    }
+
+    .timer-button:not(.disabled):hover .timer-cta {
+        background: linear-gradient(
+            135deg,
+            var(--accent-bright) 0%,
+            var(--accent-glow) 100%
+        );
+        box-shadow: 0 8px 32px rgba(0, 220, 130, 0.5);
+        transform: scale(1.05);
+    }
+
+    .timer-button:not(.disabled):hover .timer-cta svg {
+        transform: translateX(4px);
+    }
+
+    .timer-button:not(.disabled):active {
+        transform: translateY(-4px) scale(0.98);
+    }
+
+    /* État désactivé - Plus visible */
+    .timer-button.disabled {
+        cursor: not-allowed;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.03) 0%,
+            rgba(255, 255, 255, 0.06) 50%,
+            rgba(255, 255, 255, 0.03) 100%
+        );
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .timer-button.disabled .timer-glow {
+        display: none;
+    }
+
+    .timer-button.disabled .timer-countdown {
+        color: rgba(255, 255, 255, 0.7);
+        text-shadow: none;
+        font-size: 36px;
+    }
+
+    .timer-button.disabled .timer-label {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .timer-button.disabled .timer-cta {
+        opacity: 0.5;
+        background: rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: none;
     }
 
     .video-chapters {
@@ -299,25 +682,104 @@ import Layout from "../layouts/Layout.astro";
     }
 
     .chapter {
-        padding: 6px 14px;
+        padding: 8px 16px 12px;
         background: var(--bg-elevated);
         border: 1px solid var(--border);
-        border-radius: 8px;
-        font-size: 12px;
+        border-radius: 10px;
+        font-size: 13px;
         color: var(--text-secondary);
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        font-weight: 500;
+    }
+
+    .chapter::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(
+            90deg,
+            rgba(0, 220, 130, 0.15) 0%,
+            rgba(0, 220, 130, 0.08) 100%
+        );
+        transition: width 0.3s ease;
+        z-index: -1;
+    }
+
+    /* Barre de progression en bas du chapitre actif */
+    .chapter::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        width: 0%;
+        background: linear-gradient(
+            90deg,
+            var(--accent) 0%,
+            var(--accent-bright) 100%
+        );
+        box-shadow: 0 0 10px rgba(0, 220, 130, 0.6);
+        transition: none;
+        opacity: 0;
     }
 
     .chapter:hover {
         border-color: var(--accent);
         color: var(--accent);
+        transform: translateY(-2px);
     }
 
     .chapter.active {
-        background: rgba(16, 185, 129, 0.1);
+        background: rgba(0, 220, 130, 0.15);
         border-color: var(--accent);
+        color: var(--accent-bright);
+        box-shadow: 0 0 20px rgba(0, 220, 130, 0.3);
+        font-weight: 600;
+    }
+
+    .chapter.active::before {
+        width: 100%;
+        animation: shimmer 2s ease-in-out infinite;
+    }
+
+    .chapter.active::after {
+        opacity: 1;
+        width: var(--chapter-progress, 0%);
+    }
+
+    @keyframes shimmer {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+    }
+
+    .chapter.completed {
+        background: rgba(0, 220, 130, 0.05);
+        border-color: rgba(0, 220, 130, 0.3);
         color: var(--accent);
+    }
+
+    .chapter.completed::after {
+        opacity: 0 !important;
+        width: 0 !important;
+    }
+
+    /* Chat Wrapper */
+    .chat-wrapper {
+        grid-area: chat;
+        position: sticky;
+        top: 100px;
+        height: fit-content;
     }
 
     /* Chat Section */
@@ -327,33 +789,164 @@ import Layout from "../layouts/Layout.astro";
         border-radius: 16px;
         display: flex;
         flex-direction: column;
-        height: calc(100vh - 120px);
-        position: sticky;
-        top: 100px;
+        height: 520px;
+        max-height: 520px;
+        overflow: hidden;
     }
 
-    .chat-header {
-        padding: 16px 20px;
-        border-bottom: 1px solid var(--border);
+    /* Onglets du chat */
+    .chat-tabs {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        border-bottom: 1px solid var(--border);
+        background: var(--bg);
     }
 
-    .chat-title {
-        font-size: 14px;
+    .chat-tab {
+        flex: 1;
+        padding: 14px 16px;
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid transparent;
+        color: var(--text-secondary);
+        font-size: 13px;
         font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        position: relative;
+    }
+
+    .chat-tab:hover {
+        background: rgba(255, 255, 255, 0.03);
         color: var(--text);
     }
 
-    .chat-status {
+    .chat-tab.active {
+        color: var(--accent-bright);
+        border-bottom-color: var(--accent);
+        background: rgba(0, 220, 130, 0.05);
+    }
+
+    .tab-notification {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 20px;
+        height: 20px;
+        background: #ef4444;
+        color: white;
+        border-radius: 50%;
+        font-size: 11px;
+        font-weight: 700;
         display: flex;
         align-items: center;
-        gap: 6px;
-        font-size: 12px;
-        color: var(--text-secondary);
+        justify-content: center;
+        animation: notifPulse 2s ease-in-out infinite;
+        box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+    }
+
+    .tab-notification.hidden {
+        display: none;
+    }
+
+    @keyframes notifPulse {
+        0%,
+        100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+    }
+
+    /* Contenu des onglets */
+    .tab-content {
+        display: none;
+        flex-direction: column;
+        flex: 1;
+        overflow: hidden;
+    }
+
+    .tab-content.active {
+        display: flex;
+    }
+
+    /* Header de l'onglet IA */
+    .ai-header {
+        padding: 20px;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 220, 130, 0.1) 0%,
+            rgba(0, 220, 130, 0.05) 100%
+        );
+        border-bottom: 1px solid rgba(0, 220, 130, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .ai-avatar-large {
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(
+            135deg,
+            var(--accent) 0%,
+            var(--accent-bright) 100%
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        box-shadow: 0 0 30px rgba(0, 220, 130, 0.5);
+        animation: avatarGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes avatarGlow {
+        0%,
+        100% {
+            box-shadow: 0 0 30px rgba(0, 220, 130, 0.5);
+        }
+        50% {
+            box-shadow: 0 0 40px rgba(0, 220, 130, 0.7);
+        }
+    }
+
+    .ai-title {
+        flex: 1;
+    }
+
+    .ai-name-large {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--accent-bright);
+        margin-bottom: 4px;
+    }
+
+    .ai-badge-live {
+        display: inline-block;
+        padding: 3px 8px;
+        background: rgba(220, 38, 38, 0.15);
+        color: #ef4444;
+        border: 1px solid rgba(220, 38, 38, 0.3);
+        border-radius: 6px;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        animation: livePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes livePulse {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.7;
+        }
     }
 
     .chat-messages {
@@ -413,93 +1006,104 @@ import Layout from "../layouts/Layout.astro";
         color: var(--accent-bright);
     }
 
-    /* Couleurs différentes pour les noms */
+    /* Couleurs cohérentes avec le style vert néon du site */
     .message-author.color-1 {
-        color: #34d399 !important;
+        color: #00dc82 !important; /* Accent principal */
     }
     .message-author.color-2 {
-        color: #60a5fa !important;
+        color: #00f593 !important; /* Accent bright */
     }
     .message-author.color-3 {
-        color: #f472b6 !important;
+        color: #10b981 !important; /* Emerald */
     }
     .message-author.color-4 {
-        color: #a78bfa !important;
+        color: #34d399 !important; /* Emerald light */
     }
     .message-author.color-5 {
-        color: #fb7185 !important;
+        color: #6ee7b7 !important; /* Emerald lighter */
     }
     .message-author.color-6 {
-        color: #4ade80 !important;
+        color: #14b8a6 !important; /* Teal */
     }
     .message-author.color-7 {
-        color: #fbbf24 !important;
+        color: #2dd4bf !important; /* Teal light */
     }
     .message-author.color-8 {
-        color: #38bdf8 !important;
+        color: #5eead4 !important; /* Teal lighter */
     }
     .message-author.color-9 {
-        color: #c084fc !important;
+        color: #22c55e !important; /* Green */
     }
     .message-author.color-10 {
-        color: #fb923c !important;
+        color: #4ade80 !important; /* Green light */
     }
     .message-author.color-11 {
-        color: #86efac !important;
+        color: #86efac !important; /* Green lighter */
     }
     .message-author.color-12 {
-        color: #93c5fd !important;
+        color: #06b6d4 !important; /* Cyan */
     }
     .message-author.color-13 {
-        color: #f9a8d4 !important;
+        color: #22d3ee !important; /* Cyan light */
     }
     .message-author.color-14 {
-        color: #a3e635 !important;
+        color: #67e8f9 !important; /* Cyan lighter */
     }
     .message-author.color-15 {
-        color: #fde047 !important;
+        color: #0891b2 !important; /* Cyan dark */
     }
     .message-author.color-16 {
-        color: #7dd3fc !important;
+        color: #84cc16 !important; /* Lime */
     }
     .message-author.color-17 {
-        color: #fda4af !important;
+        color: #a3e635 !important; /* Lime light */
     }
     .message-author.color-18 {
-        color: #d8b4fe !important;
+        color: #bef264 !important; /* Lime lighter */
     }
     .message-author.color-19 {
-        color: #fed7aa !important;
+        color: #00b86b !important; /* Accent dark */
     }
     .message-author.color-20 {
-        color: #6ee7b7 !important;
+        color: #10b981 !important; /* Emerald variant */
     }
     .message-author.color-user {
         color: var(--accent) !important;
     }
 
     .message-badge {
-        padding: 2px 6px;
-        background: rgba(16, 185, 129, 0.1);
-        color: var(--accent);
-        border-radius: 4px;
-        font-size: 10px;
-        font-weight: 700;
+        padding: 3px 8px;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 220, 130, 0.2) 0%,
+            rgba(0, 245, 147, 0.15) 100%
+        );
+        color: var(--accent-bright);
+        border: 1px solid rgba(0, 220, 130, 0.3);
+        border-radius: 6px;
+        font-size: 9px;
+        font-weight: 800;
         text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 0 10px rgba(0, 220, 130, 0.2);
+        animation: badgePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+        0%,
+        100% {
+            box-shadow: 0 0 10px rgba(0, 220, 130, 0.2);
+        }
+        50% {
+            box-shadow: 0 0 15px rgba(0, 220, 130, 0.4);
+        }
     }
 
     .message-content {
         font-size: 14px;
         color: var(--text-secondary);
         line-height: 1.5;
-    }
-
-    .message-time {
-        font-size: 9px;
-        color: var(--text-muted);
-        margin: 0;
-        opacity: 0.45;
-        font-style: italic;
+        font-weight: 400;
     }
 
     /* System messages */
@@ -625,33 +1229,36 @@ import Layout from "../layouts/Layout.astro";
     }
 
     /* Responsive */
+    /* Tablette et desktop moyen (769px - 1024px) */
     @media (max-width: 1024px) {
         .main-container {
             grid-template-columns: 1fr;
+            grid-template-areas:
+                "video"
+                "timer"
+                "chat";
+            gap: 24px;
+        }
+
+        .chat-wrapper {
+            position: static;
         }
 
         .chat-section {
-            height: 400px;
-            position: static;
+            height: 520px;
         }
     }
 
+    /* Mobile (≤768px) */
     @media (max-width: 768px) {
-        .header-content {
-            padding: 0 16px;
-        }
-
         .main-container {
             padding: 16px;
-            margin-top: 70px;
-        }
-
-        .session-info {
-            gap: 16px;
-        }
-
-        .viewer-count {
-            padding: 4px 12px;
+            margin-top: 24px;
+            grid-template-areas:
+                "video"
+                "timer"
+                "chat";
+            gap: 20px;
         }
 
         .video-title {
@@ -659,8 +1266,55 @@ import Layout from "../layouts/Layout.astro";
         }
 
         .chapter {
+            font-size: 12px;
+            padding: 6px 12px 10px;
+        }
+
+        .timer-button {
+            padding: 28px 24px;
+        }
+
+        .timer-label {
             font-size: 11px;
-            padding: 4px 10px;
+            letter-spacing: 2px;
+        }
+
+        .timer-countdown {
+            font-size: 48px;
+            letter-spacing: 4px;
+        }
+
+        .timer-display {
+            margin-bottom: 20px;
+        }
+
+        .timer-cta {
+            padding: 14px 28px;
+            font-size: 14px;
+        }
+
+        .timer-cta svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .chat-tab {
+            font-size: 12px;
+            padding: 12px 12px;
+        }
+
+        .ai-avatar-large {
+            width: 48px;
+            height: 48px;
+            font-size: 24px;
+        }
+
+        .ai-name-large {
+            font-size: 14px;
+        }
+
+        .ai-header {
+            padding: 16px;
         }
     }
 </style>
@@ -670,220 +1324,245 @@ import Layout from "../layouts/Layout.astro";
     const scheduledMessages = [
         {
             time: 5,
-            author: "Marie L.",
-            message: "Super excité de voir ça !",
+            author: "Marie",
+            message: "Super excité !",
             badge: null,
         },
-        { time: 15, type: "system", message: "Pierre D. vient de rejoindre" },
         {
             time: 30,
-            author: "Thomas B.",
-            message: "Wow, +100k€ en 1 mois? 🤯",
+            author: "Thomas",
+            message: "Wow 🤯",
             badge: null,
         },
         {
-            time: 45,
-            author: "Sophie M.",
-            message: "J'ai hâte de voir la méthode",
-            badge: "VIP",
-        },
-        { time: 60, type: "reaction", emoji: "🔥" },
-        {
-            time: 90,
-            author: "Lucas R.",
-            message: "Est-ce que ça marche pour tous les niches?",
+            time: 60,
+            author: "Sophie",
+            message: "Trop bien",
             badge: null,
         },
+        { time: 90, type: "reaction", emoji: "🔥" },
         {
             time: 120,
-            author: "Emma K.",
-            message: "Je prends des notes 📝",
+            author: "Lucas",
+            message: "Merci !",
             badge: null,
         },
-        { time: 150, type: "reaction", emoji: "💰" },
         {
             time: 180,
-            author: "Alex V.",
-            message: "C'est exactement ce dont j'avais besoin!",
-            badge: "VIP",
-        },
-        { time: 210, type: "system", message: "Sarah T. vient de rejoindre" },
-        {
-            time: 240,
-            author: "Julie P.",
-            message: "Quelle plateforme tu recommandes pour commencer?",
+            author: "Emma",
+            message: "Top 💎",
             badge: null,
         },
+        { time: 240, type: "reaction", emoji: "💰" },
         {
             time: 300,
-            author: "Marc D.",
-            message: "La qualité de la vidéo c'est important?",
+            author: "Alex",
+            message: "Génial",
             badge: null,
         },
-        { time: 360, type: "reaction", emoji: "🚀" },
         {
             time: 420,
-            author: "Clara F.",
-            message: "OMG cette astuce! 🤯",
-            badge: "VIP",
-        },
-        {
-            time: 480,
-            author: "Paul H.",
-            message: "Combien de temps ça prend par jour?",
+            author: "Julie",
+            message: "Incroyable",
             badge: null,
         },
-        { time: 540, type: "system", message: "150 nouveaux participants!" },
+        { time: 540, type: "reaction", emoji: "🚀" },
         {
             time: 600,
-            author: "Nina S.",
-            message: "Je vais tester dès demain",
-            badge: null,
-        },
-        { time: 660, type: "reaction", emoji: "🔥" },
-        {
-            time: 720,
-            author: "David L.",
-            message: "Tu utilises quel logiciel de montage?",
-            badge: null,
-        },
-        {
-            time: 800,
-            author: "Léa M.",
-            message: "Cette méthode est DINGUE",
-            badge: "VIP",
-        },
-        {
-            time: 900,
-            author: "Tom W.",
-            message: "Merci pour ces conseils en or!",
-            badge: null,
-        },
-        { time: 1000, type: "reaction", emoji: "💎" },
-        {
-            time: 1100,
-            author: "Alice B.",
-            message: "J'ai déjà des résultats avec ta méthode!",
-            badge: "VIP",
-        },
-        {
-            time: 1200,
-            author: "Max G.",
-            message: "Le mindset c'est 80% du game",
-            badge: null,
-        },
-        { time: 1300, type: "system", message: "Plus de 1000 participants!" },
-        {
-            time: 1400,
-            author: "Chloé R.",
-            message: "Quand est-ce qu'on peut rejoindre la formation?",
-            badge: null,
-        },
-        { time: 1500, type: "reaction", emoji: "🎯" },
-        {
-            time: 1600,
-            author: "Louis K.",
-            message: "Shut up and take my money! 💸",
-            badge: "VIP",
-        },
-        {
-            time: 1700,
-            author: "Eva J.",
-            message: "J'ai pris 10 pages de notes",
-            badge: null,
-        },
-        {
-            time: 1800,
-            author: "Hugo N.",
-            message: "C'est le meilleur webinaire que j'ai vu",
+            author: "Marc",
+            message: "J'adore",
             badge: null,
         },
     ];
 
-    // Video player state
-    let videoStartTime = Date.now();
-    let videoPlaying = false;
-    let currentVideoTime = 0;
-    let processedMessages = new Set();
+    // Chat functions
+    const chatMessages = document.getElementById("chatMessages");
 
-    // Viewer count animation
-    let viewerCount = 847;
-    const viewerCountElement = document.getElementById("viewerCount");
+    // Récupérer le prénom de l'utilisateur depuis localStorage
+    const userFirstName = localStorage.getItem("userFirstName") || "Vous";
 
-    setInterval(() => {
-        const change = Math.floor(Math.random() * 21) - 10;
-        viewerCount = Math.max(800, Math.min(1200, viewerCount + change));
-        if (viewerCountElement) {
-            viewerCountElement.textContent = viewerCount.toString();
+    // Display initial messages on load
+    window.addEventListener("DOMContentLoaded", () => {
+        // Message de bienvenue personnalisé
+        const welcomeMessage = document.getElementById("welcomeMessage");
+        if (welcomeMessage) {
+            if (userFirstName !== "Vous") {
+                welcomeMessage.textContent = `Bienvenue ${userFirstName} ! La session a commencé`;
+            } else {
+                welcomeMessage.textContent = "La session a commencé";
+            }
         }
-    }, 5000);
 
-    // Timer
-    const timerElement = document.getElementById("timer");
-    setInterval(() => {
-        const elapsed = Math.floor((Date.now() - videoStartTime) / 1000);
-        const minutes = Math.floor(elapsed / 60)
-            .toString()
-            .padStart(2, "0");
-        const seconds = (elapsed % 60).toString().padStart(2, "0");
-        if (timerElement) {
-            timerElement.textContent = `${minutes}:${seconds}`;
-        }
-        currentVideoTime = elapsed;
-
-        // Check for scheduled messages
-        scheduledMessages.forEach((msg, index) => {
-            if (msg.time <= elapsed && !processedMessages.has(index)) {
-                processedMessages.add(index);
-                if (msg.type === "system") {
-                    addSystemMessage(
-                        msg.message || "",
-                        msg.type === "system" &&
-                            msg.message?.includes("rejoint"),
-                    );
-                } else if (msg.type === "reaction") {
-                    showFloatingReaction(msg.emoji || "🔥");
-                } else {
+        scheduledMessages.forEach((msg) => {
+            if (msg.type !== "reaction" && msg.type !== "system") {
+                setTimeout(() => {
                     addChatMessage(
                         msg.author || "",
                         msg.message || "",
                         msg.badge || null,
                     );
-                }
+                }, Math.random() * 2000);
             }
         });
-    }, 1000);
 
-    // Chat functions
-    const chatMessages = document.getElementById("chatMessages");
+        // Initialize timer
+        initializeTimer();
 
-    // Palette cohérente avec le site (20 couleurs)
+        // Initialize progress bar
+        initializeProgressBar();
+    });
+
+    // Timer functionality
+    function initializeTimer() {
+        let timeLeft = 5; // 5 secondes pour test (au lieu de 12 * 60)
+        const timerElement = document.getElementById("timerCountdown");
+        const timerButton = document.getElementById("timerButton");
+        const timerLabel = document.getElementById("timerLabel");
+
+        if (!timerElement || !timerButton || !timerLabel) return;
+
+        const updateTimer = () => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+
+            timerElement.textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+            if (timeLeft <= 0) {
+                timerElement.textContent = "DÉBLOQUÉ";
+                clearInterval(timerInterval);
+
+                // Activer le bouton et changer le texte
+                timerButton.classList.remove("disabled");
+                timerButton.removeAttribute("disabled");
+                timerLabel.textContent = "OFFRE DISPONIBLE";
+
+                // Ajouter le lien de redirection
+                timerButton.addEventListener("click", () => {
+                    window.location.href = "/offre-speciale";
+                });
+            } else {
+                timeLeft--;
+            }
+        };
+
+        updateTimer(); // Initial display
+        const timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    // Progress Bar functionality - Chapitres animés
+    function initializeProgressBar() {
+        const chapters = document.querySelectorAll(".chapter");
+        const totalDuration = 12 * 60 * 1000; // 12 minutes en millisecondes
+        const startTime = Date.now();
+
+        // Définir les timestamps des chapitres (en secondes)
+        const chapterTimestamps = [
+            0, // 0:00 - L'introduction
+            102.86, // ~1:43 - La preuve (1/7 de 12min)
+            205.71, // ~3:26 - Le secret #1 (2/7 de 12min)
+            308.57, // ~5:09 - Le secret #2 (3/7 de 12min)
+            411.43, // ~6:51 - Le secret #3 (4/7 de 12min)
+            514.29, // ~8:34 - Le mensonge (5/7 de 12min)
+            617.14, // ~10:17 - La solution (6/7 de 12min)
+        ];
+
+        function updateProgress() {
+            const elapsed = Date.now() - startTime;
+            const currentSecond = elapsed / 1000;
+
+            chapterTimestamps.forEach((timestamp, index) => {
+                const nextTimestamp =
+                    chapterTimestamps[index + 1] || totalDuration / 1000;
+
+                if (
+                    currentSecond >= timestamp &&
+                    currentSecond < nextTimestamp
+                ) {
+                    // Chapitre actif - brille et pulse
+                    chapters[index]?.classList.add("active");
+                    chapters[index]?.classList.remove("completed");
+
+                    // Calculer le pourcentage de progression dans ce chapitre
+                    const chapterDuration = nextTimestamp - timestamp;
+                    const chapterElapsed = currentSecond - timestamp;
+                    const chapterProgress = Math.min(
+                        (chapterElapsed / chapterDuration) * 100,
+                        100,
+                    );
+
+                    // Mettre à jour la barre de progression du chapitre
+                    const chapter = chapters[index] as HTMLElement;
+                    if (chapter) {
+                        chapter.style.setProperty(
+                            "--chapter-progress",
+                            `${chapterProgress}%`,
+                        );
+                    }
+                } else if (currentSecond >= nextTimestamp) {
+                    // Chapitre complété - reste vert avec check
+                    chapters[index]?.classList.remove("active");
+                    chapters[index]?.classList.add("completed");
+
+                    // Reset la barre de progression
+                    const chapter = chapters[index] as HTMLElement;
+                    if (chapter) {
+                        chapter.style.setProperty("--chapter-progress", "0%");
+                    }
+                } else {
+                    // Chapitre non atteint - gris
+                    chapters[index]?.classList.remove("active", "completed");
+
+                    // Reset la barre de progression
+                    const chapter = chapters[index] as HTMLElement;
+                    if (chapter) {
+                        chapter.style.setProperty("--chapter-progress", "0%");
+                    }
+                }
+            });
+
+            // Continuer l'animation si pas terminé
+            if (elapsed < totalDuration) {
+                requestAnimationFrame(updateProgress);
+            }
+        }
+
+        // Démarrer l'animation
+        requestAnimationFrame(updateProgress);
+    }
+
+    // Palette cohérente avec le style vert néon (20 couleurs)
     const authorPalette = [
-        "#34d399",
-        "#60a5fa",
-        "#f472b6",
-        "#a78bfa",
-        "#fb7185",
-        "#4ade80",
-        "#fbbf24",
-        "#38bdf8",
-        "#c084fc",
-        "#fb923c",
-        "#86efac",
-        "#93c5fd",
-        "#f9a8d4",
-        "#a3e635",
-        "#fde047",
-        "#7dd3fc",
-        "#fda4af",
-        "#d8b4fe",
-        "#fed7aa",
-        "#6ee7b7",
+        "#00dc82", // Accent principal
+        "#00f593", // Accent bright
+        "#10b981", // Emerald
+        "#34d399", // Emerald light
+        "#6ee7b7", // Emerald lighter
+        "#14b8a6", // Teal
+        "#2dd4bf", // Teal light
+        "#5eead4", // Teal lighter
+        "#22c55e", // Green
+        "#4ade80", // Green light
+        "#86efac", // Green lighter
+        "#06b6d4", // Cyan
+        "#22d3ee", // Cyan light
+        "#67e8f9", // Cyan lighter
+        "#0891b2", // Cyan dark
+        "#84cc16", // Lime
+        "#a3e635", // Lime light
+        "#bef264", // Lime lighter
+        "#00b86b", // Accent dark
+        "#10b981", // Emerald variant
     ];
 
     // Renvoie une couleur hex (ou var) selon un hash du nom
     function getAuthorColor(author: string): string {
-        if (author === "Vous") return "var(--accent)";
+        // Couleur spéciale pour l'animateur IA
+        if (author === "Animateur") return "var(--accent-bright)";
+
+        // Utiliser la couleur accent pour l'utilisateur (son prénom ou "Vous")
+        if (author === "Vous" || author === userFirstName)
+            return "var(--accent)";
+
         let hash = 0;
         for (let i = 0; i < author.length; i++) {
             hash = ((hash << 5) - hash + author.charCodeAt(i)) & 0xffffffff;
@@ -907,7 +1586,6 @@ import Layout from "../layouts/Layout.astro";
 					${author}
 					${badge ? `<span class="message-badge">${badge}</span>` : ""}
 				</div>
-				<div class="message-time">il y a quelques secondes</div>
 			</div>
 			<div class="message-content">${message}</div>
 		`;
@@ -924,7 +1602,92 @@ import Layout from "../layouts/Layout.astro";
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    // User chat input
+    // Gestion des onglets
+    const publicTab = document.getElementById("publicTab");
+    const aiTab = document.getElementById("aiTab");
+    const publicContent = document.getElementById("publicContent");
+    const aiContent = document.getElementById("aiContent");
+    const aiNotification = document.getElementById("aiNotification");
+    const aiMessagesContainer = document.getElementById("aiMessages");
+    let aiNotificationCount = 0;
+
+    // Fonction pour changer d'onglet
+    function switchTab(tabName: string) {
+        if (tabName === "public") {
+            publicTab?.classList.add("active");
+            aiTab?.classList.remove("active");
+            publicContent?.classList.add("active");
+            aiContent?.classList.remove("active");
+        } else if (tabName === "ai") {
+            publicTab?.classList.remove("active");
+            aiTab?.classList.add("active");
+            publicContent?.classList.remove("active");
+            aiContent?.classList.add("active");
+
+            // Masquer la notification quand on ouvre l'onglet
+            if (aiNotification) {
+                aiNotification.classList.add("hidden");
+                aiNotificationCount = 0;
+            }
+        }
+    }
+
+    // Event listeners pour les onglets
+    if (publicTab) {
+        publicTab.addEventListener("click", () => switchTab("public"));
+    }
+    if (aiTab) {
+        aiTab.addEventListener("click", () => switchTab("ai"));
+    }
+
+    // Fonction pour afficher une réponse IA
+    function showAIResponse(response: string, author: string = "Animateur") {
+        if (!aiMessagesContainer) return;
+
+        // Ajouter le message de l'IA dans l'onglet Animateur
+        const messageDiv = document.createElement("div");
+        messageDiv.className = "chat-message";
+        messageDiv.innerHTML = `
+            <div class="message-header">
+                <div class="message-author" style="color: var(--accent-bright);">
+                    ${author}
+                    <span class="message-badge">LIVE</span>
+                </div>
+            </div>
+            <div class="message-content">${response}</div>
+        `;
+        aiMessagesContainer.appendChild(messageDiv);
+        aiMessagesContainer.scrollTop = aiMessagesContainer.scrollHeight;
+
+        // Si on n'est pas sur l'onglet IA, afficher notification
+        if (!aiTab?.classList.contains("active")) {
+            aiNotificationCount++;
+            if (aiNotification) {
+                aiNotification.textContent = aiNotificationCount.toString();
+                aiNotification.classList.remove("hidden");
+            }
+        }
+    }
+
+    // Fonction pour afficher message utilisateur dans l'onglet IA
+    function showUserAIMessage(message: string) {
+        if (!aiMessagesContainer) return;
+
+        const messageDiv = document.createElement("div");
+        messageDiv.className = "chat-message";
+        messageDiv.innerHTML = `
+            <div class="message-header">
+                <div class="message-author" style="color: var(--accent);">
+                    ${userFirstName}
+                </div>
+            </div>
+            <div class="message-content">${message}</div>
+        `;
+        aiMessagesContainer.appendChild(messageDiv);
+        aiMessagesContainer.scrollTop = aiMessagesContainer.scrollHeight;
+    }
+
+    // Chat public - juste afficher le message
     const chatForm = document.getElementById("chatForm");
     if (chatForm) {
         chatForm.addEventListener("submit", (e) => {
@@ -935,29 +1698,21 @@ import Layout from "../layouts/Layout.astro";
             if (!input) return;
             const message = input.value.trim();
             if (message) {
-                addChatMessage("Vous", message, null);
+                // Afficher le message dans le chat public
+                addChatMessage(userFirstName, message, null);
                 input.value = "";
 
-                // Simulate response
+                // Simulation de réponses des autres participants
                 setTimeout(
                     () => {
-                        const responses = [
-                            "Excellente question!",
-                            "Je me posais la même chose",
-                            "Trop bien! 🔥",
-                            "+1 pour cette question",
-                            "Hâte de tester ça!",
-                        ];
+                        const responses = ["Top!", "+1", "🔥", "Merci", "Cool"];
                         const randomResponse =
                             responses[
                                 Math.floor(Math.random() * responses.length)
                             ];
-                        const randomName = [
-                            "Julie P.",
-                            "Marc D.",
-                            "Sophie L.",
-                            "Alex T.",
-                        ][Math.floor(Math.random() * 4)];
+                        const randomName = ["Julie", "Marc", "Sophie", "Alex"][
+                            Math.floor(Math.random() * 4)
+                        ];
                         addChatMessage(randomName, randomResponse);
                     },
                     2000 + Math.random() * 3000,
@@ -966,81 +1721,92 @@ import Layout from "../layouts/Layout.astro";
         });
     }
 
-    // Floating reactions
-    function showFloatingReaction(emoji: string) {
-        const overlay = document.getElementById("reactionsOverlay");
-        if (!overlay) return;
-        const reaction = document.createElement("div");
-        reaction.className = "floating-reaction";
-        reaction.textContent = emoji;
-        reaction.style.left = Math.random() * 80 + 10 + "%";
-        reaction.style.bottom = "20px";
-        overlay.appendChild(reaction);
+    // Chat avec l'IA - onglet Animateur
+    const aiChatForm = document.getElementById("aiChatForm");
+    let conversationHistory: Array<{ role: string; content: string }> = [];
 
-        setTimeout(() => {
-            reaction.remove();
-        }, 3000);
-    }
+    if (aiChatForm) {
+        aiChatForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const input = document.getElementById(
+                "aiChatInput",
+            ) as HTMLInputElement;
+            if (!input) return;
+            const message = input.value.trim();
+            if (message) {
+                // Afficher le message de l'utilisateur dans l'onglet IA
+                showUserAIMessage(message);
+                input.value = "";
 
-    // Random reactions
-    setInterval(() => {
-        if (Math.random() < 0.3) {
-            const emojis = ["🔥", "💰", "🚀", "❤️", "👏", "🎯"];
-            showFloatingReaction(
-                emojis[Math.floor(Math.random() * emojis.length)],
-            );
-        }
-    }, 8000);
+                // Ajouter à l'historique
+                conversationHistory.push({ role: "user", content: message });
 
-    // CTA Popup timing
-    const ctaSchedule = [
-        {
-            time: 600,
-            text: "🎁 Téléchargez le guide PDF gratuit",
-            button: "TÉLÉCHARGER",
-        },
-        {
-            time: 1200,
-            text: "⚡ Accès early bird -30% (15 places)",
-            button: "RÉSERVER",
-        },
-        {
-            time: 1800,
-            text: "🚀 Dernière chance -20% (expire dans 10min)",
-            button: "PROFITER",
-        },
-    ];
+                // Message de chargement
+                const loadingDiv = document.createElement("div");
+                loadingDiv.className = "system-message";
+                loadingDiv.textContent = "L'animateur répond...";
+                aiMessagesContainer?.appendChild(loadingDiv);
+                if (aiMessagesContainer) {
+                    aiMessagesContainer.scrollTop =
+                        aiMessagesContainer.scrollHeight;
+                }
 
-    let currentCTA = 0;
-    setInterval(() => {
-        if (
-            currentCTA < ctaSchedule.length &&
-            currentVideoTime >= ctaSchedule[currentCTA].time
-        ) {
-            showCTA(
-                ctaSchedule[currentCTA].text,
-                ctaSchedule[currentCTA].button,
-            );
-            currentCTA++;
-        }
-    }, 1000);
+                try {
+                    // Appeler l'IA
+                    const response = await fetch(
+                        "/.netlify/functions/chatbot-masterclass",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                message: message,
+                                conversationHistory: conversationHistory,
+                            }),
+                        },
+                    );
 
-    function showCTA(text: string, buttonText: string) {
-        const popup = document.getElementById("ctaPopup");
-        if (!popup) return;
-        const textElement = popup.querySelector(".cta-text") as HTMLElement;
-        const buttonElement = popup.querySelector(".cta-button") as HTMLElement;
-        if (textElement) textElement.textContent = text;
-        if (buttonElement) buttonElement.textContent = buttonText;
-        popup.classList.add("show");
+                    const data = await response.json();
 
-        setTimeout(() => {
-            if (popup.classList.contains("show")) {
-                popup.classList.remove("show");
+                    // Retirer le message de chargement
+                    loadingDiv.remove();
+
+                    if (data.response) {
+                        // Afficher la réponse
+                        showAIResponse(data.response);
+
+                        // Ajouter à l'historique
+                        conversationHistory.push({
+                            role: "assistant",
+                            content: data.response,
+                        });
+
+                        // Limiter l'historique
+                        if (conversationHistory.length > 20) {
+                            conversationHistory =
+                                conversationHistory.slice(-20);
+                        }
+                    }
+                } catch (error) {
+                    console.error("Erreur IA:", error);
+                    loadingDiv.remove();
+
+                    // Réponse de secours
+                    showAIResponse(
+                        "Super question ! Continue de regarder, c'est expliqué dans les prochaines minutes ! 🚀",
+                    );
+                }
             }
-        }, 10000);
+        });
     }
 
+    // Floating reactions (disabled)
+    function showFloatingReaction(emoji: string) {
+        // Disabled for now
+    }
+
+    // CTA functions
     function closeCTA() {
         const popup = document.getElementById("ctaPopup");
         if (popup) {

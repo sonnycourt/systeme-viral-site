@@ -225,6 +225,9 @@ async function handleStep1() {
         return;
     }
 
+    // Sauvegarder le prénom dans localStorage
+    localStorage.setItem('userFirstName', firstName);
+
     try {
         // Send to MailerLite - Step 1
         const response = await fetch("/.netlify/functions/subscribe", {
@@ -431,9 +434,9 @@ function showSuccess() {
     if (step3) step3.classList.add("hidden");
     if (successStep) successStep.classList.remove("hidden");
 
-    // Redirect to masterclass after success message
+    // Redirect to 100k-masterclass after success message
     setTimeout(() => {
-        window.location.href = "https://systemeviral.com/100k-masterclass";
+        window.location.href = "/100k-masterclass";
     }, 2500);
 }
 

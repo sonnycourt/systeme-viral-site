@@ -179,7 +179,7 @@ export async function handler(event, context) {
                 success: true,
                 step: step,
                 message: `Step ${step} completed successfully`,
-                redirect: step === '3' ? 'https://systemeviral.com/100k-masterclass' : null
+                redirect: step === '3' ? '/100k-masterclass' : null
               })
             });
           } else {
