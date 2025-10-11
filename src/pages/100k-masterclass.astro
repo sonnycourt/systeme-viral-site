@@ -320,29 +320,14 @@ import Layout from "../layouts/Layout.astro";
         background: linear-gradient(
             135deg,
             var(--accent) 0%,
-            var(--accent-bright) 50%,
-            var(--accent-glow) 100%
+            var(--accent-bright) 100%
         );
-        background-size: 200% 200%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        animation: gradientShift 3s ease infinite;
         position: relative;
         font-weight: 900;
         display: inline-block;
-    }
-
-    @keyframes gradientShift {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
     }
 
     .title-subtitle {
