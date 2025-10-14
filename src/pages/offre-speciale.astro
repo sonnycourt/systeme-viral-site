@@ -15,95 +15,125 @@ import Layout from "../layouts/Layout.astro";
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <div class="badge">
-                        <div class="badge-icon">⚡</div>
-                        <span class="badge-text"
-                            >OFFRE SPÉCIALE LIMITÉE - 50% DE RÉDUCTION</span
-                        >
-                    </div>
-
                     <h1>
                         SYSTÈME VIRAL 100K™
                         <span class="gradient-text">FORMATION COMPLÈTE</span>
                     </h1>
 
                     <p class="hero-subtitle">
-                        Le système exact pour générer tes premiers 10K€/mois
-                        avec des vidéos d'une minute.
+                        Le système exact pour créer ton business en ligne et
+                        atteindre la liberté financière avec des vidéos d'une
+                        minute.
                     </p>
 
-                    <div class="countdown-container">
-                        <div class="countdown-label">
-                            ⏰ Offre expire dans :
-                        </div>
-                        <div class="countdown-timer">
-                            <span class="countdown-item">
-                                <span class="countdown-number" id="days"
-                                    >02</span
-                                >
-                                <span class="countdown-unit">j</span>
-                            </span>
-                            <span class="countdown-separator">:</span>
-                            <span class="countdown-item">
-                                <span class="countdown-number" id="hours"
-                                    >14</span
-                                >
-                                <span class="countdown-unit">h</span>
-                            </span>
-                            <span class="countdown-separator">:</span>
-                            <span class="countdown-item">
-                                <span class="countdown-number" id="minutes"
-                                    >35</span
-                                >
-                                <span class="countdown-unit">m</span>
-                            </span>
-                            <span class="countdown-separator">:</span>
-                            <span class="countdown-item">
-                                <span class="countdown-number" id="seconds"
-                                    >22</span
-                                >
-                                <span class="countdown-unit">s</span>
-                            </span>
-                        </div>
+                    <div class="hero-image-container">
+                        <img
+                            src="/media/image_sv-test.webp"
+                            alt="Système Viral 100K"
+                            class="hero-image"
+                        />
                     </div>
 
-                    <div class="cta-wrapper">
-                        <button
-                            class="cta-btn"
-                            onclick="alert('Fonctionnalité à implémenter')"
-                        >
-                            ACCÉDER À L'OFFRE SPÉCIALE →
-                        </button>
-                    </div>
+                    <!-- Section Compte à Rebours -->
+                    <div class="countdown-banner">
+                        <div class="countdown-header">
+                            <div class="discount-badge">
+                                -60% OFFRE PRÉVENTE LIMITÉE
+                            </div>
+                            <h2 class="countdown-title">
+                                Système Viral 100K™
+                            </h2>
 
-                    <div class="trust-points">
-                        <div class="trust-item">
-                            <span class="trust-check">✓</span>
-                            <span>Accès immédiat</span>
-                        </div>
-                        <div class="trust-item">
-                            <span class="trust-check">✓</span>
-                            <span>Paiement 100% sécurisé</span>
-                        </div>
-                        <div class="trust-item">
-                            <span class="trust-check">✓</span>
-                            <span>Garantie 30 jours</span>
-                        </div>
-                    </div>
+                            <div class="price-progression">
+                                <div class="price-comparison">
+                                    <div class="price-old-wrapper">
+                                        <div class="price-old-item">
+                                            <div class="price-old-badge">
+                                                Prix normal
+                                            </div>
+                                            <div class="price-old-value">
+                                                4 000€
+                                            </div>
+                                        </div>
+                                        <div class="price-old-item">
+                                            <div class="price-old-badge">
+                                                Lancement
+                                            </div>
+                                            <div class="price-old-value">
+                                                2 000€
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price-vs">VS</div>
+                                    <div class="price-current">
+                                        <div class="price-current-badge">
+                                            <span>PRÉVENTE</span>
+                                        </div>
+                                        <div class="price-current-value">
+                                            1 600€
+                                        </div>
+                                        <div class="price-savings">
+                                            Économise 2 400€
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <div class="social-proof">
-                        <div class="proof-item">
-                            <div class="proof-number">2 847</div>
-                            <div class="proof-label">Entrepreneurs formés</div>
+                            <p class="countdown-subtitle">
+                                L'offre se termine dans :
+                            </p>
                         </div>
-                        <div class="proof-item">
-                            <div class="proof-number">4.9/5</div>
-                            <div class="proof-label">Note moyenne</div>
+
+                        <div class="countdown-section">
+                            <div class="time-block">
+                                <span class="time-value" id="days">00</span>
+                                <span class="time-label">Jours</span>
+                            </div>
+                            <span class="time-separator">:</span>
+                            <div class="time-block">
+                                <span class="time-value" id="hours">00</span>
+                                <span class="time-label">Heures</span>
+                            </div>
+                            <span class="time-separator">:</span>
+                            <div class="time-block">
+                                <span class="time-value" id="minutes">00</span>
+                                <span class="time-label">Minutes</span>
+                            </div>
+                            <span class="time-separator">:</span>
+                            <div class="time-block">
+                                <span class="time-value" id="seconds">00</span>
+                                <span class="time-label">Secondes</span>
+                            </div>
                         </div>
-                        <div class="proof-item">
-                            <div class="proof-number">98%</div>
-                            <div class="proof-label">Taux de satisfaction</div>
+
+                        <div class="scarcity-section" id="scarcitySection">
+                            <div
+                                class="urgent-warning"
+                                id="urgentWarning"
+                                style="display: none;"
+                            >
+                                ⚠️ <span class="urgent-red">ATTENTION</span> : Places
+                                en train de disparaître !
+                            </div>
+                            <p class="scarcity-text" id="scarcityText">
+                                <span class="places-count" id="places">278</span
+                                > places disponibles sur 200
+                            </p>
+                            <div
+                                class="exceptional-offer"
+                                id="exceptionalOffer"
+                                style="display: none;"
+                            >
+                                🎁 EXCEPTIONNEL : <span
+                                    class="exceptional-places"
+                                    id="exceptionalPlaces">0</span
+                                > places supplémentaires disponibles !
+                            </div>
                         </div>
+
+                        <a href="#formation" class="countdown-cta-button">
+                            Profiter de l'offre spéciale
+                        </a>
                     </div>
                 </div>
             </div>
@@ -116,15 +146,29 @@ import Layout from "../layouts/Layout.astro";
                     <h2 class="section-title">
                         <span class="highlight">LA PREUVE IRRÉFUTABLE</span>
                         <br />
-                        QUE ÇA MARCHE
+                        QUE ÇA MARCHE (VRAIMENT)
                     </h2>
                     <p class="section-subtitle">
-                        Voici exactement ce que vous allez recevoir quand vous
-                        appliquez le SYSTÈME VIRAL 100K™
+                        Résultat réel d'un lancement de notre formation sur la
+                        manifestation, basé sur les stratégies enseignées dans
+                        le Système Viral 100K™, sur une période de 30 jours
                     </p>
                 </div>
 
                 <div class="proof-content">
+                    <!-- Bulles de crédibilité -->
+                    <div class="credibility-badges">
+                        <div class="credibility-badge">
+                            <span class="badge-text">Capture d'écran réel</span>
+                        </div>
+                        <div class="credibility-badge">
+                            <span class="badge-text">Non retouchée</span>
+                        </div>
+                        <div class="credibility-badge">
+                            <span class="badge-text">Données vérifiées</span>
+                        </div>
+                    </div>
+
                     <!-- Image principale avec design Mockup -->
                     <div class="proof-image-showcase">
                         <div class="mockup-container">
@@ -147,12 +191,15 @@ import Layout from "../layouts/Layout.astro";
                                     </div>
                                 </div>
                                 <div class="browser-content">
-                                    <img
-                                        src="/media/preuve_systeme_viral.webp"
-                                        alt="Preuve du système viral - Résultats concrets et mesurables"
-                                        loading="lazy"
-                                        class="proof-image-main"
-                                    />
+                                    <div class="dashboard-overlay">
+                                        <img
+                                            src="/media/preuve_systeme_viral.webp"
+                                            alt="Preuve du système viral - Résultats concrets et mesurables"
+                                            loading="lazy"
+                                            class="proof-image-main"
+                                        />
+                                        <div class="dashboard-dark-layer"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -162,81 +209,91 @@ import Layout from "../layouts/Layout.astro";
                     <div class="proof-description-below">
                         <div class="proof-header">
                             <div class="proof-badge">
-                                <span class="badge-icon">✅</span>
                                 <span class="badge-text"
-                                    >RÉSULTATS GARANTIS</span
+                                    >À PROPOS DE CES CHIFFRES</span
                                 >
                             </div>
-                            <h3 class="proof-subtitle">
-                                Résultats réels, non retouchés
-                            </h3>
                         </div>
 
-                        <p class="proof-main-text">
-                            <strong
-                                >Cette capture d'écran n'est pas retouchée.</strong
-                            >
-                            C'est le résultat réel obtenu par un élève qui a suivi
-                            le système à la lettre pendant seulement 30 jours.
-                        </p>
+                        <!-- Chiffre principal mis en avant -->
+                        <div class="proof-highlight">
+                            <div class="proof-main-number">115 000 €</div>
+                            <div class="proof-main-label">
+                                Chiffre d'affaires total
+                            </div>
+                            <div class="proof-period">30 jours seulement</div>
+                            <div class="proof-price">
+                                Avec une formation ultra nichée à seulement 200
+                                €
+                            </div>
+                        </div>
 
-                        <div class="proof-stats">
-                            <div class="proof-stat">
-                                <div class="stat-number">+1M</div>
-                                <div class="stat-label">Vues organiques</div>
-                                <div class="stat-description">
-                                    sur vos contenus
+                        <!-- Explication du calcul -->
+                        <div class="proof-calculation">
+                            <div class="calculation-title">
+                                Comment on arrive à 115k € :
+                            </div>
+                            <div class="calculation-steps">
+                                <div class="calculation-step">
+                                    <span class="step-number">1</span>
+                                    <span class="step-text"
+                                        >95 400 € (ventes directes)</span
+                                    >
+                                </div>
+                                <div class="calculation-plus">+</div>
+                                <div class="calculation-step">
+                                    <span class="step-number">2</span>
+                                    <span class="step-text"
+                                        >14 400 € (1ère mensualité)</span
+                                    >
+                                </div>
+                                <div class="calculation-plus">+</div>
+                                <div class="calculation-step">
+                                    <span class="step-number">3</span>
+                                    <span class="step-text"
+                                        >14 400 € (2ème mensualité)</span
+                                    >
+                                </div>
+                                <div class="calculation-equals">=</div>
+                                <div class="calculation-result">
+                                    <span class="result-number">124 200 €</span>
+                                    <span class="result-label"
+                                        >Avant remboursements</span
+                                    >
+                                </div>
+                                <div class="calculation-minus">-</div>
+                                <div class="calculation-step">
+                                    <span class="step-number">4</span>
+                                    <span class="step-text"
+                                        >9 200 € (remboursements)</span
+                                    >
+                                </div>
+                                <div class="calculation-equals">=</div>
+                                <div class="calculation-final">
+                                    <span class="final-number">115 000 €</span>
+                                    <span class="final-label">Total final</span>
                                 </div>
                             </div>
-                            <div class="proof-stat">
-                                <div class="stat-number">+500</div>
-                                <div class="stat-label">Leads qualifiés</div>
-                                <div class="stat-description">
-                                    dans votre liste
-                                </div>
-                            </div>
-                            <div class="proof-stat">
-                                <div class="stat-number">€10K+</div>
-                                <div class="stat-label">Revenus mensuels</div>
-                                <div class="stat-description">garantis</div>
-                            </div>
                         </div>
 
-                        <div class="proof-features">
-                            <div class="feature-item">
-                                <span class="feature-check">🎯</span>
-                                <span class="feature-text">
-                                    <strong>Stratégie éprouvée</strong> qui fonctionne
-                                    sur tous les réseaux
-                                </span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-check">⚡</span>
-                                <span class="feature-text">
-                                    <strong>Méthode automatisée</strong> qui travaille
-                                    24/7 pour vous
-                                </span>
-                            </div>
-                            <div class="feature-item">
-                                <span class="feature-check">💰</span>
-                                <span class="feature-text">
-                                    <strong>ROI garanti</strong> ou remboursement
-                                    intégral
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="proof-cta">
-                            <p class="proof-urgency">
-                                <strong>Pourquoi attendre ?</strong> Commencez dès
-                                aujourd'hui et obtenez les mêmes résultats.
+                        <!-- Explication courte -->
+                        <div class="explanation-section">
+                            <p>
+                                Les remboursements (Refund) bien que
+                                négligeables s'expliquent par le fait que les
+                                inscrits ont pu tester le programme complet
+                                pendant 30 jours avant de décider.
                             </p>
-                            <button
-                                class="proof-btn"
-                                onclick="alert('Fonctionnalité à implémenter')"
-                            >
-                                VOIR LA FORMATION COMPLÈTE →
-                            </button>
+                        </div>
+
+                        <div class="explanation-section">
+                            <p>
+                                <strong>À savoir :</strong> les montants incluent
+                                bien tous les paiements et upsells, mais le calcul
+                                a été simplifié et ne détaille pas les frais liés
+                                aux paiements en trois fois, pour une lecture plus
+                                claire des résultats.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -954,6 +1011,12 @@ import Layout from "../layouts/Layout.astro";
                                 Pour 1 heure de travail seulement
                             </div>
                         </div>
+                    </div>
+                    <div class="total-disclaimer">
+                        Ceci est une fourchette, car le tracking précis des vues
+                        vers les ventes n'a pas pu être mis en place pour chaque
+                        vidéo séparément. Cependant, l'estimation présentée
+                        reste entièrement fiable.
                     </div>
                 </div>
             </div>
@@ -2957,54 +3020,399 @@ import Layout from "../layouts/Layout.astro";
             margin-right: auto;
         }
 
-        .countdown-container {
-            margin: 32px 0;
-            padding: 24px;
+        .hero-image-container {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Compte à Rebours */
+        .countdown-banner {
+            background: linear-gradient(
+                135deg,
+                rgba(10, 10, 10, 0.98) 0%,
+                rgba(17, 17, 17, 0.95) 100%
+            );
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 1000px;
+            margin: 60px auto;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            animation: fadeInUp 1s ease-out 1.2s both;
+        }
+
+        .countdown-header {
+            margin-bottom: 30px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .discount-badge {
+            display: inline-block;
+            background: transparent;
+            color: #ff4444;
+            border: 2px solid #ff4444;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.4);
+        }
+
+        .countdown-title {
+            color: var(--text);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .price-progression {
+            margin: 30px 0;
+        }
+
+        .price-comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .price-old-wrapper {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .price-old-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.6;
+        }
+
+        .price-old-badge {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .price-old-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #999;
+            text-decoration: line-through;
+            position: relative;
+        }
+
+        .price-vs {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-secondary);
+            padding: 0 10px;
+            opacity: 0.5;
+        }
+
+        .price-current {
+            background: linear-gradient(
+                135deg,
+                rgba(0, 220, 130, 0.15) 0%,
+                rgba(0, 255, 150, 0.08) 100%
+            );
+            border: 2px solid rgba(0, 220, 130, 0.4);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow:
+                0 8px 25px rgba(0, 220, 130, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            animation: priceCardPulse 3s ease-in-out infinite;
+        }
+
+        .price-current-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 220, 130, 0.2);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(0, 220, 130, 0.3);
+        }
+
+        .badge-icon {
+            font-size: 1rem;
+            animation: flicker 2s infinite;
+        }
+
+        .price-current-value {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin: 10px 0;
+            text-shadow: 0 0 30px rgba(0, 220, 130, 0.5);
+            letter-spacing: -1px;
+        }
+
+        .price-savings {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        @keyframes priceCardPulse {
+            0%,
+            100% {
+                box-shadow:
+                    0 8px 25px rgba(0, 220, 130, 0.2),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                box-shadow:
+                    0 8px 35px rgba(0, 220, 130, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        @keyframes flicker {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .countdown-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+
+        .countdown-section {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .time-block {
+            text-align: center;
             background: var(--bg-elevated);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            display: inline-block;
+            border-radius: 15px;
+            padding: 20px 15px;
+            min-width: 90px;
+            flex: 1;
+            max-width: 120px;
         }
 
-        .countdown-label {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
+        .time-value {
+            background: rgba(255, 68, 68, 0.1);
+            border: 2px solid #ff4444;
+            border-radius: 12px;
+            padding: 15px 10px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text);
             display: block;
-        }
-
-        .countdown-timer {
-            display: flex;
-            align-items: center;
-            gap: 8px;
             font-variant-numeric: tabular-nums;
+            margin-bottom: 8px;
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
         }
 
-        .countdown-item {
+        .time-label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .time-separator {
+            color: #ff4444;
+            font-size: 2rem;
+            font-weight: 700;
+            align-self: center;
+            margin: 0 5px;
+            text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+        }
+
+        .scarcity-section {
+            margin-bottom: 30px;
+            z-index: 1;
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 50px;
+            gap: 16px;
         }
 
-        .countdown-number {
-            font-size: 28px;
+        .scarcity-text {
+            color: var(--text);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        #places {
+            color: #ff4444;
+            font-weight: 700;
+            font-size: 1.4rem;
+            animation: scarcityPulse 3s infinite;
+            text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+        }
+
+        .scarcity-text.sold-out {
+            text-decoration: line-through;
+            text-decoration-thickness: 2px;
+            opacity: 0.6;
+            color: var(--text-secondary);
+        }
+
+        .exceptional-offer {
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-dark) 100%
+            );
+            color: var(--bg);
+            padding: 12px 25px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 0;
+            font-weight: 700;
+            font-size: 1.05rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        .exceptional-places {
+            color: #ff6b6b;
             font-weight: 800;
-            color: var(--accent);
-            line-height: 1;
+            font-size: 1.5rem;
+            text-shadow: 0 0 15px rgba(255, 107, 107, 0.6);
+            animation: urgentFlash 1s infinite;
         }
 
-        .countdown-unit {
-            font-size: 12px;
-            color: var(--text-muted);
+        @keyframes scarcityPulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes urgentPulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes urgentFlash {
+            0%,
+            100% {
+                color: #ff6b6b;
+                text-shadow: 0 0 15px rgba(255, 107, 107, 0.6);
+            }
+            50% {
+                color: #ff4444;
+                text-shadow: 0 0 25px rgba(255, 68, 68, 0.8);
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes redBlink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .urgent-red {
+            color: #ff4444 !important;
+            animation: redBlink 0.8s infinite;
+            text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+        }
+
+        .urgent-warning {
+            background: rgba(255, 68, 68, 0.1);
+            border: 2px solid #ff4444;
+            border-radius: 12px;
+            padding: 12px 20px;
+            margin-bottom: 16px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text);
+            animation: urgentFlash 1.5s infinite;
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.3);
+        }
+
+        .countdown-cta-button {
+            background: linear-gradient(135deg, #ff4444 0%, #ff6b6b 100%);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 25px rgba(255, 68, 68, 0.4);
+            display: inline-block;
+            z-index: 1;
             text-transform: uppercase;
-            margin-top: 2px;
+            letter-spacing: 1px;
+            animation: urgentPulse 2s infinite;
         }
 
-        .countdown-separator {
-            font-size: 24px;
-            color: var(--text-muted);
-            font-weight: 300;
+        .countdown-cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 35px rgba(255, 68, 68, 0.6);
+            background: linear-gradient(135deg, #ff3333 0%, #ff5555 100%);
         }
 
         .cta-wrapper {
@@ -3094,6 +3502,21 @@ import Layout from "../layouts/Layout.astro";
 
         /* Responsive */
         @media (max-width: 768px) {
+            .price-comparison {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .price-vs {
+                transform: rotate(90deg);
+                font-size: 0.9rem;
+                padding: 10px 0;
+            }
+
+            .price-current-value {
+                font-size: 2.5rem;
+            }
+
             .hero h1 {
                 font-size: 32px;
             }
@@ -3105,6 +3528,86 @@ import Layout from "../layouts/Layout.astro";
             .trust-points {
                 flex-direction: column;
                 gap: 16px;
+            }
+
+            /* Responsive pour la section countdown */
+            .countdown-banner {
+                padding: 30px 20px;
+                margin: 40px 20px;
+            }
+
+            .countdown-section {
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .time-block {
+                min-width: 70px;
+                padding: 15px 10px;
+                flex: 1 1 calc(50% - 10px);
+                max-width: none;
+            }
+
+            .time-value {
+                font-size: 1.8rem;
+                padding: 12px 8px;
+            }
+
+            .time-label {
+                font-size: 0.7rem;
+            }
+
+            .time-separator {
+                font-size: 1.5rem;
+                margin: 0 3px;
+            }
+
+            .countdown-title {
+                font-size: 2rem;
+            }
+
+            .countdown-subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .countdown-banner {
+                padding: 25px 15px;
+                margin: 30px 15px;
+                border-radius: 15px;
+            }
+
+            .countdown-section {
+                gap: 8px;
+            }
+
+            .time-block {
+                min-width: 60px;
+                padding: 12px 8px;
+                flex: 1 1 calc(50% - 8px);
+            }
+
+            .time-value {
+                font-size: 1.5rem;
+                padding: 10px 6px;
+            }
+
+            .time-label {
+                font-size: 0.65rem;
+            }
+
+            .time-separator {
+                font-size: 1.2rem;
+                margin: 0 2px;
+            }
+
+            .countdown-title {
+                font-size: 1.8rem;
+            }
+
+            .countdown-subtitle {
+                font-size: 0.9rem;
             }
         }
 
@@ -3685,6 +4188,19 @@ import Layout from "../layouts/Layout.astro";
             font-style: italic;
         }
 
+        .total-disclaimer {
+            font-size: 14px;
+            color: #999;
+            font-style: italic;
+            margin-top: 30px;
+            padding: 15px 20px;
+            text-align: center;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .formula-breakdown {
             display: flex;
             flex-direction: column;
@@ -4013,6 +4529,23 @@ import Layout from "../layouts/Layout.astro";
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
+        /* Overlay pour assombrir tout le contenu du dashboard */
+        .dashboard-overlay {
+            position: relative;
+        }
+
+        .dashboard-dark-layer {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: rgba(0, 0, 0, 0.15);
+            z-index: 2;
+            pointer-events: none;
+            border-radius: 0 0 12px 12px;
+        }
+
         .proof-description-below {
             width: 100%;
             max-width: 700px;
@@ -4032,26 +4565,57 @@ import Layout from "../layouts/Layout.astro";
 
         .proof-badge {
             display: inline-flex;
-            background: linear-gradient(
-                135deg,
-                var(--accent) 0%,
-                var(--accent-bright) 100%
-            );
-            color: #000;
-            padding: 12px 24px;
-            border-radius: 16px;
-            font-size: 14px;
+            background: transparent;
+            color: var(--accent);
+            padding: 8px 0;
+            border-radius: 0;
+            font-size: 18px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            text-transform: none;
+            letter-spacing: 0;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(0, 220, 130, 0.3);
-            margin-bottom: 10px;
+            gap: 12px;
+            box-shadow: none;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 8px;
         }
 
         .badge-icon {
-            font-size: 16px;
+            font-size: 20px;
+        }
+
+        /* Bulles de crédibilité */
+        .credibility-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .credibility-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #999999;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .credibility-badge:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 220, 130, 0.3);
+        }
+
+        .credibility-badge .badge-text {
+            font-size: 0.8rem;
+            color: #999999;
         }
 
         .proof-main-text {
@@ -4062,6 +4626,303 @@ import Layout from "../layouts/Layout.astro";
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        /* Nouvelle UI pour les chiffres */
+        .proof-highlight {
+            text-align: center;
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 220, 130, 0.1),
+                rgba(0, 220, 130, 0.05)
+            );
+            border-radius: 20px;
+            border: 2px solid rgba(0, 220, 130, 0.2);
+        }
+
+        .proof-main-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 220, 130, 0.3);
+        }
+
+        .proof-main-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .proof-period {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .proof-price {
+            font-size: 1rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: rgba(0, 220, 130, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 220, 130, 0.3);
+        }
+
+        .proof-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .proof-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .proof-detail-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .detail-icon {
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 220, 130, 0.1);
+            border-radius: 12px;
+        }
+
+        .detail-content {
+            flex: 1;
+        }
+
+        .detail-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .proof-explanation {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .proof-explanation p {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        .proof-explanation p:last-child {
+            margin-bottom: 0;
+        }
+
+        .explanation-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .explanation-section p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* Mise en avant du prix */
+        .price-highlight {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 220, 130, 0.15),
+                rgba(0, 220, 130, 0.05)
+            );
+            border-radius: 15px;
+            border: 2px solid var(--accent);
+            box-shadow: 0 8px 25px rgba(0, 220, 130, 0.2);
+        }
+
+        .price-icon {
+            font-size: 3rem;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                135deg,
+                var(--accent),
+                rgba(0, 220, 130, 0.8)
+            );
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 220, 130, 0.3);
+        }
+
+        .price-content {
+            flex: 1;
+        }
+
+        .price-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(0, 220, 130, 0.3);
+        }
+
+        .price-context {
+            font-size: 1rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* Styles pour l'explication du calcul */
+        .proof-calculation {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 220, 130, 0.2);
+        }
+
+        .calculation-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .calculation-steps {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .calculation-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .step-text {
+            font-size: 0.9rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* Styles pour les textes descriptifs des features */
+        .feature-text {
+            color: #999999 !important;
+        }
+
+        /* Styles pour la section de calcul (pas de conflit avec les features) */
+        .calculation-step .step-number {
+            background: var(--accent);
+            color: #000;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .calculation-plus,
+        .calculation-minus,
+        .calculation-equals {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0 5px;
+        }
+
+        .calculation-result,
+        .calculation-final {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(0, 220, 130, 0.1);
+            border-radius: 10px;
+            border: 2px solid var(--accent);
+        }
+
+        .result-number,
+        .final-number {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .result-label,
+        .final-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .detail-explanation {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            font-style: italic;
         }
 
         .proof-stats {
@@ -4260,6 +5121,119 @@ import Layout from "../layouts/Layout.astro";
 
             .proof-urgency {
                 font-size: 15px;
+            }
+
+            /* Styles responsives pour la nouvelle UI */
+            .proof-main-number {
+                font-size: 3rem;
+            }
+
+            .proof-price {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+                margin-top: 8px;
+            }
+
+            .proof-details-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .proof-detail-item {
+                padding: 15px;
+                gap: 12px;
+            }
+
+            .detail-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+
+            .detail-number {
+                font-size: 1.2rem;
+            }
+
+            .proof-explanation {
+                padding: 15px;
+            }
+
+            .proof-explanation p {
+                font-size: 14px;
+            }
+
+            .credibility-badges {
+                gap: 10px;
+                margin: 15px 0;
+            }
+
+            .credibility-badge {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+
+            .credibility-badge .badge-text {
+                font-size: 0.75rem;
+                color: #999999;
+            }
+
+            .explanation-section {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .explanation-section p {
+                font-size: 14px;
+            }
+
+            .price-highlight {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding: 20px;
+                margin: 20px 0;
+            }
+
+            .price-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+
+            .price-amount {
+                font-size: 2rem;
+            }
+
+            .price-label {
+                font-size: 1rem;
+            }
+
+            .price-context {
+                font-size: 0.9rem;
+            }
+
+            /* Styles responsives pour le calcul */
+            .calculation-steps {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .calculation-step {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .calculation-plus,
+            .calculation-minus,
+            .calculation-equals {
+                font-size: 1.5rem;
+                margin: 10px 0;
+            }
+
+            .calculation-result,
+            .calculation-final {
+                width: 100%;
+                margin: 10px 0;
             }
         }
 
@@ -6880,53 +7854,291 @@ import Layout from "../layouts/Layout.astro";
 
     <script>
         // Countdown timer - Updated 2025
-        function updateCountdown() {
+        // Configuration des dates pour la logique de scarcity
+        const startDate = new Date("2025-10-05T18:00:00").getTime();
+        const transitionDate = new Date("2025-11-15T23:00:00").getTime();
+        const phase2EndDate = new Date("2025-11-16T23:00:00").getTime();
+        const endDate = new Date("2025-11-17T22:00:00").getTime();
+
+        let lastPhase1Places = 3;
+        let lastPhase2Places = 178;
+        let lastPhase3Places = 11;
+
+        // Fonction pour calculer les places disponibles
+        const calculatePlaces = () => {
             const now = new Date().getTime();
-            const endDate = new Date(
-                now +
-                    2 * 24 * 60 * 60 * 1000 +
-                    14 * 60 * 60 * 1000 +
-                    35 * 60 * 1000 +
-                    22 * 1000,
-            );
 
-            const timeLeft = endDate.getTime() - now;
+            // PHASE 1
+            if (now < transitionDate) {
+                const nowAt21Nov = new Date("2025-11-21T17:00:00").getTime();
 
-            if (timeLeft > 0) {
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor(
-                    (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-                );
-                const minutes = Math.floor(
-                    (timeLeft % (1000 * 60 * 60)) / (1000 * 60),
-                );
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                if (now < nowAt21Nov) {
+                    const hoursElapsed = (now - startDate) / (1000 * 60 * 60);
+                    const phase1TotalHours =
+                        (nowAt21Nov - startDate) / (1000 * 60 * 60);
+                    const progress = hoursElapsed / phase1TotalHours;
+                    const adjustedProgress = Math.pow(progress, 0.7);
+                    let currentPlaces = Math.floor(
+                        278 * (1 - adjustedProgress),
+                    );
 
-                const daysElement = document.getElementById("days");
-                const hoursElement = document.getElementById("hours");
-                const minutesElement = document.getElementById("minutes");
-                const secondsElement = document.getElementById("seconds");
+                    if (currentPlaces < 3) currentPlaces = 3;
 
-                if (daysElement) daysElement.textContent = days.toString();
-                if (hoursElement) hoursElement.textContent = hours.toString();
-                if (minutesElement)
-                    minutesElement.textContent = minutes.toString();
-                if (secondsElement)
-                    secondsElement.textContent = seconds.toString();
-            } else {
-                // Timer expired - redirect or show message
-                const countdownContainer = document.getElementById(
-                    "countdown-container",
-                );
-                if (countdownContainer) {
-                    countdownContainer.innerHTML =
-                        "<div class='timer-expired'>L'offre a expiré !</div>";
+                    return { phase: 1, places: currentPlaces };
+                } else {
+                    const hoursElapsedFromNow =
+                        (now - nowAt21Nov) / (1000 * 60 * 60);
+
+                    if (hoursElapsedFromNow < 8) {
+                        return { phase: 1, places: 3 };
+                    } else if (hoursElapsedFromNow < 20) {
+                        return { phase: 1, places: 2 };
+                    } else if (hoursElapsedFromNow < 28) {
+                        return { phase: 1, places: 1 };
+                    } else {
+                        return { phase: 1, places: 0 };
+                    }
                 }
             }
-        }
+            // PHASE 2 (22 août → 2 septembre) - Décroissance lente vers 15 places
+            else if (now < phase2EndDate) {
+                const hoursElapsed = (now - transitionDate) / (1000 * 60 * 60);
+                const phase2TotalHours =
+                    (phase2EndDate - transitionDate) / (1000 * 60 * 60);
+                const progress = hoursElapsed / phase2TotalHours;
+                const adjustedProgress = Math.pow(progress, 0.76);
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+                let currentPlaces = Math.floor(
+                    15 + (178 - 15) * (1 - adjustedProgress),
+                );
+
+                if (currentPlaces > lastPhase2Places) {
+                    currentPlaces = lastPhase2Places;
+                }
+
+                lastPhase2Places = currentPlaces;
+                return { phase: 2, places: currentPlaces };
+            }
+            // PHASE 3 (2 septembre → 4 septembre) - Planning décrémental précis jusqu'à 0
+            else if (now < endDate) {
+                const schedule = [
+                    {
+                        at: new Date("2025-11-16T18:50:00").getTime(),
+                        places: 11,
+                    },
+                    {
+                        at: new Date("2025-11-16T19:30:00").getTime(),
+                        places: 10,
+                    },
+                    {
+                        at: new Date("2025-11-16T21:00:00").getTime(),
+                        places: 9,
+                    },
+                    {
+                        at: new Date("2025-11-16T23:00:00").getTime(),
+                        places: 8,
+                    },
+                    {
+                        at: new Date("2025-11-17T09:00:00").getTime(),
+                        places: 7,
+                    },
+                    {
+                        at: new Date("2025-11-17T12:30:00").getTime(),
+                        places: 6,
+                    },
+                    {
+                        at: new Date("2025-11-17T16:00:00").getTime(),
+                        places: 5,
+                    },
+                    {
+                        at: new Date("2025-11-17T19:00:00").getTime(),
+                        places: 4,
+                    },
+                    {
+                        at: new Date("2025-11-17T20:00:00").getTime(),
+                        places: 3,
+                    },
+                    {
+                        at: new Date("2025-11-17T21:00:00").getTime(),
+                        places: 2,
+                    },
+                    {
+                        at: new Date("2025-11-17T21:30:00").getTime(),
+                        places: 1,
+                    },
+                    {
+                        at: new Date("2025-11-17T21:45:00").getTime(),
+                        places: 0,
+                    },
+                ];
+
+                let currentPlaces = schedule[0].places;
+                for (let i = 0; i < schedule.length; i++) {
+                    if (now >= schedule[i].at) {
+                        currentPlaces = schedule[i].places;
+                    } else {
+                        break;
+                    }
+                }
+
+                if (currentPlaces > lastPhase3Places) {
+                    currentPlaces = lastPhase3Places;
+                }
+
+                lastPhase3Places = currentPlaces;
+                return { phase: 3, places: currentPlaces };
+            }
+
+            return { phase: "ended", places: 0 };
+        };
+
+        // Mise à jour de l'affichage selon la phase
+        const updateScarcityDisplay = (phaseData) => {
+            const scarcityText = document.getElementById("scarcityText");
+            const placesSpan = document.getElementById("places");
+            const exceptionalOffer =
+                document.getElementById("exceptionalOffer");
+            const exceptionalPlaces =
+                document.getElementById("exceptionalPlaces");
+            const urgentWarning = document.getElementById("urgentWarning");
+
+            if (
+                !scarcityText ||
+                !placesSpan ||
+                !exceptionalOffer ||
+                !exceptionalPlaces ||
+                !urgentWarning
+            )
+                return;
+
+            if (phaseData.phase === 1) {
+                scarcityText.classList.remove("sold-out");
+                scarcityText.innerHTML = `<span class="places-count" id="places">${phaseData.places}</span> places disponibles sur 200`;
+                exceptionalOffer.style.display = "none";
+
+                // Afficher l'avertissement d'urgence si peu de places
+                if (phaseData.places <= 10) {
+                    urgentWarning.style.display = "block";
+                } else {
+                    urgentWarning.style.display = "none";
+                }
+
+                if (phaseData.places <= 3) {
+                    const placesElement = document.getElementById("places");
+                    if (placesElement) {
+                        placesElement.style.fontSize = "1.75rem";
+                        placesElement.style.animation =
+                            "urgentPulse 0.8s infinite";
+                        placesElement.classList.add("urgent-red");
+                    }
+                }
+            } else if (phaseData.phase === 2) {
+                scarcityText.classList.add("sold-out");
+                scarcityText.innerHTML = `<span class="urgent-red">0</span> places disponibles sur 200`;
+                exceptionalOffer.style.display = "inline-block";
+                exceptionalPlaces.textContent = String(phaseData.places);
+                urgentWarning.style.display = "block";
+
+                if (phaseData.places < 30) {
+                    exceptionalPlaces.style.animation =
+                        "urgentFlash 0.5s infinite";
+                } else {
+                    exceptionalPlaces.style.animation = "";
+                }
+            } else if (phaseData.phase === 3) {
+                scarcityText.classList.add("sold-out");
+                scarcityText.innerHTML = `<span class="urgent-red">0</span> places disponibles sur 200`;
+                exceptionalOffer.style.display = "inline-block";
+                exceptionalPlaces.textContent = String(phaseData.places);
+                exceptionalPlaces.style.animation = "urgentFlash 0.3s infinite";
+                urgentWarning.style.display = "block";
+            } else {
+                scarcityText.classList.add("sold-out");
+                scarcityText.textContent = `L'offre est complètement terminée`;
+                exceptionalOffer.style.display = "none";
+                urgentWarning.style.display = "none";
+            }
+        };
+
+        // Mise à jour du compte à rebours
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = endDate - now;
+
+            if (distance < 0) {
+                document.querySelector(".countdown-banner").innerHTML = `
+                    <div class="doors-closed-container">
+                        <div class="doors-closed-icon">🔒</div>
+                        <h2 class="doors-closed-title">PORTES FERMÉES</h2>
+                        <p class="doors-closed-subtitle">L'offre -50% est maintenant terminée</p>
+                        <div class="doors-closed-message">
+                            <p>Merci à tous ceux qui ont rejoint le Système Viral 100K™ !</p>
+                            <p>Les portes se sont fermées le <strong>4 décembre 2025 à 22h00</strong>.</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(
+                (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+            );
+            const minutes = Math.floor(
+                (distance % (1000 * 60 * 60)) / (1000 * 60),
+            );
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days
+                .toString()
+                .padStart(2, "0");
+            document.getElementById("hours").textContent = hours
+                .toString()
+                .padStart(2, "0");
+            document.getElementById("minutes").textContent = minutes
+                .toString()
+                .padStart(2, "0");
+            document.getElementById("seconds").textContent = seconds
+                .toString()
+                .padStart(2, "0");
+
+            const phaseData = calculatePlaces();
+            updateScarcityDisplay(phaseData);
+
+            if (days === 0) {
+                document.querySelectorAll(".time-value").forEach((el) => {
+                    el.style.borderColor = "#ff4444";
+                    el.style.color = "#ff4444";
+                    el.style.boxShadow = "0 0 15px rgba(255, 68, 68, 0.5)";
+                    el.style.animation = "urgentPulse 0.8s infinite";
+                });
+                document.querySelector(".discount-badge").style.animation =
+                    "pulse 1s infinite";
+                document.querySelector(".discount-badge").style.borderColor =
+                    "#ff4444";
+                document.querySelector(".discount-badge").style.boxShadow =
+                    "0 0 20px rgba(255, 68, 68, 0.6)";
+            }
+        };
+
+        // Initialisation
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", function () {
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+
+                // Initialiser l'affichage des places au chargement
+                const phaseData = calculatePlaces();
+                updateScarcityDisplay(phaseData);
+            });
+        } else {
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            // Initialiser l'affichage des places au chargement
+            const phaseData = calculatePlaces();
+            updateScarcityDisplay(phaseData);
+        }
 
         // Chatbot functionality
         let chatbotOpen = false;
