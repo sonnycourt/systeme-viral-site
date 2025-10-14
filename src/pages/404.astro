@@ -1,0 +1,255 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Page non trouvée - Système Viral"
+    description="La page que vous cherchez n'existe pas. Découvrez comment créer du contenu viral et générer des revenus avec le Système Viral."
+    canonical="/404"
+>
+    <!-- Background effects -->
+    <div class="gradient-bg"></div>
+
+    <!-- 404 Content -->
+    <section class="error-section">
+        <div class="container">
+            <div class="error-content">
+                <div class="error-code">
+                    <span class="code-main">4</span>
+                    <span class="code-zero">0</span>
+                    <span class="code-main">4</span>
+                </div>
+
+                <h1 class="error-title">Page introuvable</h1>
+
+                <p class="error-description">
+                    Désolé, la page que vous cherchez n'existe pas.
+                </p>
+
+                <div class="error-actions">
+                    <a href="/" class="cta-button"> Retour à l'accueil </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    /* Variables CSS adaptées au branding Système Viral */
+    :root {
+        --bg: #0a0a0a;
+        --bg-card: rgba(255, 255, 255, 0.02);
+        --bg-elevated: rgba(255, 255, 255, 0.05);
+        --text: #ffffff;
+        --text-secondary: #aaa;
+        --text-muted: #888;
+        --accent: #00dc82;
+        --accent-bright: #00f593;
+        --accent-glow: #00dc82;
+        --accent-dark: #00b86b;
+        --success: #00dc82;
+        --border: rgba(255, 255, 255, 0.1);
+        --glow: rgba(0, 220, 130, 0.3);
+        --danger: #ef4444;
+    }
+
+    /* Background effects */
+    .gradient-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0a0a0a;
+        z-index: -1;
+    }
+
+    .gradient-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 600px;
+        background: radial-gradient(
+            circle,
+            rgba(0, 220, 130, 0.08) 0%,
+            transparent 70%
+        );
+        pointer-events: none;
+        animation: bgGlow 6s ease-in-out infinite;
+    }
+
+    @keyframes bgGlow {
+        0%,
+        100% {
+            opacity: 0.3;
+            transform: translateX(-50%) scale(1);
+        }
+        50% {
+            opacity: 0.6;
+            transform: translateX(-50%) scale(1.2);
+        }
+    }
+
+    /* Error Section */
+    .error-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .container {
+        max-width: 1200px;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+    }
+
+    .error-content {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    /* Error Code Animation */
+    .error-code {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 40px;
+    }
+
+    .code-main {
+        font-size: clamp(80px, 15vw, 150px);
+        font-weight: 900;
+        background: linear-gradient(
+            135deg,
+            var(--accent) 0%,
+            var(--accent-bright) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 60px rgba(0, 220, 130, 0.5);
+        animation: codePulse 3s ease-in-out infinite;
+        line-height: 1;
+    }
+
+    .code-zero {
+        font-size: clamp(80px, 15vw, 150px);
+        font-weight: 900;
+        color: var(--text-secondary);
+        animation: zeroRotate 4s ease-in-out infinite;
+        line-height: 1;
+    }
+
+    @keyframes codePulse {
+        0%,
+        100% {
+            transform: scale(1);
+            text-shadow: 0 0 60px rgba(0, 220, 130, 0.5);
+        }
+        50% {
+            transform: scale(1.05);
+            text-shadow: 0 0 80px rgba(0, 220, 130, 0.8);
+        }
+    }
+
+    @keyframes zeroRotate {
+        0%,
+        100% {
+            transform: rotate(0deg);
+        }
+        25% {
+            transform: rotate(90deg);
+        }
+        50% {
+            transform: rotate(180deg);
+        }
+        75% {
+            transform: rotate(270deg);
+        }
+    }
+
+    /* Error Title */
+    .error-title {
+        font-size: clamp(24px, 4vw, 36px);
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 24px;
+        line-height: 1.3;
+    }
+
+    /* Error Description */
+    .error-description {
+        font-size: 18px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 20px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Error Actions */
+    .error-actions {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 16px 32px;
+        background: var(--accent);
+        color: var(--bg);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .cta-button:hover {
+        background: var(--accent-bright);
+        transform: translateY(-1px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .error-section {
+            padding: 20px 16px;
+        }
+
+        .error-code {
+            margin-bottom: 30px;
+        }
+
+        .code-main,
+        .code-zero {
+            font-size: clamp(60px, 20vw, 100px);
+        }
+
+        .error-title {
+            font-size: 24px;
+        }
+
+        .error-description {
+            font-size: 16px;
+        }
+
+        .cta-button {
+            padding: 14px 28px;
+            font-size: 15px;
+        }
+    }
+</style>

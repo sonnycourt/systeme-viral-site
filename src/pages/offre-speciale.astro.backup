@@ -243,76 +243,76 @@ import Layout from "../layouts/Layout.astro";
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section class="features">
+        <!-- Steps Section -->
+        <section class="steps-section">
             <div class="container">
                 <h2 class="section-title">Le système en 3 étapes</h2>
 
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="step-number">1</div>
-                        <h3 class="feature-title">Crée du contenu viral</h3>
-                        <p class="feature-text">
-                            Des vidéos d'une minute qui cartonnent.<br />
-                            La formule exacte pour exploser sur tous les réseaux.<br
-                            />
-                        </p>
+                <div class="steps-grid">
+                    <div class="step-card">
                         <div class="step-image">
                             <img
-                                src="/media/SV-etape-1-ps.webp"
+                                src="/media/SV-etape-1.webp"
                                 alt="Étape 1: Créer du contenu viral"
                             />
                         </div>
-                        <p class="promise-container">
-                            <span class="promise-text"
-                                >→ Objectif : 100K vues en 30 jours</span
-                            >
-                        </p>
+                        <div class="step-content">
+                            <div class="step-number">1</div>
+                            <h3 class="step-title">Créer du contenu viral</h3>
+                            <p class="step-text">
+                                Des vidéos d'une minute qui cartonnent.<br />
+                                La formule exacte pour exploser sur tous les réseaux.<br
+                                /><br />
+                                <span class="promise-text"
+                                    >→ 100K vues garanties en 30 jours</span
+                                >
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="feature-card">
-                        <div class="step-number">2</div>
-                        <h3 class="feature-title">Capture les emails</h3>
-                        <p class="feature-text">
-                            Transforme tes vues en contacts qualifiés.<br />
-                            Le système tourne 24/7 en automatique.<br />
-                        </p>
+                    <div class="step-card">
                         <div class="step-image">
                             <img
-                                src="/media/SV-etape-2-ps.webp"
+                                src="/media/SV-etape-2.webp"
                                 alt="Étape 2: Capturer les emails"
                             />
                         </div>
-                        <p class="promise-container">
-                            <span class="promise-text"
-                                >→ Objectif : 1000 leads en 60 jours</span
-                            >
-                        </p>
+                        <div class="step-content">
+                            <div class="step-number">2</div>
+                            <h3 class="step-title">Capturer les emails</h3>
+                            <p class="step-text">
+                                Transforme chaque vue en contact qualifié.<br />
+                                Le système tourne 24/7 en automatique.<br /><br
+                                />
+                                <span class="promise-text"
+                                    >→ 1000 leads garantis en 60 jours</span
+                                >
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="feature-card">
-                        <div class="step-number">3</div>
-                        <h3 class="feature-title">Monétise ta liste</h3>
-                        <p class="feature-text">
-                            Convertis ta liste en revenus récurrents.<br />
-                            Affiliation ou produit propre, je te guide étape par
-                            étape.<br />
-                        </p>
+                    <div class="step-card">
                         <div class="step-image">
                             <img
-                                src="/media/SV-etape-3-ps.webp"
+                                src="/media/SV-etape-3.webp"
                                 alt="Étape 3: Monétiser ta liste"
                             />
                         </div>
-                        <p class="promise-container">
-                            <span class="promise-text"
-                                >→ Objectif : 10K€/mois en 90 jours<br />
-                                <span class="guarantee-text"
-                                    >(Résultats variables selon l'engagement et
-                                    l'effort individuel.)</span
-                                ></span
-                            >
-                        </p>
+                        <div class="step-content">
+                            <div class="step-number">3</div>
+                            <h3 class="step-title">Monétiser ta liste</h3>
+                            <p class="step-text">
+                                Convertis ta liste en revenus récurrents.<br />
+                                Affiliation ou produit propre, je te guide étape
+                                par étape.<br /><br />
+                                <span class="promise-text">
+                                    → 10K€/mois en 90 jours<br />
+                                    <span class="guarantee-text"
+                                        >(2K€ minimum garanti)</span
+                                    >
+                                </span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -869,52 +869,20 @@ import Layout from "../layouts/Layout.astro";
                 <div class="case-study-content">
                     <div class="case-study-stats">
                         <div class="stat-item">
-                            <div class="stat-icon">
-                                <img
-                                    src="/media/Instagram_icon.webp"
-                                    alt="Instagram"
-                                    width="32"
-                                    height="32"
-                                />
-                            </div>
                             <div class="stat-number">1,9 M</div>
                             <div class="stat-label">Vues sur Instagram</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-icon">
-                                <img
-                                    src="/media/facebook_icon.webp"
-                                    alt="Facebook"
-                                    width="32"
-                                    height="32"
-                                />
-                            </div>
                             <div class="stat-number">1,3 M</div>
                             <div class="stat-label">Vues sur Facebook</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-icon">
-                                <img
-                                    src="/media/youtube_icon.webp"
-                                    alt="YouTube Shorts"
-                                    width="32"
-                                    height="32"
-                                />
-                            </div>
                             <div class="stat-number">500 K</div>
                             <div class="stat-label">
                                 Vues sur YouTube Shorts
                             </div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-icon">
-                                <img
-                                    src="/media/tiktok_icon.webp"
-                                    alt="TikTok"
-                                    width="32"
-                                    height="32"
-                                />
-                            </div>
                             <div class="stat-number">416 K</div>
                             <div class="stat-label">Vues sur TikTok</div>
                         </div>
@@ -991,24 +959,17 @@ import Layout from "../layouts/Layout.astro";
                                     <!-- Introduction -->
                                     <div class="clean-intro">
                                         <p>
-                                            La plupart des gens pensent que
-                                            faire des vues, c'est une question
-                                            de hasard. Tu postes une vidéo, tu
-                                            croises les doigts, et tu espères
-                                            que "l'algorithme" te remarque.
+                                            La plupart des gens pensent que faire des vues, c'est une question de hasard.
+                                            Tu postes une vidéo, tu croises les doigts, et tu espères que "l'algorithme" te remarque.
                                         </p>
                                         <div class="clean-reveal">
                                             <p><strong>FAUX.</strong></p>
                                         </div>
                                         <p>
-                                            La viralité n'a rien à voir avec la
-                                            chance. Elle obéit à une logique
-                                            précise — à la fois psychologique et
-                                            technique. Et une fois que tu
-                                            comprends comment le cerveau humain
-                                            réagit aux premières secondes d'une
-                                            vidéo… tu peux littéralement forcer
-                                            l'algorithme à te mettre en avant.
+                                            La viralité n'a rien à voir avec la chance. Elle obéit à une logique précise
+                                            — à la fois psychologique et technique. Et une fois que tu comprends comment le
+                                            cerveau humain réagit aux premières secondes d'une vidéo… tu peux littéralement
+                                            forcer l'algorithme à te mettre en avant.
                                         </p>
                                     </div>
 
@@ -1017,63 +978,30 @@ import Layout from "../layouts/Layout.astro";
                                         <h4>❌ Le piège du "Publie et Prie"</h4>
                                         <div class="clean-content">
                                             <p>
-                                                Tu connais sûrement la scène :
-                                                tu passes des heures à écrire,
-                                                filmer, monter ta vidéo. Tu
-                                                cliques sur "Publier". Tu
-                                                t'imagines déjà la vague de
-                                                notifications, les commentaires,
-                                                la traction…
+                                                Tu connais sûrement la scène : tu passes des heures à écrire, filmer,
+                                                monter ta vidéo. Tu cliques sur "Publier". Tu t'imagines déjà la
+                                                vague de notifications, les commentaires, la traction…
                                             </p>
                                             <div class="clean-highlight-box">
-                                                <p>
-                                                    <strong
-                                                        >Le lendemain : rien.</strong
-                                                    >
-                                                </p>
-                                                <p>
-                                                    Quelques likes d'amis. Une
-                                                    dizaine de vues. Silence.
-                                                </p>
+                                                <p><strong>Le lendemain : rien.</strong></p>
+                                                <p>Quelques likes d'amis. Une dizaine de vues. Silence.</p>
                                             </div>
                                             <p>
-                                                Et tu te demandes : "Comment
-                                                font ces créateurs pour exploser
-                                                avec des vidéos parfois dix fois
-                                                plus simples que les miennes ?"
+                                                Et tu te demandes : "Comment font ces créateurs pour exploser avec des
+                                                vidéos parfois dix fois plus simples que les miennes ?"
                                             </p>
-                                            <p>
-                                                <strong>La vérité ?</strong> Ils
-                                                ne créent jamais à l'aveugle.
-                                            </p>
-                                            <p>
-                                                <strong
-                                                    >Ils créent à partir de
-                                                    preuves.</strong
-                                                >
-                                            </p>
+                                            <p><strong>La vérité ?</strong> Ils ne créent jamais à l'aveugle.</p>
+                                            <p><strong>Ils créent à partir de preuves.</strong></p>
                                         </div>
                                     </div>
 
                                     <!-- Le principe -->
                                     <div class="clean-section">
-                                        <h4>
-                                            ⚙️ Le principe du Code des Vues
-                                            Infinies™
-                                        </h4>
+                                        <h4>⚙️ Le principe du Code des Vues Infinies™</h4>
                                         <div class="clean-content">
-                                            <p>
-                                                Le Code des Vues Infinies™
-                                                repose sur un seul concept :
-                                            </p>
+                                            <p>Le Code des Vues Infinies™ repose sur un seul concept :</p>
                                             <div class="clean-concept-box">
-                                                <p>
-                                                    <strong
-                                                        >🔬 Tu ne prédis pas la
-                                                        viralité, tu la
-                                                        reproduis.</strong
-                                                    >
-                                                </p>
+                                                <p><strong>🔬 Tu ne prédis pas la viralité, tu la reproduis.</strong></p>
                                             </div>
                                         </div>
                                     </div>
@@ -1082,168 +1010,40 @@ import Layout from "../layouts/Layout.astro";
                                     <div class="clean-section">
                                         <div class="clean-content">
                                             <p>
-                                                Au lieu de deviner ce qui va
-                                                fonctionner, tu t'appuies sur
-                                                des preuves concrètes de ce qui
-                                                fonctionne déjà. Tu analyses les
-                                                vidéos qui ont explosé pour
-                                                comprendre ce qui déclenche une
-                                                réaction automatique dans le
-                                                cerveau humain.
+                                                Au lieu de deviner ce qui va fonctionner, tu t'appuies sur des preuves
+                                                concrètes de ce qui fonctionne déjà. Tu analyses les vidéos qui ont
+                                                explosé pour comprendre ce qui déclenche une réaction automatique
+                                                dans le cerveau humain.
                                             </p>
-                                            <p>
-                                                Et tu en retires <strong
-                                                    >trois éléments simples</strong
-                                                > :
-                                            </p>
+                                            <p>Et tu en retires <strong>trois éléments simples</strong> :</p>
 
                                             <div class="clean-elements-grid">
                                                 <div class="clean-element-card">
-                                                    <div
-                                                        class="clean-element-number"
-                                                    >
-                                                        <svg
-                                                            width="32"
-                                                            height="32"
-                                                            viewBox="0 0 32 32"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                            <circle
-                                                                cx="16"
-                                                                cy="16"
-                                                                r="15"
-                                                                fill="var(--accent)"
-                                                                stroke="var(--accent)"
-                                                                stroke-width="2"
-                                                            ></circle>
-                                                            <text
-                                                                x="16"
-                                                                y="21"
-                                                                text-anchor="middle"
-                                                                fill="white"
-                                                                font-size="16"
-                                                                font-weight="700"
-                                                                font-family="Arial, sans-serif"
-                                                                >1</text
-                                                            >
-                                                        </svg>
-                                                    </div>
-                                                    <div
-                                                        class="clean-element-content"
-                                                    >
+                                                    <div class="clean-element-number">1️⃣</div>
+                                                    <div class="clean-element-content">
                                                         <h5>Le Hook Ultime</h5>
-                                                        <p>
-                                                            Ce qui stoppe le
-                                                            scroll – le détail
-                                                            qui fige l'attention
-                                                            en moins de 3
-                                                            secondes.
-                                                        </p>
+                                                        <p>Ce qui stoppe le scroll – le détail qui fige l'attention en moins de 3 secondes.</p>
                                                     </div>
                                                 </div>
 
                                                 <div class="clean-element-card">
-                                                    <div
-                                                        class="clean-element-number"
-                                                    >
-                                                        <svg
-                                                            width="32"
-                                                            height="32"
-                                                            viewBox="0 0 32 32"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                            <circle
-                                                                cx="16"
-                                                                cy="16"
-                                                                r="15"
-                                                                fill="var(--accent)"
-                                                                stroke="var(--accent)"
-                                                                stroke-width="2"
-                                                            ></circle>
-                                                            <text
-                                                                x="16"
-                                                                y="21"
-                                                                text-anchor="middle"
-                                                                fill="white"
-                                                                font-size="16"
-                                                                font-weight="700"
-                                                                font-family="Arial, sans-serif"
-                                                                >2</text
-                                                            >
-                                                        </svg>
-                                                    </div>
-                                                    <div
-                                                        class="clean-element-content"
-                                                    >
-                                                        <h5>
-                                                            La Tension
-                                                            Magnétique
-                                                        </h5>
-                                                        <p>
-                                                            Ce qui crée le
-                                                            suspense – l'élément
-                                                            qui donne envie de
-                                                            rester coûte que
-                                                            coûte.
-                                                        </p>
+                                                    <div class="clean-element-number">2️⃣</div>
+                                                    <div class="clean-element-content">
+                                                        <h5>La Tension Magnétique</h5>
+                                                        <p>Ce qui crée le suspense – l'élément qui donne envie de rester coûte que coûte.</p>
                                                     </div>
                                                 </div>
 
                                                 <div class="clean-element-card">
-                                                    <div
-                                                        class="clean-element-number"
-                                                    >
-                                                        <svg
-                                                            width="32"
-                                                            height="32"
-                                                            viewBox="0 0 32 32"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                            <circle
-                                                                cx="16"
-                                                                cy="16"
-                                                                r="15"
-                                                                fill="var(--accent)"
-                                                                stroke="var(--accent)"
-                                                                stroke-width="2"
-                                                            ></circle>
-                                                            <text
-                                                                x="16"
-                                                                y="21"
-                                                                text-anchor="middle"
-                                                                fill="white"
-                                                                font-size="16"
-                                                                font-weight="700"
-                                                                font-family="Arial, sans-serif"
-                                                                >3</text
-                                                            >
-                                                        </svg>
-                                                    </div>
-                                                    <div
-                                                        class="clean-element-content"
-                                                    >
-                                                        <h5>
-                                                            La Rétention Finale
-                                                        </h5>
-                                                        <p>
-                                                            Ce qui force à
-                                                            regarder jusqu'à la
-                                                            fin – ce qui pousse
-                                                            à revoir, partager
-                                                            et sauvegarder.
-                                                        </p>
+                                                    <div class="clean-element-number">3️⃣</div>
+                                                    <div class="clean-element-content">
+                                                        <h5>La Rétention Finale</h5>
+                                                        <p>Ce qui force à regarder jusqu'à la fin – ce qui pousse à revoir, partager et sauvegarder.</p>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <p>
-                                                Ces trois leviers activent les <strong
-                                                    >réflexes émotionnels</strong
-                                                > que l'algorithme adore.
-                                            </p>
+                                            <p>Ces trois leviers activent les <strong>réflexes émotionnels</strong> que l'algorithme adore.</p>
                                         </div>
                                     </div>
 
@@ -1252,45 +1052,28 @@ import Layout from "../layouts/Layout.astro";
                                         <h4>💥 Le Résultat Transformateur</h4>
                                         <div class="clean-content">
                                             <p>
-                                                Tes vidéos ne "tentent" plus
-                                                d'être virales.
-                                                <strong
-                                                    >Elles le deviennent par
-                                                    structure.</strong
-                                                >
+                                                Tes vidéos ne "tentent" plus d'être virales.
+                                                <strong>Elles le deviennent par structure.</strong>
                                             </p>
                                             <p>
-                                                Tu n'espères plus que les gens
-                                                tombent sur ton contenu :
-                                                <strong
-                                                    >Tu les obliges à regarder,</strong
-                                                > parce que tu utilises un système
+                                                Tu n'espères plus que les gens tombent sur ton contenu :
+                                                <strong>Tu les obliges à regarder,</strong> parce que tu utilises un système
                                                 scientifique basé sur la preuve.
                                             </p>
                                             <p>
-                                                Dis adieu au doute et au stress
-                                                avant chaque publication. Avec
-                                                mon approche fondée sur la
-                                                déssection des preuves de
-                                                succès, tu auras enfin les
-                                                probabilités de ton côté… et
-                                                l'algorithme dans ta poche.
+                                                Dis adieu au doute et au stress avant chaque publication.
+                                                Avec mon approche fondée sur la déssection des preuves de succès,
+                                                tu auras enfin les probabilités de ton côté… et l'algorithme dans ta poche.
                                             </p>
                                         </div>
                                     </div>
 
                                     <!-- Témoignage -->
                                     <div class="clean-section">
-                                        <h4>
-                                            🔥 Ce qui s'est passé quand j'ai
-                                            appliqué ce code
-                                        </h4>
+                                        <h4>🔥 Ce qui s'est passé quand j'ai appliqué ce code</h4>
                                         <div class="clean-content">
                                             <div class="clean-placeholder">
-                                                <p>
-                                                    📊 [Graphique de résultats
-                                                    ici pour l'instant]
-                                                </p>
+                                                <p>📊 [Graphique de résultats ici pour l'instant]</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1299,72 +1082,37 @@ import Layout from "../layouts/Layout.astro";
                                     <div class="clean-section">
                                         <h4>🎯 Et maintenant ?</h4>
                                         <div class="clean-content">
-                                            <p>
-                                                Dans la formation complète <strong
-                                                    >Système Viral</strong
-                                                >, je te montre exactement
-                                                comment appliquer ce Code à ton
-                                                contenu :
-                                            </p>
+                                            <p>Dans la formation complète <strong>Système Viral</strong>, je te montre exactement comment appliquer ce Code à ton contenu :</p>
 
                                             <div class="clean-features-list">
                                                 <div class="clean-feature-item">
                                                     <span>📍</span>
                                                     <div>
-                                                        <strong
-                                                            >Localisation des
-                                                            Preuves</strong
-                                                        >
-                                                        <p>
-                                                            Où trouver tes
-                                                            preuves de succès en
-                                                            moins de 3 minutes
-                                                        </p>
+                                                        <strong>Localisation des Preuves</strong>
+                                                        <p>Où trouver tes preuves de succès en moins de 3 minutes</p>
                                                     </div>
                                                 </div>
 
                                                 <div class="clean-feature-item">
                                                     <span>🎨</span>
                                                     <div>
-                                                        <strong
-                                                            >Adaptation Créative</strong
-                                                        >
-                                                        <p>
-                                                            Comment te les
-                                                            approprier sans
-                                                            plagiat
-                                                        </p>
+                                                        <strong>Adaptation Créative</strong>
+                                                        <p>Comment te les approprier sans plagiat</p>
                                                     </div>
                                                 </div>
 
                                                 <div class="clean-feature-item">
                                                     <span>🤖</span>
                                                     <div>
-                                                        <strong
-                                                            >Automatisation IA</strong
-                                                        >
-                                                        <p>
-                                                            Et comment l'IA fait
-                                                            80 % du travail pour
-                                                            toi
-                                                        </p>
+                                                        <strong>Automatisation IA</strong>
+                                                        <p>Et comment l'IA fait 80 % du travail pour toi</p>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="clean-closing">
-                                                <p>
-                                                    <strong
-                                                        >Tu ne posteras plus
-                                                        jamais "au hasard".</strong
-                                                    >
-                                                </p>
-                                                <p>
-                                                    <strong
-                                                        >Tu publieras avec
-                                                        certitude.</strong
-                                                    >
-                                                </p>
+                                                <p><strong>Tu ne posteras plus jamais "au hasard".</strong></p>
+                                                <p><strong>Tu publieras avec certitude.</strong></p>
                                             </div>
                                         </div>
                                     </div>
@@ -1378,248 +1126,64 @@ import Layout from "../layouts/Layout.astro";
                             <div class="secret-number">2</div>
                             <div class="secret-content">
                                 <h3 class="secret-title">
-                                    🚀 SECRET #2 — Le Tunnel Invisible™
+                                    Le Tunnel Invisible™
                                 </h3>
                                 <p class="secret-subtitle">
                                     Comment transformer des vues en revenus sans
-                                    jamais "vendre" directement
+                                    jamais "vendre" directement.
                                 </p>
-                                <div class="secret-text secret-1-clean">
-                                    <!-- Introduction -->
-                                    <div class="clean-intro">
+                                <div class="secret-text">
+                                    <p>
+                                        C'est le piège classique : Tu fais des
+                                        vues, tu gagnes des abonnés… mais rien
+                                        ne rentre sur ton compte.
+                                    </p>
+                                    <p>
+                                        Parce que la viralité sans stratégie,
+                                        c'est juste de l'ego.
+                                    </p>
+
+                                    <div class="highlight-box">
                                         <p>
-                                            C'est le piège classique : Tu fais
-                                            des vues, tu gagnes des abonnés, tu
-                                            reçois des messages de
-                                            "félicitations"… Mais sur ton
-                                            compte, rien ne change.
+                                            Le Tunnel Invisible™ est la pièce
+                                            manquante : une structure
+                                            sous-marine qui capte ton audience
+                                            pendant que tu dors.
+                                        </p>
+                                    </div>
+
+                                    <p>
+                                        Chaque vue devient un email, chaque
+                                        email devient une relation, et chaque
+                                        relation peut devenir un client —
+                                        naturellement.
+                                    </p>
+
+                                    <div class="key-points">
+                                        <p>
+                                            <strong
+                                                >Pas besoin d'être un marketeur.</strong
+                                            >
                                         </p>
                                         <p>
-                                            Parce que la viralité sans
-                                            stratégie, c'est juste de l'ego.
+                                            <strong
+                                                >Pas besoin d'agresser ton
+                                                audience</strong
+                                            > avec des "achète maintenant".
                                         </p>
                                     </div>
 
-                                    <!-- Le mensonge moderne -->
-                                    <div class="clean-section">
-                                        <div class="clean-content">
-                                            <div class="clean-highlight-box">
-                                                <p>
-                                                    <strong
-                                                        >⚡ Le mensonge moderne
-                                                        : "Les emails, c'est
-                                                        dépassé"</strong
-                                                    >
-                                                </p>
-                                                <p>On l'entend partout :</p>
-                                                <p>
-                                                    "Ça sert à rien d'envoyer
-                                                    des emails, tout se passe
-                                                    sur les réseaux."
-                                                </p>
-                                                <p><strong>Faux.</strong></p>
-                                            </div>
-                                            <p>
-                                                Mon business a survécu à chaque
-                                                changement d'algorithme, et j'ai
-                                                réalisé plusieurs lancements à
-                                                plus de 50 000 €, en grande
-                                                partie grâce aux emails.
-                                            </p>
-                                            <p>
-                                                Les centaines de millions de
-                                                vues que j'ai eues sur les
-                                                réseaux m'auraient presque rien
-                                                rapporté si je n'avais pas
-                                                collecté les adresses derrière.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Ce que vaut un email -->
-                                    <div class="clean-section">
-                                        <h4>
-                                            💰 Ce que vaut vraiment un email
-                                        </h4>
-                                        <div class="clean-content">
-                                            <p>
-                                                On croit souvent qu'un email, ça
-                                                vaut rien.
-                                            </p>
-                                            <p>
-                                                Mais en réalité, selon les
-                                                industries, un abonné email vaut
-                                                entre 3 € et 30 €.
-                                            </p>
-                                            <div class="clean-highlight-box">
-                                                <p>
-                                                    <strong
-                                                        >Fais le calcul :</strong
-                                                    >
-                                                </p>
-                                                <p>
-                                                    100 emails par jour → 300 à
-                                                    3 000 € de valeur
-                                                    potentielle, chaque jour.
-                                                </p>
-                                            </div>
-                                            <p>
-                                                Et avec le Système Viral, tu
-                                                apprendras comment atteindre ce
-                                                genre de chiffres,
-                                                naturellement, sans passer tes
-                                                journées à "vendre" ni passer
-                                                pour un marchand de tapis du
-                                                digital.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Le principe -->
-                                    <div class="clean-section">
-                                        <h4>
-                                            🧠 Le principe du Tunnel Invisible™
-                                        </h4>
-                                        <div class="clean-content">
-                                            <p>
-                                                Le Tunnel Invisible™ est une
-                                                structure sous-marine :
-                                            </p>
-                                            <p>
-                                                pendant que tout le monde
-                                                cherche la lumière (les vues,
-                                                les likes), toi tu construis le
-                                                courant qui attire les bons
-                                                prospects vers toi.
-                                            </p>
-                                            <div class="clean-concept-box">
-                                                <p>
-                                                    <strong
-                                                        >Tes vues deviennent des
-                                                        emails.</strong
-                                                    >
-                                                </p>
-                                                <p>
-                                                    <strong
-                                                        >Chaque email devient
-                                                        une relation.</strong
-                                                    >
-                                                </p>
-                                                <p>
-                                                    <strong
-                                                        >Et chaque relation peut
-                                                        devenir un client —
-                                                        naturellement.</strong
-                                                    >
-                                                </p>
-                                            </div>
-                                            <p>
-                                                Pas besoin d'être un marketeur
-                                                avide de conversion.
-                                            </p>
-                                            <p>
-                                                Pas besoin d'agresser ton
-                                                audience avec des promotions
-                                                publicitaires.
-                                            </p>
-                                            <p>
-                                                Je te montre comment offrir un
-                                                cadeau gratuit à la fin de tes
-                                                vidéos — un simple geste qui
-                                                transforme une vue en email
-                                                automatiquement.
-                                            </p>
-                                            <p>
-                                                Et pendant que tu dors, ton
-                                                audience continue de grandir.
-                                            </p>
-                                            <p>
-                                                C'est ce que font les créateurs
-                                                les plus rentables du web.
-                                            </p>
-                                            <p>
-                                                Mais personne ne te montre
-                                                exactement comment le faire.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Expérience personnelle -->
-                                    <div class="clean-section">
-                                        <h4>💥 Mon expérience personnelle</h4>
-                                        <div class="clean-content">
-                                            <p>
-                                                Il m'a fallu 7 ans pour
-                                                construire une base de 100 000
-                                                emails.
-                                            </p>
-                                            <p>
-                                                Mais lors de mon dernier
-                                                lancement — en appliquant la
-                                                méthode que je t'enseigne dans
-                                                le Système Viral — j'ai collecté
-                                                plus de 20 000 emails en 30
-                                                jours.
-                                            </p>
-                                            <div class="clean-placeholder">
-                                                <p>
-                                                    📊 [Graphique de résultats
-                                                    ici pour l'instant]
-                                                </p>
-                                            </div>
-                                            <div class="clean-highlight-box">
-                                                <p>
-                                                    Si j'avais connu cette
-                                                    approche il y a 7 ans,
-                                                    j'aurais aujourd'hui en ma
-                                                    possession environ 1,6
-                                                    million d'emails...
-                                                </p>
-                                                <p>
-                                                    Et la valeur de cette seule
-                                                    liste serait estimée entre 5
-                                                    et 8 millions d'euros. 🤯
-                                                </p>
-                                            </div>
-                                            <p>
-                                                <strong
-                                                    >Tout ça, c'est la
-                                                    différence entre créer du
-                                                    contenu… et créer un
-                                                    business.</strong
-                                                >
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- En résumé -->
-                                    <div class="clean-section">
-                                        <h4>⚡ En résumé</h4>
-                                        <div class="clean-content">
-                                            <div class="clean-highlight-box">
-                                                <p>
-                                                    <strong
-                                                        >Les vues te donnent la
-                                                        visibilité.</strong
-                                                    >
-                                                </p>
-                                                <p>
-                                                    <strong
-                                                        >Les emails te donnent
-                                                        la liberté.</strong
-                                                    >
-                                                </p>
-                                            </div>
-                                            <p>
-                                                C'est ça, le Tunnel Invisible™.
-                                                Un système qui transforme tes
-                                                vues en revenus prévisibles,
-                                                sans jamais avoir besoin de
-                                                passer pour un vendeur sur tes
-                                                réseaux.
-                                            </p>
-                                        </div>
-                                    </div>
+                                    <p>
+                                        Tu apprends à placer des aimants
+                                        invisibles dans tes vidéos, qui guident
+                                        les gens vers tes offres sans qu'ils
+                                        s'en rendent compte.
+                                    </p>
+                                    <p>
+                                        C'est ce que font les créateurs les plus
+                                        rentables du web… et personne ne te
+                                        l'explique ainsi.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -1630,266 +1194,89 @@ import Layout from "../layouts/Layout.astro";
                             <div class="secret-number">3</div>
                             <div class="secret-content">
                                 <h3 class="secret-title">
-                                    🚀 SECRET #3 — Le Glitch de Monétisation™
+                                    Le Glitch de Monétisation™
                                 </h3>
                                 <p class="secret-subtitle">
-                                    Comment transformer tes vues et tes emails
-                                    en argent réel
+                                    Comment générer tes premiers revenus viraux
+                                    avant même d'avoir une audience.
                                 </p>
-                                <div class="secret-text secret-1-clean">
-                                    <!-- Introduction -->
-                                    <div class="clean-intro">
+                                <div class="secret-text">
+                                    <p>
+                                        La plupart des créateurs attendent
+                                        d'avoir "10 000 abonnés" pour monétiser.
+                                        C'est une erreur monumentale.
+                                    </p>
+                                    <p>
+                                        Avec le Glitch de Monétisation™, tu
+                                        apprends à profiter de chaque vidéo
+                                        comme d'un actif — dès le premier jour.
+                                    </p>
+
+                                    <div class="strategy-box">
                                         <p>
-                                            Regarde n'importe quel grand
-                                            influenceur. Ils ont tous un point
-                                            commun : ils finissent tous par
-                                            créer leur propre business.
+                                            Grâce à une stratégie en trois
+                                            leviers :
                                         </p>
-                                        <div class="clean-highlight-box">
-                                            <p>
-                                                <strong
-                                                    >Exemples concrets :</strong
+                                        <div class="strategy-list">
+                                            <div class="strategy-item">
+                                                <span class="strategy-icon"
+                                                    >🧲</span
                                                 >
-                                            </p>
-                                            <p>
-                                                Léna Situations → Hôtel Mafouf
-                                            </p>
-                                            <p>Squeezie → Ciao Kombucha</p>
-                                            <p>
-                                                Ibra TV → Black & White Burger
-                                            </p>
-                                            <p>Mister V → Pizza Delamama</p>
-                                            <p>Michou → Mealy</p>
-                                            <p>MrBeast → Feastables</p>
+                                                <span
+                                                    >L'affiliation stratégique
+                                                    (tu gagnes en recommandant
+                                                    les bons outils)</span
+                                                >
+                                            </div>
+                                            <div class="strategy-item">
+                                                <span class="strategy-icon"
+                                                    >🎁</span
+                                                >
+                                                <span
+                                                    >Les micro-offres à effet
+                                                    levier (tu vends des
+                                                    produits simples et rapides
+                                                    à créer)</span
+                                                >
+                                            </div>
+                                            <div class="strategy-item">
+                                                <span class="strategy-icon"
+                                                    >⚙️</span
+                                                >
+                                                <span
+                                                    >L'automatisation du revenu
+                                                    (chaque nouvelle vue nourrit
+                                                    ton système)</span
+                                                >
+                                            </div>
                                         </div>
+                                    </div>
+
+                                    <div class="highlight-box">
+                                        <p>
+                                            C'est la version 2.0 du business en
+                                            ligne.
+                                        </p>
+                                    </div>
+
+                                    <div class="key-points">
                                         <p>
                                             <strong
-                                                >Ce n'est pas un hasard. C'est
-                                                une stratégie.</strong
+                                                >Pas de sponsors. Pas d'attente.
+                                                Pas de bullshit.</strong
                                             >
                                         </p>
-                                        <p>
-                                            Les vues créent la notoriété. Mais
-                                            le business derrière crée la vraie
-                                            liberté financière.
-                                        </p>
                                     </div>
 
-                                    <!-- Ce que la plupart ne comprennent pas -->
-                                    <div class="clean-section">
-                                        <h4>
-                                            💡 Ce que la plupart ne comprennent
-                                            pas
-                                        </h4>
-                                        <div class="clean-content">
-                                            <p>
-                                                Le nerf de la guerre, dans
-                                                n'importe quel business, c'est
-                                                le trafic.
-                                            </p>
-                                            <p>
-                                                Un bon produit dont personne
-                                                n'entend parler ne vaut rien.
-                                            </p>
-                                            <p>
-                                                Et c'est exactement là que le
-                                                Système Viral change tout : tu
-                                                n'as plus besoin de chercher ton
-                                                audience, tu la crées.
-                                            </p>
-                                            <div class="clean-concept-box">
-                                                <p>
-                                                    <strong
-                                                        >Tu attires les vues. Tu
-                                                        collectes les emails.</strong
-                                                    >
-                                                </p>
-                                                <p>
-                                                    <strong
-                                                        >Et tu possèdes alors la
-                                                        fondation dont rêvent
-                                                        toutes les marques.</strong
-                                                    >
-                                                </p>
-                                            </div>
-                                            <p>
-                                                <strong
-                                                    >Des vues + des emails = la
-                                                    machine parfaite à revenus.</strong
-                                                >
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Le faux problème -->
-                                    <div class="clean-section">
-                                        <h4>
-                                            🧩 Le faux problème : "Il faut un
-                                            gros business pour vendre"
-                                        </h4>
-                                        <div class="clean-content">
-                                            <p>Beaucoup se disent :</p>
-                                            <div class="clean-highlight-box">
-                                                <p>
-                                                    "Oui mais moi je n'ai pas le
-                                                    budget pour un hôtel, une
-                                                    marque de vêtements ou une
-                                                    chaîne de resto…"
-                                                </p>
-                                            </div>
-                                            <p>
-                                                <strong
-                                                    >Bonne nouvelle : tu n'as
-                                                    pas besoin d'un business à
-                                                    millions pour commencer.</strong
-                                                >
-                                            </p>
-                                            <p>
-                                                Dès que tu génères des vues et
-                                                que tu collectes des emails, tu
-                                                peux commencer à vendre
-                                                immédiatement.
-                                            </p>
-                                            <p><strong>Comment ?</strong></p>
-                                            <div class="clean-features-list">
-                                                <div class="clean-feature-item">
-                                                    <span>📚</span>
-                                                    <div>
-                                                        <strong
-                                                            >Mini-produits
-                                                            digitaux</strong
-                                                        >
-                                                        <p>
-                                                            Ebooks, packs,
-                                                            audios, challenges…
-                                                            simples et rapides à
-                                                            produire
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="clean-feature-item">
-                                                    <span>🤝</span>
-                                                    <div>
-                                                        <strong
-                                                            >Affiliation
-                                                            stratégique</strong
-                                                        >
-                                                        <p>
-                                                            Recommander les
-                                                            produits des autres
-                                                            et gagner des
-                                                            commissions
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="clean-feature-item">
-                                                    <span>🎓</span>
-                                                    <div>
-                                                        <strong
-                                                            >Formation premium
-                                                            avec IA</strong
-                                                        >
-                                                        <p>
-                                                            Créer ta propre
-                                                            formation en
-                                                            quelques jours grâce
-                                                            à l'IA
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Le Glitch de Monétisation™ -->
-                                    <div class="clean-section">
-                                        <h4>
-                                            ⚙️ Le "Glitch" de Monétisation™
-                                        </h4>
-                                        <div class="clean-content">
-                                            <p>
-                                                Le glitch, c'est de comprendre
-                                                que ce n'est pas la taille de
-                                                ton audience qui détermine tes
-                                                revenus, mais la structure que
-                                                tu mets en place derrière.
-                                            </p>
-                                            <div class="clean-highlight-box">
-                                                <p>
-                                                    <strong
-                                                        >Avec le Système Viral :</strong
-                                                    >
-                                                </p>
-                                                <p>
-                                                    Chaque vue devient un email.
-                                                </p>
-                                                <p>
-                                                    Chaque email devient une
-                                                    vente.
-                                                </p>
-                                                <p>
-                                                    Et chaque vente finance ton
-                                                    prochain contenu.
-                                                </p>
-                                            </div>
-                                            <p>
-                                                <strong
-                                                    >C'est une boucle infinie.
-                                                    Un cercle vertueux que
-                                                    presque personne n'exploite
-                                                    correctement.</strong
-                                                >
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Expérience personnelle -->
-                                    <div class="clean-section">
-                                        <h4>💥 Mon expérience personnelle</h4>
-                                        <div class="clean-content">
-                                            <p>
-                                                C'est exactement ce que j'ai
-                                                fait.
-                                            </p>
-                                            <div class="clean-highlight-box">
-                                                <p>
-                                                    J'ai lancé une formation à
-                                                    200 €, créée en moins d'un
-                                                    mois, tout en travaillant
-                                                    sur plusieurs projets en
-                                                    parallèle.
-                                                </p>
-                                            </div>
-                                            <p>
-                                                <strong
-                                                    >Résultat : plus de 100 000
-                                                    € générés sur un seul
-                                                    lancement.</strong
-                                                >
-                                            </p>
-                                            <div class="clean-concept-box">
-                                                <p>
-                                                    Pas de sponsors. Pas de
-                                                    budget pub. Pas
-                                                    d'investissement de départ.
-                                                </p>
-                                                <p>
-                                                    <strong
-                                                        >Juste une approche
-                                                        méthodique… et la bonne
-                                                        stratégie.</strong
-                                                    >
-                                                </p>
-                                            </div>
-                                            <p>
-                                                <strong
-                                                    >Et c'est exactement ce que
-                                                    tu vas apprendre dans le
-                                                    Système Viral.</strong
-                                                >
-                                            </p>
-                                        </div>
-                                    </div>
+                                    <p>
+                                        Tu transformes directement ta créativité
+                                        en revenus.
+                                    </p>
+                                    <p class="final-thought">
+                                        Et ce "glitch", une fois compris,
+                                        devient presque injuste tellement il
+                                        change la donne.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -2569,7 +1956,7 @@ import Layout from "../layouts/Layout.astro";
         </section>
 
         <!-- Success Calculator Section -->
-        <section id="success-calculator" class="success-calculator-section">
+        <section class="success-calculator-section">
             <div class="container">
                 <div class="calculator-header">
                     <h2 class="section-title">
@@ -2603,9 +1990,12 @@ import Layout from "../layouts/Layout.astro";
                             <button
                                 class="nav-btn prev-btn"
                                 id="prev-btn"
-                                style="display: none;"
+                                disabled
                             >
                                 ← Précédent
+                            </button>
+                            <button class="nav-btn next-btn" id="next-btn">
+                                Suivant →
                             </button>
                         </div>
                     </div>
@@ -2705,9 +2095,6 @@ import Layout from "../layouts/Layout.astro";
                             </div>
                             <button class="result-cta" id="result-cta">
                                 COMMENCER LA FORMATION →
-                            </button>
-                            <button class="restart-btn" id="restart-btn">
-                                Refaire le test
                             </button>
                         </div>
                     </div>
@@ -3598,10 +2985,6 @@ import Layout from "../layouts/Layout.astro";
             padding: 30px;
             text-align: center;
             transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
         }
 
         .stat-item:hover {
@@ -3610,19 +2993,11 @@ import Layout from "../layouts/Layout.astro";
             box-shadow: 0 10px 30px rgba(0, 220, 130, 0.1);
         }
 
-        .stat-icon {
-            margin-bottom: 8px;
-        }
-
         .stat-number {
             font-size: clamp(32px, 4vw, 48px);
             font-weight: 800;
-            color: #fff !important;
-            background: none !important;
-            -webkit-background-clip: unset !important;
-            -webkit-text-fill-color: #fff !important;
-            background-clip: unset !important;
-            text-shadow: none !important;
+            color: var(--accent);
+            margin-bottom: 8px;
             line-height: 1;
         }
 
@@ -3631,9 +3006,7 @@ import Layout from "../layouts/Layout.astro";
             color: var(--text-secondary);
             font-weight: 500;
         }
-    </style>
 
-    <style>
         .total-views-text {
             text-align: center;
             margin: 20px 0 40px;
@@ -3701,6 +3074,23 @@ import Layout from "../layouts/Layout.astro";
             align-items: center;
             justify-content: space-between;
             gap: 12px;
+        }
+
+        .formula-number {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(0, 220, 130, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .formula-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            flex: 1;
         }
 
         .case-study-image {
@@ -3792,26 +3182,13 @@ import Layout from "../layouts/Layout.astro";
                 gap: 20px;
             }
 
-            .stat-item {
-                gap: 12px;
-            }
-
-            .stat-icon {
-                margin-bottom: 4px;
-            }
-
-            .stat-icon svg {
-                width: 28px;
-                height: 28px;
+            .total-box {
+                padding: 30px 20px;
+                min-width: 280px;
             }
 
             .total-number {
                 font-size: 36px;
-            }
-
-            .total-box {
-                padding: 30px 20px;
-                min-width: 280px;
             }
 
             .total-views-text p {
@@ -4090,12 +3467,7 @@ import Layout from "../layouts/Layout.astro";
         .stat-number {
             font-size: clamp(32px, 4vw, 48px);
             font-weight: 800;
-            color: #fff !important;
-            background: none !important;
-            -webkit-background-clip: unset !important;
-            -webkit-text-fill-color: #fff !important;
-            background-clip: unset !important;
-            text-shadow: none !important;
+            color: var(--accent);
             margin-bottom: 4px;
             line-height: 1;
         }
@@ -4931,31 +4303,14 @@ import Layout from "../layouts/Layout.astro";
         }
 
         .formula-item {
-            background: rgba(0, 220, 130, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 220, 130, 0.3);
+            background: linear-gradient(135deg, var(--accent) 0%, #00f5b4 100%);
+            color: #000;
             padding: 14px 24px;
             border-radius: 12px;
             font-weight: 800;
             font-size: 17px;
-            box-shadow: 0 6px 20px rgba(0, 220, 130, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        .formula-number {
-            color: var(--accent);
-            font-weight: 900;
-            font-size: 18px;
-            text-shadow: 0 0 10px rgba(0, 220, 130, 0.5);
-        }
-
-        .formula-text {
-            color: #fff;
-            font-weight: 600;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 20px rgba(0, 220, 130, 0.4);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         .formula-plus,
@@ -5574,25 +4929,6 @@ import Layout from "../layouts/Layout.astro";
                 inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        /* Ensure premium styles win even if something injects base styles */
-        #success-calculator .question-card-premium {
-            display: block !important;
-        }
-        #success-calculator .options-grid-premium {
-            display: grid !important;
-        }
-        #success-calculator .option-card-premium {
-            background: rgba(255, 255, 255, 0.05) !important;
-        }
-        #success-calculator .question-title-premium {
-            color: #fff !important;
-        }
-
-        /* Prevent external styles from leaking into the calculator */
-        #success-calculator {
-            isolation: isolate;
-        }
-
         .question-card-premium::before {
             content: "";
             position: absolute;
@@ -5831,6 +5167,45 @@ import Layout from "../layouts/Layout.astro";
             margin-bottom: 12px;
         }
 
+        .option-icon-premium {
+            display: none;
+        }
+
+        .option-icon-premium::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg) translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .option-card-premium:hover .option-icon-premium,
+        .option-card-premium.selected-premium .option-icon-premium {
+            background: linear-gradient(
+                135deg,
+                var(--accent),
+                var(--accent-bright)
+            );
+            transform: scale(1.15) rotate(8deg);
+            box-shadow:
+                0 12px 30px rgba(0, 220, 130, 0.5),
+                0 0 0 4px rgba(0, 220, 130, 0.2);
+            border-color: var(--accent-bright);
+        }
+
+        .option-card-premium:hover .option-icon-premium::before {
+            transform: rotate(45deg) translateX(100%);
+        }
+
         .option-checkbox-premium {
             position: relative;
         }
@@ -5940,6 +5315,42 @@ import Layout from "../layouts/Layout.astro";
         .option-card-premium:hover .option-description-premium,
         .option-card-premium.selected-premium .option-description-premium {
             color: rgba(255, 255, 255, 0.8);
+        }
+
+        .option-score-premium {
+            display: none;
+        }
+
+        .score-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 500;
+        }
+
+        .score-value {
+            font-size: 13px;
+            color: #000;
+            font-weight: 700;
+            background: linear-gradient(
+                135deg,
+                var(--accent),
+                var(--accent-bright)
+            );
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 2px solid rgba(0, 220, 130, 0.3);
+            box-shadow:
+                0 4px 15px rgba(0, 220, 130, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .option-card-premium:hover .score-value,
+        .option-card-premium.selected-premium .score-value {
+            box-shadow:
+                0 6px 20px rgba(0, 220, 130, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
         }
 
         .option-glow-effect {
@@ -6080,6 +5491,12 @@ import Layout from "../layouts/Layout.astro";
                 padding: 16px 18px;
             }
 
+            .option-icon-premium {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+            }
+
             .option-title-premium {
                 font-size: 18px;
             }
@@ -6091,7 +5508,7 @@ import Layout from "../layouts/Layout.astro";
 
         .navigation-buttons {
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between;
             gap: 20px;
             margin-top: 20px;
         }
@@ -6125,6 +5542,21 @@ import Layout from "../layouts/Layout.astro";
             cursor: not-allowed;
         }
 
+        .next-btn {
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-dark) 100%
+            );
+            color: var(--bg);
+            box-shadow: 0 4px 15px rgba(0, 220, 130, 0.3);
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 220, 130, 0.4);
+        }
+
         .results-container {
             animation: slideIn 0.5s ease;
         }
@@ -6143,34 +5575,6 @@ import Layout from "../layouts/Layout.astro";
         .result-card {
             text-align: center;
             padding: 40px;
-            position: relative;
-        }
-
-        .restart-btn {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: none;
-            letter-spacing: 0.3px;
-            margin-top: 12px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.8;
-        }
-
-        .restart-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text);
-            border-color: rgba(255, 255, 255, 0.25);
-            opacity: 1;
-            transform: translateY(-1px);
         }
 
         .result-header {
@@ -6318,14 +5722,17 @@ import Layout from "../layouts/Layout.astro";
                 font-size: 13px;
             }
 
-            .result-card {
-                padding: 30px 20px;
+            .navigation-buttons {
+                flex-direction: column;
             }
 
-            .restart-btn {
-                padding: 8px 16px;
-                font-size: 12px;
-                margin-top: 10px;
+            .nav-btn {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .result-card {
+                padding: 30px 20px;
             }
 
             .result-percentage {
@@ -6769,13 +6176,8 @@ import Layout from "../layouts/Layout.astro";
         }
 
         .clean-element-number {
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .clean-element-number svg {
-            display: block;
+            font-size: 24px;
+            margin-bottom: 8px;
         }
 
         .clean-element-content h5 {
@@ -6879,6 +6281,657 @@ import Layout from "../layouts/Layout.astro";
 
     <script>
         // Countdown timer - Updated 2025
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 24px 32px;
+            background: linear-gradient(
+                135deg,
+                rgba(239, 68, 68, 0.1) 0%,
+                rgba(220, 38, 38, 0.08) 100%
+            );
+            border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .premium-warning-icon {
+            font-size: 28px;
+            animation: warningPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes warningPulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .premium-warning-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ef4444;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .premium-warning-content {
+            padding: 32px;
+        }
+
+        .premium-warning-story {
+            font-size: 17px;
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .premium-warning-result {
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .premium-warning-result-text {
+            font-size: 20px;
+            color: #ef4444;
+            margin-bottom: 8px;
+        }
+
+        .premium-warning-result-sub {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .premium-warning-question {
+            margin: 24px 0;
+        }
+
+        .premium-warning-question-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .premium-truth-reveal {
+            margin-top: 24px;
+            text-align: center;
+            padding: 20px;
+            background: rgba(239, 68, 68, 0.03);
+            border-radius: 12px;
+        }
+
+        .premium-truth-label {
+            font-size: 18px;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .premium-truth-answer {
+            font-size: 17px;
+            color: #ef4444;
+            margin: 4px 0;
+        }
+
+        /* Principle Section */
+        .premium-principle-section {
+            margin-bottom: 40px;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 220, 130, 0.08) 0%,
+                rgba(0, 245, 147, 0.05) 100%
+            );
+            border: 2px solid rgba(0, 220, 130, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 32px rgba(0, 220, 130, 0.15);
+        }
+
+        .premium-principle-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 24px 32px;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 220, 130, 0.15) 0%,
+                rgba(0, 245, 147, 0.1) 100%
+            );
+            border-bottom: 1px solid rgba(0, 220, 130, 0.3);
+        }
+
+        .premium-principle-icon {
+            font-size: 28px;
+            animation: principleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes principleFloat {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .premium-principle-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .premium-principle-content {
+            padding: 32px;
+        }
+
+        .premium-principle-description {
+            font-size: 17px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .premium-concept-reveal {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px;
+            background: rgba(0, 220, 130, 0.05);
+            border: 1px solid rgba(0, 220, 130, 0.2);
+            border-radius: 16px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .premium-concept-icon {
+            font-size: 32px;
+            animation: conceptGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes conceptGlow {
+            0%,
+            100% {
+                filter: drop-shadow(0 0 8px rgba(0, 220, 130, 0.3));
+            }
+            50% {
+                filter: drop-shadow(0 0 16px rgba(0, 220, 130, 0.6));
+            }
+        }
+
+        .premium-concept-text {
+            font-size: 18px;
+            color: var(--accent-bright);
+            line-height: 1.4;
+        }
+
+        /* Elements Grid */
+        .premium-elements-section {
+            margin-bottom: 40px;
+        }
+
+        .premium-elements-intro {
+            font-size: 17px;
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .premium-elements-transition {
+            font-size: 18px;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 16px 24px;
+            background: rgba(0, 220, 130, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 220, 130, 0.2);
+        }
+
+        .premium-elements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .premium-element-card {
+            background: linear-gradient(
+                135deg,
+                rgba(0, 220, 130, 0.08) 0%,
+                rgba(0, 245, 147, 0.05) 100%
+            );
+            border: 2px solid rgba(0, 220, 130, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-element-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(0, 220, 130, 0.1),
+                transparent
+            );
+            transition: left 0.6s;
+        }
+
+        .premium-element-card:hover::before {
+            left: 100%;
+        }
+
+        .premium-element-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 220, 130, 0.2);
+            border-color: var(--accent);
+        }
+
+        .premium-element-number {
+            font-size: 32px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .premium-element-content h5 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0 0 12px 0;
+            text-align: center;
+        }
+
+        .premium-element-description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin: 0;
+            text-align: center;
+        }
+
+        .premium-elements-conclusion {
+            text-align: center;
+            padding: 24px;
+            background: rgba(0, 220, 130, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 220, 130, 0.2);
+        }
+
+        .premium-elements-conclusion p {
+            font-size: 16px;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        /* Result Section */
+        .premium-result-section {
+            margin-bottom: 40px;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 220, 130, 0.08) 0%,
+                rgba(0, 245, 147, 0.05) 100%
+            );
+            border: 2px solid rgba(0, 220, 130, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 32px rgba(0, 220, 130, 0.15);
+        }
+
+        .premium-result-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 24px 32px;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 220, 130, 0.15) 0%,
+                rgba(0, 245, 147, 0.1) 100%
+            );
+            border-bottom: 1px solid rgba(0, 220, 130, 0.3);
+        }
+
+        .premium-result-icon {
+            font-size: 28px;
+            animation: resultSparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes resultSparkle {
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(5deg);
+            }
+        }
+
+        .premium-result-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .premium-result-content {
+            padding: 32px;
+        }
+
+        .premium-result-main {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .premium-result-main p {
+            font-size: 20px;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .premium-result-benefit {
+            background: rgba(0, 220, 130, 0.05);
+            border: 1px solid rgba(0, 220, 130, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .premium-result-benefit p {
+            font-size: 17px;
+            color: var(--text-primary);
+            margin: 8px 0;
+        }
+
+        .premium-result-emphasis {
+            font-size: 18px;
+            color: var(--accent-bright) !important;
+            margin: 4px 0;
+        }
+
+        .premium-result-promise {
+            text-align: center;
+        }
+
+        .premium-result-promise p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .premium-result-promise-text {
+            font-size: 18px;
+            color: var(--accent);
+            margin: 8px 0;
+        }
+
+        /* Testimonial Section */
+        .premium-testimonial-section {
+            margin-bottom: 40px;
+            background: linear-gradient(
+                135deg,
+                rgba(239, 68, 68, 0.08) 0%,
+                rgba(220, 38, 38, 0.05) 100%
+            );
+            border: 2px solid rgba(239, 68, 68, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .premium-testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 24px 32px;
+            background: linear-gradient(
+                135deg,
+                rgba(239, 68, 68, 0.1) 0%,
+                rgba(220, 38, 38, 0.08) 100%
+            );
+            border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .premium-testimonial-icon {
+            font-size: 28px;
+            animation: testimonialFlame 2s ease-in-out infinite;
+        }
+
+        @keyframes testimonialFlame {
+            0%,
+            100% {
+                transform: scale(1);
+                filter: hue-rotate(0deg);
+            }
+            50% {
+                transform: scale(1.05);
+                filter: hue-rotate(10deg);
+            }
+        }
+
+        .premium-testimonial-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ef4444;
+            margin: 0;
+        }
+
+        .premium-testimonial-content {
+            padding: 32px;
+            text-align: center;
+        }
+
+        .premium-testimonial-placeholder {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px dashed rgba(239, 68, 68, 0.3);
+            border-radius: 16px;
+            padding: 40px 20px;
+        }
+
+        .premium-placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .premium-placeholder-text {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* CTA Section */
+        .premium-cta-section {
+            margin-bottom: 40px;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 220, 130, 0.08) 0%,
+                rgba(0, 245, 147, 0.05) 100%
+            );
+            border: 2px solid rgba(0, 220, 130, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 32px rgba(0, 220, 130, 0.15);
+        }
+
+        .premium-cta-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 24px 32px;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 220, 130, 0.15) 0%,
+                rgba(0, 245, 147, 0.1) 100%
+            );
+            border-bottom: 1px solid rgba(0, 220, 130, 0.3);
+        }
+
+        .premium-cta-icon {
+            font-size: 28px;
+            animation: ctaTarget 2s ease-in-out infinite;
+        }
+
+        @keyframes ctaTarget {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .premium-cta-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .premium-cta-content {
+            padding: 32px;
+        }
+
+        .premium-cta-intro {
+            font-size: 17px;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .premium-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .premium-feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 220, 130, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .premium-feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 220, 130, 0.1);
+            border-color: var(--accent);
+        }
+
+        .premium-feature-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .premium-feature-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0 0 8px 0;
+        }
+
+        .premium-feature-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .premium-final-promise {
+            text-align: center;
+            padding: 24px;
+            background: rgba(0, 220, 130, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 220, 130, 0.2);
+        }
+
+        .premium-final-promise-text {
+            font-size: 18px;
+            color: var(--accent-bright);
+            margin: 8px 0;
+            font-weight: 700;
+        }
+
+        /* Responsive Premium Styles */
+        @media (max-width: 768px) {
+            .premium-intro-section,
+            .premium-warning-section,
+            .premium-principle-section,
+            .premium-result-section,
+            .premium-testimonial-section,
+            .premium-cta-section {
+                margin-bottom: 32px;
+            }
+
+            .premium-intro-section,
+            .premium-warning-content,
+            .premium-principle-content,
+            .premium-result-content,
+            .premium-testimonial-content,
+            .premium-cta-content {
+                padding: 24px;
+            }
+
+            .premium-warning-header,
+            .premium-principle-header,
+            .premium-result-header,
+            .premium-testimonial-header,
+            .premium-cta-header {
+                padding: 20px 24px;
+            }
+
+            .premium-elements-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .premium-features-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .premium-reveal-text {
+                font-size: 24px;
+            }
+
+            .premium-concept-reveal {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <script>
+        // Countdown timer - Updated 2025
         function updateCountdown() {
             const now = new Date().getTime();
             const endDate = new Date(
@@ -6912,15 +6965,6 @@ import Layout from "../layouts/Layout.astro";
                     minutesElement.textContent = minutes.toString();
                 if (secondsElement)
                     secondsElement.textContent = seconds.toString();
-            } else {
-                // Timer expired - redirect or show message
-                const countdownContainer = document.getElementById(
-                    "countdown-container",
-                );
-                if (countdownContainer) {
-                    countdownContainer.innerHTML =
-                        "<div class='timer-expired'>L'offre a expiré !</div>";
-                }
             }
         }
 
@@ -7264,11 +7308,11 @@ import Layout from "../layouts/Layout.astro";
 
             bindEvents() {
                 document
+                    .getElementById("next-btn")
+                    ?.addEventListener("click", () => this.nextQuestion());
+                document
                     .getElementById("prev-btn")
                     ?.addEventListener("click", () => this.prevQuestion());
-                document
-                    .getElementById("restart-btn")
-                    ?.addEventListener("click", () => this.restartQuiz());
                 document
                     .getElementById("result-cta")
                     ?.addEventListener("click", () => {
@@ -7291,94 +7335,80 @@ import Layout from "../layouts/Layout.astro";
                     return "";
                 };
 
-                // Build DOM safely to avoid any transient unstyled content
-                const wrapper = document.createElement("div");
-                wrapper.className = "question-card-premium";
+                const questionHTML =
+                    '<div class="question-card-premium">' +
+                    '<div class="question-header-premium">' +
+                    '<div class="question-number">' +
+                    question.id +
+                    "</div>" +
+                    '<div class="question-content-premium">' +
+                    '<h3 class="question-title-premium">' +
+                    question.question +
+                    "</h3>" +
+                    '<div class="question-decoration"></div>' +
+                    "</div>" +
+                    "</div>" +
+                    '<div class="options-grid-premium">' +
+                    question.options
+                        .map(function (option, optionIndex) {
+                            return (
+                                '<div class="option-card-premium ' +
+                                (selectedAnswer === optionIndex
+                                    ? "selected-premium"
+                                    : "") +
+                                '" data-option="' +
+                                optionIndex +
+                                '" onclick="calculator.selectOption(' +
+                                optionIndex +
+                                ')">' +
+                                '<div class="option-card-inner">' +
+                                '<div class="option-visual-premium">' +
+                                '<div class="option-icon-premium">' +
+                                getOptionIcon(question.id, optionIndex) +
+                                "</div>" +
+                                '<div class="option-checkbox-premium">' +
+                                '<input type="radio" name="question-' +
+                                question.id +
+                                '" value="' +
+                                optionIndex +
+                                '" ' +
+                                (selectedAnswer === optionIndex
+                                    ? "checked"
+                                    : "") +
+                                ' onchange="calculator.selectOption(' +
+                                optionIndex +
+                                ')">' +
+                                '<div class="checkbox-custom">' +
+                                '<div class="checkbox-fill"></div>' +
+                                '<div class="checkbox-check">✓</div>' +
+                                "</div>" +
+                                "</div>" +
+                                "</div>" +
+                                '<div class="option-content-premium">' +
+                                '<h4 class="option-title-premium">' +
+                                option.text +
+                                "</h4>" +
+                                '<p class="option-description-premium">' +
+                                option.description +
+                                "</p>" +
+                                '<div class="option-score-premium">' +
+                                '<span class="score-label">Score potentiel:</span>' +
+                                '<span class="score-value">' +
+                                option.score +
+                                "/100</span>" +
+                                "</div>" +
+                                "</div>" +
+                                '<div class="option-glow-effect"></div>' +
+                                '<div class="option-shine-effect"></div>' +
+                                "</div>" +
+                                "</div>"
+                            );
+                        })
+                        .join("") +
+                    "</div>" +
+                    "</div>";
 
-                const header = document.createElement("div");
-                header.className = "question-header-premium";
-                const num = document.createElement("div");
-                num.className = "question-number";
-                num.textContent = String(question.id);
-                const content = document.createElement("div");
-                content.className = "question-content-premium";
-                const h3 = document.createElement("h3");
-                h3.className = "question-title-premium";
-                h3.textContent = question.question;
-                const deco = document.createElement("div");
-                deco.className = "question-decoration";
-                content.appendChild(h3);
-                content.appendChild(deco);
-                header.appendChild(num);
-                header.appendChild(content);
-
-                const grid = document.createElement("div");
-                grid.className = "options-grid-premium";
-
-                question.options.forEach((option, optionIndex) => {
-                    const card = document.createElement("div");
-                    card.className =
-                        "option-card-premium" +
-                        (selectedAnswer === optionIndex
-                            ? " selected-premium"
-                            : "");
-                    card.dataset.option = String(optionIndex);
-                    card.onclick = () => this.selectOption(optionIndex);
-
-                    const inner = document.createElement("div");
-                    inner.className = "option-card-inner";
-                    const visual = document.createElement("div");
-                    visual.className = "option-visual-premium";
-                    const checkboxWrap = document.createElement("div");
-                    checkboxWrap.className = "option-checkbox-premium";
-                    const input = document.createElement("input");
-                    input.type = "radio";
-                    input.name = `question-${question.id}`;
-                    input.value = String(optionIndex);
-                    input.checked = selectedAnswer === optionIndex;
-                    input.onchange = () => this.selectOption(optionIndex);
-                    const checkboxCustom = document.createElement("div");
-                    checkboxCustom.className = "checkbox-custom";
-                    const checkboxFill = document.createElement("div");
-                    checkboxFill.className = "checkbox-fill";
-                    const checkboxCheck = document.createElement("div");
-                    checkboxCheck.className = "checkbox-check";
-                    checkboxCheck.textContent = "✓";
-                    checkboxCustom.appendChild(checkboxFill);
-                    checkboxCustom.appendChild(checkboxCheck);
-                    checkboxWrap.appendChild(input);
-                    checkboxWrap.appendChild(checkboxCustom);
-                    visual.appendChild(checkboxWrap);
-
-                    const optionContent = document.createElement("div");
-                    optionContent.className = "option-content-premium";
-                    const title = document.createElement("h4");
-                    title.className = "option-title-premium";
-                    title.textContent = option.text;
-                    const desc = document.createElement("p");
-                    desc.className = "option-description-premium";
-                    desc.textContent = option.description;
-                    const glow = document.createElement("div");
-                    glow.className = "option-glow-effect";
-                    const shine = document.createElement("div");
-                    shine.className = "option-shine-effect";
-
-                    optionContent.appendChild(title);
-                    optionContent.appendChild(desc);
-
-                    inner.appendChild(visual);
-                    inner.appendChild(optionContent);
-                    inner.appendChild(glow);
-                    inner.appendChild(shine);
-                    card.appendChild(inner);
-                    grid.appendChild(card);
-                });
-
-                // Replace content atomically to avoid flicker
-                questionContainer.replaceChildren();
-                wrapper.appendChild(header);
-                wrapper.appendChild(grid);
-                questionContainer.appendChild(wrapper);
+                questionContainer.innerHTML = questionHTML;
 
                 // Ajouter les animations après l'insertion du HTML
                 setTimeout(() => {
@@ -7423,34 +7453,27 @@ import Layout from "../layouts/Layout.astro";
                 }, 600); // 600ms delay to see the selection animation
             }
 
+            nextQuestion() {
+                if (this.answers[this.currentQuestionIndex] === undefined) {
+                    alert(
+                        "Veuillez sélectionner une réponse avant de continuer.",
+                    );
+                    return;
+                }
+
+                if (this.currentQuestionIndex < this.questions.length - 1) {
+                    this.currentQuestionIndex++;
+                    this.showQuestion(this.currentQuestionIndex);
+                } else {
+                    this.showResults();
+                }
+            }
+
             prevQuestion() {
                 if (this.currentQuestionIndex > 0) {
                     this.currentQuestionIndex--;
                     this.showQuestion(this.currentQuestionIndex);
-                    this.updateUI();
                 }
-            }
-
-            restartQuiz() {
-                // Reset all data
-                this.currentQuestionIndex = 0;
-                this.answers = [];
-                this.totalScore = 0;
-
-                // Hide results and show calculator
-                const calculatorContent = document.querySelector(
-                    ".calculator-content",
-                ) as HTMLElement;
-                const resultsContainer = document.getElementById(
-                    "results-container",
-                ) as HTMLElement;
-
-                if (calculatorContent) calculatorContent.style.display = "flex";
-                if (resultsContainer) resultsContainer.style.display = "none";
-
-                // Restart from first question
-                this.showQuestion(0);
-                this.updateUI();
             }
 
             updateUI() {
@@ -7476,81 +7499,40 @@ import Layout from "../layouts/Layout.astro";
                     totalQuestionsEl.textContent =
                         this.questions.length.toString();
 
-                // Show/hide previous button
+                // Update navigation buttons
                 const prevBtn = document.getElementById(
                     "prev-btn",
                 ) as HTMLButtonElement;
+                const nextBtn = document.getElementById(
+                    "next-btn",
+                ) as HTMLButtonElement;
+
                 if (prevBtn) {
-                    if (this.currentQuestionIndex > 0) {
-                        prevBtn.style.display = "block";
-                    } else {
-                        prevBtn.style.display = "none";
-                    }
+                    prevBtn.disabled = this.currentQuestionIndex === 0;
+                }
+
+                if (nextBtn) {
+                    nextBtn.textContent =
+                        this.currentQuestionIndex === this.questions.length - 1
+                            ? "Voir les résultats →"
+                            : "Suivant →";
                 }
             }
 
             calculateScore() {
-                // Nouveaux paramètres globaux
-                const BASE = 47;
-                const MAX = 97;
+                this.totalScore = 0;
+                this.answers.forEach((answerIndex, questionIndex) => {
+                    if (answerIndex !== undefined) {
+                        this.totalScore +=
+                            this.questions[questionIndex].options[
+                                answerIndex
+                            ].score;
+                    }
+                });
 
-                // Poids par question
-                const WEIGHTS = {
-                    q1: 10, // Temps dispo
-                    q2: 12, // Motivation
-                    q3: 8, // Compétences digitales / IA
-                    q4: 6, // Audace / passage à l'action
-                    q5: 14, // Persévérance / discipline
-                };
-
-                // Facteurs non linéaires par question (index de réponse 0..3)
-                const FACTORS = {
-                    q1: [0.05, 0.55, 0.85, 1.0],
-                    q2: [0.1, 0.5, 0.85, 1.0],
-                    q3: [0.0, 0.4, 0.75, 1.0],
-                    q4: [0.0, 0.45, 0.8, 1.0],
-                    q5: [0.05, 0.45, 0.8, 1.0],
-                };
-
-                // Fonction bonus de synergie
-                const synergyBonus = (answers) => {
-                    let bonus = 0;
-                    if (answers.q2 === 3 && answers.q5 === 3) bonus += 3; // motivation + discipline max
-                    if (answers.q1 >= 2 && answers.q5 >= 2) bonus += 2; // ≥1h/j + persévérance élevée
-                    if (
-                        [
-                            answers.q1,
-                            answers.q2,
-                            answers.q3,
-                            answers.q4,
-                            answers.q5,
-                        ].filter((x) => x === 3).length >= 3
-                    )
-                        bonus += 2; // profil élite
-                    return bonus;
-                };
-
-                // Préparer les réponses dans le format attendu
-                const answers = {
-                    q1: this.answers[0] || 0,
-                    q2: this.answers[1] || 0,
-                    q3: this.answers[2] || 0,
-                    q4: this.answers[3] || 0,
-                    q5: this.answers[4] || 0,
-                };
-
-                // Calcul principal
-                let p = BASE;
-                for (const q in WEIGHTS) {
-                    p += WEIGHTS[q] * FACTORS[q][answers[q]];
-                }
-                p += synergyBonus(answers);
-
-                // Application des caps
-                if (p > MAX) p = MAX;
-                if (p < BASE) p = BASE;
-
-                return Math.round(p);
+                // Calculate percentage (total points / 335 max * 100)
+                const maxPossibleScore = 335; // 60 + 80 + 60 + 70 + 65
+                return Math.round((this.totalScore / maxPossibleScore) * 100);
             }
 
             showResults() {
@@ -7619,102 +7601,54 @@ import Layout from "../layouts/Layout.astro";
                     }, 500);
                 }
 
-                // Generate message based on score
+                // Generate message and recommendations based on score
                 let message = "";
+                let recommendations = [];
 
                 if (score >= 91) {
                     message =
                         "🔥 Succès quasi certain – Tu fais partie des profils les plus prometteurs du Système Viral 100K™. Ton mindset, ta motivation et ton engagement sont exceptionnels.";
+                    recommendations = [
+                        "Tu es prêt à démarrer immédiatement et à obtenir des résultats rapides",
+                        "Ta discipline et ton courage feront la différence",
+                        "Profite de ta longueur d'avance pour aller encore plus loin",
+                    ];
                 } else if (score >= 76) {
                     message =
                         "✨ Très bonne probabilité – Tu as les qualités et la motivation d'un futur créateur à succès. Le Système Viral est fait pour toi.";
+                    recommendations = [
+                        "Tu as déjà les bonnes bases pour réussir",
+                        "Continue à cultiver ta régularité et ton audace",
+                        "Le système t'aidera à structurer ton potentiel",
+                    ];
                 } else if (score >= 51) {
                     message =
                         "💚 Bonne probabilité – Tu as déjà les bases pour réussir, il te suffit du bon système pour transformer ton potentiel en résultats concrets.";
+                    recommendations = [
+                        "Le Système Viral va t'apporter la méthode et la clarté qu'il te manque",
+                        "Reste constant et applique les enseignements étape par étape",
+                        "Ta motivation est ton plus grand atout",
+                    ];
                 } else {
                     message =
                         "💡 Probabilité faible – Le système viral peut t'aider à construire la discipline et la clarté nécessaires pour te lancer et progresser.";
+                    recommendations = [
+                        "La formation est conçue pour t'accompagner même si tu pars de zéro",
+                        "Commence par de petits pas réguliers pour développer ta confiance",
+                        "Le système et la communauté seront tes meilleurs alliés",
+                    ];
                 }
 
                 if (messageEl) messageEl.textContent = message;
 
-                // Appel à l'API pour les recommandations personnalisées
-                this.generatePersonalizedRecommendations(
-                    score,
-                    recommendationsEl,
-                );
-            }
-
-            async generatePersonalizedRecommendations(
-                score,
-                recommendationsEl,
-            ) {
-                try {
-                    // Afficher un indicateur de chargement
-                    if (recommendationsEl) {
-                        recommendationsEl.innerHTML = `
-                            <h4>Recommandations personnalisées</h4>
-                            <div style="text-align: center; padding: 20px;">
-                                <div style="color: var(--accent);">🤖 Génération de recommandations personnalisées...</div>
-                            </div>
-                        `;
-                    }
-
-                    // Appel à l'API des recommandations personnalisées
-                    const response = await fetch(
-                        "/.netlify/functions/personalized-recommendations",
-                        {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({
-                                answers: this.answers,
-                                score: score,
-                                userProfile: {
-                                    temps: this.answers[0] || 0,
-                                    motivation: this.answers[1] || 0,
-                                    competences: this.answers[2] || 0,
-                                    audace: this.answers[3] || 0,
-                                    perseverance: this.answers[4] || 0,
-                                },
-                            }),
-                        },
-                    );
-
-                    if (!response.ok) {
-                        throw new Error("Erreur API recommandations");
-                    }
-
-                    const data = await response.json();
-                    const recommendation = data.recommendation || "";
-
-                    // Afficher la recommandation personnalisée
-                    if (recommendationsEl && recommendation) {
-                        const recommendationHTML = `
-                            <h4>Recommandation personnalisée</h4>
-                            <p style="color: var(--text-secondary); line-height: 1.6; font-size: 16px; margin: 0;">
-                                ${recommendation}
-                            </p>
-                        `;
-                        recommendationsEl.innerHTML = recommendationHTML;
-                    }
-                } catch (error) {
-                    console.error("Erreur génération recommandations:", error);
-
-                    // Fallback avec recommandation générique
-                    if (recommendationsEl) {
-                        const fallbackRecommendation =
-                            "Basé sur votre profil, vous avez un potentiel réel pour réussir avec le Système Viral 100K™. Votre motivation et votre engagement sont vos plus grands atouts. La formation vous donnera la méthode et les outils pour transformer ce potentiel en résultats concrets et durables.";
-
-                        const recommendationHTML = `
-                            <h4>Recommandation personnalisée</h4>
-                            <p style="color: var(--text-secondary); line-height: 1.6; font-size: 16px; margin: 0;">
-                                ${fallbackRecommendation}
-                            </p>
-                        `;
-                        recommendationsEl.innerHTML = recommendationHTML;
-                    }
+                if (recommendationsEl) {
+                    const recommendationsHTML = `
+                        <h4>Recommendations personnalisées</h4>
+                        <ul>
+                            ${recommendations.map((rec) => `<li>${rec}</li>`).join("")}
+                        </ul>
+                    `;
+                    recommendationsEl.innerHTML = recommendationsHTML;
                 }
             }
 
@@ -7745,25 +7679,6 @@ import Layout from "../layouts/Layout.astro";
             calculator = new SuccessCalculator();
             // Make calculator available globally for onclick handlers
             window.calculator = calculator;
-
-            // Guard against unexpected DOM rewrites: re-render premium card if stripped
-            const qc = document.getElementById("question-container");
-            if (qc) {
-                const observer = new MutationObserver(() => {
-                    // if premium container missing, re-render current question
-                    if (!qc.querySelector(".question-card-premium")) {
-                        if (
-                            window.calculator &&
-                            typeof window.calculator.showQuestion === "function"
-                        ) {
-                            window.calculator.showQuestion(
-                                window.calculator.currentQuestionIndex || 0,
-                            );
-                        }
-                    }
-                });
-                observer.observe(qc, { childList: true, subtree: true });
-            }
         }
 
         // Initialize immediately if DOM is ready, otherwise wait
@@ -7773,200 +7688,4 @@ import Layout from "../layouts/Layout.astro";
             initCalculator();
         }
     </script>
-    <style is:global>
-        /* Styles globaux pour le markup injecté dynamiquement (évite le texte brut) */
-        #success-calculator .question-card-premium {
-            background: linear-gradient(
-                145deg,
-                rgba(15, 15, 15, 0.95),
-                rgba(20, 20, 20, 0.95)
-            );
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            padding: 24px;
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(0, 220, 130, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-        #success-calculator .question-header-premium {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        #success-calculator .question-number {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: rgba(0, 220, 130, 0.12);
-            border: 1px solid rgba(0, 220, 130, 0.3);
-            color: var(--accent-bright);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 18px;
-            box-shadow: inset 0 0 20px rgba(0, 220, 130, 0.2);
-        }
-        #success-calculator .question-content-premium {
-            flex: 1;
-        }
-        #success-calculator .question-title-premium {
-            font-size: 28px;
-            font-weight: 800;
-            color: #fff;
-            margin: 0;
-        }
-        #success-calculator .question-decoration {
-            margin-top: 8px;
-            height: 3px;
-            width: 80px;
-            border-radius: 3px;
-            background: linear-gradient(
-                135deg,
-                var(--accent),
-                var(--accent-bright)
-            );
-            box-shadow: 0 0 20px rgba(0, 220, 130, 0.4);
-        }
-
-        #success-calculator .options-grid-premium {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-top: 20px;
-        }
-        #success-calculator .option-card-premium {
-            position: relative;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 16px;
-            transition: all 0.25s ease;
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-        }
-        #success-calculator .option-card-premium:hover {
-            transform: translateY(-2px) scale(1.01);
-            border-color: rgba(0, 220, 130, 0.4);
-        }
-        #success-calculator .option-card-premium.selected-premium {
-            background: rgba(0, 220, 130, 0.1);
-            border-color: rgba(0, 220, 130, 0.45);
-            box-shadow: 0 8px 30px rgba(0, 220, 130, 0.15);
-        }
-        #success-calculator .option-card-inner {
-            padding: 18px 20px;
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-        #success-calculator .option-visual-premium {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        #success-calculator .option-checkbox-premium input {
-            display: none;
-        }
-        #success-calculator .checkbox-custom {
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            border-radius: 6px;
-            position: relative;
-            transition: 0.2s ease;
-        }
-        #success-calculator .checkbox-fill {
-            width: 0;
-            height: 0;
-            background: linear-gradient(
-                135deg,
-                var(--accent),
-                var(--accent-bright)
-            );
-            border-radius: 4px;
-            transition: 0.2s ease;
-        }
-        #success-calculator .checkbox-check {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 12px;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: 0.2s ease;
-        }
-        #success-calculator
-            .option-card-premium.selected-premium
-            .checkbox-custom {
-            border-color: var(--accent);
-        }
-        #success-calculator
-            .option-card-premium.selected-premium
-            .checkbox-fill {
-            width: 16px;
-            height: 16px;
-        }
-        #success-calculator
-            .option-card-premium.selected-premium
-            .checkbox-check {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        #success-calculator .option-content-premium {
-            flex: 1;
-        }
-        #success-calculator .option-title-premium {
-            margin: 0 0 6px;
-            color: #fff;
-            font-weight: 700;
-            font-size: 16px;
-        }
-        #success-calculator .option-description-premium {
-            margin: 0;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-        }
-        #success-calculator .option-score-premium {
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        #success-calculator .score-label {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 12px;
-        }
-        #success-calculator .score-value {
-            background: linear-gradient(
-                135deg,
-                var(--accent),
-                var(--accent-bright)
-            );
-            color: #000;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 12px;
-            box-shadow:
-                0 6px 20px rgba(0, 220, 130, 0.35),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-        }
-
-        @media (max-width: 768px) {
-            #success-calculator .options-grid-premium {
-                grid-template-columns: 1fr;
-            }
-            #success-calculator .question-title-premium {
-                font-size: 22px;
-            }
-        }
-    </style>
 </Layout>

@@ -74,6 +74,14 @@ import Layout from "../layouts/Layout.astro";
         <!-- Right Column: Chat (same height as video) -->
         <div class="chat-wrapper">
             <div class="chat-section">
+                <!-- Header avec statut -->
+                <div class="chat-header">
+                    <div class="chat-status">
+                        <div class="live-dot"></div>
+                        <span>Replay interactif</span>
+                    </div>
+                </div>
+
                 <!-- Onglets -->
                 <div class="chat-tabs">
                     <button
@@ -81,11 +89,10 @@ import Layout from "../layouts/Layout.astro";
                         id="publicTab"
                         data-tab="public"
                     >
-                        <div class="live-dot"></div>
                         <span>Chat</span>
                     </button>
                     <button class="chat-tab" id="aiTab" data-tab="ai">
-                        <span>🎙️ Discussion</span>
+                        <span>Discussion</span>
                         <span
                             class="tab-notification hidden"
                             id="aiNotification">1</span
@@ -120,7 +127,7 @@ import Layout from "../layouts/Layout.astro";
                 <!-- Contenu onglet Animateur IA -->
                 <div class="tab-content" id="aiContent">
                     <div class="ai-header">
-                        <div class="ai-avatar-large">🎙️</div>
+                        <div class="ai-avatar-large">A</div>
                         <div class="ai-title">
                             <div class="ai-name-large">Animateur</div>
                             <div class="ai-badge-live">EN DIRECT</div>
@@ -777,6 +784,23 @@ import Layout from "../layouts/Layout.astro";
         height: 520px;
         max-height: 520px;
         overflow: hidden;
+    }
+
+    /* Header du chat */
+    .chat-header {
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .chat-status {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--text-secondary);
     }
 
     /* Onglets du chat */

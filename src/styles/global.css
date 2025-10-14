@@ -325,8 +325,8 @@ h1 {
 
 /* Features Section */
 .features {
-  padding: 0 0 120px;
-  margin-top: -100px;
+  padding: 60px 0 120px;
+  margin-top: 0;
   position: relative;
   z-index: 10;
   text-align: center;
@@ -962,8 +962,8 @@ input::placeholder {
 
   /* Features Section Mobile */
   .features {
-    padding: 60px 0 80px;
-    margin-top: -40px;
+    padding: 40px 0 80px;
+    margin-top: 0;
   }
 
   .section-title {
