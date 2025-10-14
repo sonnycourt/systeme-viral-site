@@ -73,6 +73,9 @@ Génère un paragraphe personnalisé au format JSON:
   "recommendation": "Paragraphe personnalisé qui analyse son profil et le guide vers l'inscription"
 }
 
+EXEMPLE DE FORMAT ATTENDU:
+"Ton profil révèle une motivation exceptionnelle qui compense largement ton niveau technique débutant. Cette détermination est ton plus grand atout pour réussir avec le Système Viral 100K™. La formation te donnera exactement les outils techniques dont tu as besoin pour transformer cette motivation en résultats concrets."
+
 Le paragraphe doit:
 - Analyser ses forces et faiblesses spécifiques
 - Proposer des actions concrètes adaptées à son profil
@@ -81,6 +84,9 @@ Le paragraphe doit:
 - Être motivant et encourageant
 - Faire 3-4 phrases maximum
 - Utiliser un ton personnel et direct
+- Utiliser le TUTOIEMENT (tu, ton, ta, tes)
+- COMMENCER DIRECTEMENT par l'analyse (pas de "Bonjour", "Salut", "Hello", etc.)
+- Être une vraie recommandation professionnelle, pas une conversation
 
 Réponds UNIQUEMENT en JSON valide.`;
 
@@ -111,7 +117,7 @@ Réponds UNIQUEMENT en JSON valide.`;
       console.error('Erreur parsing JSON:', e);
       // Fallback si le JSON n'est pas valide
       parsed = {
-        recommendation: "Basé sur votre profil, vous avez un potentiel réel pour réussir avec le Système Viral 100K™. Votre motivation et votre engagement sont vos plus grands atouts. La formation vous donnera la méthode et les outils pour transformer ce potentiel en résultats concrets et durables."
+        recommendation: "Basé sur ton profil, tu as un potentiel réel pour réussir avec le Système Viral 100K™. Ta motivation et ton engagement sont tes plus grands atouts. La formation te donnera la méthode et les outils pour transformer ce potentiel en résultats concrets et durables."
       };
     }
 
@@ -119,7 +125,7 @@ Réponds UNIQUEMENT en JSON valide.`;
       statusCode: 200,
       headers,
       body: JSON.stringify({
-        recommendation: parsed.recommendation || "Votre profil montre un potentiel intéressant pour réussir avec le Système Viral 100K™.",
+        recommendation: parsed.recommendation || "Ton profil montre un potentiel intéressant pour réussir avec le Système Viral 100K™.",
         usage: completion.usage,
       }),
     };
@@ -128,7 +134,7 @@ Réponds UNIQUEMENT en JSON valide.`;
     console.error('Erreur recommandations personnalisées:', error);
 
     // Fallback response
-    const fallbackRecommendation = "Basé sur votre profil, vous avez un potentiel réel pour réussir avec le Système Viral 100K™. Votre motivation et votre engagement sont vos plus grands atouts. La formation vous donnera la méthode et les outils pour transformer ce potentiel en résultats concrets et durables.";
+    const fallbackRecommendation = "Basé sur ton profil, tu as un potentiel réel pour réussir avec le Système Viral 100K™. Ta motivation et ton engagement sont tes plus grands atouts. La formation te donnera la méthode et les outils pour transformer ce potentiel en résultats concrets et durables.";
 
     return {
       statusCode: 200,

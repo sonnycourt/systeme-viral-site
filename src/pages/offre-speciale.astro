@@ -5559,19 +5559,20 @@ import Layout from "../layouts/Layout.astro";
         .question-card-premium {
             background: linear-gradient(
                 145deg,
-                rgba(15, 15, 15, 0.95),
-                rgba(20, 20, 20, 0.9)
+                rgba(25, 25, 25, 0.98),
+                rgba(35, 35, 35, 0.95)
             );
-            border: 2px solid rgba(0, 220, 130, 0.2);
+            border: 2px solid rgba(0, 220, 130, 0.3);
             border-radius: 24px;
             padding: 48px;
             position: relative;
             overflow: hidden;
             animation: slideInPremium 0.8s ease-out;
             box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(0, 220, 130, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+                0 25px 80px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(0, 220, 130, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                0 8px 32px rgba(0, 0, 0, 0.5);
         }
 
         /* Ensure premium styles win even if something injects base styles */
@@ -7116,7 +7117,7 @@ import Layout from "../layouts/Layout.astro";
                     {
                         id: 1,
                         question:
-                            "Combien de temps pouvez-vous consacrer chaque jour à votre système viral ?",
+                            "Combien de temps peux-tu consacrer chaque jour à ton système viral ?",
                         options: [
                             {
                                 text: "Moins de 30 minutes",
@@ -7143,7 +7144,7 @@ import Layout from "../layouts/Layout.astro";
                     {
                         id: 2,
                         question:
-                            "Quelle est votre motivation à atteindre la liberté financière ?",
+                            "Quelle est ta motivation à atteindre la liberté financière ?",
                         options: [
                             {
                                 text: "Curiosité ou simple envie",
@@ -7170,7 +7171,7 @@ import Layout from "../layouts/Layout.astro";
                     {
                         id: 3,
                         question:
-                            "Quel est votre niveau de familiarité avec l'IA et les outils digitaux ?",
+                            "Quel est ton niveau de familiarité avec l'IA et les outils digitaux ?",
                         options: [
                             {
                                 text: "Débutant complet",
@@ -7197,7 +7198,7 @@ import Layout from "../layouts/Layout.astro";
                     {
                         id: 4,
                         question:
-                            "Comment réagissez-vous face à l'inconfort, au risque et à l'incertitude ?",
+                            "Comment réagis-tu face à l'inconfort, au risque et à l'incertitude ?",
                         options: [
                             {
                                 text: "Je préfère rester prudent",
@@ -7224,7 +7225,7 @@ import Layout from "../layouts/Layout.astro";
                     {
                         id: 5,
                         question:
-                            "Comment décririez-vous votre capacité à rester constant sur plusieurs semaines ?",
+                            "Comment décrirais-tu ta capacité à rester constant sur plusieurs semaines ?",
                         options: [
                             {
                                 text: "J'abandonne vite si je ne vois pas de résultats",
@@ -7705,7 +7706,7 @@ import Layout from "../layouts/Layout.astro";
                     // Fallback avec recommandation générique
                     if (recommendationsEl) {
                         const fallbackRecommendation =
-                            "Basé sur votre profil, vous avez un potentiel réel pour réussir avec le Système Viral 100K™. Votre motivation et votre engagement sont vos plus grands atouts. La formation vous donnera la méthode et les outils pour transformer ce potentiel en résultats concrets et durables.";
+                            "Basé sur ton profil, tu as un potentiel réel pour réussir avec le Système Viral 100K™. Ta motivation et ton engagement sont tes plus grands atouts. La formation te donnera la méthode et les outils pour transformer ce potentiel en résultats concrets et durables.";
 
                         const recommendationHTML = `
                             <h4>Recommandation personnalisée</h4>
@@ -7778,18 +7779,19 @@ import Layout from "../layouts/Layout.astro";
         #success-calculator .question-card-premium {
             background: linear-gradient(
                 145deg,
-                rgba(15, 15, 15, 0.95),
-                rgba(20, 20, 20, 0.95)
+                rgba(25, 25, 25, 0.98),
+                rgba(35, 35, 35, 0.95)
             );
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
+            border: 2px solid rgba(0, 220, 130, 0.3);
+            border-radius: 24px;
             position: relative;
             overflow: hidden;
-            padding: 24px;
+            padding: 40px;
             box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(0, 220, 130, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+                0 25px 80px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(0, 220, 130, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                0 8px 32px rgba(0, 0, 0, 0.5);
         }
         #success-calculator .question-header-premium {
             display: flex;
@@ -7841,12 +7843,13 @@ import Layout from "../layouts/Layout.astro";
         #success-calculator .option-card-premium {
             position: relative;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 16px;
             transition: all 0.25s ease;
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
         }
         #success-calculator .option-card-premium:hover {
             transform: translateY(-2px) scale(1.01);
