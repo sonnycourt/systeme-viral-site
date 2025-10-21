@@ -20,6 +20,7 @@ import Layout from "../layouts/Layout.astro";
                         SYSTÈME VIRAL 100K™<br />
                         <span class="gradient-text">FORMATION COMPLÈTE</span>
                     </h1>
+                    <div aria-hidden="true" style="height: 16px;"></div>
 
                     <p class="hero-subtitle" style="margin-top: 24px;">
                         Le système exact pour créer ton business en ligne et
@@ -5211,20 +5212,35 @@ import Layout from "../layouts/Layout.astro";
                             style="background: rgba(255, 255, 255, 0.02); padding: 25px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05);"
                         >
                             <h3
-                                style="color: #fff; margin-bottom: 10px; font-size: 1.2rem; font-weight: 600;"
+                                style="color: #fff; margin-bottom: 10px; font-size: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 8px;"
                             >
                                 <svg
-                                    style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle; fill: #01e988;"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
                                     viewBox="0 0 24 24"
-                                    ><path
-                                        d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"
-                                    ></path></svg
-                                > Formats courts = viral
+                                    fill="none"
+                                    stroke="#01e988"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path d="M21.54 15H17a2 2 0 0 0-2 2v4.54"
+                                    ></path>
+                                    <path
+                                        d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"
+                                    ></path>
+                                    <path
+                                        d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"
+                                    ></path>
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                </svg>
+                                Marché infini
                             </h3>
                             <p style="color: #aaa; line-height: 1.6;">
-                                TikTok, Reels, Shorts... Les algos VEULENT que
-                                tu réussisses. Plus besoin de supplier Facebook
-                                de montrer tes pubs.
+                                7 milliards d'humains ont des problèmes à
+                                résoudre. Pas comme le dropshipping où 10 000
+                                vendent le même produit.
                             </p>
                         </div>
                         <div
@@ -5232,15 +5248,23 @@ import Layout from "../layouts/Layout.astro";
                             style="background: rgba(255, 255, 255, 0.02); padding: 25px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05);"
                         >
                             <h3
-                                style="color: #fff; margin-bottom: 10px; font-size: 1.2rem; font-weight: 600;"
+                                style="color: #fff; margin-bottom: 10px; font-size: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 8px;"
                             >
                                 <svg
-                                    style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle; fill: #01e988;"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
                                     viewBox="0 0 24 24"
-                                    ><path
-                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-                                    ></path></svg
-                                > Marge 95%
+                                    fill="none"
+                                    stroke="#01e988"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                                    ></path>
+                                </svg>
+                                Marge 95%
                             </h3>
                             <p style="color: #aaa; line-height: 1.6;">
                                 Produit digital = quasi 0 coût. Compare avec
@@ -10184,7 +10208,6 @@ import Layout from "../layouts/Layout.astro";
         .question-card-premium:hover::after {
             opacity: 1;
         }
-
         @keyframes slideInPremium {
             from {
                 opacity: 0;
@@ -11476,7 +11499,6 @@ import Layout from "../layouts/Layout.astro";
             flex-shrink: 0;
             margin-top: 0.5em;
         }
-
         /* Mobile cards version for comparison table */
         .comparison-mobile {
             display: none;
