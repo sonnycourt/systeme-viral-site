@@ -395,7 +395,6 @@ import Layout from "../layouts/Layout.astro";
                 </div>
             </div>
         </section>
-
         <!-- Sales Story Section -->
         <section class="sales-story-section">
             <div class="container">
@@ -1089,7 +1088,6 @@ import Layout from "../layouts/Layout.astro";
                 </div>
             </div>
         </section>
-
         <!-- Case Study Section -->
         <section class="case-study-section">
             <div class="container">
@@ -1850,7 +1848,6 @@ import Layout from "../layouts/Layout.astro";
                                 </div>
                             </div>
                         </div>
-
                         <!-- Secret #2 -->
                         <div class="secret-section">
                             <div class="secret-badge">Secret #2</div>
@@ -2625,7 +2622,6 @@ import Layout from "../layouts/Layout.astro";
                 </div>
             </div>
         </section>
-
         <!-- Success Calculator Section -->
         <section id="success-calculator" class="success-calculator-section">
             <div class="container">
@@ -3694,7 +3690,6 @@ import Layout from "../layouts/Layout.astro";
                 </div>
             </div>
         </section>
-
         <style>
             .bonus-card:hover {
                 transform: translateY(-8px);
@@ -6448,7 +6443,6 @@ import Layout from "../layouts/Layout.astro";
             </div>
         </section>
     </main>
-
     <!-- Chatbot IA Component -->
     <div id="chatbot-container">
         <!-- Chatbot Toggle Button -->
@@ -6555,6 +6549,10 @@ import Layout from "../layouts/Layout.astro";
             width: 100%;
             max-width: 900px;
             margin: 0 auto;
+            display: flex; /* assure un flow robuste */
+            flex-direction: column;
+            align-items: center;
+            gap: 16px; /* espace vertical fiable entre h1, sous-titre et l'image */
         }
 
         .hero h1 {
@@ -6585,6 +6583,7 @@ import Layout from "../layouts/Layout.astro";
             font-size: 20px;
             line-height: 1.6;
             margin-bottom: 32px;
+            margin-top: 8px; /* renforce l'espace sous le h1 même si margin-collapse */
             color: var(--text-secondary);
             max-width: 700px;
             margin-left: auto;
@@ -7238,7 +7237,6 @@ import Layout from "../layouts/Layout.astro";
             background: rgba(0, 220, 130, 0.3);
             animation: chatbotPulse 2s ease-in-out infinite;
         }
-
         @keyframes chatbotPulse {
             0%,
             100% {
@@ -7250,7 +7248,6 @@ import Layout from "../layouts/Layout.astro";
                 opacity: 0.7;
             }
         }
-
         .chatbot-window {
             position: absolute;
             bottom: 80px;
@@ -7707,7 +7704,6 @@ import Layout from "../layouts/Layout.astro";
             font-weight: 500;
         }
     </style>
-
     <style>
         .total-views-text {
             text-align: center;
@@ -8506,7 +8502,6 @@ import Layout from "../layouts/Layout.astro";
             margin-top: 4px;
             font-style: italic;
         }
-
         .proof-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -9303,7 +9298,6 @@ import Layout from "../layouts/Layout.astro";
                 left: 100%;
             }
         }
-
         .secrets-subtitle {
             font-size: 22px;
             color: var(--text-secondary);
@@ -10103,7 +10097,6 @@ import Layout from "../layouts/Layout.astro";
             transition: width 0.3s ease;
             border-radius: 4px;
         }
-
         .question-counter {
             text-align: center;
             color: var(--text-secondary);
@@ -10842,7 +10835,6 @@ import Layout from "../layouts/Layout.astro";
             transform: translateY(-2px);
             box-shadow: 0 8px 30px rgba(0, 220, 130, 0.4);
         }
-
         @media (max-width: 768px) {
             .calculator-container {
                 padding: 20px 15px;
@@ -11625,7 +11617,6 @@ import Layout from "../layouts/Layout.astro";
             color: var(--accent);
             font-weight: 700;
         }
-
         /* Responsive */
         @media (max-width: 768px) {
             .clean-elements-grid {
@@ -11644,7 +11635,6 @@ import Layout from "../layouts/Layout.astro";
                 font-size: 18px;
             }
         }
-
         /* Awards Section Responsive */
         @media (max-width: 768px) {
             .awards-section {
@@ -12281,7 +12271,6 @@ import Layout from "../layouts/Layout.astro";
                 }
             }
         });
-
         // Success Calculator Functionality
         class SuccessCalculator {
             constructor() {
@@ -13056,7 +13045,6 @@ import Layout from "../layouts/Layout.astro";
         } else {
             initTimelineAnimations();
         }
-
         // Case study video play functionality
         document.addEventListener("DOMContentLoaded", function () {
             const playButton = document.querySelector(".play-button");
