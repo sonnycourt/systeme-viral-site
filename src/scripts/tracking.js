@@ -95,14 +95,15 @@ class ViralTracking {
     }
 
     sendToGA4() {
-        // Configuration Google Analytics 4
+        // Utilise le système GA existant avec consentement
         if (typeof gtag !== 'undefined') {
-            gtag('config', 'GA_MEASUREMENT_ID', {
-                custom_map: {
-                    'custom_parameter_1': 'utm_source',
-                    'custom_parameter_2': 'utm_medium',
-                    'custom_parameter_3': 'utm_campaign'
-                }
+            // Envoie les UTM parameters comme événements personnalisés
+            gtag('event', 'utm_capture', {
+                utm_source: this.getUTMSource(),
+                utm_medium: this.getUTMMedium(),
+                utm_campaign: this.getUTMCampaign(),
+                page_location: window.location.href,
+                page_path: window.location.pathname
             });
         }
     }
@@ -113,9 +114,11 @@ class ViralTracking {
                 event_category: 'engagement',
                 event_label: eventData.element || eventData.percent || 'unknown',
                 value: eventData.seconds || 0,
-                custom_parameter_1: this.getUTMSource(),
-                custom_parameter_2: this.getUTMMedium(),
-                custom_parameter_3: this.getUTMCampaign()
+                utm_source: this.getUTMSource(),
+                utm_medium: this.getUTMMedium(),
+                utm_campaign: this.getUTMCampaign(),
+                page_location: window.location.href,
+                page_path: window.location.pathname
             });
         }
     }

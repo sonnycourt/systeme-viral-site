@@ -13335,19 +13335,4 @@ import Layout from "../layouts/Layout.astro";
 
     <!-- SYSTÈME VIRAL - Tracking Script -->
     <script src="/src/scripts/tracking.js"></script>
-    
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID', {
-            custom_map: {
-                'custom_parameter_1': 'utm_source',
-                'custom_parameter_2': 'utm_medium', 
-                'custom_parameter_3': 'utm_campaign'
-            }
-        });
-    </script>
 </Layout>
