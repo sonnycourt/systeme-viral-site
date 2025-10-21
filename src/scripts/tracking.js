@@ -22,8 +22,21 @@ class ViralTracking {
         // Stockage persistant
         this.saveToLocalStorage();
         
-        // Envoi vers Google Analytics
-        this.sendToGA4();
+        // Envoi vers Google Analytics - attendre que gtag soit prêt
+        this.waitForGtagAndSend();
+    }
+
+    waitForGtagAndSend() {
+        const checkGtag = () => {
+            if (typeof gtag !== 'undefined' && window.dataLayer && window.dataLayer.push) {
+                // gtag est prêt, on peut envoyer l'événement
+                this.sendToGA4();
+            } else {
+                // gtag n'est pas encore prêt, on réessaie après un court délai
+                setTimeout(checkGtag, 100);
+            }
+        };
+        checkGtag();
     }
 
     captureUTMParameters() {
