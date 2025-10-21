@@ -6560,7 +6560,7 @@ import Layout from "../layouts/Layout.astro";
         .hero h1 {
             font-size: clamp(32px, 5vw, 56px);
             font-weight: 800;
-            margin-bottom: 24px;
+            margin-bottom: 24px !important;
             line-height: 1.1;
             letter-spacing: -0.02em;
         }
@@ -6574,6 +6574,11 @@ import Layout from "../layouts/Layout.astro";
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        /* Fix pour garantir la marge en production */
+        .hero h1 {
+            margin-bottom: 24px !important;
         }
 
         .hero-subtitle {
@@ -7085,6 +7090,7 @@ import Layout from "../layouts/Layout.astro";
 
             .hero h1 {
                 font-size: 32px;
+                margin-bottom: 24px !important;
             }
 
             .social-proof {
@@ -13322,6 +13328,11 @@ import Layout from "../layouts/Layout.astro";
             #success-calculator .question-title-premium {
                 font-size: 22px;
             }
+        }
+
+        /* Fix définitif pour la marge du titre hero en production */
+        .hero h1 {
+            margin-bottom: 24px !important;
         }
     </style>
 </Layout>
