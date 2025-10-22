@@ -148,9 +148,20 @@ import Layout from "../layouts/Layout.astro";
                             <p
                                 style="color: #fff; font-size: 0.9rem; margin: 0; opacity: 0.8; display: flex; align-items: center; justify-content: center; gap: 8px;"
                             >
-                                <span
-                                    style="background: #01e988; color: #0a0a0a; border-radius: 50%; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold;"
-                                    >✓</span
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="#01e988"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-shield-check-icon lucide-shield-check"
+                                    ><path
+                                        d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+                                    ></path><path d="m9 12 2 2 4-4"></path></svg
                                 >
                                 Garantie 30 jours satisfait ou remboursé
                             </p>
@@ -2389,6 +2400,7 @@ import Layout from "../layouts/Layout.astro";
                                                     </svg>
                                                     <div>
                                                         <strong
+                                                            style="color: #bfbfbf;"
                                                             >Mini-produits
                                                             digitaux</strong
                                                         >
@@ -2428,6 +2440,7 @@ import Layout from "../layouts/Layout.astro";
                                                     </svg>
                                                     <div>
                                                         <strong
+                                                            style="color: #bfbfbf;"
                                                             >Affiliation
                                                             stratégique</strong
                                                         >
@@ -2463,6 +2476,7 @@ import Layout from "../layouts/Layout.astro";
                                                     </svg>
                                                     <div>
                                                         <strong
+                                                            style="color: #bfbfbf;"
                                                             >Formation premium
                                                             avec IA</strong
                                                         >
@@ -8132,6 +8146,7 @@ import Layout from "../layouts/Layout.astro";
             display: block;
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
         }
 
         /* Overlay pour assombrir tout le contenu du dashboard */
@@ -8673,9 +8688,41 @@ import Layout from "../layouts/Layout.astro";
                 padding: 10px 15px;
             }
 
+            /* Adaptation de l'image de preuve pour mobile */
+            .proof-image-main {
+                width: 100%;
+                height: auto;
+                max-width: 100%;
+                object-fit: contain;
+                border-radius: 6px;
+            }
+
+            .dashboard-overlay {
+                padding: 10px;
+            }
+
             .browser-address {
                 min-width: 150px;
                 padding: 4px 8px;
+            }
+        }
+
+        /* Styles pour très petits écrans */
+        @media (max-width: 480px) {
+            .proof-image-main {
+                width: 100%;
+                height: auto;
+                max-width: 100%;
+                object-fit: contain;
+                border-radius: 4px;
+            }
+
+            .dashboard-overlay {
+                padding: 5px;
+            }
+
+            .browser-mockup {
+                margin: 0 10px;
             }
 
             .address-text {
