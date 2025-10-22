@@ -3791,19 +3791,34 @@ import Layout from "../layouts/Layout.astro";
             @media (max-width: 768px) {
                 .bonus-card img {
                     width: 100% !important;
-                    height: 200px !important;
-                    object-fit: cover !important;
+                    height: auto !important;
+                    max-height: 200px !important;
+                    object-fit: contain !important;
                     object-position: center !important;
-                    position: absolute !important;
-                    inset: 0 !important;
+                    position: relative !important;
+                    display: block !important;
+                }
+                
+                .bonus-card div[style*="height: 220px"],
+                .bonus-card div[style*="height: 250px"] {
+                    height: auto !important;
+                    min-height: 180px !important;
+                    max-height: 200px !important;
                 }
             }
 
             @media (max-width: 480px) {
                 .bonus-card img {
-                    height: 180px !important;
-                    object-fit: cover !important;
+                    max-height: 180px !important;
+                    object-fit: contain !important;
                     object-position: center !important;
+                }
+                
+                .bonus-card div[style*="height: 220px"],
+                .bonus-card div[style*="height: 250px"] {
+                    height: auto !important;
+                    min-height: 160px !important;
+                    max-height: 180px !important;
                 }
             }
 
