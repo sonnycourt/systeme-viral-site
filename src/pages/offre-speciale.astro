@@ -8693,12 +8693,21 @@ import Layout from "../layouts/Layout.astro";
                 width: 100%;
                 height: auto;
                 max-width: 100%;
-                object-fit: contain;
+                object-fit: cover;
                 border-radius: 6px;
+                margin: 0;
+                padding: 0;
             }
 
             .dashboard-overlay {
-                padding: 10px;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            .browser-content {
+                padding: 0;
+                margin: 0;
             }
 
             .browser-address {
@@ -8713,12 +8722,21 @@ import Layout from "../layouts/Layout.astro";
                 width: 100%;
                 height: auto;
                 max-width: 100%;
-                object-fit: contain;
+                object-fit: cover;
                 border-radius: 4px;
+                margin: 0;
+                padding: 0;
             }
 
             .dashboard-overlay {
-                padding: 5px;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            .browser-content {
+                padding: 0;
+                margin: 0;
             }
 
             .browser-mockup {
