@@ -8131,22 +8131,20 @@ import Layout from "../layouts/Layout.astro";
         }
 
         .browser-content {
-            background: #ffffff;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            background: transparent;
+            display: block;
+            padding: 0;
+            margin: 0;
         }
 
         .proof-image-main {
             width: 100%;
-            max-width: 100%;
             height: auto;
-            display: block;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
             object-fit: contain;
+            border-radius: 6px;
+            margin: 0;
+            padding: 0;
         }
 
         /* Overlay pour assombrir tout le contenu du dashboard */
@@ -8693,7 +8691,7 @@ import Layout from "../layouts/Layout.astro";
                 width: 100%;
                 height: auto;
                 max-width: 100%;
-                object-fit: cover;
+                object-fit: contain;
                 border-radius: 6px;
                 margin: 0;
                 padding: 0;
@@ -8722,7 +8720,7 @@ import Layout from "../layouts/Layout.astro";
                 width: 100%;
                 height: auto;
                 max-width: 100%;
-                object-fit: cover;
+                object-fit: contain;
                 border-radius: 4px;
                 margin: 0;
                 padding: 0;
@@ -8735,12 +8733,13 @@ import Layout from "../layouts/Layout.astro";
             }
 
             .browser-content {
-                padding: 0;
-                margin: 0;
+                padding: 0 !important;
+                margin: 0 !important;
+                min-height: unset !important;
             }
 
             .browser-mockup {
-                margin: 0 10px;
+                margin: 0;
             }
 
             .address-text {
@@ -8748,8 +8747,8 @@ import Layout from "../layouts/Layout.astro";
             }
 
             .browser-content {
-                min-height: 300px;
-                padding: 15px;
+                min-height: unset;
+                padding: 0;
             }
 
             .proof-description-below {
@@ -8929,7 +8928,6 @@ import Layout from "../layouts/Layout.astro";
             text-align: center;
             margin-bottom: 60px;
         }
-
         .sales-story-opening {
             font-size: 24px;
             font-weight: 600;
@@ -9575,7 +9573,6 @@ import Layout from "../layouts/Layout.astro";
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
-
         .formula-item {
             background: rgba(0, 220, 130, 0.1);
             backdrop-filter: blur(10px);
@@ -10874,7 +10871,6 @@ import Layout from "../layouts/Layout.astro";
             font-weight: 700;
             margin-bottom: 16px;
         }
-
         .result-recommendations ul {
             list-style: none;
             padding: 0;
@@ -11522,7 +11518,6 @@ import Layout from "../layouts/Layout.astro";
         .clean-element-number svg {
             display: block;
         }
-
         .clean-element-content h5 {
             font-size: 16px;
             font-weight: 700;
@@ -12172,7 +12167,6 @@ import Layout from "../layouts/Layout.astro";
             const phaseData = calculatePlaces();
             updateScarcityDisplay(phaseData);
         }
-
         // Chatbot functionality
         let chatbotOpen = false;
         const chatbotToggle = document.getElementById(
@@ -13407,7 +13401,6 @@ import Layout from "../layouts/Layout.astro";
 
     <!-- SYSTÈME VIRAL - Tracking Script -->
     <script src="/src/scripts/tracking.js"></script>
-
     <!-- Spiffy Checkout Script -->
     <script>
         "use strict";
