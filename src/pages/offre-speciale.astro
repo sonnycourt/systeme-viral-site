@@ -2535,23 +2535,16 @@ import Layout from "../layouts/Layout.astro";
                                             Le "Glitch" de Monétisation™
                                         </h4>
                                         <div class="clean-content">
-                                            <div class="clean-highlight-box">
-                                                <p>
-                                                    <strong
-                                                        style="color: #01e988;"
-                                                        >Le glitch, c'est de
-                                                        comprendre que ce n'est
-                                                        pas uniquement ton
-                                                        nombre de vues qui
-                                                        détermine tes revenus,
-                                                        mais la structure que tu
-                                                        mets en place derrière.</strong
-                                                    >
-                                                </p>
-                                            </div>
+                                            <p style="text-align: left;">
+                                                Le glitch, c'est de comprendre
+                                                que ce n'est pas uniquement ton
+                                                nombre de vues qui détermine tes
+                                                revenus, mais la structure que
+                                                tu mets en place derrière.
+                                            </p>
 
                                             <p>
-                                                <strong
+                                                <strong style="color: #01e988;"
                                                     >La vérité que les
                                                     plateformes ne veulent pas
                                                     que tu comprennes :</strong
@@ -2564,50 +2557,40 @@ import Layout from "../layouts/Layout.astro";
                                             </p>
 
                                             <p>
-                                                <strong style="color: #01e988;"
+                                                <strong
                                                     >Mais avec le Système Viral,
-                                                    tu reprends le contrôle :</strong
+                                                    <span
+                                                        style="color: #01e988;"
+                                                        >tu reprends le contrôle
+                                                        :</span
+                                                    ></strong
                                                 >
                                             </p>
-                                            <div
-                                                style="background: #1a2a1a; border-left: 4px solid #01e988; padding: 20px; border-radius: 8px; margin: 20px 0;"
+                                            <ul
+                                                style="list-style: none; padding: 0;"
                                             >
-                                                <ul
-                                                    style="list-style: none; padding: 0; margin: 0;"
-                                                >
-                                                    <li
-                                                        style="color: #00ff88; margin: 10px 0; font-size: 16px;"
-                                                    >
-                                                        ✓ Tu ne dépends plus des
-                                                        centimes que les
-                                                        plateformes daignent te
-                                                        verser.
-                                                    </li>
-                                                    <li
-                                                        style="color: #00ff88; margin: 10px 0; font-size: 16px;"
-                                                    >
-                                                        ✓ Tu fixes TES prix. Tu
-                                                        vends TES produits. Tu
-                                                        gardes 95% des profits.
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                                <li>
+                                                    ✓ Tu ne dépends plus des
+                                                    centimes que les plateformes
+                                                    daignent te verser.
+                                                </li>
+                                                <li>
+                                                    ✓ Tu fixes TES prix. Tu
+                                                    vends TES produits. Tu
+                                                    gardes 95% des profits.
+                                                </li>
+                                            </ul>
                                         </div>
 
-                                        <div
-                                            class="clean-highlight-box"
-                                            style="background: linear-gradient(135deg, #0a1a0a 0%, #1a2a1a 100%); border: 2px solid #01e988; border-radius: 16px; padding: 25px; margin: 30px 0; text-align: center;"
-                                        >
-                                            <p
-                                                style="font-size: 18px; font-weight: 700; color: #01e988; margin-bottom: 15px;"
-                                            >
-                                                Une vidéo à 100k vues = 50€ sur
-                                                TikTok ou +500€ avec ta propre
-                                                formation.
+                                        <div class="clean-highlight-box">
+                                            <p>
+                                                <strong>
+                                                    Une vidéo à 100k vues = 50€
+                                                    sur TikTok ou +500€ avec ta
+                                                    propre formation.
+                                                </strong>
                                             </p>
-                                            <p
-                                                style="font-size: 16px; color: #00ff88; margin: 0;"
-                                            >
+                                            <p>
                                                 C'est ça le vrai glitch :
                                                 utiliser leur trafic gratuit
                                                 pour construire TON empire, pas
@@ -2616,7 +2599,7 @@ import Layout from "../layouts/Layout.astro";
                                         </div>
 
                                         <p
-                                            style="font-size: 14px; color: #888; font-weight: normal; text-align: center; font-style: italic; margin-top: 20px;"
+                                            style="text-align: center; font-style: italic; color: #888;"
                                         >
                                             (Les miettes que les réseaux te
                                             reversent seront un joli petit
@@ -2646,7 +2629,9 @@ import Layout from "../layouts/Layout.astro";
                                             <path d="m6 8 6 2 6-2"></path>
                                             <path d="M12 10v4"></path>
                                         </svg>
-                                        Mon expérience personnelle
+                                        <span style="color: #888;"
+                                            >Mon expérience personnelle</span
+                                        >
                                     </h4>
                                     <div class="clean-content">
                                         <p>
@@ -4073,6 +4058,19 @@ import Layout from "../layouts/Layout.astro";
         .section,
         div[style*="justify-content: center"] {
             text-align: left !important;
+        }
+
+        /* Exception pour la section scarcity du bas */
+        .scarcity-bottom-section,
+        .scarcity-bottom-section .container,
+        .scarcity-bottom-section * {
+            text-align: center !important;
+        }
+
+        /* Forcer le centrage du countdown */
+        .scarcity-bottom-section .countdown-timer {
+            justify-content: center !important;
+            display: flex !important;
         }
 
         /* Forcer l'alignement à gauche sur les éléments flexbox */
@@ -6779,7 +6777,7 @@ import Layout from "../layouts/Layout.astro";
             <!-- Countdown Timer -->
             <div class="countdown-container" style="margin-bottom: 40px;">
                 <h3
-                    style="color: #fff; font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;"
+                    style="color: #fff; font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; text-align: center;"
                 >
                     L'OFFRE SE TERMINE DANS :
                 </h3>
@@ -6877,7 +6875,7 @@ import Layout from "../layouts/Layout.astro";
                     <p
                         class="scarcity-text"
                         id="scarcityTextBottom"
-                        style="color: #fff; font-size: 1.3rem; font-weight: 600; margin-bottom: 20px;"
+                        style="color: #fff; font-size: 1.3rem; font-weight: 600; margin-bottom: 20px; text-align: center;"
                     >
                         <span
                             class="places-count"
@@ -6900,7 +6898,7 @@ import Layout from "../layouts/Layout.astro";
                 </div>
 
                 <!-- CTA Button -->
-                <div style="margin-top: 30px;">
+                <div style="margin-top: 30px; text-align: center;">
                     <a
                         href="https://systemeviral.spiffy.co/checkout/systeme-viral#pop"
                         class="cta-button"
