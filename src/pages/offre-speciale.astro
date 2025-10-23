@@ -437,10 +437,10 @@ import Layout from "../layouts/Layout.astro";
                                 m'étouffait.
                             </p>
                             <p class="story-text">
-                                Un boulot sans âme. Un patron au-dessus de moi.
-                                Et cette boule au ventre chaque dimanche soir…
-                                rien qu'à l'idée de devoir retourner au travail
-                                le lendemain.
+                                Un boulot sans âme. Un patron qui abuse de son
+                                autorité. Et cette boule au ventre chaque
+                                dimanche soir… Rien qu'à l'idée de devoir
+                                retourner au travail le lendemain.
                             </p>
                         </div>
 
@@ -686,7 +686,7 @@ import Layout from "../layouts/Layout.astro";
                             </p>
                             <p class="story-text">
                                 Je n'avais pas fui le salariat pour me recréer
-                                une prison dorée.
+                                une nouvelle prison.
                             </p>
                             <p class="story-text">Je voulais plus que ça.</p>
                         </div>
@@ -704,15 +704,11 @@ import Layout from "../layouts/Layout.astro";
                             </p>
 
                             <div class="doubts-list">
+                                <p class="doubt-item">Trop de gamins dessus.</p>
                                 <p class="doubt-item">
-                                    "Trop de gamins dessus."
+                                    Ça fait des vues mais pas de ventes.
                                 </p>
-                                <p class="doubt-item">
-                                    "Ça fait des vues mais pas de ventes."
-                                </p>
-                                <p class="doubt-item">
-                                    "C'est pas notre truc."
-                                </p>
+                                <p class="doubt-item">C'est pas notre truc.</p>
                             </div>
 
                             <p class="story-text">
@@ -775,8 +771,7 @@ import Layout from "../layouts/Layout.astro";
                                 Chaque vidéo ne nous prenait même pas une heure.
                             </p>
                             <p class="story-text">
-                                Juste 60 secondes de contenu. Authentique.
-                                Impactant.
+                                Juste 60 secondes de contenu. Rapide. Viral.
                             </p>
                         </div>
 
@@ -790,26 +785,25 @@ import Layout from "../layouts/Layout.astro";
                             </p>
                             <p class="story-text">Et pour la première fois…</p>
                             <p class="story-text highlight">
-                                je me suis senti vraiment libre.
+                                J'avais enfin craqué le code.
                             </p>
                             <p class="story-text">
-                                J'avais enfin trouvé non seulement une stratégie
-                                ultra simple et rentable,
+                                La liberté financière, je l'avais déjà.
                             </p>
                             <p class="story-text">
-                                mais surtout un moyen de vivre d'un sujet qui me
-                                passionne vraiment.
+                                Mais là, j'avais trouvé mieux :
+                            </p>
+                            <p class="story-text">
+                                Une approche simple et rapide pour doubler mes
+                                revenus et diviser par deux mon temps de
+                                travail.
                             </p>
                         </div>
 
                         <div class="story-section">
                             <h3 class="story-title">
-                                La puissance du Système Viral
+                                Et le meilleur avec Système Viral :
                             </h3>
-                            <p class="story-text">
-                                Et c'est là toute la puissance du Système Viral
-                                :
-                            </p>
 
                             <div class="system-benefits">
                                 <div class="benefit-item">
@@ -921,8 +915,8 @@ import Layout from "../layouts/Layout.astro";
                                         <path d="m12 5 7 7-7 7"></path>
                                     </svg>
                                     <span class="revelation-text"
-                                        >Ce n'était pas le manque de
-                                        compétences.</span
+                                        >Ce n'était pas le manque
+                                        d'intelligence.</span
                                     >
                                 </div>
                                 <div class="revelation-item">
@@ -1039,8 +1033,7 @@ import Layout from "../layouts/Layout.astro";
                                     </svg>
                                     <span class="requirement-text"
                                         >et qui fonctionne même si je n'ai pas
-                                        de temps, pas d'équipe, et pas
-                                        d'algorithme à amadouer.</span
+                                        beaucoup de temps.</span
                                     >
                                 </div>
                             </div>
@@ -4034,6 +4027,32 @@ import Layout from "../layouts/Layout.astro";
             </div>
         </section>
         <style>
+            /* Alignement global à gauche */
+            body,
+            html {
+                text-align: left !important;
+            }
+
+            /* Override des justify-content pour aligner à gauche */
+            .container,
+            .section,
+            div[style*="justify-content: center"] {
+                text-align: left !important;
+            }
+
+            /* Forcer l'alignement à gauche sur les éléments flexbox */
+            div[style*="justify-content: center"] {
+                justify-content: flex-start !important;
+            }
+
+            /* Alignement à gauche pour les textes centrés */
+            p[style*="text-align: center"],
+            h1[style*="text-align: center"],
+            h2[style*="text-align: center"],
+            h3[style*="text-align: center"] {
+                text-align: left !important;
+            }
+
             .bonus-card:hover {
                 transform: translateY(-8px);
                 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
