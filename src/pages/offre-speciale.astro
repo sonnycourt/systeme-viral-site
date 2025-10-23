@@ -3266,12 +3266,12 @@ import Layout from "../layouts/Layout.astro";
                         </div>
 
                         <div
-                            style="width: 100%; height: 220px; border-radius: 16px; margin-bottom: 24px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(16, 185, 129, 0.2); position: relative; overflow: hidden;"
+                            class="bonus-image-container"
+                            style="border: 1px solid rgba(16, 185, 129, 0.2); margin-bottom: 24px;"
                         >
                             <img
                                 src="/media/sonny_bonus_1_SV.webp"
                                 alt="50 Thématiques Rentables"
-                                style="width: 100%; height: 100%; object-fit: cover; object-position: center; position: absolute; inset: 0;"
                             />
                             <div
                                 style="position: absolute; top: 12px; right: 12px; background: rgba(16, 185, 129, 0.9); color: white; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;"
@@ -3388,12 +3388,12 @@ import Layout from "../layouts/Layout.astro";
                         </div>
 
                         <div
-                            style="width: 100%; height: 250px; border-radius: 16px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(59, 130, 246, 0.2); position: relative; overflow: hidden;"
+                            class="bonus-image-container"
+                            style="border: 1px solid rgba(59, 130, 246, 0.2); margin-bottom: 30px;"
                         >
                             <img
                                 src="/media/Sonny_Bonus_2_SV.webp"
                                 alt="Délégation & Partenariat"
-                                style="width: 120%; height: 120%; object-fit: cover; object-position: center; position: absolute; top: -10%; left: -10%;"
                             />
                             <div
                                 style="position: absolute; top: 12px; right: 12px; background: rgba(59, 130, 246, 0.9); color: white; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;"
@@ -3535,12 +3535,12 @@ import Layout from "../layouts/Layout.astro";
                         </div>
 
                         <div
-                            style="width: 100%; height: 250px; background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.1)); border-radius: 16px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(139, 92, 246, 0.2); position: relative; overflow: hidden;"
+                            class="bonus-image-container"
+                            style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.1)); border: 1px solid rgba(139, 92, 246, 0.2); margin-bottom: 30px;"
                         >
                             <img
                                 src="/media/Sonny-pack-Neville-cover-vf.webp"
                                 alt="Pack Neville - Mindset de la Réussite"
-                                style="width: 100%; height: 100%; object-fit: cover; object-position: center; position: absolute; inset: 0; border-radius: 12px;"
                             />
                             <div
                                 style="position: absolute; top: 12px; right: 12px; background: rgba(139, 92, 246, 0.9); color: white; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;"
@@ -3676,12 +3676,12 @@ import Layout from "../layouts/Layout.astro";
                         </div>
 
                         <div
-                            style="width: 100%; height: 250px; border-radius: 16px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(245, 158, 11, 0.2); position: relative; overflow: hidden;"
+                            class="bonus-image-container"
+                            style="border: 1px solid rgba(245, 158, 11, 0.2); margin-bottom: 30px;"
                         >
                             <img
                                 src="/media/sonny_bonus_4_sv.webp"
                                 alt="Le Multiplicateur de Succès"
-                                style="width: 120%; height: 120%; object-fit: cover; object-position: center; position: absolute; top: -10%; left: -10%;"
                             />
                             <div
                                 style="position: absolute; top: 12px; right: 12px; background: rgba(245, 158, 11, 0.9); color: white; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;"
@@ -3835,12 +3835,12 @@ import Layout from "../layouts/Layout.astro";
                         </div>
 
                         <div
-                            style="width: 100%; height: 250px; border-radius: 16px; margin-bottom: 30px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(6, 182, 212, 0.2); position: relative; overflow: hidden;"
+                            class="bonus-image-container"
+                            style="border: 1px solid rgba(6, 182, 212, 0.2); margin-bottom: 30px;"
                         >
                             <img
                                 src="/media/sonny_bonus_5_sv.webp"
                                 alt="L'IA Comme Alliée Ultime"
-                                style="width: 120%; height: 120%; object-fit: cover; object-position: center; position: absolute; top: -10%; left: -10%;"
                             />
                             <div
                                 style="position: absolute; top: 12px; right: 12px; background: rgba(6, 182, 212, 0.9); color: white; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;"
@@ -4119,22 +4119,58 @@ import Layout from "../layouts/Layout.astro";
                 }
             }
 
-            /* Optimisations pour les images bonus */
-            @media (max-width: 768px) {
-                .bonus-card img {
-                    width: 100% !important;
-                    height: 100% !important;
-                    object-fit: cover !important;
-                    object-position: center !important;
-                    position: absolute !important;
-                    inset: 0 !important;
+            /* Optimisations pour les images bonus - Responsive parfait */
+            .bonus-image-container {
+                position: relative;
+                width: 100%;
+                max-width: 100%;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 16px;
+                overflow: hidden;
+            }
+
+            .bonus-image-container img {
+                width: auto !important;
+                height: auto !important;
+                max-width: 100% !important;
+                max-height: 100% !important;
+                object-fit: contain !important;
+                object-position: center !important;
+                position: relative !important;
+                display: block !important;
+            }
+
+            /* Ajustements responsive pour différentes tailles d'écran */
+            @media (min-width: 1200px) {
+                .bonus-image-container {
+                    max-height: 300px;
+                }
+            }
+
+            @media (max-width: 1199px) and (min-width: 992px) {
+                .bonus-image-container {
+                    max-height: 280px;
+                }
+            }
+
+            @media (max-width: 991px) and (min-width: 768px) {
+                .bonus-image-container {
+                    max-height: 250px;
+                }
+            }
+
+            @media (max-width: 767px) {
+                .bonus-image-container {
+                    max-height: 220px;
                 }
             }
 
             @media (max-width: 480px) {
-                .bonus-card img {
-                    object-fit: cover !important;
-                    object-position: center !important;
+                .bonus-image-container {
+                    max-height: 200px;
                 }
             }
 
