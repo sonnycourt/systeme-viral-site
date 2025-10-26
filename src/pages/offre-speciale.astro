@@ -7729,13 +7729,18 @@ import Layout from "../layouts/Layout.astro";
             flex-direction: row !important;
         }
 
-        /* Forcer le centrage des cases sur mobile */
-        .time-unit {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: center !important;
-            text-align: center !important;
+        /* Images des 3 étapes - éviter le crop sur mobile */
+        .step-image {
+            overflow: visible !important;
+            height: auto !important;
+        }
+
+        .step-image img {
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+            object-position: center !important;
+            max-height: none !important;
         }
 
         .time-block {
