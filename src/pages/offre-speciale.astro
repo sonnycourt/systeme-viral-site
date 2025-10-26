@@ -2584,7 +2584,7 @@ import Layout from "../layouts/Layout.astro";
 
                                         <div class="clean-highlight-box">
                                             <p>
-                                                <strong>
+                                                <strong style="color: #01e988;">
                                                     Une vidéo à 100k vues = 50€
                                                     sur TikTok ou +500€ avec ta
                                                     propre formation.
@@ -2658,9 +2658,9 @@ import Layout from "../layouts/Layout.astro";
                                                 départ.
                                             </p>
                                             <p>
-                                                <strong
-                                                    >Juste la bonne approche et
-                                                    bon système.</strong
+                                                <strong style="color: #01e988;">
+                                                    Juste la bonne approche et
+                                                    le bon système.</strong
                                                 >
                                             </p>
                                         </div>
@@ -2671,6 +2671,35 @@ import Layout from "../layouts/Layout.astro";
                                                 Viral.</strong
                                             >
                                         </p>
+
+                                        <!-- CTA Button -->
+                                        <div
+                                            style="text-align: center; margin-top: 30px;"
+                                        >
+                                            <a
+                                                href="https://systemeviral.spiffy.co/checkout/systeme-viral#pop"
+                                                class="cta-button"
+                                                target="_blank"
+                                                style="
+                                                display: inline-block;
+                                                background: linear-gradient(135deg, #01e988, #00d4aa);
+                                                color: #000;
+                                                padding: 18px 40px;
+                                                border-radius: 50px;
+                                                text-decoration: none;
+                                                font-weight: 700;
+                                                font-size: 1.1rem;
+                                                text-transform: uppercase;
+                                                letter-spacing: 1px;
+                                                box-shadow: 0 8px 25px rgba(1, 233, 136, 0.3);
+                                                transition: all 0.3s ease;
+                                                border: none;
+                                                cursor: pointer;
+                                            "
+                                            >
+                                                REJOINDRE LE SYSTÈME VIRAL
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -12926,13 +12955,7 @@ import Layout from "../layouts/Layout.astro";
             document
                 .getElementById("restart-btn")
                 ?.addEventListener("click", () => this.restartQuiz());
-            document
-                .getElementById("result-cta")
-                ?.addEventListener("click", () => {
-                    alert(
-                        "Fonctionnalité à implémenter - redirection vers le paiement",
-                    );
-                });
+            // Le bouton result-cta utilise maintenant directement le lien href vers Spiffy
         }
 
         showQuestion(index) {
