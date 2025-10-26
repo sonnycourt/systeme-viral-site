@@ -90,25 +90,81 @@ import Layout from "../layouts/Layout.astro";
                             </p>
                         </div>
 
-                        <div class="countdown-section">
-                            <div class="time-block">
-                                <span class="time-value" id="days">00</span>
-                                <span class="time-label">Jours</span>
+                        <div
+                            class="countdown-section"
+                            style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px;"
+                        >
+                            <div
+                                class="time-unit"
+                                style="background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 68, 68, 0.3); border-radius: 12px; padding: 20px; min-width: 80px; text-align: center;"
+                            >
+                                <div
+                                    class="time-value"
+                                    id="days"
+                                    style="font-size: 2.5rem; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 8px;"
+                                >
+                                    00
+                                </div>
+                                <div
+                                    class="time-label"
+                                    style="color: #bfbfbf; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;"
+                                >
+                                    Jours
+                                </div>
                             </div>
-                            <span class="time-separator">:</span>
-                            <div class="time-block">
-                                <span class="time-value" id="hours">00</span>
-                                <span class="time-label">Heures</span>
+                            <div
+                                class="time-unit"
+                                style="background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 68, 68, 0.3); border-radius: 12px; padding: 20px; min-width: 80px; text-align: center;"
+                            >
+                                <div
+                                    class="time-value"
+                                    id="hours"
+                                    style="font-size: 2.5rem; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 8px;"
+                                >
+                                    00
+                                </div>
+                                <div
+                                    class="time-label"
+                                    style="color: #bfbfbf; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;"
+                                >
+                                    Heures
+                                </div>
                             </div>
-                            <span class="time-separator">:</span>
-                            <div class="time-block">
-                                <span class="time-value" id="minutes">00</span>
-                                <span class="time-label">Minutes</span>
+                            <div
+                                class="time-unit"
+                                style="background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 68, 68, 0.3); border-radius: 12px; padding: 20px; min-width: 80px; text-align: center;"
+                            >
+                                <div
+                                    class="time-value"
+                                    id="minutes"
+                                    style="font-size: 2.5rem; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 8px;"
+                                >
+                                    00
+                                </div>
+                                <div
+                                    class="time-label"
+                                    style="color: #bfbfbf; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;"
+                                >
+                                    Minutes
+                                </div>
                             </div>
-                            <span class="time-separator">:</span>
-                            <div class="time-block">
-                                <span class="time-value" id="seconds">00</span>
-                                <span class="time-label">Secondes</span>
+                            <div
+                                class="time-unit"
+                                style="background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 68, 68, 0.3); border-radius: 12px; padding: 20px; min-width: 80px; text-align: center;"
+                            >
+                                <div
+                                    class="time-value"
+                                    id="seconds"
+                                    style="font-size: 2.5rem; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 8px;"
+                                >
+                                    00
+                                </div>
+                                <div
+                                    class="time-label"
+                                    style="color: #bfbfbf; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;"
+                                >
+                                    Secondes
+                                </div>
                             </div>
                         </div>
 
@@ -4102,16 +4158,33 @@ import Layout from "../layouts/Layout.astro";
             display: flex !important;
         }
 
-        /* Forcer l'alignement à gauche sur les éléments flexbox */
-        div[style*="justify-content: center"] {
-            justify-content: flex-start !important;
+        /* Centrage du titre hero sur mobile */
+        .hero h1 {
+            text-align: center !important;
         }
 
-        /* Alignement à gauche pour les textes centrés */
-        p[style*="text-align: center"],
-        h1[style*="text-align: center"],
-        h2[style*="text-align: center"],
-        h3[style*="text-align: center"] {
+        .hero h1 .gradient-text {
+            text-align: center !important;
+        }
+
+        /* Exception pour le countdown - garder centré */
+        .countdown-section {
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+        }
+
+        .countdown-section .time-unit {
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+        }
+
+        /* Alignement à gauche pour les textes centrés - sauf hero et countdown */
+        p[style*="text-align: center"]:not(.hero-subtitle),
+        h1[style*="text-align: center"]:not(.hero h1),
+        h2[style*="text-align: center"]:not(.hero h2),
+        h3[style*="text-align: center"]:not(.hero h3) {
             text-align: left !important;
         }
 
@@ -7288,10 +7361,12 @@ import Layout from "../layouts/Layout.astro";
     .countdown-section {
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: 15px;
         margin-bottom: 30px;
         z-index: 1;
         position: relative;
+        width: 100%;
     }
 
     .time-block {
@@ -7603,6 +7678,9 @@ import Layout from "../layouts/Layout.astro";
         .countdown-section {
             gap: 10px;
             flex-wrap: wrap;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
         }
 
         .time-block {
@@ -7644,6 +7722,20 @@ import Layout from "../layouts/Layout.astro";
 
         .countdown-section {
             gap: 8px;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+            display: flex !important;
+            flex-direction: row !important;
+        }
+
+        /* Forcer le centrage des cases sur mobile */
+        .time-unit {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
         }
 
         .time-block {
