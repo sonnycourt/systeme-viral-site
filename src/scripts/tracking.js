@@ -65,6 +65,14 @@ class ViralTracking {
     trackInteractions() {
         // Tracking des clics sur les CTA
         document.addEventListener('click', (e) => {
+            // Tracking des clics sur les avatars
+            if (e.target.closest('[data-avatar]')) {
+                const avatarElement = e.target.closest('[data-avatar]');
+                this.trackEvent('avatar_click', {
+                    avatar: avatarElement.getAttribute('data-avatar')
+                });
+            }
+            
             if (e.target.matches('a[href*="mailerlite"], button[data-cta], .cta-button')) {
                 this.trackEvent('cta_click', {
                     element: e.target.textContent || e.target.getAttribute('data-cta'),
