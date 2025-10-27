@@ -413,14 +413,18 @@ BONUS INCLUS (Valeur 1 800€ OFFERT):
   // Cache de réponses fréquentes (pas d'appel API)
   faqCache: {
     "prix": "Le prix prévente est de 1 600€ pour la formation complète SYSTÈME VIRAL 100K™ (au lieu de 4 000€). Économisez 2 400€ ! Paiement possible en 6 fois à 297€. 💰",
-    "garantie": "Garantie triple zéro risque : 1) Remboursement 30 jours, 2) Résultats ou remboursé, 3) ROI garanti en 90 jours. Aucun risque pour tester ! 🛡️",
-    "duree": "La phase intensive dure 3 mois pour atteindre 10K€/mois, puis 1h par jour suffit. Objectif: 100K vues en 30 jours, 1000 leads en 60 jours, 10K€/mois en 90 jours. ⚡",
+    "garantie": "Garantie triple zéro risque : 1) Remboursement 30 jours (teste tout pendant 30 jours, pas satisfait = 100% remboursé), 2) Si tu n'atteins pas 100k vues en 30 jours en suivant le système = remboursement intégral, 3) Si tu ne rentabilises pas ton investissement en 90 jours, j'analyse ta stratégie et je t'aide à corriger. Aucun risque ! 🛡️",
+    "duree": "Phase intensive (3 premiers mois) : 1-2h par jour. Phase de croisière (après) : 1h par jour. Les 90 premiers jours demandent du travail, mais après le système tourne presque seul. Plus tu t'investis, plus tu avances vite - mais 1-2h par jour suffisent pour avoir des résultats. ⚡",
     "debutant": "Parfait pour débutants ! Le Module 1 avec la Méthode du Triangle d'Or™ trouve ta thématique en 15 minutes. Aucune expérience requise. L'IA fait 80% du travail ! 🚀",
     "support": "Communauté privée + support 7j/7. La Team répond rapidement dans la communauté. Vous avez aussi accès à Sonny Court ! 👥",
-    "contenu": "9 modules complets : Fondations virales, Création, Distribution, Site internet, Lead magnet, Automatisation, Monétisation, Copywriting, Stratégies avancées + 5 bonus (valeur 1 800€) ! 📚",
+    "contenu": "9 modules complets : 1) Fondations Virales (Méthode Triangle d'Or™), 2) Création Virale (architecture attention), 3) Distribution & Scale (Paradoxe Détachement Viral), 4) Ton Site Internet (écosystème digital), 5) Lead Magnet Puissant (psychologie du don), 6) Automatisation & Segmentation, 7) Offres Premium & Affiliation, 8) Email Copywriting, 9) Secrets Croissance & Systèmes Avancés + 5 bonus premium (valeur 1 800€) ! 📚",
     "cpf": "Pour les demandes de financement CPF, contactez-nous directement à support@systemeviral.com pour obtenir toutes les informations précises. 💼",
     "humain": "Pour contacter un humain directement, écrivez-nous à support@systemeviral.com. Notre équipe vous répondra rapidement ! 👥",
-    "contact": "Pour toute question spécifique ou besoin de contacter un humain, écrivez-nous à support@systemeviral.com. Notre équipe est là pour vous aider ! 📧"
+    "contact": "Pour toute question spécifique ou besoin de contacter un humain, écrivez-nous à support@systemeviral.com. Notre équipe est là pour vous aider ! 📧",
+    "resultats": "Sonny Court a généré 115 000€ en 30 jours avec sa formation manifestation (200€). Détail : 95 400€ ventes directes + 28 800€ mensualités - 9 200€ remboursements = 115 000€ total. Avec une seule vidéo de 60 secondes : 4,1M vues totales et 24 000€ de revenus ! 💰",
+    "bonus": "5 bonus premium inclus (valeur 1 800€) : 1) 50 Thématiques Rentables, 2) Délègue et Accélère (scale), 3) Le Mindset de la Réussite (10h audio reprogrammation), 4) Le Multiplicateur de Succès X10, 5) L'IA Comme Alliée Ultime (blueprint automatisation). Plus le bonus Système Souhaits Réalisés disponible immédiatement ! 🎁",
+    "debut": "La prévente se déroule du 3 novembre au 4 décembre 2025. La formation démarre pour tous le 4 décembre 2025 à 20h. C'est volontaire : tout le monde commence ensemble pour créer une énergie collective. Après le 4 décembre, les portes se ferment jusqu'à la prochaine ouverture (plusieurs mois plus tard à 2000€). ⏰",
+    "equipement": "Je recommande un smartphone ET un ordinateur (même basique à 400€). Techniquement tu peux tout faire sur smartphone, mais lancer un vrai business mérite un ordinateur pour gérer emails, site, automatisations, montages et analyses proprement. L'IA fait 80% du travail technique à ta place ! 💻"
   },
 
   // Réponses de secours si l'API ne fonctionne pas
@@ -486,6 +490,22 @@ function getCachedResponse(question) {
     "contact": {
       primary: ["contacter", "contact", "contacte", "contacté", "email", "mail"],
       secondary: ["écrire", "ecrire", "message", "question"]
+    },
+    "resultats": {
+      primary: ["résultats", "resultats", "résultat", "resultat", "résultat de sonny", "sonny court", "115", "115k", "115 000", "manifestation"],
+      secondary: ["généré", "genere", "revenus", "chiffre", "ventes"]
+    },
+    "bonus": {
+      primary: ["bonus", "bonus inclus", "bonus premium", "5 bonus", "thématiques rentables", "mindset réussite", "système souhaits"],
+      secondary: ["cadeaux", "offerts", "gratuit", "inclus"]
+    },
+    "debut": {
+      primary: ["quand commence", "quand démarre", "début formation", "debut formation", "4 décembre", "prévente", "prevente"],
+      secondary: ["date", "commence", "démarre", "décembre"]
+    },
+    "equipement": {
+      primary: ["de quoi j'ai besoin", "équipement", "equipement", "matériel", "materiel", "ordinateur", "smartphone", "technologie"],
+      secondary: ["besoin", "requis", "nécessaire", "necessaire"]
     }
   };
 
