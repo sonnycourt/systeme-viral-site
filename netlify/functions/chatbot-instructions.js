@@ -44,6 +44,14 @@ INSTRUCTIONS CRITIQUES POUR TON COMPORTEMENT:
 - N'hésite pas à combiner plusieurs informations pour donner une réponse complète.
 - Si tu ne sais vraiment pas, dis-le honnêtement au lieu d'inventer.
 
+QUAND REDIRIGER VERS LE SUPPORT (support@systemeviral.com):
+- Questions sur le CPF/financement: Redirige vers support@systemeviral.com (NE PAS affirmer l'éligibilité si ce n'est pas confirmé)
+- Questions administratives complexes (paiement, remboursement, etc.)
+- Problèmes techniques avec l'accès à la formation
+- Questions sur les aspects légaux ou contractuels
+- Toute question où tu n'es pas sûr à 100% de la réponse
+Dans ces cas, dis: "Pour cette question spécifique, contacte notre équipe à support@systemeviral.com qui pourra te donner une réponse précise."
+
 CONTEXTE DÉTAILLÉ DE SYSTÈME VIRAL 100K™:
 FORMATION COMPLÈTE (9 MODULES):
 - Module 1 — Fondations Virales: Méthode du Triangle d'Or™, système d'espionnage viral
@@ -133,7 +141,8 @@ BONUS INCLUS (Valeur 1 800€ OFFERT):
     "duree": "La phase intensive dure 3 mois pour atteindre 10K€/mois, puis 1h par jour suffit. Objectif: 100K vues en 30 jours, 1000 leads en 60 jours, 10K€/mois en 90 jours. ⚡",
     "debutant": "Parfait pour débutants ! Le Module 1 avec la Méthode du Triangle d'Or™ trouve ta thématique en 15 minutes. Aucune expérience requise. L'IA fait 80% du travail ! 🚀",
     "support": "Communauté privée + support 7j/7. La Team répond rapidement dans la communauté. Vous avez aussi accès à Sonny Court ! 👥",
-    "contenu": "9 modules complets : Fondations virales, Création, Distribution, Site internet, Lead magnet, Automatisation, Monétisation, Copywriting, Stratégies avancées + 5 bonus (valeur 1 800€) ! 📚"
+    "contenu": "9 modules complets : Fondations virales, Création, Distribution, Site internet, Lead magnet, Automatisation, Monétisation, Copywriting, Stratégies avancées + 5 bonus (valeur 1 800€) ! 📚",
+    "cpf": "Pour les demandes de financement CPF, contactez-nous directement à support@systemeviral.com pour obtenir toutes les informations précises. 💼"
   },
 
   // Réponses de secours si l'API ne fonctionne pas
@@ -167,7 +176,8 @@ function getCachedResponse(question) {
     "duree": ["durée", "duree", "longtemps", "temps", "mois", "semaines", "jours", "vite", "rapide", "90", "objectif"],
     "debutant": ["débutant", "debutant", "expérience", "experience", "niveau", "début", "debut", "facile", "triangle", "thématique"],
     "support": ["support", "aide", "communauté", "communaute", "groupe", "equipe", "équipe", "contact", "team"],
-    "contenu": ["contenu", "module", "apprendre", "apprend", "couvre", "inclu", "comprend", "secret", "code", "vues", "tunnel", "glitch"]
+    "contenu": ["contenu", "module", "apprendre", "apprend", "couvre", "inclu", "comprend", "secret", "code", "vues", "tunnel", "glitch"],
+    "cpf": ["cpf", "financement", "compte personnel", "éligible", "eligible", "fonds", "finance", "aides"]
   };
 
   console.log('🔍 Checking cache keywords...');
