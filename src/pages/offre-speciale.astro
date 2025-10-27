@@ -12691,15 +12691,15 @@ import Layout from "../layouts/Layout.astro";
             }
         } else if (phaseData.phase === 2) {
             // Section du haut
-            scarcityText.classList.add("sold-out");
-            scarcityText.innerHTML = `<span class="urgent-red">0</span> places disponibles sur 200`;
+            scarcityText.classList.remove("sold-out");
+            scarcityText.innerHTML = `Offre exceptionnelle : <span class="places-count" id="places">${phaseData.places}</span> places supplémentaires disponibles`;
             exceptionalOffer.style.display = "inline-block";
             exceptionalPlaces.textContent = String(phaseData.places);
             urgentWarning.style.display = "block";
 
             // Section du bas
-            scarcityTextBottom.classList.add("sold-out");
-            scarcityTextBottom.innerHTML = `<span class="urgent-red">0</span> places disponibles sur 200`;
+            scarcityTextBottom.classList.remove("sold-out");
+            scarcityTextBottom.innerHTML = `Offre exceptionnelle : <span class="places-count" id="placesBottom">${phaseData.places}</span> places supplémentaires disponibles`;
             exceptionalOfferBottom.style.display = "inline-block";
             exceptionalPlacesBottom.textContent = String(phaseData.places);
             urgentWarningBottom.style.display = "block";
