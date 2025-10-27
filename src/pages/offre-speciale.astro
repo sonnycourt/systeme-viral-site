@@ -12569,7 +12569,7 @@ import Layout from "../layouts/Layout.astro";
     const startDate = new Date("2025-10-05T18:00:00").getTime();
     const transitionDate = new Date("2025-11-15T23:00:00").getTime();
     const phase2EndDate = new Date("2025-11-16T23:00:00").getTime();
-    const endDate = new Date("2025-11-17T22:00:00").getTime();
+    const endDate = new Date("2025-12-04T22:00:00").getTime();
 
     let lastPhase1Places = 3;
     let lastPhase2Places = 178;
@@ -12581,7 +12581,7 @@ import Layout from "../layouts/Layout.astro";
 
         // PHASE 1
         if (now < transitionDate) {
-            const nowAt21Nov = new Date("2025-11-21T17:00:00").getTime();
+            const nowAt21Nov = new Date("2025-12-04T17:00:00").getTime();
 
             if (now < nowAt21Nov) {
                 const hoursElapsed = (now - startDate) / (1000 * 60 * 60);
@@ -12628,55 +12628,55 @@ import Layout from "../layouts/Layout.astro";
             lastPhase2Places = currentPlaces;
             return { phase: 2, places: currentPlaces };
         }
-        // PHASE 3 (2 septembre → 4 septembre) - Planning décrémental précis jusqu'à 0
+        // PHASE 3 (2 décembre → 4 décembre) - Planning décrémental précis jusqu'à 0
         else if (now < endDate) {
             const schedule = [
                 {
-                    at: new Date("2025-11-16T18:50:00").getTime(),
+                    at: new Date("2025-12-02T18:50:00").getTime(),
                     places: 11,
                 },
                 {
-                    at: new Date("2025-11-16T19:30:00").getTime(),
+                    at: new Date("2025-12-02T19:30:00").getTime(),
                     places: 10,
                 },
                 {
-                    at: new Date("2025-11-16T21:00:00").getTime(),
+                    at: new Date("2025-12-02T21:00:00").getTime(),
                     places: 9,
                 },
                 {
-                    at: new Date("2025-11-16T23:00:00").getTime(),
+                    at: new Date("2025-12-02T23:00:00").getTime(),
                     places: 8,
                 },
                 {
-                    at: new Date("2025-11-17T09:00:00").getTime(),
+                    at: new Date("2025-12-03T09:00:00").getTime(),
                     places: 7,
                 },
                 {
-                    at: new Date("2025-11-17T12:30:00").getTime(),
+                    at: new Date("2025-12-03T12:30:00").getTime(),
                     places: 6,
                 },
                 {
-                    at: new Date("2025-11-17T16:00:00").getTime(),
+                    at: new Date("2025-12-03T16:00:00").getTime(),
                     places: 5,
                 },
                 {
-                    at: new Date("2025-11-17T19:00:00").getTime(),
+                    at: new Date("2025-12-03T19:00:00").getTime(),
                     places: 4,
                 },
                 {
-                    at: new Date("2025-11-17T20:00:00").getTime(),
+                    at: new Date("2025-12-03T20:00:00").getTime(),
                     places: 3,
                 },
                 {
-                    at: new Date("2025-11-17T21:00:00").getTime(),
+                    at: new Date("2025-12-03T21:00:00").getTime(),
                     places: 2,
                 },
                 {
-                    at: new Date("2025-11-17T21:30:00").getTime(),
+                    at: new Date("2025-12-03T21:30:00").getTime(),
                     places: 1,
                 },
                 {
-                    at: new Date("2025-11-17T21:45:00").getTime(),
+                    at: new Date("2025-12-03T21:45:00").getTime(),
                     places: 0,
                 },
             ];
