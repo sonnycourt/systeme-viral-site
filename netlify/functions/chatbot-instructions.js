@@ -451,9 +451,9 @@ function getCachedResponse(question) {
   // Plus les mots-clés sont longs et spécifiques, plus ils sont prioritaires
   const keywordsMap = {
     "prix": {
-      primary: ["prix", "coût", "cout", "tarif", "combien coûte", "combien coûte", "à combien", "payer", "coute", "coûte", "€"],
-      secondary: ["prévente", "prevente", "1600", "4000", "297"],
-      exclude: ["contenu de la formation", "formation est faite", "formation c'est"] // Exclure si question sur le contenu
+      primary: ["prix", "coût", "cout", "tarif", "combien coûte", "combien coûte", "à combien", "payer", "coute", "coûte", "combien ça coûte", "combien ca coute"],
+      secondary: ["prévente", "prevente", "1600", "4000", "297", "€"],
+      exclude: ["contenu de la formation", "formation est faite", "formation c'est", "temps par jour", "heures par jour", "durée", "duree"] // Exclure si question sur le contenu ou le temps
     },
     "cpf": {
       primary: ["cpf", "compte personnel de formation", "compte personnel"],
@@ -464,8 +464,8 @@ function getCachedResponse(question) {
       secondary: ["sécuris", "securis", "protég", "proteg", "confiance", "fiable"]
     },
     "duree": {
-      primary: ["durée", "duree", "combien de temps", "longtemps", "quand résultats"],
-      secondary: ["mois", "semaines", "jours", "vite", "rapide"]
+      primary: ["durée", "duree", "combien de temps", "longtemps", "quand résultats", "temps par jour", "heures par jour", "par jour", "temps quotidien"],
+      secondary: ["mois", "semaines", "jours", "vite", "rapide", "quotidien", "chaque jour"]
     },
     "debutant": {
       primary: ["débutant", "debutant", "aucune expérience", "pas d'expérience", "difficile"],
@@ -489,8 +489,19 @@ function getCachedResponse(question) {
     }
   };
 
-  // Recherche prioritaire (mots-clés principaux)
-  for (const [cacheKey, response] of Object.entries(SYSTEM_INSTRUCTIONS.faqCache)) {
+  // Recherche prioritaire (mots-clés principaux) - trier par spécificité
+  const sortedEntries = Object.entries(SYSTEM_INSTRUCTIONS.faqCache).sort((a, b) => {
+    const keywordsA = keywordsMap[a[0]];
+    const keywordsB = keywordsMap[b[0]];
+    if (!keywordsA || !keywordsB) return 0;
+    
+    // Prioriser les mots-clés les plus longs et spécifiques
+    const maxLengthA = Math.max(...keywordsA.primary.map(k => k.length));
+    const maxLengthB = Math.max(...keywordsB.primary.map(k => k.length));
+    return maxLengthB - maxLengthA;
+  });
+
+  for (const [cacheKey, response] of sortedEntries) {
     const keywords = keywordsMap[cacheKey];
     if (!keywords) continue;
 
