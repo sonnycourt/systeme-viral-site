@@ -7633,12 +7633,9 @@ import Layout from "../layouts/Layout.astro";
     }
 
     .exceptional-offer {
-        background: linear-gradient(
-            135deg,
-            var(--accent) 0%,
-            var(--accent-dark) 100%
-        );
-        color: var(--bg);
+        background: rgba(50, 50, 50, 0.8);
+        border: 1px solid rgba(1, 233, 136, 0.3);
+        color: #fff;
         padding: 12px 25px;
         border-radius: 30px;
         display: inline-block;
@@ -12710,7 +12707,7 @@ import Layout from "../layouts/Layout.astro";
             // Section du haut - Ligne 1: 0 places (Phase 1 terminée)
             scarcityText.classList.add("sold-out");
             scarcityText.innerHTML = `<span class="urgent-red">0</span> places disponibles sur 200`;
-            
+
             // Ligne 2: Places exceptionnelles
             exceptionalOffer.style.display = "inline-block";
             exceptionalPlaces.textContent = String(phaseData.places);
@@ -12719,7 +12716,7 @@ import Layout from "../layouts/Layout.astro";
             // Section du bas - Même logique
             scarcityTextBottom.classList.add("sold-out");
             scarcityTextBottom.innerHTML = `<span class="urgent-red">0</span> places disponibles sur 200`;
-            
+
             exceptionalOfferBottom.style.display = "inline-block";
             exceptionalPlacesBottom.textContent = String(phaseData.places);
             urgentWarningBottom.style.display = "block";
