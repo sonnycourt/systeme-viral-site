@@ -51,14 +51,7 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Vérifier d'abord le cache pour les questions fréquentes - TEST SIMPLE
-    console.log('🔍 MESSAGE RECU:', message);
-
-    // Test direct pour les questions de prix
-    const lowerMessage = message.toLowerCase();
-    console.log('📝 Message en minuscules:', lowerMessage);
-
-    // Vérifier le cache uniquement pour redirections critiques
+    // Vérifier le cache uniquement pour redirections critiques (CPF, humain, contact)
     const cachedResponse = getCachedResponse(message);
     if (cachedResponse) {
       return {
