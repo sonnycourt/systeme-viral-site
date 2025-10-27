@@ -12707,16 +12707,19 @@ import Layout from "../layouts/Layout.astro";
                 }
             }
         } else if (phaseData.phase === 2) {
-            // Section du haut
-            scarcityText.classList.remove("sold-out");
-            scarcityText.innerHTML = `Offre exceptionnelle : <span class="places-count" id="places">${phaseData.places}</span> places supplémentaires disponibles`;
+            // Section du haut - Ligne 1: 0 places (Phase 1 terminée)
+            scarcityText.classList.add("sold-out");
+            scarcityText.innerHTML = `<span class="urgent-red">0</span> places disponibles sur 200`;
+            
+            // Ligne 2: Places exceptionnelles
             exceptionalOffer.style.display = "inline-block";
             exceptionalPlaces.textContent = String(phaseData.places);
             urgentWarning.style.display = "block";
 
-            // Section du bas
-            scarcityTextBottom.classList.remove("sold-out");
-            scarcityTextBottom.innerHTML = `Offre exceptionnelle : <span class="places-count" id="placesBottom">${phaseData.places}</span> places supplémentaires disponibles`;
+            // Section du bas - Même logique
+            scarcityTextBottom.classList.add("sold-out");
+            scarcityTextBottom.innerHTML = `<span class="urgent-red">0</span> places disponibles sur 200`;
+            
             exceptionalOfferBottom.style.display = "inline-block";
             exceptionalPlacesBottom.textContent = String(phaseData.places);
             urgentWarningBottom.style.display = "block";

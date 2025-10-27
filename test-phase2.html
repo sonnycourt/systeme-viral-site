@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Phase 2 - 21 Novembre</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #01e988;
+        }
+        .phase {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(1, 233, 136, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .places {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #01e988;
+        }
+        .info {
+            color: #b0b0b0;
+            margin-top: 10px;
+        }
+        .simulate {
+            background: #01e988;
+            color: #000;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Simulateur Phase 2 - Système Viral 100K</h1>
+        
+        <div class="phase">
+            <div id="scarcitySection" style="text-align: center;">
+                <div class="info">Places exceptionnelles</div>
+                <div id="placesDisplay" class="places">Calcul...</div>
+                <div id="phaseInfo" class="info" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+
+        <button class="simulate" onclick="simulate()">Simuler Phase 2</button>
+
+        <div id="console" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px; margin-top: 20px; font-family: monospace; font-size: 0.9rem;"></div>
+    </div>
+
+    <script>
+        // Configuration des dates
+        const transitionDate = new Date("2025-11-20T21:00:00").getTime();
+        const phase2EndDate = new Date("2025-12-04T22:00:00").getTime();
+
+        function calculatePhase2(now) {
+            if (now < transitionDate) {
+                return { phase: 'before', places: 0 };
+            }
+            if (now >= phase2EndDate) {
+                return { phase: 'ended', places: 0 };
+            }
+
+            const hoursElapsed = (now - transitionDate) / (1000 * 60 * 60);
+            const phase2TotalHours = (phase2EndDate - transitionDate) / (1000 * 60 * 60);
+            const progress = hoursElapsed / phase2TotalHours;
+            const adjustedProgress = Math.pow(progress, 0.76);
+
+            let currentPlaces = Math.floor(200 * (1 - adjustedProgress));
+            if (currentPlaces < 0) currentPlaces = 0;
+
+            return { phase: 2, places: currentPlaces };
+        }
+
+        function simulate() {
+            // Simuler le 21 novembre 2025
+            const simulateDate = new Date("2025-11-21T21:00:00");
+            console.log('📅 Simulation Date:', simulateDate.toLocaleString('fr-FR'));
+            
+            const result = calculatePhase2(simulateDate.getTime());
+            
+            console.log('📊 Résultat:', result);
+            
+            document.getElementById('placesDisplay').textContent = result.places;
+            
+            const hoursSinceStart = (simulateDate.getTime() - transitionDate) / (1000 * 60 * 60);
+            const totalHours = (phase2EndDate - transitionDate) / (1000 * 60 * 60);
+            const remainingHours = totalHours - hoursSinceStart;
+            const daysLeft = Math.floor(remainingHours / 24);
+            const hoursLeft = Math.floor(remainingHours % 24);
+            
+            document.getElementById('phaseInfo').textContent = 
+                `Phase 2 - ${daysLeft}j ${hoursLeft}h restantes (${simulateDate.toLocaleDateString('fr-FR')})`;
+            
+            document.getElementById('console').innerHTML = `
+                <strong>Console Output:</strong><br>
+                📅 Date: ${simulateDate.toLocaleString('fr-FR')}<br>
+                📊 Phase: ${result.phase}<br>
+                🎫 Places: ${result.places}<br>
+                ⏱️ Progression: ${((hoursSinceStart / totalHours) * 100).toFixed(1)}%<br>
+                ⏰ Temps restant: ${daysLeft}j ${hoursLeft}h
+            `;
+        }
+
+        // Exécuter automatiquement
+        simulate();
+    </script>
+</body>
+</html>
+
