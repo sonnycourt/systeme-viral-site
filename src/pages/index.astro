@@ -5,6 +5,7 @@ import "../styles/global.css";
 const isDashboardSubdomain = Astro.url.hostname === 'dashboard.systemeviral.com';
 
 // Si on est sur le sous-domaine dashboard, rediriger vers /dashboard
+// L'utilisateur va voir dashboard.systemeviral.com mais le contenu du dashboard s'affichera
 if (isDashboardSubdomain) {
 	return Astro.redirect('/dashboard');
 }

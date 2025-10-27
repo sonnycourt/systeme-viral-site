@@ -13,11 +13,10 @@
   force = false
 
 [[redirects]]
-  # Rediriger le sous-domaine dashboard vers /dashboard
+  # Pour le sous-domaine dashboard, servir /dashboard à la racine
   from = "https://dashboard.systemeviral.com/*"
-  to = "https://dashboard.systemeviral.com/dashboard/:splat"
+  to = "/dashboard/:splat"
   status = 200
-  force = true
 
 [functions]
   directory = "netlify/functions"
