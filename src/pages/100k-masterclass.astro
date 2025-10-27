@@ -15,7 +15,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="container">
             <div class="title-badge">
                 <span class="badge-dot"></span>
-                <span>Session Live Exclusive</span>
+                <span>Session Exclusive</span>
             </div>
             <h1 class="page-title">
                 Les <span class="title-highlight">3 secrets</span> pour créer ton
@@ -24,7 +24,7 @@ import Layout from "../layouts/Layout.astro";
             </h1>
             <p class="title-subtitle">
                 Une masterclass d'exception pour transformer ta passion en
-                revenus récurrents
+                revenus récurrents.
             </p>
         </div>
     </section>
@@ -80,23 +80,37 @@ import Layout from "../layouts/Layout.astro";
                         <div class="live-dot"></div>
                         <span>Replay interactif</span>
                     </div>
+                    <div class="viewers-count">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="viewers-icon"
+                        >
+                            <path
+                                d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"
+                            ></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <span id="viewerCount">32</span>
+                        <span> personnes regardent</span>
+                    </div>
                 </div>
 
                 <!-- Onglets -->
-                <div class="chat-tabs">
+                <div class="chat-tabs" style="display: none;">
                     <button
                         class="chat-tab active"
                         id="publicTab"
                         data-tab="public"
                     >
                         <span>Chat</span>
-                    </button>
-                    <button class="chat-tab" id="aiTab" data-tab="ai">
-                        <span>Discussion</span>
-                        <span
-                            class="tab-notification hidden"
-                            id="aiNotification">1</span
-                        >
                     </button>
                 </div>
 
@@ -115,39 +129,6 @@ import Layout from "../layouts/Layout.astro";
                                 class="chat-input"
                                 id="chatInput"
                                 placeholder="Posez votre question..."
-                                required
-                            />
-                            <button type="submit" class="chat-send">
-                                Envoyer
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
-                <!-- Contenu onglet Animateur IA -->
-                <div class="tab-content" id="aiContent">
-                    <div class="ai-header">
-                        <div class="ai-avatar-large">A</div>
-                        <div class="ai-title">
-                            <div class="ai-name-large">Animateur</div>
-                            <div class="ai-badge-live">EN DIRECT</div>
-                        </div>
-                    </div>
-
-                    <div class="chat-messages" id="aiMessages">
-                        <div class="system-message">
-                            Pose tes questions sur la masterclass, je suis là
-                            pour t'aider ! 🚀
-                        </div>
-                    </div>
-
-                    <div class="chat-input-wrapper">
-                        <form class="chat-input-form" id="aiChatForm">
-                            <input
-                                type="text"
-                                class="chat-input"
-                                id="aiChatInput"
-                                placeholder="Question à l'animateur..."
                                 required
                             />
                             <button type="submit" class="chat-send">
@@ -791,8 +772,9 @@ import Layout from "../layouts/Layout.astro";
         padding: 12px 20px;
         border-bottom: 1px solid var(--border);
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
+        gap: 16px;
     }
 
     .chat-status {
@@ -801,6 +783,41 @@ import Layout from "../layouts/Layout.astro";
         gap: 6px;
         font-size: 12px;
         color: var(--text-secondary);
+    }
+
+    .viewers-count {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--text-secondary);
+    }
+
+    .viewers-icon {
+        font-size: 14px;
+        width: 16px;
+        height: 16px;
+        color: var(--accent-bright);
+    }
+
+    #viewerCount {
+        font-weight: 700;
+        color: var(--accent-bright);
+        transition: all 0.3s ease;
+    }
+
+    @keyframes countPulse {
+        0%,
+        100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+    }
+
+    #viewerCount.updating {
+        animation: countPulse 0.5s ease;
     }
 
     /* Onglets du chat */
@@ -1325,6 +1342,18 @@ import Layout from "../layouts/Layout.astro";
         .ai-header {
             padding: 16px;
         }
+
+        .chat-header {
+            flex-wrap: wrap;
+            padding: 12px 16px;
+        }
+
+        .viewers-count {
+            font-size: 11px;
+            margin-top: 4px;
+            width: 100%;
+            justify-content: center;
+        }
     }
 </style>
 
@@ -1419,6 +1448,9 @@ import Layout from "../layouts/Layout.astro";
 
         // Initialize progress bar
         initializeProgressBar();
+
+        // Initialize viewers count
+        initializeViewerCount();
     });
 
     // Timer functionality
@@ -1613,88 +1645,7 @@ import Layout from "../layouts/Layout.astro";
 
     // Gestion des onglets
     const publicTab = document.getElementById("publicTab");
-    const aiTab = document.getElementById("aiTab");
     const publicContent = document.getElementById("publicContent");
-    const aiContent = document.getElementById("aiContent");
-    const aiNotification = document.getElementById("aiNotification");
-    const aiMessagesContainer = document.getElementById("aiMessages");
-    let aiNotificationCount = 0;
-
-    // Fonction pour changer d'onglet
-    function switchTab(tabName: string) {
-        if (tabName === "public") {
-            publicTab?.classList.add("active");
-            aiTab?.classList.remove("active");
-            publicContent?.classList.add("active");
-            aiContent?.classList.remove("active");
-        } else if (tabName === "ai") {
-            publicTab?.classList.remove("active");
-            aiTab?.classList.add("active");
-            publicContent?.classList.remove("active");
-            aiContent?.classList.add("active");
-
-            // Masquer la notification quand on ouvre l'onglet
-            if (aiNotification) {
-                aiNotification.classList.add("hidden");
-                aiNotificationCount = 0;
-            }
-        }
-    }
-
-    // Event listeners pour les onglets
-    if (publicTab) {
-        publicTab.addEventListener("click", () => switchTab("public"));
-    }
-    if (aiTab) {
-        aiTab.addEventListener("click", () => switchTab("ai"));
-    }
-
-    // Fonction pour afficher une réponse IA
-    function showAIResponse(response: string, author: string = "Animateur") {
-        if (!aiMessagesContainer) return;
-
-        // Ajouter le message de l'IA dans l'onglet Animateur
-        const messageDiv = document.createElement("div");
-        messageDiv.className = "chat-message";
-        messageDiv.innerHTML = `
-            <div class="message-header">
-                <div class="message-author" style="color: var(--accent-bright);">
-                    ${author}
-                    <span class="message-badge">LIVE</span>
-                </div>
-            </div>
-            <div class="message-content">${response}</div>
-        `;
-        aiMessagesContainer.appendChild(messageDiv);
-        aiMessagesContainer.scrollTop = aiMessagesContainer.scrollHeight;
-
-        // Si on n'est pas sur l'onglet IA, afficher notification
-        if (!aiTab?.classList.contains("active")) {
-            aiNotificationCount++;
-            if (aiNotification) {
-                aiNotification.textContent = aiNotificationCount.toString();
-                aiNotification.classList.remove("hidden");
-            }
-        }
-    }
-
-    // Fonction pour afficher message utilisateur dans l'onglet IA
-    function showUserAIMessage(message: string) {
-        if (!aiMessagesContainer) return;
-
-        const messageDiv = document.createElement("div");
-        messageDiv.className = "chat-message";
-        messageDiv.innerHTML = `
-            <div class="message-header">
-                <div class="message-author" style="color: var(--accent);">
-                    ${userFirstName}
-                </div>
-            </div>
-            <div class="message-content">${message}</div>
-        `;
-        aiMessagesContainer.appendChild(messageDiv);
-        aiMessagesContainer.scrollTop = aiMessagesContainer.scrollHeight;
-    }
 
     // Chat public - juste afficher le message
     const chatForm = document.getElementById("chatForm");
@@ -1730,84 +1681,43 @@ import Layout from "../layouts/Layout.astro";
         });
     }
 
-    // Chat avec l'IA - onglet Animateur
-    const aiChatForm = document.getElementById("aiChatForm");
-    let conversationHistory: Array<{ role: string; content: string }> = [];
+    // Viewers count functionality
+    function initializeViewerCount() {
+        const viewerCountElement = document.getElementById("viewerCount");
+        if (!viewerCountElement) return;
 
-    if (aiChatForm) {
-        aiChatForm.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const input = document.getElementById(
-                "aiChatInput",
-            ) as HTMLInputElement;
-            if (!input) return;
-            const message = input.value.trim();
-            if (message) {
-                // Afficher le message de l'utilisateur dans l'onglet IA
-                showUserAIMessage(message);
-                input.value = "";
+        // Valeur initiale aléatoire entre 32 et 57
+        let currentCount = Math.floor(Math.random() * (57 - 32 + 1)) + 32;
+        viewerCountElement.textContent = currentCount.toString();
 
-                // Ajouter à l'historique
-                conversationHistory.push({ role: "user", content: message });
+        function updateViewerCount() {
+            if (!viewerCountElement) return;
 
-                // Message de chargement
-                const loadingDiv = document.createElement("div");
-                loadingDiv.className = "system-message";
-                loadingDiv.textContent = "L'animateur répond...";
-                aiMessagesContainer?.appendChild(loadingDiv);
-                if (aiMessagesContainer) {
-                    aiMessagesContainer.scrollTop =
-                        aiMessagesContainer.scrollHeight;
+            // Générer un nouveau chiffre entre 32 et 57
+            const newCount = Math.floor(Math.random() * (57 - 32 + 1)) + 32;
+
+            // Ajouter une classe pour l'animation
+            viewerCountElement.classList.add("updating");
+
+            setTimeout(() => {
+                if (viewerCountElement) {
+                    viewerCountElement.textContent = newCount.toString();
+                    viewerCountElement.classList.remove("updating");
                 }
+            }, 250);
+        }
 
-                try {
-                    // Appeler l'IA
-                    const response = await fetch(
-                        "/.netlify/functions/chatbot-masterclass",
-                        {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({
-                                message: message,
-                                conversationHistory: conversationHistory,
-                            }),
-                        },
-                    );
+        // Changer le chiffre toutes les 10 à 20 secondes de façon aléatoire
+        function scheduleNextUpdate() {
+            const delay =
+                Math.floor(Math.random() * (20000 - 10000 + 1)) + 10000; // Entre 10 et 20 secondes
+            setTimeout(() => {
+                updateViewerCount();
+                scheduleNextUpdate();
+            }, delay);
+        }
 
-                    const data = await response.json();
-
-                    // Retirer le message de chargement
-                    loadingDiv.remove();
-
-                    if (data.response) {
-                        // Afficher la réponse
-                        showAIResponse(data.response);
-
-                        // Ajouter à l'historique
-                        conversationHistory.push({
-                            role: "assistant",
-                            content: data.response,
-                        });
-
-                        // Limiter l'historique
-                        if (conversationHistory.length > 20) {
-                            conversationHistory =
-                                conversationHistory.slice(-20);
-                        }
-                    }
-                } catch (error) {
-                    console.error("Erreur IA:", error);
-                    loadingDiv.remove();
-
-                    // Réponse de secours
-                    showAIResponse(
-                        "Super question ! Continue de regarder, c'est expliqué dans les prochaines minutes ! 🚀",
-                    );
-                }
-            }
-        });
+        scheduleNextUpdate();
     }
 
     // Floating reactions (disabled)
