@@ -6980,7 +6980,7 @@ import Layout from "../layouts/Layout.astro";
                     style="
                         color: #b0b0b0;
                         font-size: 1rem;
-                        margin-bottom: 20px;
+                        margin-bottom: 30px;
                         line-height: 1.6;
                     "
                 >
@@ -6990,21 +6990,31 @@ import Layout from "../layouts/Layout.astro";
                     href="mailto:support@systemeviral.com"
                     style="
                         display: inline-block;
-                        background: linear-gradient(135deg, #01e988 0%, #00d67c 100%);
-                        color: #000;
-                        font-weight: 700;
-                        padding: 15px 40px;
-                        border-radius: 50px;
+                        background: transparent;
+                        color: #01e988;
+                        font-weight: 600;
+                        padding: 12px 30px;
+                        border: 2px solid rgba(1, 233, 136, 0.3);
+                        border-radius: 30px;
                         text-decoration: none;
-                        font-size: 1rem;
+                        font-size: 0.95rem;
                         transition: all 0.3s ease;
-                        box-shadow: 0 4px 15px rgba(1, 233, 136, 0.3);
                     "
-                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(1, 233, 136, 0.5)'"
-                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(1, 233, 136, 0.3)'"
+                    onmouseover="this.style.borderColor='#01e988'; this.style.background='rgba(1, 233, 136, 0.05)'"
+                    onmouseout="this.style.borderColor='rgba(1, 233, 136, 0.3)'; this.style.background='transparent'"
                 >
-                    Contactez-nous
+                    Nous contacter
                 </a>
+                <p
+                    style="
+                        color: #666;
+                        font-size: 0.9rem;
+                        margin-top: 20px;
+                        font-weight: 500;
+                    "
+                >
+                    support@systemeviral.com
+                </p>
             </div>
         </div>
     </section>
