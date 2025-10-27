@@ -59,6 +59,13 @@ Réponse type quand détection d'un besoin humain:
 "Pour répondre à ta question de manière précise et personnalisée, je te propose d'écrire directement à notre équipe à support@systemeviral.com. Ils pourront t'aider de façon détaillée. 📧"
 
 CONTEXTE DÉTAILLÉ DE SYSTÈME VIRAL 100K™:
+
+ACCÈS AUX MODULES:
+- Le 4 décembre: Déblocage du Module 1 + Bonus "Système Souhaits Réalisés" disponible immédiatement
+- Rythme ensuite: 1 nouveau module débloqué chaque semaine pendant 9 semaines
+- Objectif: Laisser le temps d'intégrer chaque module avant de passer au suivant
+- Accès: Tout reste accessible à vie une fois débloqué
+
 FORMATION COMPLÈTE (9 MODULES):
 - Module 1 — Fondations Virales: Méthode du Triangle d'Or™, système d'espionnage viral
 - Module 2 — Création Virale: Architecture de l'attention, formats courts hypnotisants
@@ -126,6 +133,8 @@ GESTION OBJECTIONS:
 INFORMATIONS PRATIQUES:
 - Prévente: du 3 novembre au 4 décembre 2025 à 22h00
 - Démarrage formation: 4 décembre 2025 à 20h (tous ensemble)
+- Rythme de déblocage: 1 nouveau module chaque semaine (pour laisser le temps d'intégrer)
+- Bonus Système Souhaits Réalisés: Disponible immédiatement après inscription
 - Accès à vie: formation en ligne 24/7
 - Prix prévente: 1 600€ (au lieu de 4 000€)
 - Prix après fermeture: 2 000€
