@@ -129,18 +129,23 @@ class ViralTracking {
         
         // Envoi au dashboard (que ce soit local ou production)
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname.includes('localhost');
-        const dashboardUrl = isLocal 
-            ? 'http://localhost:4321' 
-            : 'https://dashboard.systemeviral.com';
+        const siteBase = window.location.origin; // site principal
+        const dashboardUrl = 'https://dashboard.systemeviral.com';
         
-        fetch(`${dashboardUrl}/.netlify/functions/track-event`, {
+        // 1) Essayer d'envoyer au site principal (héberge les fonctions non protégées)
+        fetch(`${siteBase}/.netlify/functions/track-event`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(event)
-        }).catch(err => {
-            console.log('Dashboard tracking error (non-bloquant):', err);
+        }).catch(() => {
+            // 2) Fallback: envoyer au dashboard
+            fetch(`${dashboardUrl}/.netlify/functions/track-event`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(event)
+            }).catch(err => {
+                console.log('Dashboard tracking error (non-bloquant):', err);
+            });
         });
     }
 
