@@ -7118,9 +7118,6 @@ import Layout from "../layouts/Layout.astro";
     <div id="chatbot-window" class="chatbot-window">
         <!-- Header -->
         <div class="chatbot-header">
-            <div class="chatbot-avatar">
-                <div class="avatar-icon">🧠</div>
-            </div>
             <div class="chatbot-info">
                 <div class="chatbot-name">Assistant IA</div>
                 <div class="chatbot-status">
@@ -7135,7 +7132,27 @@ import Layout from "../layouts/Layout.astro";
         <div id="chatbot-messages" class="chatbot-messages">
             <div class="message bot-message">
                 <div class="message-avatar">
-                    <div class="avatar-icon-small">🧠</div>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="avatar-icon-small"
+                    >
+                        <path d="M12 6V2H8"></path>
+                        <path d="M15 11v2"></path>
+                        <path d="M2 12h2"></path>
+                        <path d="M20 12h2"></path>
+                        <path
+                            d="M20 16a2 2 0 0 1-2 2H8.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 4 20.286V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"
+                        ></path>
+                        <path d="M9 11v2"></path>
+                    </svg>
                 </div>
                 <div class="message-content">
                     <div class="message-text">
@@ -7155,7 +7172,27 @@ import Layout from "../layouts/Layout.astro";
             style="display: none;"
         >
             <div class="typing-avatar">
-                <div class="avatar-icon-small">🧠</div>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="avatar-icon-small"
+                >
+                    <path d="M12 6V2H8"></path>
+                    <path d="M15 11v2"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path
+                        d="M20 16a2 2 0 0 1-2 2H8.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 4 20.286V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"
+                    ></path>
+                    <path d="M9 11v2"></path>
+                </svg>
             </div>
             <div class="typing-dots">
                 <span></span>
@@ -7934,16 +7971,34 @@ import Layout from "../layouts/Layout.astro";
         right: 0;
         width: 350px;
         height: 500px;
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        background: rgba(40, 40, 40, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         display: flex;
         flex-direction: column;
         transform: translateY(20px) scale(0.95);
         opacity: 0;
         pointer-events: none;
         transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        overflow: hidden;
+    }
+
+    .chatbot-window::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent
+        );
     }
 
     .chatbot-window.show {
@@ -7954,30 +8009,27 @@ import Layout from "../layouts/Layout.astro";
 
     .chatbot-header {
         padding: 16px 20px;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         display: flex;
         align-items: center;
         gap: 12px;
-        background: var(--bg-elevated);
-        border-radius: 16px 16px 0 0;
+        background: rgba(50, 50, 50, 0.5);
+        border-radius: 20px 20px 0 0;
+        backdrop-filter: blur(10px);
     }
 
     .chatbot-avatar {
         width: 40px;
         height: 40px;
-        background: linear-gradient(
-            135deg,
-            var(--accent) 0%,
-            var(--accent-bright) 100%
-        );
-        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .avatar-icon {
-        font-size: 18px;
+        width: 20px;
+        height: 20px;
+        color: #fff;
     }
 
     .chatbot-info {
@@ -7986,7 +8038,7 @@ import Layout from "../layouts/Layout.astro";
 
     .chatbot-name {
         font-weight: 600;
-        color: var(--text);
+        color: #f0f0f0;
         font-size: 14px;
     }
 
@@ -7995,7 +8047,7 @@ import Layout from "../layouts/Layout.astro";
         align-items: center;
         gap: 6px;
         font-size: 12px;
-        color: var(--text-secondary);
+        color: rgba(255, 255, 255, 0.6);
     }
 
     .status-dot {
@@ -8021,7 +8073,7 @@ import Layout from "../layouts/Layout.astro";
         height: 24px;
         background: none;
         border: none;
-        color: var(--text-secondary);
+        color: rgba(255, 255, 255, 0.6);
         cursor: pointer;
         border-radius: 50%;
         display: flex;
@@ -8032,8 +8084,8 @@ import Layout from "../layouts/Layout.astro";
     }
 
     .chatbot-close:hover {
-        background: var(--bg);
-        color: var(--text);
+        background: rgba(255, 255, 255, 0.1);
+        color: #f0f0f0;
     }
 
     .chatbot-messages {
@@ -8050,11 +8102,11 @@ import Layout from "../layouts/Layout.astro";
     }
 
     .chatbot-messages::-webkit-scrollbar-track {
-        background: var(--bg-elevated);
+        background: rgba(50, 50, 50, 0.3);
     }
 
     .chatbot-messages::-webkit-scrollbar-thumb {
-        background: var(--border);
+        background: rgba(255, 255, 255, 0.2);
         border-radius: 2px;
     }
 
@@ -8080,26 +8132,21 @@ import Layout from "../layouts/Layout.astro";
     }
 
     .avatar-icon-small {
-        width: 32px;
-        height: 32px;
-        background: linear-gradient(
-            135deg,
-            var(--accent) 0%,
-            var(--accent-bright) 100%
-        );
-        border-radius: 50%;
+        width: 24px;
+        height: 24px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 14px;
     }
 
-    .bot-message .avatar-icon-small {
-        background: linear-gradient(
-            135deg,
-            var(--accent) 0%,
-            var(--accent-bright) 100%
-        );
+    .avatar-icon-small svg {
+        width: 16px;
+        height: 16px;
+        color: #01e988;
+    }
+
+    .user-message .avatar-icon-small svg {
+        color: #fff;
     }
 
     .user-message {
@@ -8122,19 +8169,22 @@ import Layout from "../layouts/Layout.astro";
     }
 
     .message-text {
-        background: var(--bg-elevated);
+        background: rgba(60, 60, 60, 0.6);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         padding: 12px 16px;
         border-radius: 16px;
         font-size: 14px;
         line-height: 1.4;
-        color: var(--text);
+        color: #f0f0f0;
         max-width: 250px;
         word-wrap: break-word;
+        border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .message-time {
         font-size: 10px;
-        color: var(--text-muted);
+        color: rgba(255, 255, 255, 0.4);
         padding: 0 4px;
     }
 
@@ -8186,9 +8236,10 @@ import Layout from "../layouts/Layout.astro";
     }
 
     .chatbot-input-area {
-        border-top: 1px solid var(--border);
-        background: var(--bg-elevated);
-        border-radius: 0 0 16px 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(50, 50, 50, 0.5);
+        border-radius: 0 0 20px 20px;
+        backdrop-filter: blur(10px);
     }
 
     .input-container {
@@ -8201,10 +8252,12 @@ import Layout from "../layouts/Layout.astro";
     .chatbot-input {
         flex: 1;
         padding: 12px 16px;
-        border: 1px solid var(--border);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 24px;
-        background: var(--bg);
-        color: var(--text);
+        background: rgba(70, 70, 70, 0.6);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        color: #f0f0f0;
         font-size: 14px;
         font-family: inherit;
         outline: none;
@@ -8214,10 +8267,11 @@ import Layout from "../layouts/Layout.astro";
     .chatbot-input:focus {
         border-color: var(--accent);
         box-shadow: 0 0 0 3px rgba(0, 220, 130, 0.1);
+        background: rgba(80, 80, 80, 0.8);
     }
 
     .chatbot-input::placeholder {
-        color: var(--text-muted);
+        color: rgba(255, 255, 255, 0.4);
     }
 
     .chatbot-send {
@@ -12865,9 +12919,12 @@ import Layout from "../layouts/Layout.astro";
             minute: "2-digit",
         });
 
+        const botIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="avatar-icon-small"><path d="M12 6V2H8"/><path d="M15 11v2"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M20 16a2 2 0 0 1-2 2H8.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 4 20.286V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/><path d="M9 11v2"/></svg>`;
+        const userIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="avatar-icon-small"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+
         messageDiv.innerHTML = `
                 <div class="message-avatar">
-                    <div class="avatar-icon-small">${isUser ? "👤" : "🧠"}</div>
+                    ${isUser ? userIcon : botIcon}
                 </div>
                 <div class="message-content">
                     <div class="message-text">${content}</div>
