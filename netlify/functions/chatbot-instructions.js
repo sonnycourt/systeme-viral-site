@@ -452,7 +452,7 @@ function getCachedResponse(question) {
     return SYSTEM_INSTRUCTIONS.faqCache["humain"];
   }
   
-  if (lowerQuestion.includes("contacter") && lowerQuestion.includes("email") || lowerQuestion.includes("mail")) {
+  if ((lowerQuestion.includes("contacter") && lowerQuestion.includes("email")) || lowerQuestion.includes("mail")) {
     console.log('✅ FOUND: contact');
     return SYSTEM_INSTRUCTIONS.faqCache["contact"];
   }
