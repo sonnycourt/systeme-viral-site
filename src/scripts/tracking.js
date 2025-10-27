@@ -65,13 +65,8 @@ class ViralTracking {
     trackInteractions() {
         // Tracking des clics sur les CTA
         document.addEventListener('click', (e) => {
-            // Tracking des clics sur les avatars
-            if (e.target.closest('[data-avatar]')) {
-                const avatarElement = e.target.closest('[data-avatar]');
-                this.trackEvent('avatar_click', {
-                    avatar: avatarElement.getAttribute('data-avatar')
-                });
-            }
+            // Tracking désactivé - tracking des clics sur les avatars
+            // Tracking désactivé
             
             if (e.target.matches('a[href*="mailerlite"], button[data-cta], .cta-button')) {
                 this.trackEvent('cta_click', {
@@ -116,37 +111,6 @@ class ViralTracking {
 
         // Envoi immédiat vers GA4
         this.sendEventToGA4(eventName, eventData);
-        
-        // Envoi vers notre dashboard interne
-        this.sendToInternalDashboard(event);
-    }
-    
-    sendToInternalDashboard(event) {
-        // En dev local, on stocke dans localStorage
-        const storedEvents = JSON.parse(localStorage.getItem('dashboard_events') || '[]');
-        storedEvents.push(event);
-        localStorage.setItem('dashboard_events', JSON.stringify(storedEvents));
-        
-        // Envoi au dashboard (que ce soit local ou production)
-        const isLocal = window.location.hostname === 'localhost' || window.location.hostname.includes('localhost');
-        const siteBase = window.location.origin; // site principal
-        const dashboardUrl = 'https://dashboard.systemeviral.com';
-        
-        // 1) Essayer d'envoyer au site principal (héberge les fonctions non protégées)
-        fetch(`${siteBase}/.netlify/functions/track-event`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(event)
-        }).catch(() => {
-            // 2) Fallback: envoyer au dashboard
-            fetch(`${dashboardUrl}/.netlify/functions/track-event`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(event)
-            }).catch(err => {
-                console.log('Dashboard tracking error (non-bloquant):', err);
-            });
-        });
     }
 
     sendToGA4() {
