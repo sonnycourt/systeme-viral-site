@@ -223,7 +223,7 @@ La vérité ? Les 3 premiers mois, si vous avez encore un CDI, ça va être inte
 MAIS...
 Le jour où vos revenus en ligne dépassent votre salaire - et ça arrivera plus vite que vous le pensez - tout bascule.
 Soudainement, vous CHOISISSEZ de garder votre job ou pas. Vous n'êtes plus prisonnier. Vous êtes libre.
-Et le plus beau ? Une fois lancé, ce business tourne et grandit avec 2 à 4 heures par jour. Et vous pouvez travailler où vous voulez. Avec les horaires qui vous conviennent.
+Et le plus beau ? Une fois lancé, ce business tourne et grandit avec 1 à 2 heures par jour. Et vous pouvez travailler où vous voulez. Avec les horaires qui vous conviennent.
 
 Si vous êtes ambitieux et que le travail ne vous fait pas peur alors le ciel est la limite. Vous pouvez littéralement aspirer à dépasser les 100k par mois.
 Et là, vous ne faites pas quelque chose pour lequel vous n'avez aucun intérêt. Non, vous parlez de ce qui vous PASSIONNE.
