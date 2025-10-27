@@ -12,5 +12,12 @@
   status = 200
   force = false
 
+[[redirects]]
+  # Rediriger le sous-domaine dashboard vers /dashboard
+  from = "https://dashboard.systemeviral.com/*"
+  to = "https://dashboard.systemeviral.com/dashboard/:splat"
+  status = 200
+  force = true
+
 [functions]
   directory = "netlify/functions"
