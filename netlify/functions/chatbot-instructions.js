@@ -410,23 +410,11 @@ BONUS INCLUS (Valeur 1 800€ OFFERT):
 5. L'IA Comme Alliée Ultime (accélérateur)`;
   },
 
-  // Cache de réponses fréquentes (pas d'appel API)
+  // Cache de réponses CRITIQUES uniquement (redirections obligatoires)
   faqCache: {
-    "prix": "La formation coûte 1 600€ en prévente (au lieu de 4 000€ normalement). Tu économises donc 2 400€ ! Et si tu préfères étaler, tu peux payer en 6 fois à 297€ par mois. C'est vraiment accessible pour tout ce que tu obtiens : 9 modules + 5 bonus + communauté privée. 💰",
-    "garantie": "Garantie triple zéro risque : 1) Remboursement 30 jours (teste tout pendant 30 jours, pas satisfait = 100% remboursé), 2) Si tu n'atteins pas 100k vues en 30 jours en suivant le système = remboursement intégral, 3) Si tu ne rentabilises pas ton investissement en 90 jours, j'analyse ta stratégie et je t'aide à corriger. Aucun risque ! 🛡️",
-    "duree": "Phase intensive (3 premiers mois) : 1-2h par jour. Phase de croisière (après) : 1h par jour. Les 90 premiers jours demandent du travail, mais après le système tourne presque seul. Plus tu t'investis, plus tu avances vite - mais 1-2h par jour suffisent pour avoir des résultats. ⚡",
-    "debutant": "Parfait pour débutants ! Le Module 1 avec la Méthode du Triangle d'Or™ trouve ta thématique en 15 minutes. Aucune expérience requise. L'IA fait 80% du travail ! 🚀",
-    "support": "Communauté privée + support 7j/7. La Team répond rapidement dans la communauté. Vous avez aussi accès à Sonny Court ! 👥",
-    "contenu": "9 modules complets : 1) Fondations Virales (Méthode Triangle d'Or™), 2) Création Virale (architecture attention), 3) Distribution & Scale (Paradoxe Détachement Viral), 4) Ton Site Internet (écosystème digital), 5) Lead Magnet Puissant (psychologie du don), 6) Automatisation & Segmentation, 7) Offres Premium & Affiliation, 8) Email Copywriting, 9) Secrets Croissance & Systèmes Avancés + 5 bonus premium (valeur 1 800€) ! 📚",
     "cpf": "Pour les demandes de financement CPF, contactez-nous directement à support@systemeviral.com pour obtenir toutes les informations précises. 💼",
     "humain": "Pour contacter un humain directement, écrivez-nous à support@systemeviral.com. Notre équipe vous répondra rapidement ! 👥",
-    "contact": "Pour toute question spécifique ou besoin de contacter un humain, écrivez-nous à support@systemeviral.com. Notre équipe est là pour vous aider ! 📧",
-    "resultats": "Sonny Court a généré 115 000€ en 30 jours avec sa formation manifestation (200€). Détail : 95 400€ ventes directes + 28 800€ mensualités - 9 200€ remboursements = 115 000€ total. Avec une seule vidéo de 60 secondes : 4,1M vues totales et 24 000€ de revenus ! 💰",
-    "bonus": "5 bonus premium inclus (valeur 1 800€) : 1) 50 Thématiques Rentables, 2) Délègue et Accélère (scale), 3) Le Mindset de la Réussite (10h audio reprogrammation), 4) Le Multiplicateur de Succès X10, 5) L'IA Comme Alliée Ultime (blueprint automatisation). Plus le bonus Système Souhaits Réalisés disponible immédiatement ! 🎁",
-    "debut": "La prévente se déroule du 3 novembre au 4 décembre 2025. La formation démarre pour tous le 4 décembre 2025 à 20h. C'est volontaire : tout le monde commence ensemble pour créer une énergie collective. Après le 4 décembre, les portes se ferment jusqu'à la prochaine ouverture (plusieurs mois plus tard à 2000€). ⏰",
-    "equipement": "Je recommande un smartphone ET un ordinateur (même basique à 400€). Techniquement tu peux tout faire sur smartphone, mais lancer un vrai business mérite un ordinateur pour gérer emails, site, automatisations, montages et analyses proprement. L'IA fait 80% du travail technique à ta place ! 💻",
-    "apres-prevente": "Oui, après le 4 décembre la formation passera à 2 000€ (au lieu de 1 600€). C'est normal : pendant la prévente tu économises 400€ et tu bénéficies de l'énergie collective du lancement. Après, tu peux toujours rejoindre mais seul, et à prix plein. Si tu hésites, tu peux tester pendant 30 jours avec la garantie remboursement ! 🤔",
-    "urgence": "La prévente se termine le 4 décembre à 22h. Après, c'est 2 000€ au lieu de 1 600€. Mais surtout, tu rates l'énergie collective du lancement : 200 personnes qui démarrent ensemble, s'entraident, partagent leurs victoires. Cette dynamique fait toute la différence entre abandonner au bout d'une semaine et tenir jusqu'aux premiers résultats ! ⚡"
+    "contact": "Pour toute question spécifique ou besoin de contacter un humain, écrivez-nous à support@systemeviral.com. Notre équipe est là pour vous aider ! 📧"
   },
 
   // Réponses de secours si l'API ne fonctionne pas
@@ -453,115 +441,25 @@ function getCachedResponse(question) {
   const lowerQuestion = question.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Supprimer accents
   console.log('📝 Processed question:', lowerQuestion);
 
-  // Mots-clés étendus pour chaque réponse avec priorités
-  // Plus les mots-clés sont longs et spécifiques, plus ils sont prioritaires
-  const keywordsMap = {
-    "prix": {
-      primary: ["prix", "coût", "cout", "tarif", "combien coûte", "combien coûte", "à combien", "combien ça coûte", "combien ca coute", "payer combien", "payer combien de"],
-      secondary: ["prévente", "prevente", "1600", "4000", "297", "€"],
-      exclude: ["temps par jour", "heures par jour", "durée", "duree", "combien de temps", "longtemps"] // Exclure si question sur le temps
-    },
-    "cpf": {
-      primary: ["cpf", "compte personnel de formation", "compte personnel"],
-      secondary: ["financement", "éligible", "eligible", "fonds", "aides"]
-    },
-    "garantie": {
-      primary: ["garantie", "rembours", "risque", "protection"],
-      secondary: ["sécuris", "securis", "protég", "proteg", "confiance", "fiable"]
-    },
-    "duree": {
-      primary: ["temps par jour", "heures par jour", "combien de temps par jour", "combien d'heures par jour", "temps quotidien", "quotidien", "chaque jour"],
-      secondary: ["durée", "duree", "combien de temps", "longtemps", "quand résultats", "mois", "semaines", "jours", "vite", "rapide"]
-    },
-    "debutant": {
-      primary: ["débutant", "debutant", "aucune expérience", "pas d'expérience", "difficile"],
-      secondary: ["expérience", "experience", "niveau", "début", "debut", "facile"]
-    },
-    "support": {
-      primary: ["support", "aide", "demander"],
-      secondary: ["communauté", "communaute", "groupe", "equipe", "équipe", "team"]
-    },
-    "contenu": {
-      primary: ["modules", "module", "contenu", "apprendre", "apprend", "couvre", "inclu", "comprend"],
-      secondary: ["secret", "code", "vues", "tunnel", "glitch"]
-    },
-    "humain": {
-      primary: ["humain", "personne", "contact humain", "parler à quelqu'un", "échanger", "parler à un humain"],
-      secondary: ["staff", "équipe", "equipe"]
-    },
-    "contact": {
-      primary: ["contacter", "contact", "contacte", "contacté", "email", "mail"],
-      secondary: ["écrire", "ecrire", "message", "question"]
-    },
-    "resultats": {
-      primary: ["résultats", "resultats", "résultat", "resultat", "résultat de sonny", "sonny court", "115", "115k", "115 000", "manifestation"],
-      secondary: ["généré", "genere", "revenus", "chiffre", "ventes"]
-    },
-    "bonus": {
-      primary: ["bonus", "bonus inclus", "bonus premium", "5 bonus", "thématiques rentables", "mindset réussite", "système souhaits"],
-      secondary: ["cadeaux", "offerts", "gratuit", "inclus"]
-    },
-    "debut": {
-      primary: ["quand commence", "quand démarre", "début formation", "debut formation", "4 décembre", "prévente", "prevente"],
-      secondary: ["date", "commence", "démarre", "décembre"]
-    },
-    "equipement": {
-      primary: ["de quoi j'ai besoin", "équipement", "equipement", "matériel", "materiel", "ordinateur", "smartphone", "technologie"],
-      secondary: ["besoin", "requis", "nécessaire", "necessaire"]
-    },
-    "apres-prevente": {
-      primary: ["ne peux pas acheter", "pas acheter prévente", "ne pas acheter", "plus cher après", "plus cher apres", "prix après", "prix apres", "coûtera plus cher", "coutera plus cher", "après prévente", "apres prevente", "après le 4 décembre", "apres le 4 decembre"],
-      secondary: ["hésite", "hesite", "doute", "pas sûr", "pas sur", "2000", "2000€", "attendre", "attendre plus tard"]
-    },
-    "urgence": {
-      primary: ["urgent", "urgence", "se termine", "bientôt", "bientot", "dernière chance", "derniere chance", "limite"],
-      secondary: ["vite", "rapidement", "maintenant", "tout de suite"]
-    }
-  };
-
-  // Recherche prioritaire (mots-clés principaux) - trier par spécificité
-  const sortedEntries = Object.entries(SYSTEM_INSTRUCTIONS.faqCache).sort((a, b) => {
-    const keywordsA = keywordsMap[a[0]];
-    const keywordsB = keywordsMap[b[0]];
-    if (!keywordsA || !keywordsB) return 0;
-    
-    // Prioriser les mots-clés les plus longs et spécifiques
-    const maxLengthA = Math.max(...keywordsA.primary.map(k => k.length));
-    const maxLengthB = Math.max(...keywordsB.primary.map(k => k.length));
-    return maxLengthB - maxLengthA;
-  });
-
-  // 1ère passe : vérifier toutes les exclusions
-  const excludedKeys = new Set();
-  for (const [cacheKey, response] of sortedEntries) {
-    const keywords = keywordsMap[cacheKey];
-    if (!keywords || !keywords.exclude) continue;
-    
-    const hasExclude = keywords.exclude.some(k => lowerQuestion.includes(k));
-    if (hasExclude) {
-      console.log(`❌ EXCLUDED: ${cacheKey} because of exclusion keyword`);
-      excludedKeys.add(cacheKey);
-    }
+  // Détection ultra-simple pour redirections critiques uniquement
+  if (lowerQuestion.includes("cpf") || lowerQuestion.includes("compte personnel") || lowerQuestion.includes("financement")) {
+    console.log('✅ FOUND: cpf');
+    return SYSTEM_INSTRUCTIONS.faqCache["cpf"];
   }
   
-  // 2ème passe : vérifier les mots-clés primaires (sauf ceux exclus)
-  for (const [cacheKey, response] of sortedEntries) {
-    if (excludedKeys.has(cacheKey)) continue; // Skip les exclus
-    
-    const keywords = keywordsMap[cacheKey];
-    if (!keywords) continue;
-
-    const hasPrimary = keywords.primary && keywords.primary.some(k => lowerQuestion.includes(k));
-    
-    if (hasPrimary) {
-      console.log(`✅ FOUND (primary): ${cacheKey}`);
-      return response;
-    }
+  if (lowerQuestion.includes("humain") || lowerQuestion.includes("personne") || lowerQuestion.includes("parler à un humain") || lowerQuestion.includes("contacter un humain")) {
+    console.log('✅ FOUND: humain');
+    return SYSTEM_INSTRUCTIONS.faqCache["humain"];
+  }
+  
+  if (lowerQuestion.includes("contacter") && lowerQuestion.includes("email") || lowerQuestion.includes("mail")) {
+    console.log('✅ FOUND: contact');
+    return SYSTEM_INSTRUCTIONS.faqCache["contact"];
   }
 
-  // Si aucune réponse prioritaire, ne rien retourner pour laisser l'IA répondre
-  console.log('❌ No cache match found');
-  return null; // Pas de réponse en cache
+  // Pour tout le reste, laisser l'IA répondre naturellement avec le contexte complet
+  console.log('🔄 No cache match - letting AI answer with full context');
+  return null;
 }
 
 // Fonction pour obtenir une réponse de secours aléatoire
