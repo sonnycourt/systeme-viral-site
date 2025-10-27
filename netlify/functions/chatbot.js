@@ -58,29 +58,7 @@ exports.handler = async (event, context) => {
     const lowerMessage = message.toLowerCase();
     console.log('📝 Message en minuscules:', lowerMessage);
 
-    if (lowerMessage.includes('prix') ||
-        lowerMessage.includes('combien') ||
-        lowerMessage.includes('coût') ||
-        lowerMessage.includes('cout') ||
-        lowerMessage.includes('tarif') ||
-        lowerMessage.includes('€') ||
-        lowerMessage.includes('coute')) {
-
-      console.log('✅ DETECTED PRICE QUESTION - RETURNING CACHE');
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({
-          response: "Le prix prévente est de 1 600€ pour la formation complète SYSTÈME VIRAL 100K™ (au lieu de 4 000€). Économisez 2 400€ ! 💰 Paiement possible en 6 fois à 297€.",
-          cached: true,
-          usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 }
-        }),
-      };
-    }
-
-    console.log('❌ Not a price question, continuing...');
-
-    // Ancienne logique de cache si besoin
+    // Vérifier le cache uniquement pour redirections critiques
     const cachedResponse = getCachedResponse(message);
     if (cachedResponse) {
       return {
