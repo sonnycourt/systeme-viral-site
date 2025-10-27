@@ -412,7 +412,7 @@ BONUS INCLUS (Valeur 1 800€ OFFERT):
 
   // Cache de réponses fréquentes (pas d'appel API)
   faqCache: {
-    "prix": "Le prix prévente est de 1 600€ pour la formation complète SYSTÈME VIRAL 100K™ (au lieu de 4 000€). Économisez 2 400€ ! Paiement possible en 6 fois à 297€. 💰",
+    "prix": "La formation coûte 1 600€ en prévente (au lieu de 4 000€ normalement). Tu économises donc 2 400€ ! Et si tu préfères étaler, tu peux payer en 6 fois à 297€ par mois. C'est vraiment accessible pour tout ce que tu obtiens : 9 modules + 5 bonus + communauté privée. 💰",
     "garantie": "Garantie triple zéro risque : 1) Remboursement 30 jours (teste tout pendant 30 jours, pas satisfait = 100% remboursé), 2) Si tu n'atteins pas 100k vues en 30 jours en suivant le système = remboursement intégral, 3) Si tu ne rentabilises pas ton investissement en 90 jours, j'analyse ta stratégie et je t'aide à corriger. Aucun risque ! 🛡️",
     "duree": "Phase intensive (3 premiers mois) : 1-2h par jour. Phase de croisière (après) : 1h par jour. Les 90 premiers jours demandent du travail, mais après le système tourne presque seul. Plus tu t'investis, plus tu avances vite - mais 1-2h par jour suffisent pour avoir des résultats. ⚡",
     "debutant": "Parfait pour débutants ! Le Module 1 avec la Méthode du Triangle d'Or™ trouve ta thématique en 15 minutes. Aucune expérience requise. L'IA fait 80% du travail ! 🚀",
@@ -424,7 +424,9 @@ BONUS INCLUS (Valeur 1 800€ OFFERT):
     "resultats": "Sonny Court a généré 115 000€ en 30 jours avec sa formation manifestation (200€). Détail : 95 400€ ventes directes + 28 800€ mensualités - 9 200€ remboursements = 115 000€ total. Avec une seule vidéo de 60 secondes : 4,1M vues totales et 24 000€ de revenus ! 💰",
     "bonus": "5 bonus premium inclus (valeur 1 800€) : 1) 50 Thématiques Rentables, 2) Délègue et Accélère (scale), 3) Le Mindset de la Réussite (10h audio reprogrammation), 4) Le Multiplicateur de Succès X10, 5) L'IA Comme Alliée Ultime (blueprint automatisation). Plus le bonus Système Souhaits Réalisés disponible immédiatement ! 🎁",
     "debut": "La prévente se déroule du 3 novembre au 4 décembre 2025. La formation démarre pour tous le 4 décembre 2025 à 20h. C'est volontaire : tout le monde commence ensemble pour créer une énergie collective. Après le 4 décembre, les portes se ferment jusqu'à la prochaine ouverture (plusieurs mois plus tard à 2000€). ⏰",
-    "equipement": "Je recommande un smartphone ET un ordinateur (même basique à 400€). Techniquement tu peux tout faire sur smartphone, mais lancer un vrai business mérite un ordinateur pour gérer emails, site, automatisations, montages et analyses proprement. L'IA fait 80% du travail technique à ta place ! 💻"
+    "equipement": "Je recommande un smartphone ET un ordinateur (même basique à 400€). Techniquement tu peux tout faire sur smartphone, mais lancer un vrai business mérite un ordinateur pour gérer emails, site, automatisations, montages et analyses proprement. L'IA fait 80% du travail technique à ta place ! 💻",
+    "apres-prevente": "Oui, après le 4 décembre la formation passera à 2 000€ (au lieu de 1 600€). C'est normal : pendant la prévente tu économises 400€ et tu bénéficies de l'énergie collective du lancement. Après, tu peux toujours rejoindre mais seul, et à prix plein. Si tu hésites, tu peux tester pendant 30 jours avec la garantie remboursement ! 🤔",
+    "urgence": "La prévente se termine le 4 décembre à 22h. Après, c'est 2 000€ au lieu de 1 600€. Mais surtout, tu rates l'énergie collective du lancement : 200 personnes qui démarrent ensemble, s'entraident, partagent leurs victoires. Cette dynamique fait toute la différence entre abandonner au bout d'une semaine et tenir jusqu'aux premiers résultats ! ⚡"
   },
 
   // Réponses de secours si l'API ne fonctionne pas
@@ -506,6 +508,14 @@ function getCachedResponse(question) {
     "equipement": {
       primary: ["de quoi j'ai besoin", "équipement", "equipement", "matériel", "materiel", "ordinateur", "smartphone", "technologie"],
       secondary: ["besoin", "requis", "nécessaire", "necessaire"]
+    },
+    "apres-prevente": {
+      primary: ["ne peux pas acheter", "pas acheter", "après prévente", "apres prevente", "plus cher après", "prix après", "après le 4 décembre"],
+      secondary: ["hésite", "hesite", "doute", "pas sûr", "pas sur", "2000", "2000€"]
+    },
+    "urgence": {
+      primary: ["urgent", "urgence", "se termine", "bientôt", "bientot", "dernière chance", "derniere chance", "limite"],
+      secondary: ["vite", "rapidement", "maintenant", "tout de suite"]
     }
   };
 
