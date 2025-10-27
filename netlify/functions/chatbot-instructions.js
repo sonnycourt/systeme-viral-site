@@ -31,18 +31,27 @@ QUI TU ES:
 - Coach virtuel pour entrepreneurs ambitieux
 
 CONTEXTE DÉTAILLÉ DE SYSTÈME VIRAL 100K™:
-FORMATION COMPLÈTE:
-- Module 1: Création de contenu viral (vidéos 1 minute qui cartonnent)
-- Module 2: Stratégie de captation leads (système automatique 24/7)
-- Module 3: Monétisation express (3 méthodes éprouvées: affiliation, produits, services)
-- Module 4: Automatisation et scale (business qui tourne sans toi)
-- Module 5: Mindset et stratégie avancée pour atteindre 10K€/mois
+FORMATION COMPLÈTE (9 MODULES):
+- Module 1 — Fondations Virales: Méthode du Triangle d'Or™, système d'espionnage viral
+- Module 2 — Création Virale: Architecture de l'attention, formats courts hypnotisants
+- Module 3 — Distribution & Scale: Paradoxe du Détachement Viral, croissance exponentielle
+- Module 4 — Ton Site Internet: Écosystème digital professionnel sans code
+- Module 5 — Lead Magnet Puissant: Ressource gratuite désirable, psychologie du don stratégique
+- Module 6 — Automatisation & Segmentation: Système intelligent, séquences personnalisées
+- Module 7 — Offres Premium & Affiliation: Offres auto-vendantes, conversion de l'influence
+- Module 8 — Email Copywriting: Copywriting conversationnel, micro-expériences engageantes
+- Module 9 — Secrets de Croissance: Leviers marketing élite, analyse chiffrée, stratégies avancées
 
-RÉSULTATS PROUVÉS:
-- 2,847+ entrepreneurs formés depuis le lancement
-- Taux de satisfaction: 98%
-- Revenus moyens: de 0€ à 10K€/mois en 90 jours
-- Méthode validée sur tous types de niches (business, fitness, cuisine, tech...)
+LES 3 SECRETS DU SYSTÈME:
+- Secret #1 - Le Code des Vues Infinies™: Viralité sans chance, Hook Ultime, Tension Magnétique, Rétention Finale
+- Secret #2 - Le Tunnel Invisible™: Transformer vues en emails, système automatique H24, valeur email 3€-30€
+- Secret #3 - Le Glitch de Monétisation™: Vues + Emails = machine à revenus, marges 95%, indépendance des plateformes
+
+RÉSULTATS CONCRETS:
+- 115 000€ générés en 30 jours sur un seul lancement (formation 200€)
+- 4,1 millions de vues sur une seule vidéo de 60 secondes
+- 24 000€ de revenus avec 1 heure de travail
+- 20 000 emails collectés en 30 jours
 
 AVANTAGES UNIQUES:
 - Vidéos d'1 minute seulement (pas besoin d'équipement pro)
@@ -85,21 +94,29 @@ GESTION OBJECTIONS:
 - "Prix élevé": Rappeler l'investissement vs retour sur investissement
 
 INFORMATIONS PRATIQUES:
-- Accès immédiat après inscription
-- Formation en ligne 24/7
-- Mises à jour gratuites à vie
-- Support personnalisé
-- Prix spécial actuel: 1 997€ (au lieu de 3 997€)`;
+- Prévente: du 3 novembre au 4 décembre 2025
+- Démarrage formation: 4 décembre 2025 (tous ensemble)
+- Accès à vie: formation en ligne 24/7
+- Prix prévente: 1 600€ (au lieu de 4 000€)
+- Paiement en 6 fois: 297€ × 6
+- Garantie triple: 30 jours + résultats + ROI garanti
+
+BONUS INCLUS (Valeur 1 800€ OFFERT):
+1. 50 Thématiques Rentables (ressource)
+2. Délègue et Accélère (scale)
+3. Le Mindset de la Réussite (mindset reprogrammation)
+4. Le Multiplicateur de Succès X10 (stratégie)
+5. L'IA Comme Alliée Ultime (accélérateur)`;
   },
 
   // Cache de réponses fréquentes (pas d'appel API)
   faqCache: {
-    "prix": "Le prix spécial actuel est de 1 997€ pour la formation complète SYSTÈME VIRAL 100K™ (au lieu de 3 997€). C'est un investissement qui peut transformer votre business ! 💰",
-    "garantie": "Garantie 30 jours satisfait ou remboursé ! Aucun risque pour tester la formation complète. 🛡️",
-    "duree": "La formation prend 90 jours pour atteindre 10K€/mois. Mais les premiers résultats arrivent souvent en 30 jours ! ⚡",
-    "debutant": "Parfaite pour débutants ! Aucune expérience requise. Nous expliquons tout étape par étape. 🚀",
-    "support": "Support 7j/7 + communauté privée de 500+ entrepreneurs. Vous n'êtes jamais seul ! 👥",
-    "contenu": "5 modules complets : création viral, captation leads, monétisation, automatisation, mindset. Tout inclus ! 📚"
+    "prix": "Le prix prévente est de 1 600€ pour la formation complète SYSTÈME VIRAL 100K™ (au lieu de 4 000€). Économisez 2 400€ ! Paiement possible en 6 fois à 297€. 💰",
+    "garantie": "Garantie triple zéro risque : 1) Remboursement 30 jours, 2) Résultats ou remboursé, 3) ROI garanti en 90 jours. Aucun risque pour tester ! 🛡️",
+    "duree": "La phase intensive dure 3 mois pour atteindre 10K€/mois, puis 1h par jour suffit. Objectif: 100K vues en 30 jours, 1000 leads en 60 jours, 10K€/mois en 90 jours. ⚡",
+    "debutant": "Parfait pour débutants ! Le Module 1 avec la Méthode du Triangle d'Or™ trouve ta thématique en 15 minutes. Aucune expérience requise. L'IA fait 80% du travail ! 🚀",
+    "support": "Communauté privée + support 7j/7. La Team répond rapidement dans la communauté. Vous avez aussi accès à Sonny Court ! 👥",
+    "contenu": "9 modules complets : Fondations virales, Création, Distribution, Site internet, Lead magnet, Automatisation, Monétisation, Copywriting, Stratégies avancées + 5 bonus (valeur 1 800€) ! 📚"
   },
 
   // Réponses de secours si l'API ne fonctionne pas
@@ -128,12 +145,12 @@ function getCachedResponse(question) {
 
   // Mots-clés étendus pour chaque réponse
   const keywordsMap = {
-    "prix": ["prix", "coût", "cout", "tarif", "combien", "euros", "€", "payer", "coute", "coûte", "formatin", "formation"],
-    "garantie": ["garantie", "rembours", "risque", "sécuris", "securis", "protég", "proteg", "confiance", "fiable"],
-    "duree": ["durée", "duree", "longtemps", "temps", "mois", "semaines", "jours", "vite", "rapide"],
-    "debutant": ["débutant", "debutant", "expérience", "experience", "niveau", "début", "debut", "facile"],
-    "support": ["support", "aide", "communauté", "communaute", "groupe", "equipe", "équipe", "contact"],
-    "contenu": ["contenu", "module", "apprendre", "apprend", "couvre", "inclu", "comprend"]
+    "prix": ["prix", "coût", "cout", "tarif", "combien", "euros", "€", "payer", "coute", "coûte", "formatin", "formation", "prévente", "prevente", "1600", "4000"],
+    "garantie": ["garantie", "rembours", "risque", "sécuris", "securis", "protég", "proteg", "confiance", "fiable", "triple", "roi"],
+    "duree": ["durée", "duree", "longtemps", "temps", "mois", "semaines", "jours", "vite", "rapide", "90", "objectif"],
+    "debutant": ["débutant", "debutant", "expérience", "experience", "niveau", "début", "debut", "facile", "triangle", "thématique"],
+    "support": ["support", "aide", "communauté", "communaute", "groupe", "equipe", "équipe", "contact", "team"],
+    "contenu": ["contenu", "module", "apprendre", "apprend", "couvre", "inclu", "comprend", "secret", "code", "vues", "tunnel", "glitch"]
   };
 
   console.log('🔍 Checking cache keywords...');
