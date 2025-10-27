@@ -12579,8 +12579,13 @@ import Layout from "../layouts/Layout.astro";
     const calculatePlaces = () => {
         const now = new Date().getTime();
 
+        // PHASE 0 (avant 3 nov 21h) : 198 places disponibles
+        if (now < startDate) {
+            return { phase: 0, places: 198 };
+        }
+
         // PHASE 1 (3 nov 21h → 20 nov 21h) : 198 → 0 places
-        if (now < transitionDate) {
+        else if (now < transitionDate) {
             const hoursElapsed = (now - startDate) / (1000 * 60 * 60);
             const phase1TotalHours =
                 (transitionDate - startDate) / (1000 * 60 * 60);
@@ -12653,7 +12658,19 @@ import Layout from "../layouts/Layout.astro";
         )
             return;
 
-        if (phaseData.phase === 1) {
+        if (phaseData.phase === 0) {
+            // PHASE 0 : Affichage des 198 places (avant le 3 nov 21h)
+            scarcityText.classList.remove("sold-out");
+            scarcityText.innerHTML = `<span class="places-count" id="places">${phaseData.places}</span> places disponibles sur 200`;
+            exceptionalOffer.style.display = "none";
+            urgentWarning.style.display = "none";
+
+            // Section du bas
+            scarcityTextBottom.classList.remove("sold-out");
+            scarcityTextBottom.innerHTML = `<span class="places-count" id="placesBottom">${phaseData.places}</span> places disponibles sur 200`;
+            exceptionalOfferBottom.style.display = "none";
+            urgentWarningBottom.style.display = "none";
+        } else if (phaseData.phase === 1) {
             // Section du haut
             scarcityText.classList.remove("sold-out");
             scarcityText.innerHTML = `<span class="places-count" id="places">${phaseData.places}</span> places disponibles sur 200`;
