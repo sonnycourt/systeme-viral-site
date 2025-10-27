@@ -1,15 +1,6 @@
 ---
 import "../styles/global.css";
 
-// Détecter si on est sur le sous-domaine dashboard
-const isDashboardSubdomain = Astro.url.hostname === 'dashboard.systemeviral.com';
-
-// Si on est sur le sous-domaine dashboard, rediriger vers /dashboard
-// L'utilisateur va voir dashboard.systemeviral.com mais le contenu du dashboard s'affichera
-if (isDashboardSubdomain) {
-	return Astro.redirect('/dashboard');
-}
-
 const title = "Système Viral - En construction";
 const description =
 	"Site en cours de développement. Revenez bientôt découvrir notre méthode pour monétiser vos contenus courts.";
