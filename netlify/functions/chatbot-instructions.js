@@ -142,7 +142,9 @@ BONUS INCLUS (Valeur 1 800€ OFFERT):
     "debutant": "Parfait pour débutants ! Le Module 1 avec la Méthode du Triangle d'Or™ trouve ta thématique en 15 minutes. Aucune expérience requise. L'IA fait 80% du travail ! 🚀",
     "support": "Communauté privée + support 7j/7. La Team répond rapidement dans la communauté. Vous avez aussi accès à Sonny Court ! 👥",
     "contenu": "9 modules complets : Fondations virales, Création, Distribution, Site internet, Lead magnet, Automatisation, Monétisation, Copywriting, Stratégies avancées + 5 bonus (valeur 1 800€) ! 📚",
-    "cpf": "Pour les demandes de financement CPF, contactez-nous directement à support@systemeviral.com pour obtenir toutes les informations précises. 💼"
+    "cpf": "Pour les demandes de financement CPF, contactez-nous directement à support@systemeviral.com pour obtenir toutes les informations précises. 💼",
+    "humain": "Pour contacter un humain directement, écrivez-nous à support@systemeviral.com. Notre équipe vous répondra rapidement ! 👥",
+    "contact": "Pour toute question spécifique ou besoin de contacter un humain, écrivez-nous à support@systemeviral.com. Notre équipe est là pour vous aider ! 📧"
   },
 
   // Réponses de secours si l'API ne fonctionne pas
@@ -194,12 +196,20 @@ function getCachedResponse(question) {
       secondary: ["expérience", "experience", "niveau", "début", "debut", "facile"]
     },
     "support": {
-      primary: ["support", "aide", "contact", "contacter", "demander"],
+      primary: ["support", "aide", "demander"],
       secondary: ["communauté", "communaute", "groupe", "equipe", "équipe", "team"]
     },
     "contenu": {
       primary: ["modules", "module", "contenu", "apprendre", "apprend", "couvre", "inclu", "comprend"],
       secondary: ["secret", "code", "vues", "tunnel", "glitch"]
+    },
+    "humain": {
+      primary: ["humain", "personne", "contact humain", "parler à quelqu'un", "échanger", "parler à un humain"],
+      secondary: ["staff", "équipe", "equipe"]
+    },
+    "contact": {
+      primary: ["contacter", "contact", "contacte", "contacté", "email", "mail"],
+      secondary: ["écrire", "ecrire", "message", "question"]
     }
   };
 
