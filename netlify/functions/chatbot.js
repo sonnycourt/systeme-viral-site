@@ -71,7 +71,7 @@ exports.handler = async (event, context) => {
         statusCode: 200,
         headers,
         body: JSON.stringify({
-          response: "Le prix spécial actuel est de 1 997€ pour la formation complète SYSTÈME VIRAL 100K™ (au lieu de 3 997€). C'est un investissement qui peut transformer votre business ! 💰",
+          response: "Le prix prévente est de 1 600€ pour la formation complète SYSTÈME VIRAL 100K™ (au lieu de 4 000€). Économisez 2 400€ ! 💰 Paiement possible en 6 fois à 297€.",
           cached: true,
           usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 }
         }),
