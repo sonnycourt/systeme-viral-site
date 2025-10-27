@@ -457,9 +457,9 @@ function getCachedResponse(question) {
   // Plus les mots-clés sont longs et spécifiques, plus ils sont prioritaires
   const keywordsMap = {
     "prix": {
-      primary: ["prix", "coût", "cout", "tarif", "combien coûte", "combien coûte", "à combien", "payer", "coute", "coûte", "combien ça coûte", "combien ca coute"],
+      primary: ["prix", "coût", "cout", "tarif", "combien coûte", "combien coûte", "à combien", "combien ça coûte", "combien ca coute", "payer combien", "payer combien de"],
       secondary: ["prévente", "prevente", "1600", "4000", "297", "€"],
-      exclude: ["contenu de la formation", "formation est faite", "formation c'est", "temps par jour", "heures par jour", "durée", "duree"] // Exclure si question sur le contenu ou le temps
+      exclude: ["temps par jour", "heures par jour", "durée", "duree", "combien de temps", "longtemps"] // Exclure si question sur le temps
     },
     "cpf": {
       primary: ["cpf", "compte personnel de formation", "compte personnel"],
@@ -470,8 +470,8 @@ function getCachedResponse(question) {
       secondary: ["sécuris", "securis", "protég", "proteg", "confiance", "fiable"]
     },
     "duree": {
-      primary: ["durée", "duree", "combien de temps", "longtemps", "quand résultats", "temps par jour", "heures par jour", "par jour", "temps quotidien"],
-      secondary: ["mois", "semaines", "jours", "vite", "rapide", "quotidien", "chaque jour"]
+      primary: ["temps par jour", "heures par jour", "combien de temps par jour", "combien d'heures par jour", "temps quotidien", "quotidien", "chaque jour"],
+      secondary: ["durée", "duree", "combien de temps", "longtemps", "quand résultats", "mois", "semaines", "jours", "vite", "rapide"]
     },
     "debutant": {
       primary: ["débutant", "debutant", "aucune expérience", "pas d'expérience", "difficile"],
@@ -510,8 +510,8 @@ function getCachedResponse(question) {
       secondary: ["besoin", "requis", "nécessaire", "necessaire"]
     },
     "apres-prevente": {
-      primary: ["ne peux pas acheter", "pas acheter", "après prévente", "apres prevente", "plus cher après", "prix après", "après le 4 décembre"],
-      secondary: ["hésite", "hesite", "doute", "pas sûr", "pas sur", "2000", "2000€"]
+      primary: ["ne peux pas acheter", "pas acheter prévente", "ne pas acheter", "plus cher après", "plus cher apres", "prix après", "prix apres", "coûtera plus cher", "coutera plus cher", "après prévente", "apres prevente", "après le 4 décembre", "apres le 4 decembre"],
+      secondary: ["hésite", "hesite", "doute", "pas sûr", "pas sur", "2000", "2000€", "attendre", "attendre plus tard"]
     },
     "urgence": {
       primary: ["urgent", "urgence", "se termine", "bientôt", "bientot", "dernière chance", "derniere chance", "limite"],
@@ -531,20 +531,28 @@ function getCachedResponse(question) {
     return maxLengthB - maxLengthA;
   });
 
+  // 1ère passe : vérifier toutes les exclusions
+  const excludedKeys = new Set();
   for (const [cacheKey, response] of sortedEntries) {
+    const keywords = keywordsMap[cacheKey];
+    if (!keywords || !keywords.exclude) continue;
+    
+    const hasExclude = keywords.exclude.some(k => lowerQuestion.includes(k));
+    if (hasExclude) {
+      console.log(`❌ EXCLUDED: ${cacheKey} because of exclusion keyword`);
+      excludedKeys.add(cacheKey);
+    }
+  }
+  
+  // 2ème passe : vérifier les mots-clés primaires (sauf ceux exclus)
+  for (const [cacheKey, response] of sortedEntries) {
+    if (excludedKeys.has(cacheKey)) continue; // Skip les exclus
+    
     const keywords = keywordsMap[cacheKey];
     if (!keywords) continue;
 
-    // Vérifier les mots-clés principaux
     const hasPrimary = keywords.primary && keywords.primary.some(k => lowerQuestion.includes(k));
-    const hasExclude = keywords.exclude && keywords.exclude.some(k => lowerQuestion.includes(k));
     
-    // Si exclusion trouvée, ne pas retourner cette réponse
-    if (hasExclude) {
-      console.log(`❌ EXCLUDED: ${cacheKey} because of exclusion keyword`);
-      continue;
-    }
-
     if (hasPrimary) {
       console.log(`✅ FOUND (primary): ${cacheKey}`);
       return response;
