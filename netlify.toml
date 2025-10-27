@@ -6,9 +6,11 @@
   NODE_VERSION = "18"
 
 [[redirects]]
+  # Exclure les routes API Astro du redirect
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
+  force = false
 
 [functions]
   directory = "netlify/functions"

@@ -1,0 +1,732 @@
+---
+// Page dashboard pour visualiser les parcours des leads
+// Style dark pour correspondre au site
+---
+
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard - Système Viral</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Google Analytics Embed API -->
+        <script src="https://apis.google.com/js/api.js"></script>
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://www.google-analytics.com/analytics.js"></script>
+
+        <style>
+            :root {
+                --bg: #000000;
+                --bg-card: #0a0a0a;
+                --bg-elevated: #111111;
+                --text: #ffffff;
+                --text-secondary: #bfbfbf;
+                --text-muted: #4b4b4b;
+                --accent: #00dc82;
+                --accent-bright: #00f58e;
+                --accent-glow: #00ff94;
+                --border: rgba(255, 255, 255, 0.06);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    "Inter",
+                    system-ui,
+                    -apple-system,
+                    sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                min-height: 100vh;
+                padding: 20px;
+                line-height: 1.6;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .header {
+                background: linear-gradient(
+                    135deg,
+                    var(--bg-card) 0%,
+                    var(--bg-elevated) 100%
+                );
+                padding: 40px;
+                border-radius: 24px;
+                margin-bottom: 30px;
+                border: 1px solid var(--border);
+                box-shadow: 0 10px 40px rgba(0, 220, 130, 0.1);
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+                font-weight: 900;
+                letter-spacing: -0.02em;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent) 0%,
+                    var(--accent-glow) 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                margin-bottom: 10px;
+            }
+
+            .header p {
+                color: var(--text-secondary);
+                font-size: 1.1rem;
+            }
+
+            .stats {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+
+            .stat-card {
+                background: var(--bg-card);
+                padding: 24px;
+                border-radius: 16px;
+                border: 1px solid var(--border);
+                transition: all 0.3s ease;
+            }
+
+            .stat-card:hover {
+                transform: translateY(-4px);
+                background: var(--bg-elevated);
+                border-color: rgba(0, 220, 130, 0.3);
+                box-shadow: 0 10px 30px rgba(0, 220, 130, 0.2);
+            }
+
+            .stat-card h3 {
+                color: var(--text-secondary);
+                font-size: 0.85rem;
+                margin-bottom: 12px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-weight: 600;
+            }
+
+            .stat-card .value {
+                font-size: 2.5rem;
+                font-weight: 900;
+                background: linear-gradient(
+                    135deg,
+                    var(--text) 0%,
+                    var(--accent-bright) 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .journey-list {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .journey-card {
+                background: var(--bg-card);
+                padding: 32px;
+                border-radius: 16px;
+                border: 1px solid var(--border);
+                transition: all 0.3s ease;
+            }
+
+            .journey-card:hover {
+                transform: translateY(-4px);
+                background: var(--bg-elevated);
+                border-color: rgba(0, 220, 130, 0.3);
+                box-shadow: 0 10px 30px rgba(0, 220, 130, 0.2);
+            }
+
+            .journey-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 24px;
+                padding-bottom: 24px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .journey-header h3 {
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: var(--text);
+            }
+
+            .journey-header p {
+                color: var(--text-secondary);
+                margin-top: 8px;
+                font-size: 0.9rem;
+            }
+
+            .journey-header .source {
+                background: linear-gradient(
+                    135deg,
+                    var(--accent) 0%,
+                    var(--accent-bright) 100%
+                );
+                color: var(--bg);
+                padding: 8px 20px;
+                border-radius: 100px;
+                font-size: 0.85rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                box-shadow: 0 4px 15px rgba(0, 220, 130, 0.3);
+            }
+
+            .steps {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .step {
+                padding: 16px;
+                background: rgba(0, 220, 130, 0.05);
+                border-left: 3px solid var(--accent);
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                transition: all 0.3s ease;
+            }
+
+            .step:hover {
+                background: rgba(0, 220, 130, 0.1);
+                transform: translateX(4px);
+            }
+
+            .step-icon {
+                font-size: 1.5rem;
+                flex-shrink: 0;
+            }
+
+            .step-details {
+                flex: 1;
+            }
+
+            .step-title {
+                font-weight: 600;
+                color: var(--text);
+                margin-bottom: 4px;
+                font-size: 0.95rem;
+            }
+
+            .step-time {
+                color: var(--text-secondary);
+                font-size: 0.85rem;
+            }
+
+            .loading {
+                text-align: center;
+                padding: 60px;
+                color: var(--text-secondary);
+                font-size: 1.1rem;
+            }
+
+            .error {
+                background: rgba(220, 38, 38, 0.1);
+                color: #ff4444;
+                padding: 24px;
+                border-radius: 12px;
+                margin: 20px 0;
+                border: 1px solid rgba(220, 38, 38, 0.3);
+            }
+
+            .empty {
+                background: var(--bg-card);
+                padding: 60px;
+                border-radius: 16px;
+                text-align: center;
+                color: var(--text-secondary);
+                border: 1px solid var(--border);
+            }
+
+            .refresh-btn {
+                background: linear-gradient(
+                    135deg,
+                    var(--accent) 0%,
+                    var(--accent-bright) 100%
+                );
+                color: var(--bg);
+                border: none;
+                padding: 12px 24px;
+                border-radius: 100px;
+                cursor: pointer;
+                font-size: 1rem;
+                font-weight: 700;
+                margin-top: 16px;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                box-shadow: 0 4px 15px rgba(0, 220, 130, 0.3);
+            }
+
+            .refresh-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 25px rgba(0, 220, 130, 0.4);
+            }
+
+            /* Section Google Analytics */
+            .ga-section {
+                background: linear-gradient(
+                    135deg,
+                    var(--bg-card) 0%,
+                    var(--bg-elevated) 100%
+                );
+                padding: 40px;
+                border-radius: 24px;
+                margin-bottom: 30px;
+                border: 1px solid var(--border);
+                box-shadow: 0 10px 40px rgba(0, 220, 130, 0.1);
+            }
+
+            .ga-section h2 {
+                font-size: 2rem;
+                font-weight: 900;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent) 0%,
+                    var(--accent-glow) 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                margin-bottom: 30px;
+                letter-spacing: -0.02em;
+            }
+
+            .ga-section h3 {
+                color: var(--accent);
+                margin-bottom: 20px;
+                font-size: 1.3rem;
+                font-weight: 700;
+            }
+
+            .source-card {
+                background: var(--bg-card);
+                padding: 24px;
+                border-radius: 16px;
+                margin-bottom: 20px;
+                border: 1px solid var(--border);
+                transition: all 0.3s ease;
+            }
+
+            .source-card:hover {
+                transform: translateY(-4px);
+                border-color: rgba(0, 220, 130, 0.3);
+                background: var(--bg-elevated);
+                box-shadow: 0 10px 30px rgba(0, 220, 130, 0.2);
+            }
+
+            .source-name {
+                font-weight: 700;
+                font-size: 1.2rem;
+                color: var(--text);
+                margin-bottom: 20px;
+                padding-bottom: 16px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .source-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+
+            .source-stat {
+                background: rgba(0, 220, 130, 0.05);
+                padding: 16px;
+                border-radius: 12px;
+                border: 1px solid rgba(0, 220, 130, 0.1);
+            }
+
+            .source-stat-label {
+                color: var(--text-secondary);
+                font-size: 0.8rem;
+                margin-bottom: 8px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-weight: 600;
+            }
+
+            .source-stat-value {
+                font-weight: 900;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent-bright) 0%,
+                    var(--accent) 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                font-size: 2rem;
+            }
+
+            .source-stat-rate {
+                color: #28a745;
+                font-size: 0.9rem;
+                margin-top: 4px;
+                font-weight: 600;
+            }
+
+            .source-stat-revenue {
+                color: #00dc82;
+                font-size: 2rem;
+                font-weight: 900;
+            }
+
+            @media (max-width: 768px) {
+                .header h1 {
+                    font-size: 1.8rem;
+                }
+
+                .header {
+                    padding: 24px;
+                }
+
+                .stats {
+                    grid-template-columns: 1fr;
+                }
+
+                .source-grid {
+                    grid-template-columns: 1fr;
+                    gap: 16px;
+                }
+
+                .ga-section {
+                    padding: 24px;
+                }
+
+                .journey-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 12px;
+                }
+
+                .source-stat-value,
+                .source-stat-revenue {
+                    font-size: 1.5rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>📊 Dashboard</h1>
+                <p>
+                    Suivez le parcours complet de vos leads et vos performances
+                </p>
+            </div>
+
+            <div class="stats" id="stats">
+                <div class="stat-card">
+                    <h3>Total Leads</h3>
+                    <div class="value" id="totalLeads">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Optins</h3>
+                    <div class="value" id="totalOptins">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Achats</h3>
+                    <div class="value" id="totalPurchases">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Taux Conversion</h3>
+                    <div class="value" id="conversionRate">0%</div>
+                </div>
+            </div>
+
+            <div id="ga-section" class="ga-section">
+                <h2>📊 Google Analytics</h2>
+
+                <div class="stats" id="ga-stats">
+                    <div class="stat-card">
+                        <h3>Visiteurs (Aujourd'hui)</h3>
+                        <div class="value" id="ga-today">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Taux de Conversion</h3>
+                        <div class="value" id="ga-conversion">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Temps Session</h3>
+                        <div class="value" id="ga-duration">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>En Temps Réel</h3>
+                        <div class="value" id="ga-realtime">-</div>
+                    </div>
+                </div>
+
+                <div id="ga-traffic-sources" style="margin-top: 40px;">
+                    <h3>📈 Sources de Trafic</h3>
+                    <div id="sources-container"></div>
+                </div>
+            </div>
+
+            <div id="journeys">
+                <div class="loading">⏳ Chargement des parcours...</div>
+            </div>
+        </div>
+
+        <script is:inline>
+            async function loadJourneys() {
+                try {
+                    let response = await fetch("/api/journeys");
+                    if (!response.ok) {
+                        response = await fetch(
+                            "/.netlify/functions/get-journeys",
+                        );
+                    }
+                    const data = await response.json();
+                    displayJourneys(data.journeys);
+                    updateStats(data.journeys);
+                } catch (error) {
+                    const errorEl = document.getElementById("journeys");
+                    if (errorEl) {
+                        errorEl.innerHTML = `
+                        <div class="error">
+                            ❌ Erreur lors du chargement : ${error instanceof Error ? error.message : "Unknown error"}
+                            <br><br>
+                            <button class="refresh-btn" onclick="loadJourneys()">🔄 Réessayer</button>
+                        </div>
+                    `;
+                    }
+                }
+            }
+
+            function updateStats(journeys) {
+                const totalLeads = journeys.length;
+                const totalOptins = journeys.filter((j) =>
+                    j.steps.some((s) => s.action === "optin"),
+                ).length;
+                const totalPurchases = journeys.filter((j) =>
+                    j.steps.some((s) => s.action === "purchase"),
+                ).length;
+                const conversionRate =
+                    totalOptins > 0
+                        ? Math.round((totalPurchases / totalOptins) * 100)
+                        : 0;
+
+                const leadsEl = document.getElementById("totalLeads");
+                const optinsEl = document.getElementById("totalOptins");
+                const purchasesEl = document.getElementById("totalPurchases");
+                const rateEl = document.getElementById("conversionRate");
+
+                if (leadsEl) leadsEl.textContent = String(totalLeads);
+                if (optinsEl) optinsEl.textContent = String(totalOptins);
+                if (purchasesEl)
+                    purchasesEl.textContent = String(totalPurchases);
+                if (rateEl) rateEl.textContent = String(conversionRate) + "%";
+            }
+
+            function displayJourneys(journeys) {
+                const container = document.getElementById("journeys");
+                if (!container) return;
+
+                if (journeys.length === 0) {
+                    container.innerHTML = `
+                    <div class="empty">
+                        📭 Aucun lead pour le moment.<br>
+                        Les parcours apparaîtront ici une fois que les leads commenceront à interagir avec le site.
+                    </div>
+                `;
+                    return;
+                }
+
+                container.innerHTML = '<div class="journey-list"></div>';
+                const list = container.querySelector(".journey-list");
+                if (!list) return;
+
+                journeys.forEach((journey) => {
+                    const card = document.createElement("div");
+                    card.className = "journey-card";
+
+                    const email = journey.email || "Non renseigné";
+                    const source = journey.source || "direct";
+
+                    card.innerHTML = `
+                    <div class="journey-header">
+                        <div>
+                            <h3>📧 ${email}</h3>
+                            <p>Source: ${source}</p>
+                        </div>
+                        <span class="source">${source}</span>
+                    </div>
+                    <div class="steps" id="steps-${journey.sessionId}"></div>
+                `;
+
+                    list.appendChild(card);
+
+                    const stepsContainer = card.querySelector(
+                        `#steps-${journey.sessionId}`,
+                    );
+                    if (stepsContainer) {
+                        journey.steps.forEach((step, _index) => {
+                            const stepEl = document.createElement("div");
+                            stepEl.className = "step";
+
+                            const icon = getIconForStep(step.action);
+                            const title = getTitleForStep(step);
+                            const time = formatTime(step.timestamp);
+
+                            stepEl.innerHTML = `
+                            <span class="step-icon">${icon}</span>
+                            <div class="step-details">
+                                <div class="step-title">${title}</div>
+                                <div class="step-time">${time}</div>
+                            </div>
+                        `;
+
+                            stepsContainer.appendChild(stepEl);
+                        });
+                    }
+                });
+            }
+
+            function getIconForStep(action) {
+                const icons = {
+                    visit: "🌐",
+                    cta_click: "👆",
+                    optin: "✅",
+                    purchase: "💰",
+                    scroll_depth: "📜",
+                    time_on_page: "⏱️",
+                };
+                return icons[action] || "📌";
+            }
+
+            function getTitleForStep(step) {
+                const titles = {
+                    visit: `Visite sur ${step.page || ""}`,
+                    cta_click: `Clic sur ${step.element || "CTA"}`,
+                    optin: `Opt-in : ${step.email || "Inscription"}`,
+                    purchase: `Achat : ${step.amount || 497}€`,
+                    scroll_depth: `Scroll : ${step.percent || 0}%`,
+                    time_on_page: `Temps sur page : ${step.seconds || 0}s`,
+                };
+                return titles[step.action] || step.action;
+            }
+
+            function formatTime(timestamp) {
+                const date = new Date(timestamp);
+                const now = new Date();
+                const diff = Number(now) - Number(date);
+
+                const seconds = Math.floor(diff / 1000);
+                const minutes = Math.floor(seconds / 60);
+                const hours = Math.floor(minutes / 60);
+                const days = Math.floor(hours / 24);
+
+                if (days > 0)
+                    return `Il y a ${days} jour${days > 1 ? "s" : ""}`;
+                if (hours > 0)
+                    return `Il y a ${hours}h${minutes > 0 ? minutes : ""}`;
+                if (minutes > 0) return `Il y a ${minutes}min`;
+                return "À l'instant";
+            }
+
+            // Charger au démarrage
+            loadJourneys();
+            loadGoogleAnalytics();
+
+            // Rafraîchir automatiquement toutes les 30 secondes
+            setInterval(loadJourneys, 30000);
+            setInterval(loadGoogleAnalytics, 30000);
+
+            async function loadGoogleAnalytics() {
+                try {
+                    const response = await fetch("/api/google-analytics");
+                    const data = await response.json();
+
+                    if (document.getElementById("ga-today")) {
+                        document.getElementById("ga-today").textContent =
+                            data.traffic.today;
+                    }
+                    if (document.getElementById("ga-conversion")) {
+                        document.getElementById("ga-conversion").textContent =
+                            data.performance.conversionRate + "%";
+                    }
+                    if (document.getElementById("ga-duration")) {
+                        const minutes = Math.floor(
+                            data.performance.avgSessionDuration / 60,
+                        );
+                        document.getElementById("ga-duration").textContent =
+                            minutes + "min";
+                    }
+                    if (document.getElementById("ga-realtime")) {
+                        document.getElementById("ga-realtime").textContent =
+                            data.realTime.activeUsers;
+                    }
+
+                    displayTrafficSources(data.traffic.sources);
+                } catch (error) {
+                    console.log("Erreur chargement GA:", error);
+                }
+            }
+
+            function displayTrafficSources(sources) {
+                const container = document.getElementById("sources-container");
+                if (!container) return;
+
+                container.innerHTML = "";
+
+                sources.forEach((source) => {
+                    const sourceCard = document.createElement("div");
+                    sourceCard.className = "source-card";
+
+                    const conversionRate =
+                        source.visits > 0
+                            ? Math.round(
+                                  (source.conversions / source.visits) * 100,
+                              )
+                            : 0;
+
+                    sourceCard.innerHTML = `
+                    <div class="source-name">${source.name}</div>
+                    <div class="source-grid">
+                        <div class="source-stat">
+                            <div class="source-stat-label">Visites</div>
+                            <div class="source-stat-value">${source.visits}</div>
+                        </div>
+                        <div class="source-stat">
+                            <div class="source-stat-label">Conversions</div>
+                            <div class="source-stat-value">${source.conversions}</div>
+                            <div class="source-stat-rate">${conversionRate}%</div>
+                        </div>
+                        <div class="source-stat">
+                            <div class="source-stat-label">Revenus</div>
+                            <div class="source-stat-revenue">${source.revenue}€</div>
+                        </div>
+                    </div>
+                `;
+
+                    container.appendChild(sourceCard);
+                });
+            }
+        </script>
+    </body>
+</html>

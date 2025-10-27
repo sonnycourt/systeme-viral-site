@@ -97,7 +97,10 @@ class ViralTracking {
             data: eventData,
             timestamp: new Date().toISOString(),
             sessionId: this.sessionId,
-            page: window.location.pathname
+            page: window.location.pathname,
+            utm_source: this.getUTMSource(),
+            utm_medium: this.getUTMMedium(),
+            utm_campaign: this.getUTMCampaign()
         };
 
         this.userJourney.push(event);
@@ -105,6 +108,31 @@ class ViralTracking {
 
         // Envoi immédiat vers GA4
         this.sendEventToGA4(eventName, eventData);
+        
+        // Envoi vers notre dashboard interne
+        this.sendToInternalDashboard(event);
+    }
+    
+    sendToInternalDashboard(event) {
+        // En dev local, on stocke dans localStorage
+        // En production avec Netlify, on enverra à l'endpoint
+        
+        const storedEvents = JSON.parse(localStorage.getItem('dashboard_events') || '[]');
+        storedEvents.push(event);
+        localStorage.setItem('dashboard_events', JSON.stringify(storedEvents));
+        
+        // Envoi asynchrone au backend (en production)
+        if (window.location.hostname !== 'localhost') {
+            fetch('/.netlify/functions/track-event', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(event)
+            }).catch(err => {
+                console.log('Dashboard tracking error (non-bloquant):', err);
+            });
+        }
     }
 
     sendToGA4() {
@@ -174,6 +202,23 @@ class ViralTracking {
             session_id: this.sessionId,
             landing_page: window.location.pathname
         };
+    }
+    
+    // Méthode pour tracker un optin
+    trackOptin(email, formData = {}) {
+        this.trackEvent('optin', {
+            email: email,
+            formData: formData
+        });
+    }
+    
+    // Méthode pour tracker un achat
+    trackPurchase(amount, currency = 'EUR', email = null) {
+        this.trackEvent('purchase', {
+            amount: amount,
+            currency: currency,
+            email: email
+        });
     }
 }
 
