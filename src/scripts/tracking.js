@@ -115,24 +115,25 @@ class ViralTracking {
     
     sendToInternalDashboard(event) {
         // En dev local, on stocke dans localStorage
-        // En production avec Netlify, on enverra à l'endpoint
-        
         const storedEvents = JSON.parse(localStorage.getItem('dashboard_events') || '[]');
         storedEvents.push(event);
         localStorage.setItem('dashboard_events', JSON.stringify(storedEvents));
         
-        // Envoi asynchrone au backend (en production)
-        if (window.location.hostname !== 'localhost') {
-            fetch('/.netlify/functions/track-event', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(event)
-            }).catch(err => {
-                console.log('Dashboard tracking error (non-bloquant):', err);
-            });
-        }
+        // Envoi au dashboard (que ce soit local ou production)
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname.includes('localhost');
+        const dashboardUrl = isLocal 
+            ? 'http://localhost:4321' 
+            : 'https://dashboard.systemeviral.com';
+        
+        fetch(`${dashboardUrl}/.netlify/functions/track-event`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(event)
+        }).catch(err => {
+            console.log('Dashboard tracking error (non-bloquant):', err);
+        });
     }
 
     sendToGA4() {
