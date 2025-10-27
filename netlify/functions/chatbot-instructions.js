@@ -94,10 +94,11 @@ GESTION OBJECTIONS:
 - "Prix élevé": Rappeler l'investissement vs retour sur investissement
 
 INFORMATIONS PRATIQUES:
-- Prévente: du 3 novembre au 4 décembre 2025
-- Démarrage formation: 4 décembre 2025 (tous ensemble)
+- Prévente: du 3 novembre au 4 décembre 2025 à 22h00
+- Démarrage formation: 4 décembre 2025 à 20h (tous ensemble)
 - Accès à vie: formation en ligne 24/7
 - Prix prévente: 1 600€ (au lieu de 4 000€)
+- Prix après fermeture: 2 000€
 - Paiement en 6 fois: 297€ × 6
 - Garantie triple: 30 jours + résultats + ROI garanti
 
