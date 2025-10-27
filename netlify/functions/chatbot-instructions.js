@@ -169,36 +169,62 @@ function getCachedResponse(question) {
   const lowerQuestion = question.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Supprimer accents
   console.log('📝 Processed question:', lowerQuestion);
 
-  // Mots-clés étendus pour chaque réponse
+  // Mots-clés étendus pour chaque réponse avec priorités
+  // Plus les mots-clés sont longs et spécifiques, plus ils sont prioritaires
   const keywordsMap = {
-    "prix": ["prix", "coût", "cout", "tarif", "combien", "euros", "€", "payer", "coute", "coûte", "formatin", "formation", "prévente", "prevente", "1600", "4000"],
-    "garantie": ["garantie", "rembours", "risque", "sécuris", "securis", "protég", "proteg", "confiance", "fiable", "triple", "roi"],
-    "duree": ["durée", "duree", "longtemps", "temps", "mois", "semaines", "jours", "vite", "rapide", "90", "objectif"],
-    "debutant": ["débutant", "debutant", "expérience", "experience", "niveau", "début", "debut", "facile", "triangle", "thématique"],
-    "support": ["support", "aide", "communauté", "communaute", "groupe", "equipe", "équipe", "contact", "team"],
-    "contenu": ["contenu", "module", "apprendre", "apprend", "couvre", "inclu", "comprend", "secret", "code", "vues", "tunnel", "glitch"],
-    "cpf": ["cpf", "financement", "compte personnel", "éligible", "eligible", "fonds", "finance", "aides"]
+    "prix": {
+      primary: ["prix", "coût", "cout", "tarif", "combien coûte", "combien coûte", "à combien", "payer", "coute", "coûte", "€"],
+      secondary: ["prévente", "prevente", "1600", "4000", "297"],
+      exclude: ["contenu de la formation", "formation est faite", "formation c'est"] // Exclure si question sur le contenu
+    },
+    "cpf": {
+      primary: ["cpf", "compte personnel de formation", "compte personnel"],
+      secondary: ["financement", "éligible", "eligible", "fonds", "aides"]
+    },
+    "garantie": {
+      primary: ["garantie", "rembours", "risque", "protection"],
+      secondary: ["sécuris", "securis", "protég", "proteg", "confiance", "fiable"]
+    },
+    "duree": {
+      primary: ["durée", "duree", "combien de temps", "longtemps", "quand résultats"],
+      secondary: ["mois", "semaines", "jours", "vite", "rapide"]
+    },
+    "debutant": {
+      primary: ["débutant", "debutant", "aucune expérience", "pas d'expérience", "difficile"],
+      secondary: ["expérience", "experience", "niveau", "début", "debut", "facile"]
+    },
+    "support": {
+      primary: ["support", "aide", "contact", "contacter", "demander"],
+      secondary: ["communauté", "communaute", "groupe", "equipe", "équipe", "team"]
+    },
+    "contenu": {
+      primary: ["modules", "module", "contenu", "apprendre", "apprend", "couvre", "inclu", "comprend"],
+      secondary: ["secret", "code", "vues", "tunnel", "glitch"]
+    }
   };
 
-  console.log('🔍 Checking cache keywords...');
-
-  // Recherche par mots-clés étendus
+  // Recherche prioritaire (mots-clés principaux)
   for (const [cacheKey, response] of Object.entries(SYSTEM_INSTRUCTIONS.faqCache)) {
-    console.log(`🔎 Checking ${cacheKey}...`);
-    const keywords = keywordsMap[cacheKey] || [cacheKey];
-    console.log(`📋 Keywords for ${cacheKey}:`, keywords);
+    const keywords = keywordsMap[cacheKey];
+    if (!keywords) continue;
 
-    // Vérifier si au moins un mot-clé est présent dans la question
-    for (const keyword of keywords) {
-      console.log(`🔍 Testing keyword "${keyword}" in "${lowerQuestion}"`);
-      if (lowerQuestion.includes(keyword)) {
-        console.log(`✅ FOUND: "${keyword}" found in question!`);
-        console.log(`💰 Returning cached response for ${cacheKey}`);
-        return response;
-      }
+    // Vérifier les mots-clés principaux
+    const hasPrimary = keywords.primary && keywords.primary.some(k => lowerQuestion.includes(k));
+    const hasExclude = keywords.exclude && keywords.exclude.some(k => lowerQuestion.includes(k));
+    
+    // Si exclusion trouvée, ne pas retourner cette réponse
+    if (hasExclude) {
+      console.log(`❌ EXCLUDED: ${cacheKey} because of exclusion keyword`);
+      continue;
+    }
+
+    if (hasPrimary) {
+      console.log(`✅ FOUND (primary): ${cacheKey}`);
+      return response;
     }
   }
 
+  // Si aucune réponse prioritaire, ne rien retourner pour laisser l'IA répondre
   console.log('❌ No cache match found');
   return null; // Pas de réponse en cache
 }
