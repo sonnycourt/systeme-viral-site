@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "dev:netlify": "netlify dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/copy-images.js",
     "preview": "astro preview",
     "astro": "astro",
     "deploy": "./scripts/deploy.sh",
