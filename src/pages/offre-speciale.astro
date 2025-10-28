@@ -4361,7 +4361,35 @@ import Layout from "../layouts/Layout.astro";
             }
         }
 
-        /* Optimisations pour les images bonus - Responsive parfait */
+        /* Optimisations spécifiques pour les images des secrets sur mobile */
+        @media (max-width: 768px) {
+            .clean-placeholder img {
+                width: 100% !important;
+                height: auto !important;
+                max-width: 100% !important;
+                min-height: 200px !important;
+                object-fit: contain !important;
+                object-position: center !important;
+                display: block !important;
+                background: rgba(255, 255, 255, 0.05) !important;
+                border-radius: 12px !important;
+            }
+            
+            .bonus-image-container {
+                min-height: 200px !important;
+                background: rgba(255, 255, 255, 0.02) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+            
+            .bonus-image-container img {
+                min-height: 180px !important;
+                width: 100% !important;
+                height: auto !important;
+                max-width: 100% !important;
+                object-fit: contain !important;
+                object-position: center !important;
+            }
+        }
         .bonus-image-container {
             position: relative;
             width: 100%;
@@ -4383,6 +4411,8 @@ import Layout from "../layouts/Layout.astro";
             object-position: center !important;
             position: relative !important;
             display: block !important;
+            min-height: 150px !important;
+            background: rgba(255, 255, 255, 0.05) !important;
         }
 
         /* Ajustements responsive pour différentes tailles d'écran */
