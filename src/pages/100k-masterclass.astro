@@ -34,12 +34,7 @@ import Layout from "../layouts/Layout.astro";
         <!-- Left Column: Video + Info -->
         <div class="video-section">
             <div class="video-wrapper">
-                <video
-                    id="masterclass-video"
-                    
-                    playsinline
-                    preload="metadata"
-                >
+                <video id="masterclass-video" playsinline preload="metadata">
                     <source
                         src="https://sonnycourt-videos-public.b-cdn.net/VSL-Systeme-Viral-VF.mp4"
                         type="video/mp4"
@@ -47,38 +42,90 @@ import Layout from "../layouts/Layout.astro";
                     Votre navigateur ne supporte pas la lecture vidéo.
                 </video>
                 <button class="big-play" id="bigPlay" aria-label="Lecture">
-                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 3v18l15-9L5 3z" fill="currentColor"/>
+                    <svg
+                        width="44"
+                        height="44"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M5 3v18l15-9L5 3z" fill="currentColor"></path>
                     </svg>
                 </button>
-                <div class="custom-controls" id="playerControls" role="group" aria-label="Contrôles vidéo">
-                    <button class="control-btn play" id="playPause" aria-label="Lecture/Pause">
-                        <svg class="icon-play" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 3v18l15-9L5 3z" fill="currentColor"/>
+                <div
+                    class="custom-controls"
+                    id="playerControls"
+                    role="group"
+                    aria-label="Contrôles vidéo"
+                >
+                    <button
+                        class="control-btn play"
+                        id="playPause"
+                        aria-label="Lecture/Pause"
+                    >
+                        <svg
+                            class="icon-play"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path d="M5 3v18l15-9L5 3z" fill="currentColor"
+                            ></path>
                         </svg>
-                        <svg class="icon-pause" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor"/>
+                        <svg
+                            class="icon-pause"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6 4h4v16H6zM14 4h4v16h-4z"
+                                fill="currentColor"></path>
                         </svg>
                     </button>
-                    <div class="progress" id="progressContainer" aria-label="Barre de progression" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                        <div class="buffer" id="bufferBar"></div>
-                        <div class="bar" id="progressBar"></div>
-                    </div>
-                    <div class="time" id="timeDisplay">00:00 / 00:00</div>
-                    <button class="control-btn mute" id="muteToggle" aria-label="Activer/Désactiver le son">
-                        <svg class="icon-volume" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/>
+                    <button
+                        class="control-btn mute"
+                        id="muteToggle"
+                        aria-label="Activer/Désactiver le son"
+                    >
+                        <svg
+                            class="icon-volume"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path d="M3 9v6h4l5 5V4L7 9H3z" fill="currentColor"
+                            ></path>
                         </svg>
-                        <svg class="icon-muted" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16.5 12a4.5 4.5 0 0 0-3-4.243v8.486A4.5 4.5 0 0 0 16.5 12zM3 9v6h4l5 5V4L7 9H3z" fill="currentColor"/>
+                        <svg
+                            class="icon-muted"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M16.5 12a4.5 4.5 0 0 0-3-4.243v8.486A4.5 4.5 0 0 0 16.5 12zM3 9v6h4l5 5V4L7 9H3z"
+                                fill="currentColor"></path>
                         </svg>
                     </button>
-                    <input class="volume" id="volumeSlider" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume" />
-                    <button class="control-btn fullscreen" id="fullscreenToggle" aria-label="Plein écran">
-                        <svg class="icon-full" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 14H5v5h5v-2H7v-3zm12 5h-5v-2h3v-3h2v5zM7 5h3V3H5v5h2V5zm10 0v3h-3v2h5V3h-2z" fill="currentColor"/>
-                        </svg>
-                    </button>
+                    <input
+                        class="volume"
+                        id="volumeSlider"
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="1"
+                        aria-label="Volume"
+                    />
                 </div>
                 <div class="reactions-overlay" id="reactionsOverlay"></div>
             </div>
@@ -464,52 +511,118 @@ import Layout from "../layouts/Layout.astro";
         width: 72px;
         height: 72px;
         border-radius: 50%;
-        background: radial-gradient(closest-side, var(--accent), var(--accent-dark));
+        background: radial-gradient(
+            closest-side,
+            var(--accent),
+            var(--accent-dark)
+        );
         color: #0a0a0a;
         display: grid;
         place-items: center;
         border: 1px solid var(--border);
-        box-shadow: 0 0 0 6px rgba(0, 220, 130, 0.15), 0 10px 30px rgba(0,0,0,0.4);
+        box-shadow:
+            0 0 0 6px rgba(0, 220, 130, 0.15),
+            0 10px 30px rgba(0, 0, 0, 0.4);
         cursor: pointer;
-        transition: transform .15s ease, box-shadow .15s ease;
+        transition:
+            transform 0.15s ease,
+            box-shadow 0.15s ease;
         z-index: 5;
     }
-    .big-play:hover { transform: scale(1.04); box-shadow: 0 0 0 8px rgba(0, 220, 130, 0.18), 0 12px 36px rgba(0,0,0,0.45); }
-    .big-play.hidden { display: none; }
+    .big-play:hover {
+        transform: scale(1.04);
+        box-shadow:
+            0 0 0 8px rgba(0, 220, 130, 0.18),
+            0 12px 36px rgba(0, 0, 0, 0.45);
+    }
+    .big-play.hidden {
+        display: none;
+    }
 
     .custom-controls {
         position: absolute;
-        left: 0; right: 0; bottom: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         display: flex;
         align-items: center;
         gap: 10px;
         padding: 10px 12px;
-        background: linear-gradient(to top, rgba(10,10,10,0.9), rgba(10,10,10,0.3) 60%, rgba(10,10,10,0));
-        border-top: 1px solid rgba(255,255,255,0.08);
+        background: linear-gradient(
+            to top,
+            rgba(10, 10, 10, 0.9),
+            rgba(10, 10, 10, 0.3) 60%,
+            rgba(10, 10, 10, 0)
+        );
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         z-index: 6;
     }
-    .control-btn { color: var(--text); background: transparent; border: 1px solid var(--border); border-radius: 8px; padding: 8px; display: grid; place-items: center; cursor: pointer; }
-    .control-btn:hover { color: var(--accent); border-color: rgba(0,220,130,0.4); }
-    .control-btn .icon-pause { display: none; }
-    .is-playing .control-btn.play .icon-play { display: none; }
-    .is-playing .control-btn.play .icon-pause { display: block; }
-    .mute-active .control-btn.mute .icon-volume { display: none; }
-    .mute-active .control-btn.mute .icon-muted { display: block; }
+    .control-btn {
+        color: var(--text);
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+    }
+    .control-btn:hover {
+        color: var(--accent);
+        border-color: rgba(0, 220, 130, 0.4);
+    }
+    .control-btn .icon-pause {
+        display: none;
+    }
+    .is-playing .control-btn.play .icon-play {
+        display: none;
+    }
+    .is-playing .control-btn.play .icon-pause {
+        display: block;
+    }
+    .mute-active .control-btn.mute .icon-volume {
+        display: none;
+    }
+    .mute-active .control-btn.mute .icon-muted {
+        display: block;
+    }
 
-    .progress { position: relative; flex: 1; height: 8px; background: rgba(255,255,255,0.08); border-radius: 999px; cursor: pointer; overflow: hidden; }
-    .progress .buffer { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: rgba(255,255,255,0.18); }
-    .progress .bar { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: var(--accent); box-shadow: 0 0 12px var(--glow); }
+    /* Progress/time removed to prevent scrubbing */
 
-    .time { color: var(--text-secondary); font-variant-numeric: tabular-nums; font-size: 12px; }
-
-    .volume { width: 90px; appearance: none; height: 6px; background: rgba(255,255,255,0.1); border-radius: 999px; cursor: pointer; }
-    .volume::-webkit-slider-thumb { appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(0,220,130,0.18); border: none; }
-    .volume::-moz-range-thumb { width: 14px; height: 14px; border: none; border-radius: 50%; background: var(--accent); }
+    .volume {
+        width: 90px;
+        appearance: none;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        cursor: pointer;
+    }
+    .volume::-webkit-slider-thumb {
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px rgba(0, 220, 130, 0.18);
+        border: none;
+    }
+    .volume::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        border: none;
+        border-radius: 50%;
+        background: var(--accent);
+    }
 
     @media (max-width: 768px) {
-        .custom-controls { gap: 8px; padding: 8px; }
-        .time { display: none; }
-        .volume { width: 70px; }
+        .custom-controls {
+            gap: 8px;
+            padding: 8px;
+        }
+        /* time removed on mobile too */
+        .volume {
+            width: 70px;
+        }
     }
 
     /* Reactions overlay */
@@ -1852,49 +1965,17 @@ import Layout from "../layouts/Layout.astro";
     });
 
     // --- Custom Video Controls ---
-    const video = document.getElementById("masterclass-video") as HTMLVideoElement | null;
+    const video = document.getElementById(
+        "masterclass-video",
+    ) as HTMLVideoElement | null;
     const wrapper = video?.parentElement as HTMLElement | null;
-    const controls = document.getElementById("playerControls");
     const bigPlay = document.getElementById("bigPlay");
     const playPause = document.getElementById("playPause");
     const muteToggle = document.getElementById("muteToggle");
-    const volumeSlider = document.getElementById("volumeSlider") as HTMLInputElement | null;
-    const progressContainer = document.getElementById("progressContainer");
-    const progressBar = document.getElementById("progressBar");
-    const bufferBar = document.getElementById("bufferBar");
-    const timeDisplay = document.getElementById("timeDisplay");
-    const fullscreenToggle = document.getElementById("fullscreenToggle");
-
-    function formatTime(totalSeconds: number): string {
-        if (!isFinite(totalSeconds)) return "00:00";
-        const minutes = Math.floor(totalSeconds / 60);
-        const seconds = Math.floor(totalSeconds % 60);
-        return `${minutes.toString().padStart(2, "0")}:${seconds
-            .toString()
-            .padStart(2, "0")}`;
-    }
-
-    function updateTime() {
-        if (!video || !timeDisplay) return;
-        const cur = formatTime(video.currentTime || 0);
-        const dur = formatTime(video.duration || 0);
-        timeDisplay.textContent = `${cur} / ${dur}`;
-    }
-
-    function updateProgress() {
-        if (!video || !progressBar) return;
-        const ratio = video.duration ? video.currentTime / video.duration : 0;
-        (progressBar as HTMLElement).style.width = `${Math.max(0, Math.min(1, ratio)) * 100}%`;
-    }
-
-    function updateBuffer() {
-        if (!video || !bufferBar) return;
-        if (video.buffered.length > 0) {
-            const end = video.buffered.end(video.buffered.length - 1);
-            const ratio = video.duration ? end / video.duration : 0;
-            (bufferBar as HTMLElement).style.width = `${Math.max(0, Math.min(1, ratio)) * 100}%`;
-        }
-    }
+    const volumeSlider = document.getElementById(
+        "volumeSlider",
+    ) as HTMLInputElement | null;
+    // Progress/time/fullscreen intentionally removed
 
     function setPlayingState(isPlaying: boolean) {
         if (!wrapper) return;
@@ -1916,21 +1997,12 @@ import Layout from "../layouts/Layout.astro";
         }
     }
 
-    function seekByClientX(ev: MouseEvent) {
-        if (!video || !progressContainer) return;
-        const rect = (progressContainer as HTMLElement).getBoundingClientRect();
-        const x = Math.max(0, Math.min(rect.width, ev.clientX - rect.left));
-        const ratio = x / rect.width;
-        if (isFinite(video.duration)) {
-            video.currentTime = ratio * video.duration;
-        }
-    }
+    // Prevent scrubbing: block seeking and keyboard skip
 
     if (video) {
         video.removeAttribute("controls");
-        updateTime();
-        updateProgress();
-        updateBuffer();
+
+        let lastTime = 0;
 
         bigPlay?.addEventListener("click", togglePlay);
         playPause?.addEventListener("click", togglePlay);
@@ -1939,13 +2011,16 @@ import Layout from "../layouts/Layout.astro";
         video.addEventListener("play", () => setPlayingState(true));
         video.addEventListener("pause", () => setPlayingState(false));
         video.addEventListener("timeupdate", () => {
-            updateTime();
-            updateProgress();
+            lastTime = video.currentTime || 0;
         });
-        video.addEventListener("progress", updateBuffer);
+        video.addEventListener("seeking", () => {
+            // Revert any attempt to seek forward/back
+            if (Math.abs((video.currentTime || 0) - lastTime) > 0.5) {
+                video.currentTime = lastTime;
+            }
+        });
         video.addEventListener("loadedmetadata", () => {
-            updateTime();
-            updateBuffer();
+            lastTime = 0;
         });
 
         muteToggle?.addEventListener("click", () => {
@@ -1972,14 +2047,21 @@ import Layout from "../layouts/Layout.astro";
             }
         });
 
-        progressContainer?.addEventListener("click", (ev) => seekByClientX(ev));
-
-        fullscreenToggle?.addEventListener("click", async () => {
-            const container = wrapper || video;
-            if (!document.fullscreenElement) {
-                await container?.requestFullscreen?.();
-            } else {
-                await document.exitFullscreen();
+        // Block keyboard seeking when video focused
+        (video as HTMLVideoElement).addEventListener("keydown", (e: KeyboardEvent) => {
+            const keysToBlock = [
+                "ArrowLeft",
+                "ArrowRight",
+                "Home",
+                "End",
+                "PageUp",
+                "PageDown",
+                "j",
+                "l",
+            ];
+            if (keysToBlock.includes(e.key)) {
+                e.preventDefault();
+                e.stopPropagation();
             }
         });
     }
