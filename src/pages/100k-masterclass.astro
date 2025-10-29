@@ -1645,6 +1645,55 @@ import Layout from "../layouts/Layout.astro";
         initializeViewerCount();
     });
 
+    // Timed chat messages synchronized with the video
+    const timedMessages: Array<{ t: number; a: string; m: string }> = [
+        { t: 1, a: "Emma", m: "100k en 30j ??? 😳" },
+        { t: 2, a: "Mehdi", m: "c koi ce début 😭🔥" },
+        { t: 3, a: "Jade", m: "3 secrets ? gooo 👀" },
+        { t: 5, a: "Lucas", m: "montre les preuves fr" },
+        { t: 6, a: "Léa", m: "wtf 24k une vidéo 😮" },
+        { t: 7, a: "Tom", m: "1h travail c tout ??" },
+        { t: 9, a: "Chloé", m: "il bluff pas là ?" },
+        { t: 10, a: "Karim", m: "même si t pars de 0 ?" },
+        { t: 12, a: "Sarah", m: "ah ouais il précise bien 👌" },
+        { t: 13, a: "Rayan", m: "pas d’abonnés 😭" },
+        { t: 14, a: "Nora", m: "pas de budget ni matos 🥹" },
+        { t: 15, a: "Alex", m: "et pas besoin montrer son visage 😭" },
+        { t: 16, a: "Julie", m: "là j’aime déjà le concept 😅" },
+        { t: 17, a: "Léo", m: "pas d’excuse mtn 💀" },
+        { t: 18, a: "Célia", m: "“méthode magique” mdr on connait" },
+        { t: 19, a: "Yass", m: "enfin qqn qui parle vrai" },
+        { t: 20, a: "Zoé", m: "“passe ton chemin” 💀💀" },
+        { t: 22, a: "Thomas", m: "il annonce la couleur direct" },
+        { t: 23, a: "Emma", m: "j’aime cette énergie" },
+        { t: 24, a: "Mehdi", m: "vrai business pas scam ✅" },
+        { t: 25, a: "Jade", m: "jsuis déjà captivée" },
+        { t: 26, a: "Lucas", m: "allez balance la suite" },
+        { t: 28, a: "Léa", m: "il dit “si t’es tjr là parfait” 🥶" },
+        { t: 29, a: "Tom", m: "j’suis là fr 😭" },
+        { t: 30, a: "Chloé", m: "ok go on continue" },
+        { t: 32, a: "Karim", m: "“boulot dodo” oufff" },
+        { t: 33, a: "Sarah", m: "ça sent le storytelling là" },
+        { t: 35, a: "Rayan", m: "oh jme reconnais fort 🥲" },
+        { t: 36, a: "Nora", m: "les études le CDI tout ça pr ça 😩" },
+        { t: 38, a: "Alex", m: "il décrit ma vie 💀" },
+        { t: 39, a: "Julie", m: "jle vis rn jsuis au taf 😭" },
+        { t: 41, a: "Léo", m: "“vivre pr les week-ends” jppp" },
+        { t: 42, a: "Célia", m: "fatigue h24 c’est moi" },
+        { t: 44, a: "Yass", m: "j’ai les larmes un peu là" },
+        { t: 45, a: "Zoé", m: "réal af 😔" },
+        { t: 47, a: "Thomas", m: "“pourquoi pas moi ?” 🥹" },
+        { t: 48, a: "Emma", m: "jsens que ça va basculer" },
+        { t: 50, a: "Mehdi", m: "ce passage il pique" },
+        { t: 52, a: "Jade", m: "trop crevé pr changer les choses… 😩" },
+        { t: 54, a: "Lucas", m: "c moi tous les soirs 😭" },
+        { t: 56, a: "Léa", m: "il touche à la vérité là" },
+        { t: 58, a: "Tom", m: "j’ai des frissons fr" },
+        { t: 59, a: "Chloé", m: "allez raconte la suite 🔥" },
+        { t: 60, a: "Karim", m: "courage du gars insane 💯" },
+    ];
+    let timedCursor = 0;
+
     // Timer functionality
     function initializeTimer() {
         let timeLeft = 5; // 5 secondes pour test (au lieu de 12 * 60)
@@ -1989,6 +2038,14 @@ import Layout from "../layouts/Layout.astro";
         video.addEventListener("pause", () => setPlayingState(false));
         video.addEventListener("timeupdate", () => {
             lastTime = video.currentTime || 0;
+            // Flush any timed chat messages whose time has passed
+            while (
+                timedCursor < timedMessages.length &&
+                (video.currentTime || 0) + 0.05 >= timedMessages[timedCursor].t
+            ) {
+                const entry = timedMessages[timedCursor++];
+                addChatMessage(entry.a, entry.m, null);
+            }
         });
         video.addEventListener("seeking", () => {
             // Revert any attempt to seek forward/back
@@ -1998,6 +2055,7 @@ import Layout from "../layouts/Layout.astro";
         });
         video.addEventListener("loadedmetadata", () => {
             lastTime = 0;
+            timedCursor = 0;
         });
 
         // mute button removed; keep slider-based volume
