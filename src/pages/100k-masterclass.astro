@@ -554,7 +554,8 @@ import Layout from "../layouts/Layout.astro";
             rgba(10, 10, 10, 0.3) 60%,
             rgba(10, 10, 10, 0)
         );
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        /* Remove hairline between video and controls */
+        border-top: none;
         z-index: 6;
     }
     .control-btn {
@@ -2048,21 +2049,24 @@ import Layout from "../layouts/Layout.astro";
         });
 
         // Block keyboard seeking when video focused
-        (video as HTMLVideoElement).addEventListener("keydown", (e: KeyboardEvent) => {
-            const keysToBlock = [
-                "ArrowLeft",
-                "ArrowRight",
-                "Home",
-                "End",
-                "PageUp",
-                "PageDown",
-                "j",
-                "l",
-            ];
-            if (keysToBlock.includes(e.key)) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-        });
+        (video as HTMLVideoElement).addEventListener(
+            "keydown",
+            (e: KeyboardEvent) => {
+                const keysToBlock = [
+                    "ArrowLeft",
+                    "ArrowRight",
+                    "Home",
+                    "End",
+                    "PageUp",
+                    "PageDown",
+                    "j",
+                    "l",
+                ];
+                if (keysToBlock.includes(e.key)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            },
+        );
     }
 </script>
