@@ -34,13 +34,15 @@ import Layout from "../layouts/Layout.astro";
         <!-- Left Column: Video + Info -->
         <div class="video-section">
             <div class="video-wrapper">
-                <iframe
-                    id="youtube-player"
-                    src="https://www.youtube.com/embed/CFiUE5JKusc?enablejsapi=1&start=27&rel=0&modestbranding=1&controls=1"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
+                <video
+                    id="masterclass-video"
+                    controls
+                    playsinline
+                    preload="metadata"
                 >
-                </iframe>
+                    <source src="https://sonnycourt-videos-public.b-cdn.net/vide%CC%81o%20page%20de%20vente-pf8ul362br.mp4" type="video/mp4" />
+                    Votre navigateur ne supporte pas la lecture vidéo.
+                </video>
                 <div class="reactions-overlay" id="reactionsOverlay"></div>
             </div>
 
@@ -409,6 +411,13 @@ import Layout from "../layouts/Layout.astro";
         width: 100%;
         height: 100%;
         border: none;
+    }
+
+    .video-wrapper video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        background: #000;
     }
 
     /* Reactions overlay */
