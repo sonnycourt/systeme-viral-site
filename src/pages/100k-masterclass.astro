@@ -87,7 +87,7 @@ import Layout from "../layouts/Layout.astro";
                                 fill="currentColor"></path>
                         </svg>
                     </button>
-                    
+
                     <input
                         class="volume"
                         id="volumeSlider"
@@ -509,6 +509,11 @@ import Layout from "../layouts/Layout.astro";
     }
     .big-play.hidden {
         display: none;
+    }
+    .big-play svg {
+        /* slight optical centering to the right */
+        transform: translateX(1px);
+        pointer-events: none;
     }
 
     .custom-controls {
