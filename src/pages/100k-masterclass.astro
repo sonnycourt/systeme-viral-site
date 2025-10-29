@@ -1550,60 +1550,7 @@ import Layout from "../layouts/Layout.astro";
 </style>
 
 <script>
-    // Simulated chat messages with timestamps (in seconds)
-    const scheduledMessages = [
-        {
-            time: 5,
-            author: "Marie",
-            message: "Super excité !",
-            badge: null,
-        },
-        {
-            time: 30,
-            author: "Thomas",
-            message: "Wow 🤯",
-            badge: null,
-        },
-        {
-            time: 60,
-            author: "Sophie",
-            message: "Trop bien",
-            badge: null,
-        },
-        { time: 90, type: "reaction", emoji: "🔥" },
-        {
-            time: 120,
-            author: "Lucas",
-            message: "Merci !",
-            badge: null,
-        },
-        {
-            time: 180,
-            author: "Emma",
-            message: "Top 💎",
-            badge: null,
-        },
-        { time: 240, type: "reaction", emoji: "💰" },
-        {
-            time: 300,
-            author: "Alex",
-            message: "Génial",
-            badge: null,
-        },
-        {
-            time: 420,
-            author: "Julie",
-            message: "Incroyable",
-            badge: null,
-        },
-        { time: 540, type: "reaction", emoji: "🚀" },
-        {
-            time: 600,
-            author: "Marc",
-            message: "J'adore",
-            badge: null,
-        },
-    ];
+    // Removed seed messages: only timed messages provided by owner are used
 
     // Chat functions
     const chatMessages = document.getElementById("chatMessages");
@@ -1623,17 +1570,7 @@ import Layout from "../layouts/Layout.astro";
             }
         }
 
-        scheduledMessages.forEach((msg) => {
-            if (msg.type !== "reaction" && msg.type !== "system") {
-                setTimeout(() => {
-                    addChatMessage(
-                        msg.author || "",
-                        msg.message || "",
-                        msg.badge || null,
-                    );
-                }, Math.random() * 2000);
-            }
-        });
+        // No default chat messages injected
 
         // Initialize timer
         initializeTimer();
