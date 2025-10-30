@@ -105,24 +105,24 @@ import Layout from "../layouts/Layout.astro";
             <div class="video-info">
                 <div class="video-chapters">
                     <div class="chapter active" data-time="0" data-chapter="0">
-                        L'introduction
+                        Intro
                     </div>
-                    <div class="chapter" data-time="300" data-chapter="1">
+                    <div class="chapter" data-time="39" data-chapter="1">
+                        Mon expérience
+                    </div>
+                    <div class="chapter" data-time="138" data-chapter="2">
                         La preuve
                     </div>
-                    <div class="chapter" data-time="600" data-chapter="2">
-                        Le secret #1
+                    <div class="chapter" data-time="322" data-chapter="3">
+                        Secret #1
                     </div>
-                    <div class="chapter" data-time="900" data-chapter="3">
-                        Le secret #2
+                    <div class="chapter" data-time="502" data-chapter="4">
+                        Secret #2
                     </div>
-                    <div class="chapter" data-time="1200" data-chapter="4">
-                        Le secret #3
+                    <div class="chapter" data-time="712" data-chapter="5">
+                        Secret #3
                     </div>
-                    <div class="chapter" data-time="1500" data-chapter="5">
-                        Le mensonge
-                    </div>
-                    <div class="chapter" data-time="1800" data-chapter="6">
+                    <div class="chapter" data-time="1011" data-chapter="6">
                         La solution
                     </div>
                 </div>
@@ -744,6 +744,32 @@ import Layout from "../layouts/Layout.astro";
         text-shadow: 0 0 40px rgba(0, 220, 130, 0.5);
         display: block;
         line-height: 1;
+    }
+
+    /* Style affiné pour l'état débloqué (plus en phase avec le branding) */
+    .timer-button.unlocked .timer-countdown {
+        font-family: inherit; /* revenir à la typo principale du site */
+        font-weight: 800;
+        /* taille responsive pour éviter le dépassement */
+        font-size: clamp(28px, 6vw, 44px);
+        letter-spacing: 1px;
+        background: linear-gradient(
+            135deg,
+            var(--accent) 0%,
+            var(--accent-bright) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-fill-color: transparent;
+        color: transparent;
+        text-shadow: 0 0 24px rgba(0, 220, 130, 0.45);
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .timer-button.unlocked .timer-label {
+        color: var(--accent-bright);
+        opacity: 0.95;
     }
 
     .timer-cta {
@@ -1584,50 +1610,160 @@ import Layout from "../layouts/Layout.astro";
 
     // Timed chat messages synchronized with the video
     const timedMessages: Array<{ t: number; a: string; m: string }> = [
-        { t: 1, a: "Emma", m: "100k en 30j ??? 😳" },
-        { t: 2, a: "Mehdi", m: "c koi ce début 😭🔥" },
-        { t: 3, a: "Jade", m: "3 secrets ? gooo 👀" },
-        { t: 5, a: "Lucas", m: "montre les preuves fr" },
-        { t: 6, a: "Léa", m: "wtf 24k une vidéo 😮" },
-        { t: 7, a: "Tom", m: "1h travail c tout ??" },
-        { t: 9, a: "Chloé", m: "il bluff pas là ?" },
-        { t: 10, a: "Karim", m: "même si t pars de 0 ?" },
-        { t: 12, a: "Sarah", m: "ah ouais il précise bien 👌" },
-        { t: 13, a: "Rayan", m: "pas d’abonnés 😭" },
-        { t: 14, a: "Nora", m: "pas de budget ni matos 🥹" },
-        { t: 15, a: "Alex", m: "et pas besoin montrer son visage 😭" },
-        { t: 16, a: "Julie", m: "là j’aime déjà le concept 😅" },
-        { t: 17, a: "Léo", m: "pas d’excuse mtn 💀" },
-        { t: 18, a: "Célia", m: "“méthode magique” mdr on connait" },
-        { t: 19, a: "Yass", m: "enfin qqn qui parle vrai" },
-        { t: 20, a: "Zoé", m: "“passe ton chemin” 💀💀" },
-        { t: 22, a: "Thomas", m: "il annonce la couleur direct" },
-        { t: 23, a: "Emma", m: "j’aime cette énergie" },
-        { t: 24, a: "Mehdi", m: "vrai business pas scam ✅" },
-        { t: 25, a: "Jade", m: "jsuis déjà captivée" },
-        { t: 26, a: "Lucas", m: "allez balance la suite" },
-        { t: 28, a: "Léa", m: "il dit “si t’es tjr là parfait” 🥶" },
-        { t: 29, a: "Tom", m: "j’suis là fr 😭" },
-        { t: 30, a: "Chloé", m: "ok go on continue" },
-        { t: 32, a: "Karim", m: "“boulot dodo” oufff" },
-        { t: 33, a: "Sarah", m: "ça sent le storytelling là" },
-        { t: 35, a: "Rayan", m: "oh jme reconnais fort 🥲" },
-        { t: 36, a: "Nora", m: "les études le CDI tout ça pr ça 😩" },
-        { t: 38, a: "Alex", m: "il décrit ma vie 💀" },
-        { t: 39, a: "Julie", m: "jle vis rn jsuis au taf 😭" },
-        { t: 41, a: "Léo", m: "“vivre pr les week-ends” jppp" },
-        { t: 42, a: "Célia", m: "fatigue h24 c’est moi" },
-        { t: 44, a: "Yass", m: "j’ai les larmes un peu là" },
-        { t: 45, a: "Zoé", m: "réal af 😔" },
-        { t: 47, a: "Thomas", m: "“pourquoi pas moi ?” 🥹" },
-        { t: 48, a: "Emma", m: "jsens que ça va basculer" },
-        { t: 50, a: "Mehdi", m: "ce passage il pique" },
-        { t: 52, a: "Jade", m: "trop crevé pr changer les choses… 😩" },
-        { t: 54, a: "Lucas", m: "c moi tous les soirs 😭" },
-        { t: 56, a: "Léa", m: "il touche à la vérité là" },
-        { t: 58, a: "Tom", m: "j’ai des frissons fr" },
-        { t: 59, a: "Chloé", m: "allez raconte la suite 🔥" },
-        { t: 60, a: "Karim", m: "courage du gars insane 💯" },
+        { t: 1, a: "Julien", m: "🔥" },
+        { t: 1, a: "Marie", m: "salut" },
+        { t: 1, a: "Thomas", m: "yo" },
+        { t: 3, a: "Sophie", m: "cc" },
+        { t: 5, a: "Lucas", m: "👋" },
+        { t: 8, a: "Emma", m: "❤️" },
+        { t: 8, a: "Nico", m: "hey" },
+        { t: 8, a: "Alex", m: "👀" },
+        { t: 11, a: "Clara", m: "bonjour" },
+        { t: 14, a: "David", m: "🚀" },
+        { t: 14, a: "Lina", m: "✨" },
+
+        { t: 17, a: "Pierre", m: "100k???" },
+        { t: 17, a: "Max", m: "wtf" },
+        { t: 17, a: "Julie", m: "😱" },
+        { t: 18, a: "Sarah", m: "serieux la?" },
+        { t: 20, a: "Kevin", m: "lol" },
+        { t: 20, a: "Tom", m: "🤔" },
+        { t: 21, a: "Léa", m: "c'est une blague?" },
+        { t: 24, a: "Manu", m: "fake" },
+        { t: 24, a: "Céline", m: "💰💰" },
+        { t: 26, a: "Romain", m: "impossible mdr" },
+        { t: 28, a: "Lisa", m: "👀👀👀" },
+        { t: 28, a: "Mehdi", m: "n'importe quoi" },
+
+        { t: 31, a: "Anna", m: "attends quoi" },
+        { t: 31, a: "Chris", m: "🤯" },
+        { t: 33, a: "Jade", m: "il ment c sur" },
+        { t: 35, a: "Bruno", m: "🧢" },
+        { t: 35, a: "Nadia", m: "wow" },
+        { t: 35, a: "Paul", m: "j'y crois pas" },
+        { t: 36, a: "Melissa", m: "QUOI" },
+        { t: 36, a: "Hugo", m: "il delire" },
+        { t: 39, a: "Camille", m: "mytho" },
+        { t: 39, a: "Enzo", m: "💸" },
+        { t: 42, a: "Nina", m: "bon j'ecoute" },
+
+        { t: 45, a: "Sam", m: "moi j'ai 0 followers" },
+        { t: 45, a: "Laura", m: "pareil" },
+        { t: 47, a: "Théo", m: "👍" },
+        { t: 49, a: "Chloé", m: "ok interessant" },
+        { t: 49, a: "Noah", m: "pas montrer ma tete jpp" },
+        { t: 50, a: "Inès", m: "parfait ca" },
+        { t: 53, a: "Loic", m: "💪" },
+        { t: 53, a: "Eva", m: "on verra bien" },
+
+        { t: 56, a: "Mika", m: "au moins il dit pas methode magique" },
+        { t: 56, a: "Rose", m: "🎯" },
+        { t: 58, a: "Fred", m: "ca change" },
+        { t: 60, a: "Amina", m: "honete au moins" },
+        { t: 62, a: "Kylian", m: "👏" },
+        { t: 62, a: "Zoé", m: "respect" },
+        { t: 62, a: "Marc", m: "✅" },
+
+        { t: 65, a: "Alice", m: "ptdr c'est ma vie ca" },
+        { t: 65, a: "Tony", m: "grave" },
+        { t: 65, a: "Maya", m: "je me leve pour rien" },
+        { t: 68, a: "Léo", m: "trop vrai..." },
+        { t: 68, a: "Julia", m: "😢" },
+        { t: 70, a: "Karim", m: "vivement vendredi tt les jours" },
+        { t: 73, a: "Lou", m: "chui mort de fatigue h24" },
+        { t: 73, a: "Dylan", m: "💔" },
+        { t: 73, a: "Elsa", m: "help" },
+
+        { t: 76, a: "Yasmine", m: "😔" },
+        { t: 78, a: "Nathan", m: "on est des esclaves modernes" },
+        { t: 78, a: "Manon", m: "tellement" },
+        { t: 80, a: "Ryan", m: "juste un numero au final" },
+        { t: 82, a: "Sofia", m: "💯" },
+        { t: 82, a: "Adam", m: "real" },
+        { t: 82, a: "Lola", m: "ca fait mal" },
+
+        { t: 85, a: "Vincent", m: "il a tout plaqué le fou" },
+        { t: 85, a: "Iris", m: "balls of steel" },
+        { t: 87, a: "Oscar", m: "😱" },
+        { t: 89, a: "Nora", m: "joserai jamais perso" },
+        { t: 89, a: "Axel", m: "gros respect" },
+        { t: 91, a: "Luna", m: "8 ans de youtube??" },
+        { t: 91, a: "Gabriel", m: "aie" },
+        { t: 93, a: "Alicia", m: "ca fait beaucoup" },
+
+        { t: 95, a: "Victor", m: "il a du morfler" },
+        { t: 97, a: "Mia", m: "🙏" },
+        { t: 97, a: "Louis", m: "1 semaine pour une video pfff" },
+        { t: 100, a: "Jade", m: "abusé" },
+        { t: 102, a: "Ben", m: "au moins il avait les vues lui" },
+        { t: 102, a: "Olivia", m: "ouais mais 0 thune" },
+        { t: 104, a: "Jules", m: "ca craint" },
+        { t: 104, a: "Celia", m: "😓" },
+
+        { t: 107, a: "Antoine", m: "dormir c'est surfait de toute facon" },
+        { t: 107, a: "Sara", m: "😴" },
+        { t: 110, a: "Remi", m: "il bossait plus qu'avant mdrrr" },
+        { t: 112, a: "Leila", m: "l'ironie" },
+        { t: 112, a: "Tim", m: "💀" },
+        { t: 114, a: "Elena", m: "sad" },
+
+        { t: 117, a: "Paolo", m: "ah il parle des shorts" },
+        { t: 117, a: "Amy", m: "tiktok berk" },
+        { t: 119, a: "Simon", m: "c'est pour les gosses non?" },
+        { t: 119, a: "Fatima", m: "moi j'aime bien" },
+        { t: 119, a: "Dan", m: "👀" },
+        { t: 122, a: "Charlotte", m: "bah si ca marche..." },
+        { t: 124, a: "Yann", m: "les experts disent nimporte quoi" },
+        { t: 124, a: "Marine", m: "comme dab" },
+        { t: 126, a: "Julien", m: "prouve nous alors" },
+
+        { t: 129, a: "Lucie", m: "c'est quoi cette histoire de manifestation" },
+        { t: 129, a: "Alex", m: "😂" },
+        { t: 131, a: "Thomas", m: "niche de ouf" },
+        { t: 133, a: "Sophie", m: "jamais entendu parler" },
+        { t: 133, a: "Emma", m: "et il a fait 115k avec ca??" },
+        { t: 135, a: "Max", m: "IMPOSSIBLE" },
+        { t: 135, a: "Pierre", m: "😵" },
+        { t: 135, a: "Marie", m: "attends j'ai mal compris la" },
+        { t: 138, a: "Lucas", m: "200 balles la formation cest tout?" },
+
+        { t: 140, a: "Clara", m: "mais comment il a fait autant de ventes" },
+        { t: 140, a: "David", m: "🤯🤯" },
+        { t: 142, a: "Kevin", m: "bah si ca marche dans ce truc chelou" },
+        { t: 144, a: "Laura", m: "ca peut marcher partout en fait" },
+        { t: 144, a: "Nina", m: "pas con" },
+        { t: 146, a: "Hugo", m: "jsuis dans le fitness ca peut le faire" },
+        { t: 148, a: "Paul", m: "crypto ca doit cartonner" },
+        { t: 148, a: "Lisa", m: "💡" },
+
+        { t: 151, a: "Théo", m: "pas besoin detre connu alors" },
+        { t: 151, a: "Enzo", m: "👌" },
+        { t: 153, a: "Manu", m: "il gagne plus qu'un medecin lol" },
+        { t: 155, a: "Julie", m: "10k le medecin" },
+        { t: 155, a: "Sam", m: "chaud" },
+        { t: 157, a: "Tom", m: "🔥🔥" },
+
+        { t: 160, a: "Léa", m: "montre nous les preuves stp" },
+        { t: 160, a: "Chris", m: "👀" },
+        { t: 162, a: "Bruno", m: "ah voila les screens" },
+        { t: 162, a: "Anna", m: "putain c'est vrai" },
+        { t: 164, a: "Mehdi", m: "95k + 28k echelonné" },
+        { t: 164, a: "Jade", m: "😱" },
+        { t: 166, a: "Rose", m: "ca fait bien 115k" },
+
+        { t: 168, a: "Fred", m: "meme apres les remboursements il dit" },
+        { t: 170, a: "Noah", m: "wow" },
+        { t: 170, a: "Chloé", m: "ok la il a mon attention" },
+        { t: 172, a: "Maya", m: "j'y croyais pas mais la..." },
+        { t: 172, a: "Tony", m: "🎯" },
+        { t: 174, a: "Alice", m: "donc pas de youtube long?" },
+
+        { t: 176, a: "Loic", m: "que tiktok et insta alors" },
+        { t: 176, a: "Eva", m: "+ fb apparemment" },
+        { t: 178, a: "Marc", m: "il a fait qu'une video youtube normal" },
+        { t: 180, a: "Zoé", m: "et ca a rien changé au final" },
+        { t: 180, a: "Ryan", m: "les shorts ca tue alors" },
+        { t: 180, a: "Mika", m: "🚀" },
     ];
     let timedCursor = 0;
 
@@ -1652,6 +1788,7 @@ import Layout from "../layouts/Layout.astro";
 
                 // Activer le bouton et changer le texte
                 timerButton.classList.remove("disabled");
+                timerButton.classList.add("unlocked");
                 timerButton.removeAttribute("disabled");
                 timerLabel.textContent = "OFFRE DISPONIBLE";
 
@@ -1671,45 +1808,40 @@ import Layout from "../layouts/Layout.astro";
     // Progress Bar functionality - Chapitres animés
     function initializeProgressBar() {
         const chapters = document.querySelectorAll(".chapter");
-        const totalDuration = 12 * 60 * 1000; // 12 minutes en millisecondes
-        const startTime = Date.now();
-
-        // Définir les timestamps des chapitres (en secondes)
         const chapterTimestamps = [
-            0, // 0:00 - L'introduction
-            102.86, // ~1:43 - La preuve (1/7 de 12min)
-            205.71, // ~3:26 - Le secret #1 (2/7 de 12min)
-            308.57, // ~5:09 - Le secret #2 (3/7 de 12min)
-            411.43, // ~6:51 - Le secret #3 (4/7 de 12min)
-            514.29, // ~8:34 - Le mensonge (5/7 de 12min)
-            617.14, // ~10:17 - La solution (6/7 de 12min)
+            0, // Intro
+            39, // Mon expérience
+            138, // La preuve
+            322, // Secret #1
+            502, // Secret #2
+            712, // Secret #3
+            1011, // La solution
         ];
 
-        function updateProgress() {
-            const elapsed = Date.now() - startTime;
-            const currentSecond = elapsed / 1000;
+        const videoEl = document.getElementById(
+            "masterclass-video",
+        ) as HTMLVideoElement | null;
+        if (!videoEl) return;
 
+        function updateByTime(currentSecond: number) {
             chapterTimestamps.forEach((timestamp, index) => {
                 const nextTimestamp =
-                    chapterTimestamps[index + 1] || totalDuration / 1000;
+                    chapterTimestamps[index + 1] ??
+                    (videoEl!.duration || Number.POSITIVE_INFINITY);
 
                 if (
                     currentSecond >= timestamp &&
                     currentSecond < nextTimestamp
                 ) {
-                    // Chapitre actif - brille et pulse
                     chapters[index]?.classList.add("active");
                     chapters[index]?.classList.remove("completed");
 
-                    // Calculer le pourcentage de progression dans ce chapitre
                     const chapterDuration = nextTimestamp - timestamp;
                     const chapterElapsed = currentSecond - timestamp;
                     const chapterProgress = Math.min(
                         (chapterElapsed / chapterDuration) * 100,
                         100,
                     );
-
-                    // Mettre à jour la barre de progression du chapitre
                     const chapter = chapters[index] as HTMLElement;
                     if (chapter) {
                         chapter.style.setProperty(
@@ -1718,35 +1850,26 @@ import Layout from "../layouts/Layout.astro";
                         );
                     }
                 } else if (currentSecond >= nextTimestamp) {
-                    // Chapitre complété - reste vert avec check
                     chapters[index]?.classList.remove("active");
                     chapters[index]?.classList.add("completed");
-
-                    // Reset la barre de progression
                     const chapter = chapters[index] as HTMLElement;
                     if (chapter) {
                         chapter.style.setProperty("--chapter-progress", "0%");
                     }
                 } else {
-                    // Chapitre non atteint - gris
                     chapters[index]?.classList.remove("active", "completed");
-
-                    // Reset la barre de progression
                     const chapter = chapters[index] as HTMLElement;
                     if (chapter) {
                         chapter.style.setProperty("--chapter-progress", "0%");
                     }
                 }
             });
-
-            // Continuer l'animation si pas terminé
-            if (elapsed < totalDuration) {
-                requestAnimationFrame(updateProgress);
-            }
         }
 
-        // Démarrer l'animation
-        requestAnimationFrame(updateProgress);
+        videoEl.addEventListener("timeupdate", () =>
+            updateByTime(videoEl!.currentTime || 0),
+        );
+        videoEl.addEventListener("loadedmetadata", () => updateByTime(0));
     }
 
     // Palette cohérente avec le style vert néon (20 couleurs)
@@ -1916,15 +2039,20 @@ import Layout from "../layouts/Layout.astro";
         closeCTA();
     }
 
-    // Chapter navigation
+    // Chapter navigation (seek video)
+    let allowProgrammaticSeek = false;
     document.querySelectorAll(".chapter").forEach((chapter) => {
         chapter.addEventListener("click", () => {
             const time = parseInt((chapter as HTMLElement).dataset.time || "0");
-            // Would need YouTube API to seek to time
-            document
-                .querySelectorAll(".chapter")
-                .forEach((c) => c.classList.remove("active"));
-            chapter.classList.add("active");
+            if (video) {
+                allowProgrammaticSeek = true;
+                video.currentTime = Math.max(0, time);
+                // Optionally play
+                if (video.paused) video.play();
+                setTimeout(() => {
+                    allowProgrammaticSeek = false;
+                }, 150);
+            }
         });
     });
 
@@ -1985,7 +2113,8 @@ import Layout from "../layouts/Layout.astro";
             }
         });
         video.addEventListener("seeking", () => {
-            // Revert any attempt to seek forward/back
+            // Autoriser les seeks déclenchés par les chapitres, bloquer le reste
+            if (allowProgrammaticSeek) return;
             if (Math.abs((video.currentTime || 0) - lastTime) > 0.5) {
                 video.currentTime = lastTime;
             }

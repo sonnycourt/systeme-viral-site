@@ -1,0 +1,1107 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Félicitations - SYSTÈME VIRAL 100K™ - Prévente Réussie"
+    description="Félicitations pour ton inscription à la prévente du Système Viral 100K™ ! Découvre maintenant ton accès exclusif à la formation complète."
+    image="/media/systeme-viral-banner-final.webp"
+    canonical="/prevente-felicitation"
+>
+    <!-- Background effects -->
+    <div class="gradient-bg"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 style="margin: 0 0 0 0; padding-top: 40px;">
+                        FÉLICITATIONS<br />
+                        <span class="gradient-text">TU AS RÉUSSI</span>
+                    </h1>
+
+                    <p class="hero-subtitle">
+                        Ton inscription à la prévente du Système Viral 100K™ a
+                        été confirmée avec succès !
+                    </p>
+
+                    <!-- Video Section (styled like 100k-masterclass) -->
+                    <div class="video-placeholder-section">
+                        <div class="video-placeholder-container">
+                            <div class="video-wrapper" id="felWrapper">
+                                <video
+                                    id="felVideo"
+                                    playsinline
+                                    preload="metadata"
+                                >
+                                    <source
+                                        src="https://sonnycourt-videos-public.b-cdn.net/01.%20FELICITATIONS%20-%20THANK%20YOU.mp4"
+                                        type="video/mp4"
+                                    />
+                                    Votre navigateur ne supporte pas la vidéo HTML5.
+                                </video>
+                                <button
+                                    class="big-play"
+                                    id="felBigPlay"
+                                    aria-label="Lecture"
+                                >
+                                    <svg
+                                        width="44"
+                                        height="44"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M5 3v18l15-9L5 3z"
+                                            fill="currentColor"></path>
+                                    </svg>
+                                </button>
+                                <div
+                                    class="custom-controls"
+                                    id="felControls"
+                                    role="group"
+                                    aria-label="Contrôles vidéo"
+                                >
+                                    <button
+                                        class="control-btn play"
+                                        id="felPlayPause"
+                                        aria-label="Lecture/Pause"
+                                    >
+                                        <svg
+                                            class="icon-play"
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M5 3v18l15-9L5 3z"
+                                                fill="currentColor"></path>
+                                        </svg>
+                                        <svg
+                                            class="icon-pause"
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M6 4h4v16H6zM14 4h4v16h-4z"
+                                                fill="currentColor"></path>
+                                        </svg>
+                                    </button>
+                                    <div class="time-display" id="felTime">
+                                        0:00 / 0:00
+                                    </div>
+                                    <input
+                                        class="progress"
+                                        id="felProgress"
+                                        type="range"
+                                        min="0"
+                                        max="100"
+                                        step="0.1"
+                                        value="0"
+                                        aria-label="Progression"
+                                    />
+                                    <input
+                                        class="volume"
+                                        id="felVolume"
+                                        type="range"
+                                        min="0"
+                                        max="1"
+                                        step="0.01"
+                                        value="1"
+                                        aria-label="Volume"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="video-description">
+                            <div class="description-header">
+                                <h3>Ce qui t'attend maintenant</h3>
+                                <p class="description-subtitle">
+                                    Tu fais désormais partie des pionniers qui
+                                    vont maîtriser le Système Viral 100K™ avant
+                                    tout le monde.
+                                </p>
+                            </div>
+
+                            <!-- Immediate Access section -->
+                            <div class="access-section">
+                                <div class="access-title">
+                                    <span class="access-emoji">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="lucide lucide-link"
+                                        >
+                                            <path
+                                                d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                                            ></path>
+                                            <path
+                                                d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                                            ></path>
+                                        </svg>
+                                    </span>
+                                    <span>Tes accès immédiats</span>
+                                </div>
+
+                                <div class="access-grid">
+                                    <!-- Card 1 -->
+                                    <div class="access-card">
+                                        <div class="access-number">1</div>
+                                        <div class="access-content">
+                                            <h4 class="access-heading">
+                                                Accès à la communauté Team
+                                                Système Viral
+                                            </h4>
+                                            <p class="access-text">
+                                                Rejoins le groupe privé des
+                                                pionniers. Échanges
+                                                stratégiques, annonces
+                                                officielles et accès prioritaire
+                                                avant l’ouverture du 4 décembre.
+                                            </p>
+                                            <a
+                                                class="access-cta"
+                                                href="https://team.systemeviral.com/join?invitation_token=0eaf94aa8b8bb6b07d79bf9dc7b32929c7dcba17-d5114535-bf89-422c-ab5b-5e08da619509"
+                                                ><span
+                                                    >Accéder à la Team Système
+                                                    Viral</span
+                                                >
+                                                <svg
+                                                    width="18"
+                                                    height="18"
+                                                    viewBox="0 0 20 20"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    ><path
+                                                        d="M7.5 15L12.5 10L7.5 5"
+                                                        stroke="#000"
+                                                        stroke-width="2"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    ></path></svg
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card 2 -->
+                                    <div class="access-card">
+                                        <div class="access-number">2</div>
+                                        <div class="access-content">
+                                            <h4 class="access-heading">
+                                                Accès à la communauté VOLT
+                                            </h4>
+                                            <p class="access-text">
+                                                Accès immédiat à VOLT:
+                                                communauté dev perso et
+                                                reprogrammation du subconscient.
+                                                Renforce ton mental, ton focus
+                                                et ta foi avant le démarrage
+                                                officiel. Avec ton bonus offert:
+                                                Le système souhaits-réalisés.
+                                            </p>
+                                            <a
+                                                class="access-cta"
+                                                href="https://volt.sonnycourt.com/join?invitation_token=75e5974002775f85106ef31114c240cdad371de4-a45c9cf5-4242-46df-88a8-95e2a9b481ce"
+                                                ><span>Accéder à VOLT</span>
+                                                <svg
+                                                    width="18"
+                                                    height="18"
+                                                    viewBox="0 0 20 20"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    ><path
+                                                        d="M7.5 15L12.5 10L7.5 5"
+                                                        stroke="#000"
+                                                        stroke-width="2"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                    ></path></svg
+                                                >
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Message Section -->
+        <section class="success-message-section">
+            <div class="container">
+                <div class="success-message-card">
+                    <div class="success-icon">
+                        <svg
+                            width="64"
+                            height="64"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.7089 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999"
+                                stroke="#01e988"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                            <path
+                                d="M22 4L12 14.01L9 11.01"
+                                stroke="#01e988"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <h2 class="success-title">
+                        <span class="highlight">FÉLICITATIONS !</span>
+                        <br />
+                        TU AS FAIT LE BON CHOIX
+                    </h2>
+                    <p class="success-description">
+                        En rejoignant le Système Viral 100K™ dès la prévente,
+                        tu bénéficies des meilleures conditions et d'un accès
+                        anticipé à une méthode qui a déjà fait ses preuves. Tu
+                        es maintenant sur le chemin de la liberté financière.
+                    </p>
+
+                    <div class="success-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-check">
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M20 6L9 17L4 12"
+                                        stroke="#01e988"
+                                        stroke-width="3"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </div>
+                            <span>Prix prévente garanti à vie</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-check">
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M20 6L9 17L4 12"
+                                        stroke="#01e988"
+                                        stroke-width="3"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </div>
+                            <span>Bonus exclusifs prévente</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-check">
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M20 6L9 17L4 12"
+                                        stroke="#01e988"
+                                        stroke-width="3"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </div>
+                            <span>Support prioritaire personnalisé</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-check">
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M20 6L9 17L4 12"
+                                        stroke="#01e988"
+                                        stroke-width="3"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                            </div>
+                            <span>Mises à jour gratuites à vie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <style>
+        /* Variables CSS identiques à la page 100k-masterclass */
+        :root {
+            --bg: #0a0a0a;
+            --bg-card: rgba(255, 255, 255, 0.02);
+            --bg-elevated: rgba(255, 255, 255, 0.05);
+            --text: #ffffff;
+            --text-secondary: #aaa;
+            --text-muted: #888;
+            --accent: #00dc82;
+            --accent-bright: #00f593;
+            --accent-glow: #00dc82;
+            --accent-dark: #00b86b;
+            --success: #00dc82;
+            --border: rgba(255, 255, 255, 0.1);
+            --glow: rgba(0, 220, 130, 0.3);
+            --danger: #ef4444;
+        }
+        /* Import base styles from offre-speciale */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                    circle at 20% 80%,
+                    rgba(1, 233, 136, 0.1) 0%,
+                    transparent 50%
+                ),
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(1, 233, 136, 0.1) 0%,
+                    transparent 50%
+                ),
+                radial-gradient(
+                    circle at 40% 40%,
+                    rgba(1, 233, 136, 0.05) 0%,
+                    transparent 50%
+                );
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 120px 0;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 64px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #01e988 0%, #00f5b4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+            margin-bottom: 60px;
+            font-weight: 500;
+        }
+
+        /* Video Placeholder Section */
+        .video-placeholder-section {
+            margin: 60px 0;
+        }
+
+        .video-placeholder-container {
+            margin-bottom: 60px;
+        }
+
+        .video-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            margin: 0 auto;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: #000;
+        }
+
+        .big-play {
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: radial-gradient(
+                closest-side,
+                var(--accent),
+                var(--accent-dark)
+            );
+            color: #0a0a0a;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border);
+            box-shadow:
+                0 0 0 6px rgba(0, 220, 130, 0.15),
+                0 10px 30px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition:
+                transform 0.15s ease,
+                box-shadow 0.15s ease;
+            z-index: 5;
+        }
+        .big-play:hover {
+            transform: scale(1.04);
+            box-shadow:
+                0 0 0 8px rgba(0, 220, 130, 0.18),
+                0 12px 36px rgba(0, 0, 0, 0.45);
+        }
+        .big-play.hidden {
+            display: none;
+        }
+        .big-play svg {
+            transform: translateX(1px);
+            pointer-events: none;
+        }
+
+        .custom-controls {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: linear-gradient(
+                to top,
+                rgba(10, 10, 10, 0.9),
+                rgba(10, 10, 10, 0.3) 60%,
+                rgba(10, 10, 10, 0)
+            );
+            border-top: none;
+            z-index: 6;
+        }
+        .time-display {
+            color: var(--text-secondary);
+            font-size: 12px;
+            min-width: 92px;
+            text-align: center;
+        }
+        .progress {
+            flex: 1;
+            appearance: none;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            cursor: pointer;
+        }
+        .progress::-webkit-slider-thumb {
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 4px rgba(0, 220, 130, 0.18);
+            border: none;
+        }
+        .progress::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border: none;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .control-btn {
+            color: var(--text);
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+        }
+        .control-btn:hover {
+            color: var(--accent);
+            border-color: rgba(0, 220, 130, 0.4);
+        }
+        .control-btn .icon-pause {
+            display: none;
+        }
+        .is-playing .control-btn.play .icon-play {
+            display: none;
+        }
+        .is-playing .control-btn.play .icon-pause {
+            display: block;
+        }
+
+        .volume {
+            width: 90px;
+            appearance: none;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            cursor: pointer;
+        }
+        .volume::-webkit-slider-thumb {
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 4px rgba(0, 220, 130, 0.18);
+            border: none;
+        }
+        .volume::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border: none;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* Video Description */
+        .video-description {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .description-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .description-header h3 {
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .description-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Immediate Access */
+        .access-section {
+            margin: 32px auto 0;
+            max-width: 1000px;
+        }
+        .access-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-bright);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(0, 220, 130, 0.3);
+            background: rgba(0, 220, 130, 0.08);
+            padding: 8px 14px;
+            border-radius: 999px;
+            margin-bottom: 32px;
+        }
+        .access-emoji {
+            filter: drop-shadow(0 0 8px rgba(0, 220, 130, 0.3));
+            display: inline-flex;
+            align-items: center;
+            line-height: 0;
+        }
+        .access-emoji svg {
+            display: block;
+            width: 18px;
+            height: 18px;
+        }
+        .access-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            justify-items: center;
+        }
+        .access-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+            width: min(980px, 100%);
+        }
+        /* add extra vertical separation between consecutive cards */
+        .access-card + .access-card {
+            margin-top: 24px;
+        }
+        /* extra space under the first card specifically */
+        .access-grid .access-card:first-child {
+            margin-bottom: 12px;
+        }
+        .access-card::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 220, 130, 0.35),
+                rgba(0, 245, 147, 0.12)
+            );
+            -webkit-mask:
+                linear-gradient(#000 0 0) content-box,
+                linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+        .access-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 220, 130, 0.35);
+            box-shadow:
+                0 16px 40px rgba(0, 0, 0, 0.35),
+                0 0 24px rgba(0, 220, 130, 0.12);
+        }
+        .access-number {
+            display: grid;
+            place-items: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-bright) 100%
+            );
+            color: #000;
+            font-weight: 900;
+            font-size: 14px;
+            box-shadow: 0 6px 18px rgba(0, 220, 130, 0.35);
+        }
+        .access-heading {
+            color: #fff;
+            font-size: 20px;
+            margin: 0 0 6px 0;
+        }
+        .access-text {
+            color: rgba(255, 255, 255, 0.75);
+            margin: 0 0 10px 0;
+            line-height: 1.5;
+            font-size: 16px;
+            max-width: 56ch;
+        }
+        .access-content {
+            text-align: center;
+        }
+        .access-cta {
+            color: #000;
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--accent-bright) 100%
+            );
+            padding: 12px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700; /* align with offre-speciale */
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 28px rgba(0, 220, 130, 0.3);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+        .access-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 36px rgba(0, 220, 130, 0.4);
+        }
+        .access-cta svg {
+            transition: transform 0.2s ease;
+        }
+        .access-cta:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* Next Steps Grid */
+        .next-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .next-step-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .next-step-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(1, 233, 136, 0.3);
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(1, 233, 136, 0.1);
+        }
+
+        .step-icon {
+            color: #01e988;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* CTA Section */
+        .cta-section-felicitation {
+            margin-top: 80px;
+        }
+
+        .cta-button-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #01e988 0%, #00f5b4 100%);
+            color: #000;
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 20px 50px;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow:
+                0 12px 35px rgba(1, 233, 136, 0.4),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .cta-button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 16px 45px rgba(1, 233, 136, 0.5),
+                inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-description {
+            text-align: center;
+        }
+
+        .cta-description p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* Success Message Section */
+        .success-message-section {
+            padding: 100px 0 72px;
+            background: linear-gradient(
+                135deg,
+                #0a0a0a 0%,
+                #0f0f0f 30%,
+                #0a0a0a 70%,
+                #080808 100%
+            );
+        }
+
+        .success-message-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow:
+                0 16px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .success-icon {
+            color: #01e988;
+            margin-bottom: 30px;
+        }
+
+        .success-title {
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            color: white;
+        }
+
+        .highlight {
+            color: #01e988;
+        }
+
+        .success-description {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .success-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px;
+            background: rgba(1, 233, 136, 0.05);
+            border: 1px solid rgba(1, 233, 136, 0.1);
+            border-radius: 12px;
+        }
+
+        .benefit-check {
+            flex-shrink: 0;
+        }
+
+        .benefit-item span {
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0;
+            }
+
+            /* Controls spacing on tablet */
+            .custom-controls {
+                gap: 8px;
+                padding: 8px;
+            }
+
+            .next-steps-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .next-step-card {
+                padding: 25px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .success-message-card {
+                padding: 40px 20px;
+            }
+
+            .success-benefits {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            /* No additional overrides needed for .video-wrapper on mobile */
+        }
+    </style>
+</Layout>
+
+<script>
+    // Minimal custom video controls (matching 100k-masterclass behavior)
+    const felVideo = document.getElementById(
+        "felVideo",
+    ) as HTMLVideoElement | null;
+    const felWrapper = document.getElementById(
+        "felWrapper",
+    ) as HTMLElement | null;
+    const felBigPlay = document.getElementById(
+        "felBigPlay",
+    ) as HTMLButtonElement | null;
+    const felPlayPause = document.getElementById(
+        "felPlayPause",
+    ) as HTMLButtonElement | null;
+    const felVolume = document.getElementById(
+        "felVolume",
+    ) as HTMLInputElement | null;
+    const felProgress = document.getElementById(
+        "felProgress",
+    ) as HTMLInputElement | null;
+    const felTime = document.getElementById("felTime") as HTMLElement | null;
+
+    if (felVideo) {
+        felVideo.removeAttribute("controls");
+
+        function setPlayingState(isPlaying: boolean) {
+            if (!felWrapper) return;
+            if (isPlaying) {
+                felWrapper.classList.add("is-playing");
+                felBigPlay && felBigPlay.classList.add("hidden");
+            } else {
+                felWrapper.classList.remove("is-playing");
+                felBigPlay && felBigPlay.classList.remove("hidden");
+            }
+        }
+
+        function togglePlay() {
+            if (!felVideo) return;
+            if (felVideo.paused) {
+                void felVideo.play();
+            } else {
+                felVideo.pause();
+            }
+        }
+
+        felBigPlay && felBigPlay.addEventListener("click", togglePlay);
+        felPlayPause && felPlayPause.addEventListener("click", togglePlay);
+        felVideo.addEventListener("click", togglePlay);
+        felVideo.addEventListener("play", () => setPlayingState(true));
+        felVideo.addEventListener("pause", () => setPlayingState(false));
+
+        function formatTime(seconds: number): string {
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60);
+            return `${m}:${s.toString().padStart(2, "0")}`;
+        }
+
+        function updateProgressUI() {
+            if (!felVideo) return;
+            const current = felVideo.currentTime || 0;
+            const total = felVideo.duration || 0;
+            if (felProgress && total > 0) {
+                const percent = (current / total) * 100;
+                felProgress.value = percent.toString();
+            }
+            if (felTime) {
+                const left = isFinite(total) && total > 0 ? total : 0;
+                felTime.textContent = `${formatTime(current)} / ${formatTime(left)}`;
+            }
+        }
+
+        felVideo.addEventListener("timeupdate", updateProgressUI);
+        felVideo.addEventListener("loadedmetadata", updateProgressUI);
+
+        felProgress &&
+            felProgress.addEventListener("input", (e: Event) => {
+                if (!felVideo) return;
+                const target = e.target as HTMLInputElement | null;
+                const percent = target ? parseFloat(target.value) : NaN;
+                if (
+                    !isNaN(percent) &&
+                    isFinite(felVideo.duration) &&
+                    felVideo.duration > 0
+                ) {
+                    felVideo.currentTime = (percent / 100) * felVideo.duration;
+                }
+            });
+
+        felVolume &&
+            felVolume.addEventListener("input", (e: Event) => {
+                const target = e.target as HTMLInputElement | null;
+                const value = target ? parseFloat(target.value) : NaN;
+                if (!isNaN(value) && felVideo) {
+                    felVideo.volume = value;
+                }
+            });
+    }
+</script>

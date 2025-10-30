@@ -1,6 +1,7 @@
 ---
 import SEO from "../components/SEO.astro";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 import GAConsentMode from "../components/GAConsentMode.astro";
 import "../styles/global.css";
@@ -38,8 +39,12 @@ const { title, description, image, canonical, noindex } = Astro.props;
 		<!-- Meta Pixel Code -->
 		<script src="/meta-pixel.js" defer></script>
 		<noscript>
-		  <img height="1" width="1" style="display:none"
-		       src="https://www.facebook.com/tr?id=812946297991293&ev=PageView&noscript=1"/>
+			<img
+				height="1"
+				width="1"
+				style="display:none"
+				src="https://www.facebook.com/tr?id=812946297991293&ev=PageView&noscript=1"
+			/>
 		</noscript>
 		<!-- End Meta Pixel Code -->
 	</head>
@@ -48,6 +53,7 @@ const { title, description, image, canonical, noindex } = Astro.props;
 		<main>
 			<slot />
 		</main>
+		<Footer />
 		<CookieConsent />
 	</body>
 </html>
