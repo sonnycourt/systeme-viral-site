@@ -239,6 +239,16 @@ async function handleStep1() {
     try {
         // Récupérer les paramètres UTM
         const utmParams = getUTMParams();
+        console.log('[Step 1] UTM params retrieved:', utmParams);
+        
+        const requestBody = {
+            name: firstName,
+            email: email,
+            step: "1",
+            utm_source: utmParams.utm_source || null,
+            utm_content: utmParams.utm_content || null,
+        };
+        console.log('[Step 1] Sending to MailerLite:', requestBody);
         
         // Send to MailerLite - Step 1
         const response = await fetch("/.netlify/functions/subscribe", {
@@ -246,13 +256,7 @@ async function handleStep1() {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                name: firstName,
-                email: email,
-                step: "1",
-                utm_source: utmParams.utm_source || null,
-                utm_content: utmParams.utm_content || null,
-            }),
+            body: JSON.stringify(requestBody),
         });
 
         const data = await response.json();
@@ -284,6 +288,16 @@ async function handleStep2() {
         const userData = getUserData();
         // Récupérer les paramètres UTM
         const utmParams = getUTMParams();
+        console.log('[Step 2] UTM params retrieved:', utmParams);
+        
+        const requestBody = {
+            email: userData.email,
+            avatar: selectedAvatar,
+            step: "2",
+            utm_source: utmParams.utm_source || null,
+            utm_content: utmParams.utm_content || null,
+        };
+        console.log('[Step 2] Sending to MailerLite:', requestBody);
         
         // Send to MailerLite - Step 2
         const response = await fetch("/.netlify/functions/subscribe", {
@@ -291,13 +305,7 @@ async function handleStep2() {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                email: userData.email,
-                avatar: selectedAvatar,
-                step: "2",
-                utm_source: utmParams.utm_source || null,
-                utm_content: utmParams.utm_content || null,
-            }),
+            body: JSON.stringify(requestBody),
         });
 
         const data = await response.json();
@@ -415,6 +423,16 @@ async function handleSubmit(event) {
     try {
         // Récupérer les paramètres UTM
         const utmParams = getUTMParams();
+        console.log('[Step 3] UTM params retrieved:', utmParams);
+        
+        const requestBody = {
+            email: getUserData().email,
+            phone: phoneNumber,
+            step: "3",
+            utm_source: utmParams.utm_source || null,
+            utm_content: utmParams.utm_content || null,
+        };
+        console.log('[Step 3] Sending to MailerLite:', requestBody);
         
         // Send to MailerLite - Step 3 (Final)
         const response = await fetch("/.netlify/functions/subscribe", {
@@ -422,13 +440,7 @@ async function handleSubmit(event) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                email: getUserData().email,
-                phone: phoneNumber,
-                step: "3",
-                utm_source: utmParams.utm_source || null,
-                utm_content: utmParams.utm_content || null,
-            }),
+            body: JSON.stringify(requestBody),
         });
 
         const data = await response.json();
