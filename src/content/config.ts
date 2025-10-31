@@ -10,7 +10,7 @@ const blogCollection = defineCollection({
     heroImage: z.string().optional(),
     category: z.string(),
     tags: z.array(z.string()).optional(),
-    author: z.string().default('Système Viral'),
+    author: z.string().default('Sonny Court'),
     featured: z.boolean().default(false),
     readTime: z.number().optional(), // Temps de lecture en minutes
     difficulty: z.enum(['Débutant', 'Intermédiaire', 'Avancé']).optional(),

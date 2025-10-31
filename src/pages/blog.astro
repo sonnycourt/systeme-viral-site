@@ -15,6 +15,20 @@ const searchQuery = "";
 const selectedCategory = "Tous les articles";
 ---
 
+<style>
+    /* STYLE INLINE CRITIQUE - Force le blanc sur les titres */
+    .blog-page .blog-hero h1,
+    .blog-page h1,
+    .blog-hero h1 {
+        color: #ffffff !important;
+        background: none !important;
+        background-image: none !important;
+        -webkit-background-clip: unset !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-clip: unset !important;
+    }
+</style>
+
 <Layout
     title="Blog - Stratégies Marketing Digital & Viral"
     description="Découvre les meilleures stratégies de marketing digital, techniques de viralisation et méthodes pour monétiser tes contenus courts."
@@ -28,12 +42,16 @@ const selectedCategory = "Tous les articles";
             <div class="hero-content">
                 <div class="badge">
                     <div class="badge-icon"></div>
-                    <span class="badge-text"
-                        >Stratégies testées • Résultats prouvés</span
-                    >
+                    <span class="badge-text">Nos articles</span>
                 </div>
 
-                <h1>Stratégies Marketing Digital</h1>
+                <h1
+                    style="color: #ffffff !important; background: none !important; background-image: none !important; -webkit-background-clip: unset !important; -webkit-text-fill-color: #ffffff !important; background-clip: unset !important;"
+                >
+                    Stratégies Marketing <span
+                        style="color: #00DC82 !important;">Digital</span
+                    >
+                </h1>
                 <p class="hero-subtitle">
                     Découvre les meilleures techniques de viralisation, méthodes
                     de monétisation<br />
@@ -102,13 +120,6 @@ const selectedCategory = "Tous les articles";
                                                     >
                                                         <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
                                                     </svg>
-                                                </div>
-                                            )}
-                                            {post.data.featured && (
-                                                <div class="featured-badge">
-                                                    <span>
-                                                        ⭐ Article vedette
-                                                    </span>
                                                 </div>
                                             )}
                                         </div>
@@ -198,6 +209,25 @@ const selectedCategory = "Tous les articles";
 </Layout>
 
 <style>
+    /* RÈGLES PRIORITAIRES - FORCER LE BLANC SUR LES TITRES DU BLOG */
+    .blog-page .blog-hero h1,
+    .blog-page h1,
+    .blog-hero h1 {
+        color: #ffffff !important;
+        background: none !important;
+        background-image: none !important;
+        -webkit-background-clip: unset !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-clip: unset !important;
+    }
+
+    /* Garder la couleur verte pour "Digital" dans le titre principal */
+    .blog-hero h1 span,
+    .blog-page h1 span {
+        color: #00dc82 !important;
+        -webkit-text-fill-color: #00dc82 !important;
+    }
+
     .blog-page {
         min-height: 100vh;
         padding-top: 100px;
@@ -309,20 +339,30 @@ const selectedCategory = "Tous les articles";
         }
     }
 
+    /* Règles spécifiques pour les titres du blog - Forcer le blanc */
+    .blog-page h1,
+    .blog-page .blog-hero h1,
+    .blog-hero h1 {
+        color: #ffffff !important;
+        background: none !important;
+        background-image: none !important;
+        -webkit-background-clip: unset !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-clip: unset !important;
+    }
+
     .blog-hero h1 {
         font-size: clamp(48px, 8vw, 72px);
         font-weight: 900;
         line-height: 1.1;
         margin-bottom: 24px;
         letter-spacing: -0.04em;
-        background: linear-gradient(
-            180deg,
-            #ffffff 0%,
-            var(--accent-bright) 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #ffffff !important;
+        background: none !important;
+        background-image: none !important;
+        -webkit-background-clip: unset !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-clip: unset !important;
         animation: fadeInUp 1s ease 0.2s both;
     }
 
@@ -515,11 +555,15 @@ const selectedCategory = "Tous les articles";
     .article-title {
         font-size: 20px;
         font-weight: 700;
-        color: var(--text);
+        color: #ffffff !important;
         line-height: 1.4;
         margin-bottom: 12px;
         letter-spacing: -0.01em;
         flex-grow: 1;
+        background: none !important;
+        -webkit-background-clip: unset !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-clip: unset !important;
     }
 
     .article-description {
@@ -620,6 +664,11 @@ const selectedCategory = "Tous les articles";
             font-size: 42px;
             line-height: 1.1;
             margin-bottom: 20px;
+            color: #ffffff !important;
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: #ffffff !important;
+            background-clip: unset !important;
         }
 
         .hero-subtitle {
@@ -645,6 +694,11 @@ const selectedCategory = "Tous les articles";
 
         .article-title {
             font-size: 16px;
+            color: #ffffff !important;
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: #ffffff !important;
+            background-clip: unset !important;
         }
 
         .article-description {
@@ -667,6 +721,11 @@ const selectedCategory = "Tous les articles";
 
         .article-title {
             font-size: 15px;
+            color: #ffffff !important;
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: #ffffff !important;
+            background-clip: unset !important;
         }
     }
 </style>

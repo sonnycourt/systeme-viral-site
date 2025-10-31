@@ -1,1 +1,0 @@
-import"https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js";
