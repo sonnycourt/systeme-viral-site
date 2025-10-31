@@ -282,6 +282,29 @@ const relatedPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 2); /
     }
 
     /* Styles pour le contenu Markdown */
+    .content-wrapper :global(a) {
+        display: inline-block;
+        background: linear-gradient(135deg, #00DC82 0%, #00B870 100%);
+        color: #000 !important;
+        text-decoration: none !important;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        margin: 8px 0;
+        line-height: 1.5;
+    }
+
+    .content-wrapper :global(a:hover) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 220, 130, 0.3);
+        background: linear-gradient(135deg, #00B870 0%, #00DC82 100%);
+    }
+
     .article-content a {
         display: inline-block;
         background: linear-gradient(135deg, #00DC82 0%, #00B870 100%);
