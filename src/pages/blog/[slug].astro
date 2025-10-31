@@ -284,7 +284,7 @@ const relatedPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 2); /
     /* Styles pour le contenu Markdown */
     .content-wrapper :global(a) {
         display: inline-block;
-        background: linear-gradient(135deg, #00DC82 0%, #00B870 100%);
+        background: linear-gradient(135deg, #00dc82 0%, #00b870 100%);
         color: #000 !important;
         text-decoration: none !important;
         padding: 12px 24px;
@@ -302,12 +302,12 @@ const relatedPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 2); /
     .content-wrapper :global(a:hover) {
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(0, 220, 130, 0.3);
-        background: linear-gradient(135deg, #00B870 0%, #00DC82 100%);
+        background: linear-gradient(135deg, #00b870 0%, #00dc82 100%);
     }
 
     .article-content a {
         display: inline-block;
-        background: linear-gradient(135deg, #00DC82 0%, #00B870 100%);
+        background: linear-gradient(135deg, #00dc82 0%, #00b870 100%);
         color: #000 !important;
         text-decoration: none !important;
         padding: 12px 24px;
@@ -324,7 +324,7 @@ const relatedPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 2); /
     .article-content a:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(0, 220, 130, 0.3);
-        background: linear-gradient(135deg, #00B870 0%, #00DC82 100%);
+        background: linear-gradient(135deg, #00b870 0%, #00dc82 100%);
     }
 
     /* Styles pour le contenu Markdown */
@@ -383,7 +383,7 @@ const relatedPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 2); /
     }
 
     .content-wrapper :global(blockquote) {
-        border-left: 4px solid #00DC82;
+        border-left: 4px solid #00dc82;
         padding-left: 20px;
         margin: 24px 0;
         font-style: italic;
@@ -393,9 +393,35 @@ const relatedPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 2); /
         border-radius: 0 12px 12px 0;
     }
 
+    /* Liens dans les blockquotes : liens simples verts */
+    .content-wrapper :global(blockquote a) {
+        display: inline;
+        background: none !important;
+        color: #00dc82 !important;
+        text-decoration: underline !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        font-weight: 600 !important;
+        font-size: inherit !important;
+        transition: all 0.2s ease !important;
+        border: none !important;
+        cursor: pointer !important;
+        text-align: left !important;
+        margin: 0 !important;
+        line-height: inherit !important;
+    }
+
+    .content-wrapper :global(blockquote a:hover) {
+        transform: none !important;
+        box-shadow: none !important;
+        background: none !important;
+        color: #00b870 !important;
+        text-decoration: underline !important;
+    }
+
     .content-wrapper :global(code) {
         background: rgba(0, 220, 130, 0.2);
-        color: #00DC82;
+        color: #00dc82;
         padding: 2px 6px;
         border-radius: 4px;
         font-size: 14px;

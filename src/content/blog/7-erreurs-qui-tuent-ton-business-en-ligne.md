@@ -176,7 +176,7 @@ Applique le **Triangle de Validation** :
 
 > [À ce stade, tu réalises probablement que tu fais plusieurs de ces erreurs. C'est normal : 95 % des créateurs en commettent au moins trois.
 >
-> Si tu veux découvrir le système complet qui évite ces pièges → [Système Viral 100K™](/inscription?utm_source=blog&utm_content=article_7_erreurs) pourrait t'intéresser.
+> Si tu veux découvrir le système complet qui évite ces pièges → [Système Viral 100K™](/offre-speciale?utm_source=blog&utm_content=article_7_erreurs) pourrait t'intéresser.
 >
 > Mais continuons d'abord avec les 3 dernières erreurs…]
 
@@ -273,7 +273,7 @@ Si après 30 jours tu n'as pas au minimum 10 K vues → le système ne marche pa
 
 > [⚠️ Avant de voir l'erreur #7 (celle qui maintient 95 % des créateurs dans la procrastination éternelle), petit rappel :
 >
-> Si tu veux éviter ces 7 erreurs et appliquer un système qui a généré 100 K € en 30 jours → [Système Viral 100K™](/inscription?utm_source=blog&utm_content=article_7_erreurs) est disponible ici.
+> Si tu veux éviter ces 7 erreurs et appliquer un système qui a généré 100 K € en 30 jours → [Système Viral 100K™](/offre-speciale?utm_source=blog&utm_content=article_7_erreurs) est disponible ici.
 >
 > Les inscriptions ferment bientôt.
 >
