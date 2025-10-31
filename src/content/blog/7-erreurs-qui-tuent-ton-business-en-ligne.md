@@ -351,7 +351,7 @@ Pas de la motivation temporaire.
 
 **Si l'option 3 te parle, j'ai une proposition** :
 
-→ [Découvre Système Viral 100K™](/inscription?utm_source=blog&utm_content=article_7_erreurs)
+→ [Découvre Système Viral 100K™](/offre-speciale?utm_source=blog&utm_content=article_7_erreurs)
 
 C'est le système exact qui a généré plus de 100 K € en 30 jours avec des vidéos d'une minute.
 
@@ -363,7 +363,7 @@ C'est le système exact qui a généré plus de 100 K € en 30 jours avec des v
 
 **Chaque jour d'attente = des vues perdues = des euros perdus.**
 
-→ [Rejoins Système Viral maintenant](/inscription?utm_source=blog&utm_content=article_7_erreurs)
+→ [Rejoins Système Viral maintenant](/offre-speciale?utm_source=blog&utm_content=article_7_erreurs)
 
 ---
 
