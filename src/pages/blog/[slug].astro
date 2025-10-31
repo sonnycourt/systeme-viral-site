@@ -19,7 +19,12 @@ const allPosts = await getCollection("blog");
 const relatedPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 2); // Prendre maximum 2 articles similaires
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
+<Layout
+    title={post.data.title}
+    description={post.data.description}
+    ogImage={post.data.heroImage || "/og-image.jpg"}
+    twitterImage={post.data.heroImage || "/og-image.jpg"}
+>
     <div class="article-page">
         <!-- Background effects -->
         <div class="gradient-bg"></div>
