@@ -73,6 +73,52 @@ Le Group ID est déjà configuré : `165545558631515349`
 - **Champs** : `phone`, `step: "3"`
 - **Redirection** : `https://systemeviral.com/100k-masterclass`
 
+## 🎯 Tracking UTM automatique
+
+Le système capture automatiquement les paramètres UTM et détecte la source des visiteurs :
+
+### Paramètres UTM capturés
+- `utm_source` : Source du trafic (tiktok, instagram, youtube, facebook, etc.)
+- `utm_content` : Contenu spécifique (si présent dans l'URL)
+
+### Détection automatique
+Si aucun paramètre UTM n'est présent dans l'URL, le système détecte automatiquement la source depuis le referrer :
+- **TikTok** : `tiktok.com` → `utm_source: tiktok`
+- **Instagram** : `instagram.com` → `utm_source: instagram`
+- **YouTube** : `youtube.com` ou `youtu.be` → `utm_source: youtube`
+- **Facebook** : `facebook.com` ou `fb.com` → `utm_source: facebook`
+- **Twitter/X** : `twitter.com` ou `x.com` → `utm_source: twitter`
+- **LinkedIn** : `linkedin.com` → `utm_source: linkedin`
+- **Snapchat** : `snapchat.com` → `utm_source: snapchat`
+- **Pinterest** : `pinterest.com` → `utm_source: pinterest`
+- **Moteurs de recherche** : Google, Bing, Yahoo, DuckDuckGo → `utm_source: organic`
+- **Autre referrer** : → `utm_source: other`
+- **Accès direct** : → `utm_source: direct`
+
+### Configuration des champs personnalisés dans MailerLite
+
+**IMPORTANT** : Avant que le tracking UTM fonctionne, tu dois créer les champs personnalisés dans MailerLite :
+
+1. **Va sur [MailerLite Dashboard](https://dashboard.mailerlite.com/)**
+2. **Clique sur "Audience" → "Fields"**
+3. **Crée les champs personnalisés suivants** :
+   - `utm_source` (Type: Text)
+   - `utm_content` (Type: Text)
+
+4. **Assure-toi que les noms des champs correspondent exactement** :
+   - `utm_source` (pas `utm_source_` ou autre variante)
+   - `utm_content` (pas `utm_content_` ou autre variante)
+
+### Stockage des UTM
+Les paramètres UTM sont stockés dans le localStorage du navigateur dès la première visite avec UTM. Ils sont conservés même si l'utilisateur navigue sur plusieurs pages avant de s'inscrire.
+
+### Utilisation dans MailerLite
+Une fois les champs créés, chaque inscription inclura automatiquement :
+- La source exacte du trafic (`utm_source`)
+- Le contenu spécifique si présent dans l'URL (`utm_content`)
+
+Tu peux ensuite créer des segments dans MailerLite basés sur `utm_source` pour voir d'où viennent tes meilleurs leads !
+
 ## 🎯 Segmentation des leads
 
 Les leads sont automatiquement taggés selon leur progression :

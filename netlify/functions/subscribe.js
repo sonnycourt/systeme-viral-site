@@ -28,7 +28,7 @@ export async function handler(event, context) {
   }
 
   try {
-    const { email, name, avatar, phone, step } = JSON.parse(event.body);
+    const { email, name, avatar, phone, step, utm_source, utm_content } = JSON.parse(event.body);
 
     // Validation de base
     if (!email || !step) {
@@ -78,7 +78,10 @@ export async function handler(event, context) {
             email: email,
             fields: {
               name: name,
-              step: '1'
+              step: '1',
+              // Ajouter les paramètres UTM comme champs personnalisés
+              ...(utm_source && { utm_source: utm_source }),
+              ...(utm_content && { utm_content: utm_content })
             },
             // Add to group on first step
             groups: [GROUP_ID]
@@ -105,7 +108,10 @@ export async function handler(event, context) {
             fields: {
               avatar: avatar,
               tag: avatarTag,
-              step: '2'
+              step: '2',
+              // Mettre à jour les paramètres UTM s'ils sont fournis
+              ...(utm_source && { utm_source: utm_source }),
+              ...(utm_content && { utm_content: utm_content })
             }
           };
           break;
@@ -125,7 +131,10 @@ export async function handler(event, context) {
             email: email,
             fields: {
               phone: phone,
-              step: '3'
+              step: '3',
+              // Finaliser avec les paramètres UTM s'ils sont fournis
+              ...(utm_source && { utm_source: utm_source }),
+              ...(utm_content && { utm_content: utm_content })
             }
           };
           break;

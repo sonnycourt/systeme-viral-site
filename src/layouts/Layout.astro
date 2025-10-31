@@ -46,6 +46,9 @@ const { title, description, image, canonical, noindex } = Astro.props;
 			/>
 		</noscript>
 		<!-- End Meta Pixel Code -->
+
+		<!-- UTM Tracker - Capture les paramètres UTM pour MailerLite -->
+		<script src="/src/scripts/utm-tracker.js"></script>
 	</head>
 	<body>
 		<GAConsentMode />

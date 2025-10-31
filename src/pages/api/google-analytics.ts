@@ -24,7 +24,7 @@ export async function GET({ request }) {
       topPages: [
         { page: '/offre-speciale', views: 856, conversions: 72 },
         { page: '/100k-masterclass', views: 324, conversions: 45 },
-        { page: '/accueil', views: 567, conversions: 12 }
+        { page: '/inscription', views: 567, conversions: 12 }
       ]
     },
     realTime: {

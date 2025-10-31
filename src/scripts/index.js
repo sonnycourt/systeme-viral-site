@@ -7,6 +7,14 @@ let openSoundStyle = "pop";
 let selectedAvatar = null;
 let selectedCountryCode = "33";
 
+// Fonction helper pour récupérer les paramètres UTM
+function getUTMParams() {
+    if (window.UTMTracker && typeof window.UTMTracker.get === 'function') {
+        return window.UTMTracker.get() || {};
+    }
+    return {};
+}
+
 // Configuration du son d'ouverture
 function setOpenSoundStyle(style) {
     openSoundStyle = style;
@@ -229,6 +237,9 @@ async function handleStep1() {
     localStorage.setItem('userFirstName', firstName);
 
     try {
+        // Récupérer les paramètres UTM
+        const utmParams = getUTMParams();
+        
         // Send to MailerLite - Step 1
         const response = await fetch("/.netlify/functions/subscribe", {
             method: "POST",
@@ -239,6 +250,8 @@ async function handleStep1() {
                 name: firstName,
                 email: email,
                 step: "1",
+                utm_source: utmParams.utm_source || null,
+                utm_content: utmParams.utm_content || null,
             }),
         });
 
@@ -269,6 +282,9 @@ async function handleStep2() {
 
     try {
         const userData = getUserData();
+        // Récupérer les paramètres UTM
+        const utmParams = getUTMParams();
+        
         // Send to MailerLite - Step 2
         const response = await fetch("/.netlify/functions/subscribe", {
             method: "POST",
@@ -279,6 +295,8 @@ async function handleStep2() {
                 email: userData.email,
                 avatar: selectedAvatar,
                 step: "2",
+                utm_source: utmParams.utm_source || null,
+                utm_content: utmParams.utm_content || null,
             }),
         });
 
@@ -395,6 +413,9 @@ async function handleSubmit(event) {
     console.log("Submitting with phone:", phoneNumber);
 
     try {
+        // Récupérer les paramètres UTM
+        const utmParams = getUTMParams();
+        
         // Send to MailerLite - Step 3 (Final)
         const response = await fetch("/.netlify/functions/subscribe", {
             method: "POST",
@@ -405,6 +426,8 @@ async function handleSubmit(event) {
                 email: getUserData().email,
                 phone: phoneNumber,
                 step: "3",
+                utm_source: utmParams.utm_source || null,
+                utm_content: utmParams.utm_content || null,
             }),
         });
 
