@@ -465,14 +465,31 @@ async function handleSubmit(event) {
 function showSuccess() {
     const step3 = document.getElementById("step3");
     const successStep = document.getElementById("successStep");
+    const modalOverlay = document.getElementById("modalOverlay");
+    const loadingScreen = document.getElementById("loadingScreen");
 
     if (step3) step3.classList.add("hidden");
     if (successStep) successStep.classList.remove("hidden");
 
-    // Redirect to 100k-masterclass after success message
+    // Afficher le success message brièvement, puis le loading screen
     setTimeout(() => {
-        window.location.href = "/100k-masterclass";
-    }, 2500);
+        // Afficher le loading screen IMMÉDIATEMENT
+        if (loadingScreen) {
+            loadingScreen.classList.remove("hidden");
+            loadingScreen.style.display = "flex";
+            loadingScreen.style.opacity = "1";
+        }
+        
+        // Fermer le modal immédiatement
+        if (modalOverlay) {
+            modalOverlay.classList.add("hidden");
+        }
+
+        // Redirect to 100k-masterclass après un délai plus long pour voir le loading
+        setTimeout(() => {
+            window.location.href = "/100k-masterclass";
+        }, 2500);
+    }, 1000);
 }
 
 // Animation des nombres
@@ -496,12 +513,19 @@ function animateValue(element, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
-// Parallax on scroll
+// Parallax on scroll (seulement si l'élément n'est pas fixed)
 window.addEventListener("scroll", () => {
     const scrolled = window.pageYOffset;
     const parallax = document.querySelector(".gradient-bg");
     if (parallax) {
-        parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+        // Vérifier si l'élément est en position fixed
+        const computedStyle = window.getComputedStyle(parallax);
+        if (computedStyle.position !== "fixed") {
+            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+        } else {
+            // Ne pas appliquer de transform si l'élément est fixed
+            parallax.style.transform = "none";
+        }
     }
 });
 

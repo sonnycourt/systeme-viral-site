@@ -537,6 +537,8 @@ h1 {
   display: none;
   align-items: center;
   justify-content: center;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-overlay.active {
@@ -1028,8 +1030,65 @@ input::placeholder {
   }
 
   .modal-content {
-    padding: 32px 24px;
+    padding: 24px 20px;
     max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Permettre le scroll dans le modal sur mobile */
+  .modal-overlay {
+    align-items: flex-start;
+    padding: 20px 0;
+  }
+
+  /* Phase 2 - Avatar Selection Mobile */
+  .avatar-selection {
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+
+  .avatar-option {
+    padding: 16px;
+    margin-bottom: 10px;
+    gap: 12px;
+  }
+
+  .avatar-icon {
+    font-size: 24px;
+  }
+
+  .avatar-content h4 {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .avatar-content p {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+
+  .avatar-radio {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Réduire l'espacement dans les form-steps */
+  .form-step {
+    overflow-y: auto;
+    max-height: calc(90vh - 120px);
+  }
+
+  .modal-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .form-button {
+    margin-top: 20px;
+    flex-shrink: 0;
   }
 
   .features-grid::before { display: none; }

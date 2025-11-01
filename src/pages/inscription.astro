@@ -261,7 +261,29 @@ import Layout from "../layouts/Layout.astro";
 
 					<button type="submit" class="form-button" id="submitBtn">
 						<span id="btnText">Accéder maintenant →</span>
-						<div class="hidden" id="loader">⏳</div>
+						<div class="hidden" id="loader">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="lucide lucide-hourglass-icon lucide-hourglass"
+							>
+								<path d="M5 22h14"></path>
+								<path d="M5 2h14"></path>
+								<path
+									d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"
+								></path>
+								<path
+									d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"
+								></path>
+							</svg>
+						</div>
 					</button>
 				</div>
 
@@ -282,6 +304,36 @@ import Layout from "../layouts/Layout.astro";
 		</div>
 	</div>
 
+	<!-- Loading Screen (en dehors du modal) -->
+	<div class="loading-screen hidden" id="loadingScreen">
+		<div class="loading-content">
+			<div class="loading-spinner">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="48"
+					height="48"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="lucide lucide-hourglass-icon lucide-hourglass"
+				>
+					<path d="M5 22h14"></path>
+					<path d="M5 2h14"></path>
+					<path
+						d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"
+					></path>
+					<path
+						d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"
+					></path>
+				</svg>
+			</div>
+			<p class="loading-text">Chargement de votre accès...</p>
+		</div>
+	</div>
+
 	<!-- intl-tel-input CSS -->
 	<link
 		rel="stylesheet"
@@ -294,4 +346,65 @@ import Layout from "../layouts/Layout.astro";
 
 	<!-- Script principal pour la page d'accueil -->
 	<script src="/src/scripts/index.js"></script>
+
+	<style>
+		#loader svg {
+			color: #00dc82;
+			width: 20px;
+			height: 20px;
+			display: inline-block;
+			animation: spin 1s linear infinite;
+		}
+
+		@keyframes spin {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
+
+		/* Loading Screen Styles */
+		.loading-screen {
+			position: fixed !important;
+			top: 0 !important;
+			left: 0 !important;
+			right: 0 !important;
+			bottom: 0 !important;
+			background: rgba(0, 0, 0, 0.98) !important;
+			backdrop-filter: blur(10px);
+			z-index: 99999 !important;
+			display: flex !important;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.loading-screen.hidden {
+			display: none !important;
+		}
+
+		.loading-content {
+			text-align: center;
+			color: #ffffff;
+		}
+
+		.loading-spinner {
+			margin-bottom: 24px;
+		}
+
+		.loading-spinner svg {
+			color: #00dc82;
+			width: 48px;
+			height: 48px;
+			animation: spin 1.5s linear infinite;
+		}
+
+		.loading-text {
+			font-size: 18px;
+			color: rgba(255, 255, 255, 0.9);
+			font-weight: 500;
+			letter-spacing: 0.5px;
+		}
+	</style>
 </Layout>
