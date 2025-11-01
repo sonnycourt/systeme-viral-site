@@ -461,35 +461,28 @@ async function handleSubmit(event) {
     }
 }
 
-// Affichage du succès
+// Affichage du succès - passage direct au loading screen
 function showSuccess() {
     const step3 = document.getElementById("step3");
-    const successStep = document.getElementById("successStep");
     const modalOverlay = document.getElementById("modalOverlay");
     const loadingScreen = document.getElementById("loadingScreen");
 
-    if (step3) step3.classList.add("hidden");
-    if (successStep) successStep.classList.remove("hidden");
+    // Fermer le modal immédiatement
+    if (modalOverlay) {
+        modalOverlay.classList.add("hidden");
+    }
 
-    // Afficher le success message brièvement, puis le loading screen
+    // Afficher le loading screen directement
+    if (loadingScreen) {
+        loadingScreen.classList.remove("hidden");
+        loadingScreen.style.display = "flex";
+        loadingScreen.style.opacity = "1";
+    }
+
+    // Redirect to 100k-masterclass après un délai
     setTimeout(() => {
-        // Afficher le loading screen IMMÉDIATEMENT
-        if (loadingScreen) {
-            loadingScreen.classList.remove("hidden");
-            loadingScreen.style.display = "flex";
-            loadingScreen.style.opacity = "1";
-        }
-        
-        // Fermer le modal immédiatement
-        if (modalOverlay) {
-            modalOverlay.classList.add("hidden");
-        }
-
-        // Redirect to 100k-masterclass après un délai plus long pour voir le loading
-        setTimeout(() => {
-            window.location.href = "/100k-masterclass";
-        }, 2500);
-    }, 1000);
+        window.location.href = "/100k-masterclass";
+    }, 2000);
 }
 
 // Animation des nombres
