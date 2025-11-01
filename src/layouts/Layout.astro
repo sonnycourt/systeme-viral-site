@@ -41,26 +41,34 @@ const { title, description, image, canonical, noindex, ogImage, twitterImage } =
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="article" />
 		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
+		<meta property="og:description" content={description || ""} />
 		<meta
 			property="og:image"
 			content={`https://systemeviral.com${ogImage || image || "/og-image.jpg"}`}
 		/>
+		<meta
+			property="og:image:secure_url"
+			content={`https://systemeviral.com${ogImage || image || "/og-image.jpg"}`}
+		/>
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
+		<meta property="og:image:type" content="image/webp" />
 		<meta
 			property="og:url"
 			content={`https://systemeviral.com${Astro.url.pathname}`}
 		/>
+		<meta property="og:site_name" content="Système Viral" />
+		<meta property="og:locale" content="fr_FR" />
 
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
+		<meta name="twitter:description" content={description || ""} />
 		<meta
 			name="twitter:image"
-			content={`https://systemeviral.com${twitterImage || image || "/og-image.jpg"}`}
+			content={`https://systemeviral.com${twitterImage || ogImage || image || "/og-image.jpg"}`}
 		/>
+		<meta name="twitter:image:alt" content={title} />
 
 		<!-- Meta Pixel Code -->
 		<script src="/meta-pixel.js" defer></script>

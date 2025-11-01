@@ -22,6 +22,7 @@ const relatedPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 2); /
 <Layout
     title={post.data.title}
     description={post.data.description}
+    image={post.data.heroImage || "/og-image.jpg"}
     ogImage={post.data.heroImage || "/og-image.jpg"}
     twitterImage={post.data.heroImage || "/og-image.jpg"}
 >
