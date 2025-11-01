@@ -33,12 +33,23 @@ import Layout from "../layouts/Layout.astro";
     <div class="main-container">
         <!-- Left Column: Video + Info -->
         <div class="video-section">
+            <!-- Viewers badge (mobile - au-dessus de la vidéo, en dehors) -->
+            <div
+                class="viewers-badge viewers-badge-mobile"
+                id="viewersBadgeMobile"
+            >
+                <div class="live-dot-small"></div>
+                <span id="viewersCountMobile">72</span>
+                <span class="viewers-text">personnes regardent</span>
+            </div>
+
             <div class="video-wrapper">
                 <video
                     id="masterclass-video"
                     playsinline
                     preload="metadata"
                     poster="/media/thumbnail-video-presentation.webp"
+                    disablepictureinpicture
                 >
                     <source
                         src="https://sonnycourt-videos-public.b-cdn.net/VSL-Systeme-Viral-VF.mp4"
@@ -93,21 +104,50 @@ import Layout from "../layouts/Layout.astro";
                         </svg>
                     </button>
 
-                    <input
-                        class="volume"
-                        id="volumeSlider"
-                        type="range"
-                        min="0"
-                        max="1"
-                        step="0.01"
-                        value="1"
-                        aria-label="Volume"
-                    />
+                    <button
+                        class="control-btn fullscreen"
+                        id="fullscreenBtn"
+                        aria-label="Plein écran"
+                    >
+                        <svg
+                            class="icon-fullscreen"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                        <svg
+                            class="icon-exit-fullscreen"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
                 </div>
                 <div class="reactions-overlay" id="reactionsOverlay"></div>
 
-                <!-- Viewers badge -->
-                <div class="viewers-badge" id="viewersBadge">
+                <!-- Viewers badge (desktop - position absolue) -->
+                <div
+                    class="viewers-badge viewers-badge-desktop"
+                    id="viewersBadge"
+                >
                     <div class="live-dot-small"></div>
                     <span id="viewersCount">72</span>
                     <span class="viewers-text">personnes regardent</span>
@@ -421,9 +461,6 @@ import Layout from "../layouts/Layout.astro";
 
     /* Viewers badge */
     .viewers-badge {
-        position: absolute;
-        top: 16px;
-        right: 16px;
         background: rgba(0, 0, 0, 0.75);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(0, 220, 130, 0.3);
@@ -436,6 +473,18 @@ import Layout from "../layouts/Layout.astro";
         color: #ffffff;
         z-index: 10;
         box-shadow: 0 4px 20px rgba(0, 220, 130, 0.2);
+    }
+
+    /* Badge desktop - position absolue sur la vidéo */
+    .viewers-badge-desktop {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+    }
+
+    /* Badge mobile - masqué par défaut sur desktop */
+    .viewers-badge-mobile {
+        display: none;
     }
 
     .live-dot-small {
@@ -506,6 +555,7 @@ import Layout from "../layouts/Layout.astro";
         bottom: 0;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 10px;
         padding: 10px 12px;
         background: linear-gradient(
@@ -541,6 +591,17 @@ import Layout from "../layouts/Layout.astro";
     .is-playing .control-btn.play .icon-pause {
         display: block;
     }
+
+    /* Fullscreen icons */
+    .control-btn .icon-exit-fullscreen {
+        display: none;
+    }
+    .is-fullscreen .control-btn.fullscreen .icon-fullscreen {
+        display: none;
+    }
+    .is-fullscreen .control-btn.fullscreen .icon-exit-fullscreen {
+        display: block;
+    }
     .mute-active .control-btn.mute .icon-volume {
         display: none;
     }
@@ -550,39 +611,10 @@ import Layout from "../layouts/Layout.astro";
 
     /* Progress/time removed to prevent scrubbing */
 
-    .volume {
-        width: 90px;
-        appearance: none;
-        height: 6px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 999px;
-        cursor: pointer;
-    }
-    .volume::-webkit-slider-thumb {
-        appearance: none;
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: var(--accent);
-        box-shadow: 0 0 0 4px rgba(0, 220, 130, 0.18);
-        border: none;
-    }
-    .volume::-moz-range-thumb {
-        width: 14px;
-        height: 14px;
-        border: none;
-        border-radius: 50%;
-        background: var(--accent);
-    }
-
     @media (max-width: 768px) {
         .custom-controls {
             gap: 8px;
             padding: 8px;
-        }
-        /* time removed on mobile too */
-        .volume {
-            width: 70px;
         }
     }
 
@@ -642,6 +674,7 @@ import Layout from "../layouts/Layout.astro";
     .timer-section {
         grid-area: timer;
         width: 100%;
+        margin-bottom: 80px;
     }
 
     .timer-button {
@@ -1035,6 +1068,37 @@ import Layout from "../layouts/Layout.astro";
             gap: 20px;
         }
 
+        /* Viewers badge au-dessus de la vidéo sur mobile - en dehors du video-wrapper */
+        .viewers-badge-desktop {
+            display: none;
+        }
+
+        .viewers-badge-mobile {
+            display: flex;
+            position: static;
+            margin-bottom: 12px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 10px;
+            padding: 4px 10px;
+            gap: 6px;
+        }
+
+        .live-dot-small {
+            width: 6px;
+            height: 6px;
+        }
+
+        .viewers-text {
+            font-size: 10px;
+        }
+
+        #viewersCount,
+        #viewersCountMobile {
+            font-size: 12px;
+        }
+
         .video-title {
             font-size: 18px;
         }
@@ -1087,82 +1151,191 @@ import Layout from "../layouts/Layout.astro";
         initializeViewersCount();
     });
 
-    // Viewers count functionality
+    // Viewers count functionality - progression sur 20 minutes jusqu'à 179
     function initializeViewersCount() {
         const viewersCountElement = document.getElementById("viewersCount");
-        if (!viewersCountElement) return;
+        const viewersCountMobileElement =
+            document.getElementById("viewersCountMobile");
 
-        // Valeur initiale aléatoire entre 72 et 125
-        let currentCount = Math.floor(Math.random() * (125 - 72 + 1)) + 72;
-        viewersCountElement.textContent = currentCount.toString();
+        // Fonction pour mettre à jour les deux badges
+        const updateBothBadges = (count: number) => {
+            if (viewersCountElement) {
+                viewersCountElement.textContent = count.toString();
+            }
+            if (viewersCountMobileElement) {
+                viewersCountMobileElement.textContent = count.toString();
+            }
+        };
+
+        if (!viewersCountElement && !viewersCountMobileElement) return;
+
+        const startTime = Date.now();
+        const duration = 20 * 60 * 1000; // 20 minutes en millisecondes
+        const startCount = 72;
+        const endCount = 179;
+        const totalIncrease = endCount - startCount;
+
+        // Valeur initiale
+        let currentCount = startCount;
+        updateBothBadges(currentCount);
 
         function updateViewersCount() {
-            if (!viewersCountElement) return;
+            if (!viewersCountElement && !viewersCountMobileElement) return;
 
-            // Générer un nouveau chiffre entre 72 et 125
-            const newCount = Math.floor(Math.random() * (125 - 72 + 1)) + 72;
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(1, elapsed / duration); // Entre 0 et 1
 
-            // Animation de changement
-            viewersCountElement.style.transform = "scale(1.1)";
-            viewersCountElement.style.opacity = "0.7";
+            // Calculer la valeur cible basée sur la progression
+            const targetCount =
+                startCount + Math.floor(totalIncrease * progress);
 
-            setTimeout(() => {
+            // Ajouter une variation aléatoire de -3 à +3 pour rendre plus naturel
+            const variation = Math.floor(Math.random() * 7) - 3; // -3 à +3
+            const newCount = Math.max(
+                startCount,
+                Math.min(endCount, targetCount + variation),
+            );
+
+            // Ne mettre à jour que si le nombre a changé
+            if (newCount !== currentCount) {
+                currentCount = newCount;
+
+                // Animation de changement pour les deux badges
                 if (viewersCountElement) {
-                    viewersCountElement.textContent = newCount.toString();
-                    viewersCountElement.style.transform = "scale(1)";
-                    viewersCountElement.style.opacity = "1";
+                    viewersCountElement.style.transform = "scale(1.1)";
+                    viewersCountElement.style.opacity = "0.7";
                 }
-            }, 150);
+                if (viewersCountMobileElement) {
+                    viewersCountMobileElement.style.transform = "scale(1.1)";
+                    viewersCountMobileElement.style.opacity = "0.7";
+                }
+
+                setTimeout(() => {
+                    updateBothBadges(newCount);
+
+                    if (viewersCountElement) {
+                        viewersCountElement.style.transform = "scale(1)";
+                        viewersCountElement.style.opacity = "1";
+                    }
+                    if (viewersCountMobileElement) {
+                        viewersCountMobileElement.style.transform = "scale(1)";
+                        viewersCountMobileElement.style.opacity = "1";
+                    }
+                }, 150);
+            }
+
+            // Continuer à mettre à jour toutes les 3 à 6 secondes pendant 20 minutes
+            if (progress < 1) {
+                const delay =
+                    Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000; // Entre 3 et 6 secondes
+                setTimeout(() => {
+                    updateViewersCount();
+                }, delay);
+            } else {
+                // Après 20 minutes, continuer avec des variations aléatoires autour de 179
+                function continueAfterMax() {
+                    if (!viewersCountElement && !viewersCountMobileElement)
+                        return;
+                    const delay =
+                        Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
+                    const finalVariation = Math.floor(Math.random() * 7) - 3;
+                    const finalCount = Math.max(
+                        176, // Légèrement en dessous de 179
+                        Math.min(endCount, endCount + finalVariation),
+                    );
+
+                    if (finalCount !== currentCount) {
+                        currentCount = finalCount;
+
+                        // Animation pour les deux badges
+                        if (viewersCountElement) {
+                            viewersCountElement.style.transform = "scale(1.1)";
+                            viewersCountElement.style.opacity = "0.7";
+                        }
+                        if (viewersCountMobileElement) {
+                            viewersCountMobileElement.style.transform =
+                                "scale(1.1)";
+                            viewersCountMobileElement.style.opacity = "0.7";
+                        }
+
+                        setTimeout(() => {
+                            updateBothBadges(finalCount);
+
+                            if (viewersCountElement) {
+                                viewersCountElement.style.transform =
+                                    "scale(1)";
+                                viewersCountElement.style.opacity = "1";
+                            }
+                            if (viewersCountMobileElement) {
+                                viewersCountMobileElement.style.transform =
+                                    "scale(1)";
+                                viewersCountMobileElement.style.opacity = "1";
+                            }
+                        }, 150);
+                    }
+
+                    // Continuer les variations
+                    setTimeout(continueAfterMax, delay);
+                }
+
+                const delay =
+                    Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
+                setTimeout(continueAfterMax, delay);
+            }
         }
 
-        // Changer le chiffre toutes les 8 à 15 secondes de façon aléatoire
-        function scheduleNextUpdate() {
-            const delay = Math.floor(Math.random() * (15000 - 8000 + 1)) + 8000; // Entre 8 et 15 secondes
-            setTimeout(() => {
-                updateViewersCount();
-                scheduleNextUpdate();
-            }, delay);
-        }
-
-        scheduleNextUpdate();
+        // Démarrer les mises à jour après 2 secondes
+        setTimeout(() => {
+            updateViewersCount();
+        }, 2000);
     }
 
-    // Timer functionality
+    // Timer functionality - synchronisé avec la vidéo, débloque à 17:28
     function initializeTimer() {
-        let timeLeft = 5; // 5 secondes pour test (au lieu de 12 * 60)
         const timerElement = document.getElementById("timerCountdown");
         const timerButton = document.getElementById("timerButton");
         const timerLabel = document.getElementById("timerLabel");
+        const video = document.getElementById(
+            "masterclass-video",
+        ) as HTMLVideoElement | null;
 
-        if (!timerElement || !timerButton || !timerLabel) return;
+        if (!timerElement || !timerButton || !timerLabel || !video) return;
+
+        const unlockTime = 17 * 60 + 28; // 17:28 en secondes (1048 secondes)
+        let isUnlocked = false;
 
         const updateTimer = () => {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
+            if (isUnlocked) return;
 
-            timerElement.textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+            const currentVideoTime = video.currentTime || 0;
+            const timeRemaining = Math.max(0, unlockTime - currentVideoTime);
 
-            if (timeLeft <= 0) {
+            if (timeRemaining <= 0) {
+                // Débloquer le bouton
                 timerElement.textContent = "DÉBLOQUÉ";
-                clearInterval(timerInterval);
-
-                // Activer le bouton et changer le texte
                 timerButton.classList.remove("disabled");
                 timerButton.classList.add("unlocked");
                 timerButton.removeAttribute("disabled");
                 timerLabel.textContent = "OFFRE DISPONIBLE";
+                isUnlocked = true;
 
                 // Ajouter le lien de redirection
                 timerButton.addEventListener("click", () => {
                     window.location.href = "/offre-speciale";
                 });
             } else {
-                timeLeft--;
+                // Afficher le temps restant
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = Math.floor(timeRemaining % 60);
+                timerElement.textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
             }
         };
 
-        updateTimer(); // Initial display
-        const timerInterval = setInterval(updateTimer, 1000);
+        // Mettre à jour le timer à chaque changement de temps de la vidéo
+        video.addEventListener("timeupdate", updateTimer);
+
+        // Mise à jour initiale
+        updateTimer();
     }
 
     // Progress Bar functionality - Chapitres animés
@@ -1274,10 +1447,7 @@ import Layout from "../layouts/Layout.astro";
     const wrapper = video?.parentElement as HTMLElement | null;
     const bigPlay = document.getElementById("bigPlay");
     const playPause = document.getElementById("playPause");
-    const volumeSlider = document.getElementById(
-        "volumeSlider",
-    ) as HTMLInputElement | null;
-    // Progress/time/fullscreen intentionally removed
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
 
     function setPlayingState(isPlaying: boolean) {
         if (!wrapper) return;
@@ -1326,22 +1496,6 @@ import Layout from "../layouts/Layout.astro";
             lastTime = 0;
         });
 
-        // mute button removed; keep slider-based volume
-
-        volumeSlider?.addEventListener("input", (e) => {
-            const value = parseFloat((e.target as HTMLInputElement).value);
-            if (!isNaN(value) && video) {
-                video.volume = value;
-                if (video.volume === 0) {
-                    video.muted = true;
-                    wrapper?.classList.add("mute-active");
-                } else {
-                    video.muted = false;
-                    wrapper?.classList.remove("mute-active");
-                }
-            }
-        });
-
         // Block keyboard seeking when video focused
         (video as HTMLVideoElement).addEventListener(
             "keydown",
@@ -1362,5 +1516,67 @@ import Layout from "../layouts/Layout.astro";
                 }
             },
         );
+
+        // Fullscreen functionality
+        function updateFullscreenState() {
+            if (!wrapper) return;
+            const isFullscreen =
+                document.fullscreenElement === wrapper ||
+                (document as any).webkitFullscreenElement === wrapper ||
+                (document as any).mozFullScreenElement === wrapper ||
+                (document as any).msFullscreenElement === wrapper;
+
+            if (isFullscreen) {
+                wrapper.classList.add("is-fullscreen");
+            } else {
+                wrapper.classList.remove("is-fullscreen");
+            }
+        }
+
+        function toggleFullscreen() {
+            if (!wrapper) return;
+
+            const isFullscreen =
+                document.fullscreenElement === wrapper ||
+                (document as any).webkitFullscreenElement === wrapper ||
+                (document as any).mozFullScreenElement === wrapper ||
+                (document as any).msFullscreenElement === wrapper;
+
+            if (!isFullscreen) {
+                // Entrer en plein écran
+                if (wrapper.requestFullscreen) {
+                    wrapper.requestFullscreen();
+                } else if ((wrapper as any).webkitRequestFullscreen) {
+                    (wrapper as any).webkitRequestFullscreen();
+                } else if ((wrapper as any).mozRequestFullScreen) {
+                    (wrapper as any).mozRequestFullScreen();
+                } else if ((wrapper as any).msRequestFullscreen) {
+                    (wrapper as any).msRequestFullscreen();
+                }
+            } else {
+                // Sortir du plein écran
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if ((document as any).webkitExitFullscreen) {
+                    (document as any).webkitExitFullscreen();
+                } else if ((document as any).mozCancelFullScreen) {
+                    (document as any).mozCancelFullScreen();
+                } else if ((document as any).msExitFullscreen) {
+                    (document as any).msExitFullscreen();
+                }
+            }
+        }
+
+        // Écouter les événements de changement de plein écran
+        document.addEventListener("fullscreenchange", updateFullscreenState);
+        document.addEventListener(
+            "webkitfullscreenchange",
+            updateFullscreenState,
+        );
+        document.addEventListener("mozfullscreenchange", updateFullscreenState);
+        document.addEventListener("MSFullscreenChange", updateFullscreenState);
+
+        // Ajouter l'événement au bouton plein écran
+        fullscreenBtn?.addEventListener("click", toggleFullscreen);
     }
 </script>
