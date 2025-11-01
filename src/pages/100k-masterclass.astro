@@ -105,6 +105,13 @@ import Layout from "../layouts/Layout.astro";
                     />
                 </div>
                 <div class="reactions-overlay" id="reactionsOverlay"></div>
+
+                <!-- Viewers badge -->
+                <div class="viewers-badge" id="viewersBadge">
+                    <div class="live-dot-small"></div>
+                    <span id="viewersCount">72</span>
+                    <span class="viewers-text">personnes regardent</span>
+                </div>
             </div>
 
             <div class="video-info">
@@ -129,75 +136,6 @@ import Layout from "../layouts/Layout.astro";
                     </div>
                     <div class="chapter" data-time="1011" data-chapter="6">
                         La solution
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right Column: Chat (same height as video) -->
-        <div class="chat-wrapper">
-            <div class="chat-section">
-                <!-- Header avec statut -->
-                <div class="chat-header">
-                    <div class="chat-status">
-                        <div class="live-dot"></div>
-                        <span>Replay interactif</span>
-                    </div>
-                    <div class="viewers-count">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="viewers-icon"
-                        >
-                            <path
-                                d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"
-                            ></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                        <span id="viewerCount">32</span>
-                        <span> personnes regardent</span>
-                    </div>
-                </div>
-
-                <!-- Onglets -->
-                <div class="chat-tabs" style="display: none;">
-                    <button
-                        class="chat-tab active"
-                        id="publicTab"
-                        data-tab="public"
-                    >
-                        <span>Chat</span>
-                    </button>
-                </div>
-
-                <!-- Contenu onglet Discussion publique -->
-                <div class="tab-content active" id="publicContent">
-                    <div class="chat-messages" id="chatMessages">
-                        <div class="system-message join">
-                            <span id="welcomeMessage"></span>
-                        </div>
-                    </div>
-
-                    <div class="chat-input-wrapper">
-                        <form class="chat-input-form" id="chatForm">
-                            <input
-                                type="text"
-                                class="chat-input"
-                                id="chatInput"
-                                placeholder="Posez votre question..."
-                                required
-                            />
-                            <button type="submit" class="chat-send">
-                                Envoyer
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -441,10 +379,10 @@ import Layout from "../layouts/Layout.astro";
         margin: 40px auto 0;
         padding: 24px;
         display: grid;
-        grid-template-columns: 1fr 380px;
+        grid-template-columns: 1fr;
         grid-template-areas:
-            "video chat"
-            "video timer";
+            "video"
+            "timer";
         gap: 24px;
         align-items: start;
     }
@@ -455,7 +393,7 @@ import Layout from "../layouts/Layout.astro";
         display: flex;
         flex-direction: column;
         gap: 20px;
-        align-items: start;
+        align-items: stretch;
     }
 
     .video-wrapper {
@@ -479,6 +417,46 @@ import Layout from "../layouts/Layout.astro";
         height: 100%;
         display: block;
         background: #000;
+    }
+
+    /* Viewers badge */
+    .viewers-badge {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 220, 130, 0.3);
+        border-radius: 100px;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: #ffffff;
+        z-index: 10;
+        box-shadow: 0 4px 20px rgba(0, 220, 130, 0.2);
+    }
+
+    .live-dot-small {
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+        animation: pulse 2s ease infinite;
+        box-shadow: 0 0 10px rgba(0, 220, 130, 0.8);
+    }
+
+    #viewersCount {
+        font-weight: 700;
+        color: var(--accent-bright);
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .viewers-text {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.9);
     }
 
     .big-play {
@@ -647,6 +625,9 @@ import Layout from "../layouts/Layout.astro";
         border: 1px solid var(--border);
         border-radius: 12px;
         padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .video-title {
@@ -875,6 +856,8 @@ import Layout from "../layouts/Layout.astro";
         display: flex;
         gap: 12px;
         flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
     }
 
     .chapter {
@@ -970,455 +953,7 @@ import Layout from "../layouts/Layout.astro";
         width: 0 !important;
     }
 
-    /* Chat Wrapper */
-    .chat-wrapper {
-        grid-area: chat;
-        position: sticky;
-        top: 100px;
-        height: fit-content;
-    }
-
-    /* Chat Section */
-    .chat-section {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        display: flex;
-        flex-direction: column;
-        height: 520px;
-        max-height: 520px;
-        overflow: hidden;
-    }
-
-    /* Header du chat */
-    .chat-header {
-        padding: 12px 20px;
-        border-bottom: 1px solid var(--border);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-    }
-
-    .chat-status {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 12px;
-        color: var(--text-secondary);
-    }
-
-    .viewers-count {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 12px;
-        color: var(--text-secondary);
-    }
-
-    .viewers-icon {
-        font-size: 14px;
-        width: 16px;
-        height: 16px;
-        color: var(--accent-bright);
-    }
-
-    #viewerCount {
-        font-weight: 700;
-        color: var(--accent-bright);
-        transition: all 0.3s ease;
-    }
-
-    @keyframes countPulse {
-        0%,
-        100% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.1);
-        }
-    }
-
-    #viewerCount.updating {
-        animation: countPulse 0.5s ease;
-    }
-
-    /* Onglets du chat */
-    .chat-tabs {
-        display: flex;
-        border-bottom: 1px solid var(--border);
-        background: var(--bg);
-    }
-
-    .chat-tab {
-        flex: 1;
-        padding: 14px 16px;
-        background: transparent;
-        border: none;
-        border-bottom: 2px solid transparent;
-        color: var(--text-secondary);
-        font-size: 13px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        position: relative;
-    }
-
-    .chat-tab:hover {
-        background: rgba(255, 255, 255, 0.03);
-        color: var(--text);
-    }
-
-    .chat-tab.active {
-        color: var(--accent-bright);
-        border-bottom-color: var(--accent);
-        background: rgba(0, 220, 130, 0.05);
-    }
-
-    .tab-notification {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        width: 20px;
-        height: 20px;
-        background: #ef4444;
-        color: white;
-        border-radius: 50%;
-        font-size: 11px;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: notifPulse 2s ease-in-out infinite;
-        box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
-    }
-
-    .tab-notification.hidden {
-        display: none;
-    }
-
-    @keyframes notifPulse {
-        0%,
-        100% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.1);
-        }
-    }
-
-    /* Contenu des onglets */
-    .tab-content {
-        display: none;
-        flex-direction: column;
-        flex: 1;
-        overflow: hidden;
-    }
-
-    .tab-content.active {
-        display: flex;
-    }
-
-    /* Header de l'onglet IA */
-    .ai-header {
-        padding: 20px;
-        background: linear-gradient(
-            135deg,
-            rgba(0, 220, 130, 0.1) 0%,
-            rgba(0, 220, 130, 0.05) 100%
-        );
-        border-bottom: 1px solid rgba(0, 220, 130, 0.3);
-        display: flex;
-        align-items: center;
-        gap: 16px;
-    }
-
-    .ai-avatar-large {
-        width: 56px;
-        height: 56px;
-        background: linear-gradient(
-            135deg,
-            var(--accent) 0%,
-            var(--accent-bright) 100%
-        );
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 28px;
-        box-shadow: 0 0 30px rgba(0, 220, 130, 0.5);
-        animation: avatarGlow 2s ease-in-out infinite;
-    }
-
-    @keyframes avatarGlow {
-        0%,
-        100% {
-            box-shadow: 0 0 30px rgba(0, 220, 130, 0.5);
-        }
-        50% {
-            box-shadow: 0 0 40px rgba(0, 220, 130, 0.7);
-        }
-    }
-
-    .ai-title {
-        flex: 1;
-    }
-
-    .ai-name-large {
-        font-size: 16px;
-        font-weight: 700;
-        color: var(--accent-bright);
-        margin-bottom: 4px;
-    }
-
-    .ai-badge-live {
-        display: inline-block;
-        padding: 3px 8px;
-        background: rgba(220, 38, 38, 0.15);
-        color: #ef4444;
-        border: 1px solid rgba(220, 38, 38, 0.3);
-        border-radius: 6px;
-        font-size: 9px;
-        font-weight: 800;
-        letter-spacing: 0.5px;
-        animation: livePulse 2s ease-in-out infinite;
-    }
-
-    @keyframes livePulse {
-        0%,
-        100% {
-            opacity: 1;
-        }
-        50% {
-            opacity: 0.7;
-        }
-    }
-
-    .chat-messages {
-        flex: 1;
-        overflow-y: auto;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .chat-messages::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    .chat-messages::-webkit-scrollbar-track {
-        background: var(--bg-elevated);
-    }
-
-    .chat-messages::-webkit-scrollbar-thumb {
-        background: var(--border);
-        border-radius: 3px;
-    }
-
-    .chat-messages::-webkit-scrollbar-thumb:hover {
-        background: var(--text-muted);
-    }
-
-    .chat-message {
-        animation: slideIn 0.3s ease;
-    }
-
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateX(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    .message-header {
-        display: flex;
-        align-items: baseline;
-        gap: 8px;
-    }
-
-    .message-author {
-        font-size: 13px;
-        font-weight: 600;
-        margin-bottom: 0;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        color: var(--accent-bright);
-    }
-
-    /* Couleurs cohérentes avec le style vert néon du site */
-    .message-author.color-1 {
-        color: #00dc82 !important; /* Accent principal */
-    }
-    .message-author.color-2 {
-        color: #00f593 !important; /* Accent bright */
-    }
-    .message-author.color-3 {
-        color: #10b981 !important; /* Emerald */
-    }
-    .message-author.color-4 {
-        color: #34d399 !important; /* Emerald light */
-    }
-    .message-author.color-5 {
-        color: #6ee7b7 !important; /* Emerald lighter */
-    }
-    .message-author.color-6 {
-        color: #14b8a6 !important; /* Teal */
-    }
-    .message-author.color-7 {
-        color: #2dd4bf !important; /* Teal light */
-    }
-    .message-author.color-8 {
-        color: #5eead4 !important; /* Teal lighter */
-    }
-    .message-author.color-9 {
-        color: #22c55e !important; /* Green */
-    }
-    .message-author.color-10 {
-        color: #4ade80 !important; /* Green light */
-    }
-    .message-author.color-11 {
-        color: #86efac !important; /* Green lighter */
-    }
-    .message-author.color-12 {
-        color: #06b6d4 !important; /* Cyan */
-    }
-    .message-author.color-13 {
-        color: #22d3ee !important; /* Cyan light */
-    }
-    .message-author.color-14 {
-        color: #67e8f9 !important; /* Cyan lighter */
-    }
-    .message-author.color-15 {
-        color: #0891b2 !important; /* Cyan dark */
-    }
-    .message-author.color-16 {
-        color: #84cc16 !important; /* Lime */
-    }
-    .message-author.color-17 {
-        color: #a3e635 !important; /* Lime light */
-    }
-    .message-author.color-18 {
-        color: #bef264 !important; /* Lime lighter */
-    }
-    .message-author.color-19 {
-        color: #00b86b !important; /* Accent dark */
-    }
-    .message-author.color-20 {
-        color: #10b981 !important; /* Emerald variant */
-    }
-    .message-author.color-user {
-        color: var(--accent) !important;
-    }
-
-    .message-badge {
-        padding: 3px 8px;
-        background: linear-gradient(
-            135deg,
-            rgba(0, 220, 130, 0.2) 0%,
-            rgba(0, 245, 147, 0.15) 100%
-        );
-        color: var(--accent-bright);
-        border: 1px solid rgba(0, 220, 130, 0.3);
-        border-radius: 6px;
-        font-size: 9px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        box-shadow: 0 0 10px rgba(0, 220, 130, 0.2);
-        animation: badgePulse 2s ease-in-out infinite;
-    }
-
-    @keyframes badgePulse {
-        0%,
-        100% {
-            box-shadow: 0 0 10px rgba(0, 220, 130, 0.2);
-        }
-        50% {
-            box-shadow: 0 0 15px rgba(0, 220, 130, 0.4);
-        }
-    }
-
-    .message-content {
-        font-size: 14px;
-        color: var(--text-secondary);
-        line-height: 1.5;
-        font-weight: 400;
-    }
-
-    /* System messages */
-    .system-message {
-        text-align: center;
-        padding: 8px;
-        background: var(--bg-elevated);
-        border-radius: 8px;
-        font-size: 12px;
-        color: var(--text-muted);
-        font-style: italic;
-    }
-
-    .system-message.join {
-        color: var(--accent);
-        background: rgba(16, 185, 129, 0.1);
-    }
-
-    /* Chat Input */
-    .chat-input-wrapper {
-        padding: 16px;
-        border-top: 1px solid var(--border);
-    }
-
-    .chat-input-form {
-        display: flex;
-        gap: 8px;
-    }
-
-    .chat-input {
-        flex: 1;
-        padding: 10px 16px;
-        background: var(--bg);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        color: var(--text);
-        font-size: 14px;
-        font-family: inherit;
-        transition: all 0.2s ease;
-    }
-
-    .chat-input:focus {
-        outline: none;
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-    }
-
-    .chat-input::placeholder {
-        color: var(--text-muted);
-    }
-
-    .chat-send {
-        padding: 10px 20px;
-        background: var(--accent);
-        color: var(--bg);
-        border: none;
-        border-radius: 8px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .chat-send:hover {
-        background: var(--accent-bright);
-        transform: translateY(-1px);
-    }
+    /* Chat removed */
 
     /* CTA Popup */
     .cta-popup {
@@ -1484,17 +1019,8 @@ import Layout from "../layouts/Layout.astro";
             grid-template-columns: 1fr;
             grid-template-areas:
                 "video"
-                "timer"
-                "chat";
+                "timer";
             gap: 24px;
-        }
-
-        .chat-wrapper {
-            position: static;
-        }
-
-        .chat-section {
-            height: 520px;
         }
     }
 
@@ -1505,8 +1031,7 @@ import Layout from "../layouts/Layout.astro";
             margin-top: 24px;
             grid-template-areas:
                 "video"
-                "timer"
-                "chat";
+                "timer";
             gap: 20px;
         }
 
@@ -1546,63 +1071,12 @@ import Layout from "../layouts/Layout.astro";
             width: 18px;
             height: 18px;
         }
-
-        .chat-tab {
-            font-size: 12px;
-            padding: 12px 12px;
-        }
-
-        .ai-avatar-large {
-            width: 48px;
-            height: 48px;
-            font-size: 24px;
-        }
-
-        .ai-name-large {
-            font-size: 14px;
-        }
-
-        .ai-header {
-            padding: 16px;
-        }
-
-        .chat-header {
-            flex-wrap: wrap;
-            padding: 12px 16px;
-        }
-
-        .viewers-count {
-            font-size: 11px;
-            margin-top: 4px;
-            width: 100%;
-            justify-content: center;
-        }
     }
 </style>
 
 <script>
-    // Removed seed messages: only timed messages provided by owner are used
-
-    // Chat functions
-    const chatMessages = document.getElementById("chatMessages");
-
-    // Récupérer le prénom de l'utilisateur depuis localStorage
-    const userFirstName = localStorage.getItem("userFirstName") || "Vous";
-
     // Display initial messages on load
     window.addEventListener("DOMContentLoaded", () => {
-        // Message de bienvenue personnalisé
-        const welcomeMessage = document.getElementById("welcomeMessage");
-        if (welcomeMessage) {
-            if (userFirstName !== "Vous") {
-                welcomeMessage.textContent = `Bienvenue ${userFirstName} ! La session a commencé`;
-            } else {
-                welcomeMessage.textContent = "La session a commencé";
-            }
-        }
-
-        // No default chat messages injected
-
         // Initialize timer
         initializeTimer();
 
@@ -1610,167 +1084,48 @@ import Layout from "../layouts/Layout.astro";
         initializeProgressBar();
 
         // Initialize viewers count
-        initializeViewerCount();
+        initializeViewersCount();
     });
 
-    // Timed chat messages synchronized with the video
-    const timedMessages: Array<{ t: number; a: string; m: string }> = [
-        { t: 1, a: "Julien", m: "🔥" },
-        { t: 1, a: "Marie", m: "salut" },
-        { t: 1, a: "Thomas", m: "yo" },
-        { t: 3, a: "Sophie", m: "cc" },
-        { t: 5, a: "Lucas", m: "👋" },
-        { t: 8, a: "Emma", m: "❤️" },
-        { t: 8, a: "Nico", m: "hey" },
-        { t: 8, a: "Alex", m: "👀" },
-        { t: 11, a: "Clara", m: "bonjour" },
-        { t: 14, a: "David", m: "🚀" },
-        { t: 14, a: "Lina", m: "✨" },
+    // Viewers count functionality
+    function initializeViewersCount() {
+        const viewersCountElement = document.getElementById("viewersCount");
+        if (!viewersCountElement) return;
 
-        { t: 17, a: "Pierre", m: "100k???" },
-        { t: 17, a: "Max", m: "wtf" },
-        { t: 17, a: "Julie", m: "😱" },
-        { t: 18, a: "Sarah", m: "serieux la?" },
-        { t: 20, a: "Kevin", m: "lol" },
-        { t: 20, a: "Tom", m: "🤔" },
-        { t: 21, a: "Léa", m: "c'est une blague?" },
-        { t: 24, a: "Manu", m: "fake" },
-        { t: 24, a: "Céline", m: "💰💰" },
-        { t: 26, a: "Romain", m: "impossible mdr" },
-        { t: 28, a: "Lisa", m: "👀👀👀" },
-        { t: 28, a: "Mehdi", m: "n'importe quoi" },
+        // Valeur initiale aléatoire entre 72 et 125
+        let currentCount = Math.floor(Math.random() * (125 - 72 + 1)) + 72;
+        viewersCountElement.textContent = currentCount.toString();
 
-        { t: 31, a: "Anna", m: "attends quoi" },
-        { t: 31, a: "Chris", m: "🤯" },
-        { t: 33, a: "Jade", m: "il ment c sur" },
-        { t: 35, a: "Bruno", m: "🧢" },
-        { t: 35, a: "Nadia", m: "wow" },
-        { t: 35, a: "Paul", m: "j'y crois pas" },
-        { t: 36, a: "Melissa", m: "QUOI" },
-        { t: 36, a: "Hugo", m: "il delire" },
-        { t: 39, a: "Camille", m: "mytho" },
-        { t: 39, a: "Enzo", m: "💸" },
-        { t: 42, a: "Nina", m: "bon j'ecoute" },
+        function updateViewersCount() {
+            if (!viewersCountElement) return;
 
-        { t: 45, a: "Sam", m: "moi j'ai 0 followers" },
-        { t: 45, a: "Laura", m: "pareil" },
-        { t: 47, a: "Théo", m: "👍" },
-        { t: 49, a: "Chloé", m: "ok interessant" },
-        { t: 49, a: "Noah", m: "pas montrer ma tete jpp" },
-        { t: 50, a: "Inès", m: "parfait ca" },
-        { t: 53, a: "Loic", m: "💪" },
-        { t: 53, a: "Eva", m: "on verra bien" },
+            // Générer un nouveau chiffre entre 72 et 125
+            const newCount = Math.floor(Math.random() * (125 - 72 + 1)) + 72;
 
-        { t: 56, a: "Mika", m: "au moins il dit pas methode magique" },
-        { t: 56, a: "Rose", m: "🎯" },
-        { t: 58, a: "Fred", m: "ca change" },
-        { t: 60, a: "Amina", m: "honete au moins" },
-        { t: 62, a: "Kylian", m: "👏" },
-        { t: 62, a: "Zoé", m: "respect" },
-        { t: 62, a: "Marc", m: "✅" },
+            // Animation de changement
+            viewersCountElement.style.transform = "scale(1.1)";
+            viewersCountElement.style.opacity = "0.7";
 
-        { t: 65, a: "Alice", m: "ptdr c'est ma vie ca" },
-        { t: 65, a: "Tony", m: "grave" },
-        { t: 65, a: "Maya", m: "je me leve pour rien" },
-        { t: 68, a: "Léo", m: "trop vrai..." },
-        { t: 68, a: "Julia", m: "😢" },
-        { t: 70, a: "Karim", m: "vivement vendredi tt les jours" },
-        { t: 73, a: "Lou", m: "chui mort de fatigue h24" },
-        { t: 73, a: "Dylan", m: "💔" },
-        { t: 73, a: "Elsa", m: "help" },
+            setTimeout(() => {
+                if (viewersCountElement) {
+                    viewersCountElement.textContent = newCount.toString();
+                    viewersCountElement.style.transform = "scale(1)";
+                    viewersCountElement.style.opacity = "1";
+                }
+            }, 150);
+        }
 
-        { t: 76, a: "Yasmine", m: "😔" },
-        { t: 78, a: "Nathan", m: "on est des esclaves modernes" },
-        { t: 78, a: "Manon", m: "tellement" },
-        { t: 80, a: "Ryan", m: "juste un numero au final" },
-        { t: 82, a: "Sofia", m: "💯" },
-        { t: 82, a: "Adam", m: "real" },
-        { t: 82, a: "Lola", m: "ca fait mal" },
+        // Changer le chiffre toutes les 8 à 15 secondes de façon aléatoire
+        function scheduleNextUpdate() {
+            const delay = Math.floor(Math.random() * (15000 - 8000 + 1)) + 8000; // Entre 8 et 15 secondes
+            setTimeout(() => {
+                updateViewersCount();
+                scheduleNextUpdate();
+            }, delay);
+        }
 
-        { t: 85, a: "Vincent", m: "il a tout plaqué le fou" },
-        { t: 85, a: "Iris", m: "balls of steel" },
-        { t: 87, a: "Oscar", m: "😱" },
-        { t: 89, a: "Nora", m: "joserai jamais perso" },
-        { t: 89, a: "Axel", m: "gros respect" },
-        { t: 91, a: "Luna", m: "8 ans de youtube??" },
-        { t: 91, a: "Gabriel", m: "aie" },
-        { t: 93, a: "Alicia", m: "ca fait beaucoup" },
-
-        { t: 95, a: "Victor", m: "il a du morfler" },
-        { t: 97, a: "Mia", m: "🙏" },
-        { t: 97, a: "Louis", m: "1 semaine pour une video pfff" },
-        { t: 100, a: "Jade", m: "abusé" },
-        { t: 102, a: "Ben", m: "au moins il avait les vues lui" },
-        { t: 102, a: "Olivia", m: "ouais mais 0 thune" },
-        { t: 104, a: "Jules", m: "ca craint" },
-        { t: 104, a: "Celia", m: "😓" },
-
-        { t: 107, a: "Antoine", m: "dormir c'est surfait de toute facon" },
-        { t: 107, a: "Sara", m: "😴" },
-        { t: 110, a: "Remi", m: "il bossait plus qu'avant mdrrr" },
-        { t: 112, a: "Leila", m: "l'ironie" },
-        { t: 112, a: "Tim", m: "💀" },
-        { t: 114, a: "Elena", m: "sad" },
-
-        { t: 117, a: "Paolo", m: "ah il parle des shorts" },
-        { t: 117, a: "Amy", m: "tiktok berk" },
-        { t: 119, a: "Simon", m: "c'est pour les gosses non?" },
-        { t: 119, a: "Fatima", m: "moi j'aime bien" },
-        { t: 119, a: "Dan", m: "👀" },
-        { t: 122, a: "Charlotte", m: "bah si ca marche..." },
-        { t: 124, a: "Yann", m: "les experts disent nimporte quoi" },
-        { t: 124, a: "Marine", m: "comme dab" },
-        { t: 126, a: "Julien", m: "prouve nous alors" },
-
-        { t: 129, a: "Lucie", m: "c'est quoi cette histoire de manifestation" },
-        { t: 129, a: "Alex", m: "😂" },
-        { t: 131, a: "Thomas", m: "niche de ouf" },
-        { t: 133, a: "Sophie", m: "jamais entendu parler" },
-        { t: 133, a: "Emma", m: "et il a fait 115k avec ca??" },
-        { t: 135, a: "Max", m: "IMPOSSIBLE" },
-        { t: 135, a: "Pierre", m: "😵" },
-        { t: 135, a: "Marie", m: "attends j'ai mal compris la" },
-        { t: 138, a: "Lucas", m: "200 balles la formation cest tout?" },
-
-        { t: 140, a: "Clara", m: "mais comment il a fait autant de ventes" },
-        { t: 140, a: "David", m: "🤯🤯" },
-        { t: 142, a: "Kevin", m: "bah si ca marche dans ce truc chelou" },
-        { t: 144, a: "Laura", m: "ca peut marcher partout en fait" },
-        { t: 144, a: "Nina", m: "pas con" },
-        { t: 146, a: "Hugo", m: "jsuis dans le fitness ca peut le faire" },
-        { t: 148, a: "Paul", m: "crypto ca doit cartonner" },
-        { t: 148, a: "Lisa", m: "💡" },
-
-        { t: 151, a: "Théo", m: "pas besoin detre connu alors" },
-        { t: 151, a: "Enzo", m: "👌" },
-        { t: 153, a: "Manu", m: "il gagne plus qu'un medecin lol" },
-        { t: 155, a: "Julie", m: "10k le medecin" },
-        { t: 155, a: "Sam", m: "chaud" },
-        { t: 157, a: "Tom", m: "🔥🔥" },
-
-        { t: 160, a: "Léa", m: "montre nous les preuves stp" },
-        { t: 160, a: "Chris", m: "👀" },
-        { t: 162, a: "Bruno", m: "ah voila les screens" },
-        { t: 162, a: "Anna", m: "putain c'est vrai" },
-        { t: 164, a: "Mehdi", m: "95k + 28k echelonné" },
-        { t: 164, a: "Jade", m: "😱" },
-        { t: 166, a: "Rose", m: "ca fait bien 115k" },
-
-        { t: 168, a: "Fred", m: "meme apres les remboursements il dit" },
-        { t: 170, a: "Noah", m: "wow" },
-        { t: 170, a: "Chloé", m: "ok la il a mon attention" },
-        { t: 172, a: "Maya", m: "j'y croyais pas mais la..." },
-        { t: 172, a: "Tony", m: "🎯" },
-        { t: 174, a: "Alice", m: "donc pas de youtube long?" },
-
-        { t: 176, a: "Loic", m: "que tiktok et insta alors" },
-        { t: 176, a: "Eva", m: "+ fb apparemment" },
-        { t: 178, a: "Marc", m: "il a fait qu'une video youtube normal" },
-        { t: 180, a: "Zoé", m: "et ca a rien changé au final" },
-        { t: 180, a: "Ryan", m: "les shorts ca tue alors" },
-        { t: 180, a: "Mika", m: "🚀" },
-    ];
-    let timedCursor = 0;
+        scheduleNextUpdate();
+    }
 
     // Timer functionality
     function initializeTimer() {
@@ -1877,155 +1232,6 @@ import Layout from "../layouts/Layout.astro";
         videoEl.addEventListener("loadedmetadata", () => updateByTime(0));
     }
 
-    // Palette cohérente avec le style vert néon (20 couleurs)
-    const authorPalette = [
-        "#00dc82", // Accent principal
-        "#00f593", // Accent bright
-        "#10b981", // Emerald
-        "#34d399", // Emerald light
-        "#6ee7b7", // Emerald lighter
-        "#14b8a6", // Teal
-        "#2dd4bf", // Teal light
-        "#5eead4", // Teal lighter
-        "#22c55e", // Green
-        "#4ade80", // Green light
-        "#86efac", // Green lighter
-        "#06b6d4", // Cyan
-        "#22d3ee", // Cyan light
-        "#67e8f9", // Cyan lighter
-        "#0891b2", // Cyan dark
-        "#84cc16", // Lime
-        "#a3e635", // Lime light
-        "#bef264", // Lime lighter
-        "#00b86b", // Accent dark
-        "#10b981", // Emerald variant
-    ];
-
-    // Renvoie une couleur hex (ou var) selon un hash du nom
-    function getAuthorColor(author: string): string {
-        // Couleur spéciale pour l'animateur IA
-        if (author === "Animateur") return "var(--accent-bright)";
-
-        // Utiliser la couleur accent pour l'utilisateur (son prénom ou "Vous")
-        if (author === "Vous" || author === userFirstName)
-            return "var(--accent)";
-
-        let hash = 0;
-        for (let i = 0; i < author.length; i++) {
-            hash = ((hash << 5) - hash + author.charCodeAt(i)) & 0xffffffff;
-        }
-        const index = Math.abs(hash) % authorPalette.length;
-        return authorPalette[index];
-    }
-
-    function addChatMessage(
-        author: string,
-        message: string,
-        badge: string | null = null,
-    ) {
-        if (!chatMessages) return;
-        const messageDiv = document.createElement("div");
-        messageDiv.className = "chat-message";
-        const colorValue = getAuthorColor(author);
-        messageDiv.innerHTML = `
-			<div class="message-header">
-				<div class="message-author" style="color: ${colorValue};">
-					${author}
-					${badge ? `<span class="message-badge">${badge}</span>` : ""}
-				</div>
-			</div>
-			<div class="message-content">${message}</div>
-		`;
-        chatMessages.appendChild(messageDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    function addSystemMessage(message: string, isJoin = false) {
-        if (!chatMessages) return;
-        const messageDiv = document.createElement("div");
-        messageDiv.className = `system-message ${isJoin ? "join" : ""}`;
-        messageDiv.textContent = message;
-        chatMessages.appendChild(messageDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    // Gestion des onglets
-    const publicTab = document.getElementById("publicTab");
-    const publicContent = document.getElementById("publicContent");
-
-    // Chat public - juste afficher le message
-    const chatForm = document.getElementById("chatForm");
-    if (chatForm) {
-        chatForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const input = document.getElementById(
-                "chatInput",
-            ) as HTMLInputElement;
-            if (!input) return;
-            const message = input.value.trim();
-            if (message) {
-                // Afficher le message dans le chat public
-                addChatMessage(userFirstName, message, null);
-                input.value = "";
-
-                // Simulation de réponses des autres participants
-                setTimeout(
-                    () => {
-                        const responses = ["Top!", "+1", "🔥", "Merci", "Cool"];
-                        const randomResponse =
-                            responses[
-                                Math.floor(Math.random() * responses.length)
-                            ];
-                        const randomName = ["Julie", "Marc", "Sophie", "Alex"][
-                            Math.floor(Math.random() * 4)
-                        ];
-                        addChatMessage(randomName, randomResponse);
-                    },
-                    2000 + Math.random() * 3000,
-                );
-            }
-        });
-    }
-
-    // Viewers count functionality
-    function initializeViewerCount() {
-        const viewerCountElement = document.getElementById("viewerCount");
-        if (!viewerCountElement) return;
-
-        // Valeur initiale aléatoire entre 32 et 57
-        let currentCount = Math.floor(Math.random() * (57 - 32 + 1)) + 32;
-        viewerCountElement.textContent = currentCount.toString();
-
-        function updateViewerCount() {
-            if (!viewerCountElement) return;
-
-            // Générer un nouveau chiffre entre 32 et 57
-            const newCount = Math.floor(Math.random() * (57 - 32 + 1)) + 32;
-
-            // Ajouter une classe pour l'animation
-            viewerCountElement.classList.add("updating");
-
-            setTimeout(() => {
-                if (viewerCountElement) {
-                    viewerCountElement.textContent = newCount.toString();
-                    viewerCountElement.classList.remove("updating");
-                }
-            }, 250);
-        }
-
-        // Changer le chiffre toutes les 10 à 20 secondes de façon aléatoire
-        function scheduleNextUpdate() {
-            const delay =
-                Math.floor(Math.random() * (20000 - 10000 + 1)) + 10000; // Entre 10 et 20 secondes
-            setTimeout(() => {
-                updateViewerCount();
-                scheduleNextUpdate();
-            }, delay);
-        }
-
-        scheduleNextUpdate();
-    }
-
     // Floating reactions (disabled)
     function showFloatingReaction(emoji: string) {
         // Disabled for now
@@ -2108,14 +1314,6 @@ import Layout from "../layouts/Layout.astro";
         video.addEventListener("pause", () => setPlayingState(false));
         video.addEventListener("timeupdate", () => {
             lastTime = video.currentTime || 0;
-            // Flush any timed chat messages whose time has passed
-            while (
-                timedCursor < timedMessages.length &&
-                (video.currentTime || 0) + 0.05 >= timedMessages[timedCursor].t
-            ) {
-                const entry = timedMessages[timedCursor++];
-                addChatMessage(entry.a, entry.m, null);
-            }
         });
         video.addEventListener("seeking", () => {
             // Autoriser les seeks déclenchés par les chapitres, bloquer le reste
@@ -2126,7 +1324,6 @@ import Layout from "../layouts/Layout.astro";
         });
         video.addEventListener("loadedmetadata", () => {
             lastTime = 0;
-            timedCursor = 0;
         });
 
         // mute button removed; keep slider-based volume

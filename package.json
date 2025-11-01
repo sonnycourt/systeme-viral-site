@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "dev:netlify": "netlify dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "astro preview --port 5501",
     "astro": "astro",
     "deploy": "./scripts/deploy.sh",
     "clean": "rm -rf dist",
