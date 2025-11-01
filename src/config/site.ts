@@ -13,6 +13,7 @@ export const siteConfig = {
 	},
 	nav: [
 		{ title: 'Blog', href: '/blog' },
+		{ title: 'Inscription', href: '/inscription' },
 		{ title: 'Contact', href: '/contact' },
 	],
 } as const;

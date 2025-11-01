@@ -1,11 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout
 	title="Contact - Système Viral"
 	description="Contacte l'équipe Système Viral pour tes questions sur le marketing digital, la viralisation et la monétisation de contenus."
 >
+	<Header />
 	<div class="contact-page">
 		<div class="contact-hero">
 			<div class="hero-content">
@@ -22,7 +25,26 @@ import Layout from "../layouts/Layout.astro";
 				<div class="contact-info">
 					<h2>Informations de contact</h2>
 					<div class="contact-item">
-						<div class="contact-icon">📧</div>
+						<div class="contact-icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="lucide lucide-mail-icon lucide-mail"
+							>
+								<path
+									d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"
+								></path>
+								<rect x="2" y="4" width="20" height="16" rx="2"
+								></rect>
+							</svg>
+						</div>
 						<div>
 							<h3>Email</h3>
 							<p>support@systemeviral.com</p>
@@ -30,26 +52,64 @@ import Layout from "../layouts/Layout.astro";
 					</div>
 
 					<div class="contact-item">
-						<div class="contact-icon">📱</div>
+						<div class="contact-icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="lucide lucide-instagram-icon lucide-instagram"
+							>
+								<rect
+									width="20"
+									height="20"
+									x="2"
+									y="2"
+									rx="5"
+									ry="5"></rect>
+								<path
+									d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+								></path>
+								<line x1="17.5" x2="17.51" y1="6.5" y2="6.5"
+								></line>
+							</svg>
+						</div>
 						<div>
 							<h3>Réseaux sociaux</h3>
-							<p>@systemeviral</p>
+							<p>@sonnycourt</p>
 						</div>
 					</div>
 
 					<div class="contact-item">
-						<div class="contact-icon">⏰</div>
+						<div class="contact-icon">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="lucide lucide-alarm-clock-check-icon lucide-alarm-clock-check"
+							>
+								<circle cx="12" cy="13" r="8"></circle>
+								<path d="M5 3 2 6"></path>
+								<path d="m22 6-3-3"></path>
+								<path d="M6.38 18.7 4 21"></path>
+								<path d="M17.64 18.67 20 21"></path>
+								<path d="m9 13 2 2 4-4"></path>
+							</svg>
+						</div>
 						<div>
 							<h3>Réponse</h3>
-							<p>Sous 24h en semaine</p>
-						</div>
-					</div>
-
-					<div class="contact-item">
-						<div class="contact-icon">🎯</div>
-						<div>
-							<h3>Formation</h3>
-							<p>Accès immédiat après inscription</p>
+							<p>sous 48h en semaine</p>
 						</div>
 					</div>
 				</div>
@@ -146,6 +206,7 @@ import Layout from "../layouts/Layout.astro";
 			</div>
 		</div>
 	</div>
+	<Footer />
 </Layout>
 
 <style>
@@ -169,14 +230,7 @@ import Layout from "../layouts/Layout.astro";
 		line-height: 1.1;
 		margin-bottom: 24px;
 		letter-spacing: -0.04em;
-		background: linear-gradient(
-			180deg,
-			#ffffff 0%,
-			var(--accent-bright) 100%
-		);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
+		color: #ffffff !important;
 	}
 
 	.hero-subtitle {
@@ -238,6 +292,13 @@ import Layout from "../layouts/Layout.astro";
 		background: rgba(0, 220, 130, 0.1);
 		border-radius: 12px;
 		color: var(--accent);
+	}
+
+	.contact-icon svg {
+		color: #00dc82;
+		width: 24px;
+		height: 24px;
+		flex-shrink: 0;
 	}
 
 	.contact-item h3 {
