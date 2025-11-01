@@ -1183,18 +1183,30 @@ import Layout from "../layouts/Layout.astro";
             if (!viewersCountElement && !viewersCountMobileElement) return;
 
             const elapsed = Date.now() - startTime;
-            const progress = Math.min(1, elapsed / duration); // Entre 0 et 1
+            let linearProgress = Math.min(1, elapsed / duration); // Entre 0 et 1
 
-            // Calculer la valeur cible basée sur la progression
+            // Fonction easing : rapide au début, ralentit au milieu, accélère à la fin
+            // Utilise une courbe ease-in-out-cubic modifiée pour plus d'accélération aux extrémités
+            function easeInOutCubic(t: number): number {
+                return t < 0.5
+                    ? 4 * t * t * t
+                    : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            }
+
+            // Appliquer l'easing pour une progression naturelle
+            const easedProgress = easeInOutCubic(linearProgress);
+
+            // Calculer la valeur cible basée sur la progression avec easing
             const targetCount =
-                startCount + Math.floor(totalIncrease * progress);
+                startCount + Math.floor(totalIncrease * easedProgress);
 
-            // Ajouter une variation aléatoire de -3 à +3 pour rendre plus naturel
-            const variation = Math.floor(Math.random() * 7) - 3; // -3 à +3
-            const newCount = Math.max(
-                startCount,
-                Math.min(endCount, targetCount + variation),
-            );
+            // Ajouter une variation aléatoire positive (0 à +3) pour rendre plus naturel
+            // Mais s'assurer que le compteur ne redescend jamais
+            const variation = Math.floor(Math.random() * 4); // 0 à +3
+            let newCount = Math.min(endCount, targetCount + variation);
+
+            // Garantir que le compteur ne redescend jamais - toujours >= currentCount
+            newCount = Math.max(currentCount, newCount);
 
             // Ne mettre à jour que si le nombre a changé
             if (newCount !== currentCount) {
@@ -1225,7 +1237,7 @@ import Layout from "../layouts/Layout.astro";
             }
 
             // Continuer à mettre à jour toutes les 3 à 6 secondes pendant 20 minutes
-            if (progress < 1) {
+            if (linearProgress < 1) {
                 const delay =
                     Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000; // Entre 3 et 6 secondes
                 setTimeout(() => {
@@ -1238,11 +1250,14 @@ import Layout from "../layouts/Layout.astro";
                         return;
                     const delay =
                         Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
-                    const finalVariation = Math.floor(Math.random() * 7) - 3;
-                    const finalCount = Math.max(
-                        176, // Légèrement en dessous de 179
-                        Math.min(endCount, endCount + finalVariation),
+                    // Variation positive seulement (0 à +3) pour éviter les descentes
+                    const finalVariation = Math.floor(Math.random() * 4); // 0 à +3
+                    let finalCount = Math.min(
+                        endCount,
+                        endCount + finalVariation,
                     );
+                    // Garantir que le compteur ne redescend jamais
+                    finalCount = Math.max(currentCount, finalCount);
 
                     if (finalCount !== currentCount) {
                         currentCount = finalCount;
