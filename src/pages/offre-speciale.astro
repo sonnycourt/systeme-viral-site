@@ -14107,6 +14107,11 @@ import Layout from "../layouts/Layout.astro";
                 score,
                 recommendationsEl,
             ) {
+                console.log("🚀 DÉBUT generatePersonalizedRecommendations");
+                console.log("📊 Score reçu:", score);
+                console.log("📝 Answers:", this.answers);
+                console.log("🎯 Element:", recommendationsEl);
+                
                 try {
                     // Afficher un indicateur de chargement
                     if (recommendationsEl) {
@@ -14156,7 +14161,11 @@ import Layout from "../layouts/Layout.astro";
                     // Lire le texte de la réponse
                     const responseText = await response.text();
                     console.log("📥 Texte brut de la réponse:", responseText);
-                    console.log("📥 Status:", response.status, response.statusText);
+                    console.log(
+                        "📥 Status:",
+                        response.status,
+                        response.statusText,
+                    );
 
                     if (!response.ok) {
                         console.error(
@@ -14165,16 +14174,21 @@ import Layout from "../layouts/Layout.astro";
                             response.statusText,
                         );
                         console.error("❌ Corps de l'erreur:", responseText);
-                        
+
                         // Essayer de parser l'erreur pour voir le message
                         let errorData;
                         try {
                             errorData = JSON.parse(responseText);
-                            console.error("❌ Données d'erreur parsées:", errorData);
+                            console.error(
+                                "❌ Données d'erreur parsées:",
+                                errorData,
+                            );
                         } catch (e) {
-                            console.error("❌ Impossible de parser l'erreur comme JSON");
+                            console.error(
+                                "❌ Impossible de parser l'erreur comme JSON",
+                            );
                         }
-                        
+
                         throw new Error(
                             `Erreur API recommandations (${response.status}): ${responseText}`,
                         );
@@ -14243,7 +14257,10 @@ import Layout from "../layouts/Layout.astro";
                         }
                     }
                 } catch (error) {
-                    console.error("Erreur génération recommandations:", error);
+                    console.error("❌ ERREUR génération recommandations:", error);
+                    console.error("❌ Type erreur:", error.constructor.name);
+                    console.error("❌ Message erreur:", error.message);
+                    console.error("❌ Stack:", error.stack);
 
                     // Fallback avec recommandation générique
                     if (recommendationsEl) {
@@ -14254,6 +14271,9 @@ import Layout from "../layouts/Layout.astro";
                             <h4>Recommandation personnalisée</h4>
                             <p style="color: var(--text-secondary); line-height: 1.6; font-size: 16px; margin: 0;">
                                 ${fallbackRecommendation}
+                            </p>
+                            <p style="color: #ff4444; font-size: 12px; margin-top: 10px; font-style: italic;">
+                                ⚠️ Erreur: ${error.message}
                             </p>
                         `;
                         recommendationsEl.innerHTML = recommendationHTML;
