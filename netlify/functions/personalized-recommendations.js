@@ -112,6 +112,8 @@ Réponds UNIQUEMENT en JSON valide.`;
 
     // Parser la réponse JSON
     let parsed;
+    let finalRecommendation;
+    
     try {
       // Nettoyer la réponse pour extraire le JSON
       let cleanedResponse = response.trim();
@@ -131,28 +133,43 @@ Réponds UNIQUEMENT en JSON valide.`;
       
       parsed = JSON.parse(cleanedResponse);
       console.log('✅ JSON parsé avec succès:', parsed);
+      
+      if (parsed.recommendation && parsed.recommendation.trim().length > 0) {
+        finalRecommendation = parsed.recommendation.trim();
+        console.log('✅ Recommandation extraite:', finalRecommendation);
+      } else {
+        throw new Error('Recommandation vide dans le JSON');
+      }
     } catch (e) {
       console.error('❌ Erreur parsing JSON:', e);
-      console.error('Réponse originale:', response);
+      console.error('Réponse originale OpenAI:', response);
       
       // Essayer d'extraire juste le texte de recommandation même sans JSON valide
-      const recommendationMatch = response.match(/"recommendation"\s*:\s*"([^"]+)"/);
+      const recommendationMatch = response.match(/"recommendation"\s*:\s*"([^"]+(?:\\.|[^"\\])*)"|\"recommendation\"\s*:\s*\"([^\"]+)\"/);
       if (recommendationMatch) {
-        parsed = {
-          recommendation: recommendationMatch[1]
-        };
-        console.log('✅ Recommandation extraite via regex:', parsed);
+        finalRecommendation = recommendationMatch[1] || recommendationMatch[2];
+        console.log('✅ Recommandation extraite via regex:', finalRecommendation);
       } else {
-        // Fallback si le JSON n'est pas valide
-        parsed = {
-          recommendation: "Basé sur ton profil, tu as un potentiel réel pour réussir avec le Système Viral 100K™. Ta motivation et ton engagement sont tes plus grands atouts. La formation te donnera la méthode et les outils pour transformer ce potentiel en résultats concrets et durables."
-        };
+        // Si vraiment aucune recommandation ne peut être extraite, créer une personnalisée basée sur le score
+        console.error('⚠️ Impossible d\'extraire la recommandation, génération basée sur le score');
+        
+        // Générer une recommandation personnalisée basée sur le score et les réponses
+        const scoreLevel = score >= 80 ? 'excellent' : score >= 60 ? 'très bon' : score >= 40 ? 'bon' : 'correct';
+        const tempsLevel = responseContext.temps >= 2 ? 'excellent' : responseContext.temps >= 1 ? 'bon' : 'limité';
+        const motivationLevel = responseContext.motivation >= 3 ? 'exceptionnelle' : responseContext.motivation >= 2 ? 'forte' : 'modérée';
+        
+        finalRecommendation = `Ton profil révèle un potentiel ${scoreLevel} (${score}%) pour réussir avec le Système Viral 100K™. Avec ${motivationLevel} motivation et un temps disponible ${tempsLevel}, tu as les bases solides pour transformer ce potentiel en résultats concrets. La formation te donnera exactement la méthode et les outils adaptés à ton profil pour accélérer ta progression vers la liberté financière.`;
+        
+        console.log('✅ Recommandation générée dynamiquement:', finalRecommendation);
       }
     }
-
-    const finalRecommendation = parsed.recommendation || "Ton profil montre un potentiel intéressant pour réussir avec le Système Viral 100K™.";
     
-    console.log('✅ Recommandation finale:', finalRecommendation);
+    // S'assurer qu'on a bien une recommandation
+    if (!finalRecommendation || finalRecommendation.trim().length === 0) {
+      finalRecommendation = "Ton profil montre un potentiel intéressant pour réussir avec le Système Viral 100K™.";
+    }
+    
+    console.log('✅ Recommandation finale envoyée:', finalRecommendation);
     
     return {
       statusCode: 200,
