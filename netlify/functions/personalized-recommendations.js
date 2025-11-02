@@ -1,15 +1,14 @@
-// Lazy-init OpenAI client with dynamic ESM import (works in CJS/ESM environments)
-let openaiClient;
-async function getOpenAIClient() {
-  if (openaiClient) return openaiClient;
-  const { default: OpenAI } = await import('openai');
-  openaiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-  return openaiClient;
-}
+const OpenAI = require('openai');
+
+// Configuration OpenAI
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 exports.handler = async (event, context) => {
   console.log('🎯 PERSONALIZED RECOMMENDATIONS FUNCTION CALLED');
   console.log('📨 HTTP Method:', event.httpMethod);
+  console.log('📦 Body:', event.body);
 
   // Headers CORS
   const headers = {
@@ -20,6 +19,7 @@ exports.handler = async (event, context) => {
 
   // Handle preflight requests
   if (event.httpMethod === 'OPTIONS') {
+    console.log('✅ OPTIONS request handled');
     return {
       statusCode: 200,
       headers,
@@ -29,6 +29,7 @@ exports.handler = async (event, context) => {
 
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
+    console.log('❌ Method not allowed:', event.httpMethod);
     return {
       statusCode: 405,
       headers,
@@ -37,7 +38,10 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    console.log('📥 Parsing request body...');
     const { answers, score, userProfile } = JSON.parse(event.body);
+    console.log('📊 Answers received:', answers);
+    console.log('📈 Score received:', score);
 
     if (!answers || !Array.isArray(answers)) {
       return {
@@ -56,6 +60,8 @@ exports.handler = async (event, context) => {
       perseverance: answers[4] || 0, // 0-3
       score: score || 0
     };
+
+    console.log('🎯 Context prepared:', responseContext);
 
     // Créer le prompt personnalisé
     const systemPrompt = `Tu es un expert en marketing viral et en création de contenu. Tu analyses le profil d'un utilisateur basé sur ses réponses à un calculateur de probabilité de succès et tu génères un paragraphe de recommandations personnalisées qui le mène naturellement vers l'inscription au Système Viral 100K™.
@@ -90,8 +96,9 @@ Le paragraphe doit:
 
 Réponds UNIQUEMENT en JSON valide.`;
 
+    console.log('🤖 Calling OpenAI API...');
+
     // Appel à l'API OpenAI avec format de réponse JSON
-    const openai = await getOpenAIClient();
     const completion = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
@@ -103,17 +110,22 @@ Réponds UNIQUEMENT en JSON valide.`;
       response_format: { type: 'json_object' },
     });
 
+    console.log('✅ OpenAI response received');
+
     const response = completion.choices[0]?.message?.content;
 
     if (!response) {
       throw new Error('No response from OpenAI');
     }
 
+    console.log('📝 Raw response:', response);
+
     // Parser la réponse JSON
     let parsed;
     try {
       parsed = JSON.parse(response.trim());
     } catch (e) {
+      console.error('⚠️ JSON parse error, trying to extract JSON...', e);
       // Si le JSON n'est pas valide, essayer de l'extraire
       const jsonMatch = response.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
@@ -125,6 +137,8 @@ Réponds UNIQUEMENT en JSON valide.`;
 
     const finalRecommendation = parsed.recommendation || "Ton profil montre un potentiel intéressant pour réussir avec le Système Viral 100K™.";
     
+    console.log('✨ Final recommendation:', finalRecommendation);
+
     return {
       statusCode: 200,
       headers,
@@ -135,7 +149,8 @@ Réponds UNIQUEMENT en JSON valide.`;
     };
 
   } catch (error) {
-    console.error('Erreur recommandations personnalisées:', error);
+    console.error('❌ Erreur recommandations personnalisées:', error);
+    console.error('❌ Error stack:', error.stack);
 
     // Fallback response
     const fallbackRecommendation = "Basé sur ton profil, tu as un potentiel réel pour réussir avec le Système Viral 100K™. Ta motivation et ton engagement sont tes plus grands atouts. La formation te donnera la méthode et les outils pour transformer ce potentiel en résultats concrets et durables.";
@@ -150,4 +165,3 @@ Réponds UNIQUEMENT en JSON valide.`;
     };
   }
 };
-
