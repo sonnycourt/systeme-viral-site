@@ -58,7 +58,13 @@ exports.handler = async (event, context) => {
     };
 
     // Créer le prompt personnalisé
+    // IMPORTANT: Avec response_format json_object, le système prompt DOIT mentionner JSON
     const systemPrompt = `Tu es un expert en marketing viral et en création de contenu. Tu analyses le profil d'un utilisateur basé sur ses réponses à un calculateur de probabilité de succès et tu génères un paragraphe de recommandations personnalisées qui le mène naturellement vers l'inscription au Système Viral 100K™.
+
+Tu DOIS toujours répondre en JSON valide avec cette structure exacte:
+{
+  "recommendation": "Ton paragraphe personnalisé ici"
+}
 
 CONTEXTE DU PROFIL:
 - Temps disponible: ${responseContext.temps}/3
@@ -68,13 +74,10 @@ CONTEXTE DU PROFIL:
 - Persévérance: ${responseContext.perseverance}/3
 - Score de probabilité: ${responseContext.score}%
 
-Génère un paragraphe personnalisé au format JSON:
+EXEMPLE DE FORMAT ATTENDU (en JSON):
 {
-  "recommendation": "Paragraphe personnalisé qui analyse son profil et le guide vers l'inscription"
+  "recommendation": "Ton profil révèle une motivation exceptionnelle qui compense largement ton niveau technique débutant. Cette détermination est ton plus grand atout pour réussir avec le Système Viral 100K™. La formation te donnera exactement les outils techniques dont tu as besoin pour transformer cette motivation en résultats concrets."
 }
-
-EXEMPLE DE FORMAT ATTENDU:
-"Ton profil révèle une motivation exceptionnelle qui compense largement ton niveau technique débutant. Cette détermination est ton plus grand atout pour réussir avec le Système Viral 100K™. La formation te donnera exactement les outils techniques dont tu as besoin pour transformer cette motivation en résultats concrets."
 
 Le paragraphe doit:
 - Analyser ses forces et faiblesses spécifiques
@@ -88,19 +91,32 @@ Le paragraphe doit:
 - COMMENCER DIRECTEMENT par l'analyse (pas de "Bonjour", "Salut", "Hello", etc.)
 - Être une vraie recommandation professionnelle, pas une conversation
 
-Réponds UNIQUEMENT en JSON valide.`;
+IMPORTANT: Tu dois OBLIGATOIREMENT répondre en JSON valide avec la structure {"recommendation": "..."}`;
 
+    console.log('📝 Préparation appel OpenAI avec contexte:', responseContext);
+    
     // Appel à l'API OpenAI avec format de réponse JSON
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: `Génère des recommandations personnalisées pour ce profil: ${JSON.stringify(responseContext)}` }
-      ],
-      max_tokens: 800,
-      temperature: 0.7,
-      response_format: { type: 'json_object' },
-    });
+    let completion;
+    try {
+      completion = await openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: `Génère des recommandations personnalisées pour ce profil en JSON: ${JSON.stringify(responseContext)}` }
+        ],
+        max_tokens: 800,
+        temperature: 0.7,
+        response_format: { type: 'json_object' },
+      });
+      
+      console.log('✅ Réponse OpenAI reçue, status:', completion.choices ? 'OK' : 'ERREUR');
+      console.log('📊 Usage:', completion.usage);
+    } catch (openaiError) {
+      console.error('❌ ERREUR OpenAI API:', openaiError);
+      console.error('❌ Message:', openaiError.message);
+      console.error('❌ Stack:', openaiError.stack);
+      throw new Error(`Erreur OpenAI: ${openaiError.message}`);
+    }
 
     const response = completion.choices[0]?.message?.content;
 
@@ -181,17 +197,19 @@ Réponds UNIQUEMENT en JSON valide.`;
     };
 
   } catch (error) {
-    console.error('Erreur recommandations personnalisées:', error);
-
-    // Fallback response
-    const fallbackRecommendation = "Basé sur ton profil, tu as un potentiel réel pour réussir avec le Système Viral 100K™. Ta motivation et ton engagement sont tes plus grands atouts. La formation te donnera la méthode et les outils pour transformer ce potentiel en résultats concrets et durables.";
-
+    console.error('❌ ERREUR CRITIQUE recommandations personnalisées:', error);
+    console.error('❌ Type erreur:', error.constructor.name);
+    console.error('❌ Message erreur:', error.message);
+    console.error('❌ Stack trace:', error.stack);
+    
+    // NE PAS retourner le fallback - laisser l'erreur remonter pour qu'on puisse la voir
     return {
-      statusCode: 200,
+      statusCode: 500,
       headers,
       body: JSON.stringify({
-        recommendation: fallbackRecommendation,
         error: true,
+        message: error.message || 'Erreur inconnue lors de la génération des recommandations',
+        recommendation: null,
       }),
     };
   }
