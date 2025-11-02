@@ -1,9 +1,11 @@
-const OpenAI = require('openai');
-
-// Configuration OpenAI
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// Lazy-init OpenAI client with dynamic ESM import (works in CJS/ESM environments)
+let openaiClient;
+async function getOpenAIClient() {
+  if (openaiClient) return openaiClient;
+  const { default: OpenAI } = await import('openai');
+  openaiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  return openaiClient;
+}
 
 exports.handler = async (event, context) => {
   console.log('🎯 PERSONALIZED RECOMMENDATIONS FUNCTION CALLED');
@@ -89,6 +91,7 @@ Le paragraphe doit:
 Réponds UNIQUEMENT en JSON valide.`;
 
     // Appel à l'API OpenAI avec format de réponse JSON
+    const openai = await getOpenAIClient();
     const completion = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
