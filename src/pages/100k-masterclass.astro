@@ -918,11 +918,12 @@ import Layout from "../layouts/Layout.astro";
         border-radius: 10px;
         font-size: 13px;
         color: var(--text-secondary);
-        cursor: pointer;
+        cursor: default;
         transition: all 0.4s ease;
         position: relative;
         overflow: hidden;
         font-weight: 500;
+        pointer-events: none;
     }
 
     .chapter::before {
@@ -957,12 +958,6 @@ import Layout from "../layouts/Layout.astro";
         box-shadow: 0 0 10px rgba(0, 220, 130, 0.6);
         transition: none;
         opacity: 0;
-    }
-
-    .chapter:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-        transform: translateY(-2px);
     }
 
     .chapter.active {
@@ -1456,22 +1451,7 @@ import Layout from "../layouts/Layout.astro";
         closeCTA();
     }
 
-    // Chapter navigation (seek video)
-    let allowProgrammaticSeek = false;
-    document.querySelectorAll(".chapter").forEach((chapter) => {
-        chapter.addEventListener("click", () => {
-            const time = parseInt((chapter as HTMLElement).dataset.time || "0");
-            if (video) {
-                allowProgrammaticSeek = true;
-                video.currentTime = Math.max(0, time);
-                // Optionally play
-                if (video.paused) video.play();
-                setTimeout(() => {
-                    allowProgrammaticSeek = false;
-                }, 150);
-            }
-        });
-    });
+    // Chapter navigation désactivée - les chapitres sont uniquement informatifs
 
     // --- Custom Video Controls ---
     const video = document.getElementById(
@@ -1519,8 +1499,7 @@ import Layout from "../layouts/Layout.astro";
             lastTime = video.currentTime || 0;
         });
         video.addEventListener("seeking", () => {
-            // Autoriser les seeks déclenchés par les chapitres, bloquer le reste
-            if (allowProgrammaticSeek) return;
+            // Bloquer tous les seeks (scrubbing désactivé)
             if (Math.abs((video.currentTime || 0) - lastTime) > 0.5) {
                 video.currentTime = lastTime;
             }
