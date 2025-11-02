@@ -14110,7 +14110,57 @@ import Layout from "../layouts/Layout.astro";
                 try {
                     if (!recommendationsEl) return;
 
-                    // Préparer le profil à partir des réponses (index 0..3)
+                    // Fallback local déterministe
+                    const buildLocalRecommendation = (profile, scoreValue) => {
+                        const timeText = [
+                            "peu de temps disponible",
+                            "~30–60 min par jour",
+                            "1–2 h par jour",
+                            "2 h+ par jour",
+                        ][profile.temps];
+                        const skillText = [
+                            "débutant",
+                            "intermédiaire",
+                            "à l'aise",
+                            "expérimenté",
+                        ][profile.competences];
+                        const highCount = [
+                            profile.temps,
+                            profile.motivation,
+                            profile.competences,
+                            profile.audace,
+                            profile.perseverance,
+                        ].filter((v) => v >= 2).length;
+
+                        if (highCount >= 3 || scoreValue >= 85) {
+                            return `Ton profil est solide: motivation élevée et bonne constance. Avec ${timeText} et un niveau ${skillText}, tu peux mettre en place en 2–4 semaines un système simple (capture d'emails + publication régulière) pour générer des leads chaque jour. Passe à l'action maintenant, la méthode du Système Viral 100K™ t'indique l'ordre exact pour gagner du temps.`;
+                        } else if (
+                            profile.motivation >= 2 &&
+                            profile.perseverance >= 2
+                        ) {
+                            return `Tu as le moteur et la discipline — excellent combo. Même avec ${timeText} et un niveau ${skillText}, vise 2 contenus courts/semaine et un aimant à prospects basique. En 30–45 jours tu auras des données concrètes et une liste qui grandit.`;
+                        } else if (
+                            profile.motivation >= 2 &&
+                            profile.competences <= 1
+                        ) {
+                            return `Ta motivation compense un niveau technique ${skillText}. Commence par un format très simple (scripts réutilisables + modèle de montage). Objectif: régularité > perfection. La structure en 3 étapes (vidéo → cadeau → email) te permettra de convertir sans complexité.`;
+                        } else if (
+                            profile.temps <= 1 &&
+                            profile.perseverance >= 2
+                        ) {
+                            return `Peu de temps mais régulier: mise sur des sessions de 45 minutes focalisées (idée → script → tournage en une prise). Un seul tunnel clair suffit pour transformer les vues en emails. Ton score de ${scoreValue}% est largement actionnable.`;
+                        } else if (
+                            profile.competences <= 1 &&
+                            profile.audace <= 1
+                        ) {
+                            return `Démarre en douceur: choisis une thématique simple et recycle des structures qui ont déjà fait leurs preuves. Publie 1 à 2 vidéos par semaine et offre un mini PDF en échange de l'email — progression sûre sans prise de risque excessive.`;
+                        }
+                        return scoreValue >= 70
+                            ? `Bon potentiel: aligne tes efforts sur ce qui marche déjà, standardise tes scripts et mesure chaque semaine. Un système léger peut transformer tes vues en contacts dès ce mois-ci.`
+                            : `Potentiel naissant: clarifie ta promesse et adopte une cadence réaliste (1–2 vidéos/semaine). La priorité est la constance et un tunnel simple pour capter les premiers emails.`;
+                    };
+
+                    // Profil depuis les réponses
                     const profile = {
                         temps: this.answers[0] ?? 0,
                         motivation: this.answers[1] ?? 0,
@@ -14119,61 +14169,45 @@ import Layout from "../layouts/Layout.astro";
                         perseverance: this.answers[4] ?? 0,
                     };
 
-                    const timeText = [
-                        "peu de temps disponible",
-                        "~30–60 min par jour",
-                        "1–2 h par jour",
-                        "2 h+ par jour",
-                    ][profile.temps];
-                    const skillText = [
-                        "débutant",
-                        "intermédiaire",
-                        "à l'aise",
-                        "expérimenté",
-                    ][profile.competences];
-                    const highCount = [
-                        profile.temps,
-                        profile.motivation,
-                        profile.competences,
-                        profile.audace,
-                        profile.perseverance,
-                    ].filter((v) => v >= 2).length;
+                    // Indicateur de chargement
+                    recommendationsEl.innerHTML = `
+                        <h4>Recommandations personnalisées</h4>
+                        <div style="text-align: center; padding: 20px;">
+                            <div style="color: var(--accent);">🤖 Génération de recommandations personnalisées...</div>
+                        </div>
+                    `;
 
-                    let recommendation = "";
+                    // Tentative d'appel API (OpenAI via Netlify)
+                    let finalText = "";
+                    try {
+                        const response = await fetch(
+                            "/.netlify/functions/personalized-recommendations",
+                            {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    answers: this.answers,
+                                    score: score,
+                                    userProfile: profile,
+                                }),
+                            },
+                        );
+                        if (response.ok) {
+                            const data = await response.json();
+                            finalText = data.recommendation?.toString().trim() ?? "";
+                        }
+                    } catch (_) {
+                        // ignore and fallback to local
+                    }
 
-                    if (highCount >= 3 || score >= 85) {
-                        recommendation = `Ton profil est solide: motivation élevée et bonne constance. Avec ${timeText} et un niveau ${skillText}, tu peux mettre en place en 2–4 semaines un système simple (capture d'emails + publication régulière) pour générer des leads chaque jour. Passe à l'action maintenant, la méthode du Système Viral 100K™ t'indique l'ordre exact pour gagner du temps.`;
-                    } else if (
-                        profile.motivation >= 2 &&
-                        profile.perseverance >= 2
-                    ) {
-                        recommendation = `Tu as le moteur et la discipline — excellent combo. Même avec ${timeText} et un niveau ${skillText}, vise 2 contenus courts/semaine et un aimant à prospects basique. En 30–45 jours tu auras des données concrètes et une liste qui grandit.`;
-                    } else if (
-                        profile.motivation >= 2 &&
-                        profile.competences <= 1
-                    ) {
-                        recommendation = `Ta motivation compense un niveau technique ${skillText}. Commence par un format très simple (scripts réutilisables + modèle de montage). Objectif: régularité > perfection. La structure en 3 étapes (vidéo → cadeau → email) te permettra de convertir sans complexité.`;
-                    } else if (
-                        profile.temps <= 1 &&
-                        profile.perseverance >= 2
-                    ) {
-                        recommendation = `Peu de temps mais régulier: mise sur des sessions de 45 minutes focalisées (idée → script → tournage en une prise). Un seul tunnel clair suffit pour transformer les vues en emails. Ton score de ${score}% est largement actionnable.`;
-                    } else if (
-                        profile.competences <= 1 &&
-                        profile.audace <= 1
-                    ) {
-                        recommendation = `Démarre en douceur: choisis une thématique simple et recycle des structures qui ont déjà fait leurs preuves. Publie 1 à 2 vidéos par semaine et offre un mini PDF en échange de l'email — progression sûre sans prise de risque excessive.`;
-                    } else {
-                        recommendation =
-                            score >= 70
-                                ? `Bon potentiel: aligne tes efforts sur ce qui marche déjà, standardise tes scripts et mesure chaque semaine. Un système léger peut transformer tes vues en contacts dès ce mois-ci.`
-                                : `Potentiel naissant: clarifie ta promesse et adopte une cadence réaliste (1–2 vidéos/semaine). La priorité est la constance et un tunnel simple pour capter les premiers emails.`;
+                    if (!finalText) {
+                        finalText = buildLocalRecommendation(profile, score);
                     }
 
                     const recommendationHTML = `
                         <h4>Recommandation personnalisée</h4>
                         <p style="color: var(--text-secondary); line-height: 1.6; font-size: 16px; margin: 0;">
-                            ${recommendation}
+                            ${finalText}
                         </p>
                     `;
                     recommendationsEl.innerHTML = recommendationHTML;
