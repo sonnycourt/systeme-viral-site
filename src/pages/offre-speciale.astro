@@ -14107,11 +14107,6 @@ import Layout from "../layouts/Layout.astro";
                 score,
                 recommendationsEl,
             ) {
-                console.log("🚀 DÉBUT generatePersonalizedRecommendations");
-                console.log("📊 Score reçu:", score);
-                console.log("📝 Answers:", this.answers);
-                console.log("🎯 Element:", recommendationsEl);
-                
                 try {
                     // Afficher un indicateur de chargement
                     if (recommendationsEl) {
@@ -14123,23 +14118,6 @@ import Layout from "../layouts/Layout.astro";
                         `;
                     }
 
-                    // Préparer les données à envoyer
-                    const requestData = {
-                        answers: this.answers,
-                        score: score,
-                        userProfile: {
-                            temps: this.answers[0] || 0,
-                            motivation: this.answers[1] || 0,
-                            competences: this.answers[2] || 0,
-                            audace: this.answers[3] || 0,
-                            perseverance: this.answers[4] || 0,
-                        },
-                    };
-
-                    console.log("📤 Envoi des données à l'API:", requestData);
-                    console.log("📊 Score:", score);
-                    console.log("📝 Réponses:", this.answers);
-
                     // Appel à l'API des recommandations personnalisées
                     const response = await fetch(
                         "/.netlify/functions/personalized-recommendations",
@@ -14148,119 +14126,39 @@ import Layout from "../layouts/Layout.astro";
                             headers: {
                                 "Content-Type": "application/json",
                             },
-                            body: JSON.stringify(requestData),
+                            body: JSON.stringify({
+                                answers: this.answers,
+                                score: score,
+                                userProfile: {
+                                    temps: this.answers[0] || 0,
+                                    motivation: this.answers[1] || 0,
+                                    competences: this.answers[2] || 0,
+                                    audace: this.answers[3] || 0,
+                                    perseverance: this.answers[4] || 0,
+                                },
+                            }),
                         },
                     );
 
-                    console.log(
-                        "📡 Statut de la réponse:",
-                        response.status,
-                        response.statusText,
-                    );
-
-                    // Lire le texte de la réponse
-                    const responseText = await response.text();
-                    console.log("📥 Texte brut de la réponse:", responseText);
-                    console.log(
-                        "📥 Status:",
-                        response.status,
-                        response.statusText,
-                    );
-
                     if (!response.ok) {
-                        console.error(
-                            "❌ Erreur HTTP:",
-                            response.status,
-                            response.statusText,
-                        );
-                        console.error("❌ Corps de l'erreur:", responseText);
-
-                        // Essayer de parser l'erreur pour voir le message
-                        let errorData;
-                        try {
-                            errorData = JSON.parse(responseText);
-                            console.error(
-                                "❌ Données d'erreur parsées:",
-                                errorData,
-                            );
-                        } catch (e) {
-                            console.error(
-                                "❌ Impossible de parser l'erreur comme JSON",
-                            );
-                        }
-
-                        throw new Error(
-                            `Erreur API recommandations (${response.status}): ${responseText}`,
-                        );
+                        throw new Error("Erreur API recommandations");
                     }
 
-                    let data;
-                    try {
-                        data = JSON.parse(responseText);
-                        console.log("✅ JSON parsé avec succès");
-                    } catch (parseError) {
-                        console.error("❌ Erreur parsing JSON:", parseError);
-                        console.error(
-                            "❌ Texte qui n'a pas pu être parsé:",
-                            responseText.substring(0, 500),
-                        );
-                        throw new Error(
-                            `Erreur parsing JSON: ${parseError.message}`,
-                        );
-                    }
-
-                    console.log("📥 Données parsées de l'API:", data);
-
-                    let recommendation = data.recommendation || "";
-
-                    // Vérifier si on a une erreur
-                    if (data.error) {
-                        console.error(
-                            "❌ L'API a retourné une erreur:",
-                            data.message || data.error,
-                        );
-                        throw new Error(
-                            data.message ||
-                                "Erreur API: " + JSON.stringify(data),
-                        );
-                    }
-
-                    // Si pas de recommandation mais qu'on a reçu une réponse valide
-                    if (!recommendation) {
-                        console.error(
-                            "❌ Aucune recommandation dans la réponse:",
-                            data,
-                        );
-                        throw new Error(
-                            "Recommandation manquante dans la réponse API",
-                        );
-                    }
+                    const data = await response.json();
+                    const recommendation = data.recommendation || "";
 
                     // Afficher la recommandation personnalisée
-                    if (recommendationsEl) {
-                        if (
-                            recommendation &&
-                            recommendation.trim().length > 0
-                        ) {
-                            const recommendationHTML = `
-                                <h4>Recommandation personnalisée</h4>
-                                <p style="color: var(--text-secondary); line-height: 1.6; font-size: 16px; margin: 0;">
-                                    ${recommendation}
-                                </p>
-                            `;
-                            recommendationsEl.innerHTML = recommendationHTML;
-                        } else {
-                            // Si pas de recommandation, utiliser le fallback
-                            throw new Error(
-                                "Recommandation vide reçue de l'API",
-                            );
-                        }
+                    if (recommendationsEl && recommendation) {
+                        const recommendationHTML = `
+                            <h4>Recommandation personnalisée</h4>
+                            <p style="color: var(--text-secondary); line-height: 1.6; font-size: 16px; margin: 0;">
+                                ${recommendation}
+                            </p>
+                        `;
+                        recommendationsEl.innerHTML = recommendationHTML;
                     }
                 } catch (error) {
-                    console.error("❌ ERREUR génération recommandations:", error);
-                    console.error("❌ Type erreur:", error.constructor.name);
-                    console.error("❌ Message erreur:", error.message);
-                    console.error("❌ Stack:", error.stack);
+                    console.error("Erreur génération recommandations:", error);
 
                     // Fallback avec recommandation générique
                     if (recommendationsEl) {
@@ -14271,9 +14169,6 @@ import Layout from "../layouts/Layout.astro";
                             <h4>Recommandation personnalisée</h4>
                             <p style="color: var(--text-secondary); line-height: 1.6; font-size: 16px; margin: 0;">
                                 ${fallbackRecommendation}
-                            </p>
-                            <p style="color: #ff4444; font-size: 12px; margin-top: 10px; font-style: italic;">
-                                ⚠️ Erreur: ${error.message}
                             </p>
                         `;
                         recommendationsEl.innerHTML = recommendationHTML;
