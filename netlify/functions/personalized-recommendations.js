@@ -90,7 +90,7 @@ Le paragraphe doit:
 
 Réponds UNIQUEMENT en JSON valide.`;
 
-    // Appel à l'API OpenAI
+    // Appel à l'API OpenAI avec format de réponse JSON
     const completion = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
@@ -99,6 +99,7 @@ Réponds UNIQUEMENT en JSON valide.`;
       ],
       max_tokens: 800,
       temperature: 0.7,
+      response_format: { type: 'json_object' },
     });
 
     const response = completion.choices[0]?.message?.content;
@@ -107,25 +108,57 @@ Réponds UNIQUEMENT en JSON valide.`;
       throw new Error('No response from OpenAI');
     }
 
-    console.log('✅ Recommandations générées');
+    console.log('✅ Réponse brute OpenAI:', response);
 
     // Parser la réponse JSON
     let parsed;
     try {
-      parsed = JSON.parse(response.trim());
+      // Nettoyer la réponse pour extraire le JSON
+      let cleanedResponse = response.trim();
+      
+      // Si la réponse contient du markdown code block, l'extraire
+      const jsonMatch = cleanedResponse.match(/```(?:json)?\s*(\{[\s\S]*\})\s*```/);
+      if (jsonMatch) {
+        cleanedResponse = jsonMatch[1];
+      }
+      
+      // Si la réponse commence par du texte avant le JSON, extraire juste le JSON
+      const jsonStart = cleanedResponse.indexOf('{');
+      const jsonEnd = cleanedResponse.lastIndexOf('}');
+      if (jsonStart !== -1 && jsonEnd !== -1 && jsonEnd > jsonStart) {
+        cleanedResponse = cleanedResponse.substring(jsonStart, jsonEnd + 1);
+      }
+      
+      parsed = JSON.parse(cleanedResponse);
+      console.log('✅ JSON parsé avec succès:', parsed);
     } catch (e) {
-      console.error('Erreur parsing JSON:', e);
-      // Fallback si le JSON n'est pas valide
-      parsed = {
-        recommendation: "Basé sur ton profil, tu as un potentiel réel pour réussir avec le Système Viral 100K™. Ta motivation et ton engagement sont tes plus grands atouts. La formation te donnera la méthode et les outils pour transformer ce potentiel en résultats concrets et durables."
-      };
+      console.error('❌ Erreur parsing JSON:', e);
+      console.error('Réponse originale:', response);
+      
+      // Essayer d'extraire juste le texte de recommandation même sans JSON valide
+      const recommendationMatch = response.match(/"recommendation"\s*:\s*"([^"]+)"/);
+      if (recommendationMatch) {
+        parsed = {
+          recommendation: recommendationMatch[1]
+        };
+        console.log('✅ Recommandation extraite via regex:', parsed);
+      } else {
+        // Fallback si le JSON n'est pas valide
+        parsed = {
+          recommendation: "Basé sur ton profil, tu as un potentiel réel pour réussir avec le Système Viral 100K™. Ta motivation et ton engagement sont tes plus grands atouts. La formation te donnera la méthode et les outils pour transformer ce potentiel en résultats concrets et durables."
+        };
+      }
     }
 
+    const finalRecommendation = parsed.recommendation || "Ton profil montre un potentiel intéressant pour réussir avec le Système Viral 100K™.";
+    
+    console.log('✅ Recommandation finale:', finalRecommendation);
+    
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({
-        recommendation: parsed.recommendation || "Ton profil montre un potentiel intéressant pour réussir avec le Système Viral 100K™.",
+        recommendation: finalRecommendation,
         usage: completion.usage,
       }),
     };

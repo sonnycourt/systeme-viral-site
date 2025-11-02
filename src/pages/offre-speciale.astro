@@ -14118,6 +14118,23 @@ import Layout from "../layouts/Layout.astro";
                         `;
                     }
 
+                    // Préparer les données à envoyer
+                    const requestData = {
+                        answers: this.answers,
+                        score: score,
+                        userProfile: {
+                            temps: this.answers[0] || 0,
+                            motivation: this.answers[1] || 0,
+                            competences: this.answers[2] || 0,
+                            audace: this.answers[3] || 0,
+                            perseverance: this.answers[4] || 0,
+                        },
+                    };
+
+                    console.log("📤 Envoi des données à l'API:", requestData);
+                    console.log("📊 Score:", score);
+                    console.log("📝 Réponses:", this.answers);
+
                     // Appel à l'API des recommandations personnalisées
                     const response = await fetch(
                         "/.netlify/functions/personalized-recommendations",
@@ -14126,18 +14143,14 @@ import Layout from "../layouts/Layout.astro";
                             headers: {
                                 "Content-Type": "application/json",
                             },
-                            body: JSON.stringify({
-                                answers: this.answers,
-                                score: score,
-                                userProfile: {
-                                    temps: this.answers[0] || 0,
-                                    motivation: this.answers[1] || 0,
-                                    competences: this.answers[2] || 0,
-                                    audace: this.answers[3] || 0,
-                                    perseverance: this.answers[4] || 0,
-                                },
-                            }),
+                            body: JSON.stringify(requestData),
                         },
+                    );
+
+                    console.log(
+                        "📡 Statut de la réponse:",
+                        response.status,
+                        response.statusText,
                     );
 
                     if (!response.ok) {
@@ -14145,17 +14158,41 @@ import Layout from "../layouts/Layout.astro";
                     }
 
                     const data = await response.json();
-                    const recommendation = data.recommendation || "";
+                    console.log("📥 Données reçues de l'API:", data);
+
+                    let recommendation = data.recommendation || "";
+
+                    // Si pas de recommandation mais qu'on a reçu une réponse valide
+                    if (!recommendation && data.error) {
+                        console.warn(
+                            "⚠️ L'API a retourné une erreur, utilisation du fallback",
+                        );
+                    } else if (!recommendation) {
+                        console.warn(
+                            "⚠️ Aucune recommandation dans la réponse:",
+                            data,
+                        );
+                    }
 
                     // Afficher la recommandation personnalisée
-                    if (recommendationsEl && recommendation) {
-                        const recommendationHTML = `
-                            <h4>Recommandation personnalisée</h4>
-                            <p style="color: var(--text-secondary); line-height: 1.6; font-size: 16px; margin: 0;">
-                                ${recommendation}
-                            </p>
-                        `;
-                        recommendationsEl.innerHTML = recommendationHTML;
+                    if (recommendationsEl) {
+                        if (
+                            recommendation &&
+                            recommendation.trim().length > 0
+                        ) {
+                            const recommendationHTML = `
+                                <h4>Recommandation personnalisée</h4>
+                                <p style="color: var(--text-secondary); line-height: 1.6; font-size: 16px; margin: 0;">
+                                    ${recommendation}
+                                </p>
+                            `;
+                            recommendationsEl.innerHTML = recommendationHTML;
+                        } else {
+                            // Si pas de recommandation, utiliser le fallback
+                            throw new Error(
+                                "Recommandation vide reçue de l'API",
+                            );
+                        }
                     }
                 } catch (error) {
                     console.error("Erreur génération recommandations:", error);
