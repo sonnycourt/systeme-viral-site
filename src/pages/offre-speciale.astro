@@ -2870,11 +2870,6 @@ import Layout from "../layouts/Layout.astro";
                             </div>
                         </div>
                         <div class="result-message" id="result-message"></div>
-                        <div
-                            class="result-recommendations"
-                            id="result-recommendations"
-                        >
-                        </div>
                         <a
                             href="https://systemeviral.spiffy.co/checkout/systeme-viral#pop"
                             class="result-cta"
@@ -11891,41 +11886,6 @@ import Layout from "../layouts/Layout.astro";
             font-weight: 500;
         }
 
-        .result-recommendations {
-            background: rgba(0, 220, 130, 0.1);
-            border: 1px solid var(--accent);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 30px;
-        }
-
-        .result-recommendations h4 {
-            color: var(--accent);
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-        .result-recommendations ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .result-recommendations li {
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            padding-left: 20px;
-            position: relative;
-            line-height: 1.5;
-        }
-
-        .result-recommendations li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: 700;
-        }
 
         .result-cta {
             background: linear-gradient(
@@ -14032,9 +13992,6 @@ import Layout from "../layouts/Layout.astro";
                 const barometerProgressEl =
                     document.getElementById("barometer-progress");
                 const messageEl = document.getElementById("result-message");
-                const recommendationsEl = document.getElementById(
-                    "result-recommendations",
-                );
 
                 if (percentageEl) percentageEl.textContent = `${score}%`;
                 if (barometerPercentageEl)
@@ -14095,89 +14052,8 @@ import Layout from "../layouts/Layout.astro";
                 }
 
                 if (messageEl) messageEl.textContent = message;
-
-                // Appel à l'API pour les recommandations personnalisées
-                this.generatePersonalizedRecommendations(
-                    score,
-                    recommendationsEl,
-                );
             }
 
-            generatePersonalizedRecommendations(
-                score,
-                recommendationsEl,
-            ) {
-                if (!recommendationsEl) return;
-
-                // Profil depuis les réponses
-                const profile = {
-                    temps: this.answers[0] ?? 0,
-                    motivation: this.answers[1] ?? 0,
-                    competences: this.answers[2] ?? 0,
-                    audace: this.answers[3] ?? 0,
-                    perseverance: this.answers[4] ?? 0,
-                };
-
-                // Générer recommandation locale déterministe
-                const timeText = [
-                    "peu de temps disponible",
-                    "~30–60 min par jour",
-                    "1–2 h par jour",
-                    "2 h+ par jour",
-                ][profile.temps];
-                const skillText = [
-                    "débutant",
-                    "intermédiaire",
-                    "à l'aise",
-                    "expérimenté",
-                ][profile.competences];
-                const highCount = [
-                    profile.temps,
-                    profile.motivation,
-                    profile.competences,
-                    profile.audace,
-                    profile.perseverance,
-                ].filter((v) => v >= 2).length;
-
-                let recommendation = "";
-
-                if (highCount >= 3 || score >= 85) {
-                    recommendation = `Ton profil est solide: motivation élevée et bonne constance. Avec ${timeText} et un niveau ${skillText}, tu peux mettre en place en 2–4 semaines un système simple (capture d'emails + publication régulière) pour générer des leads chaque jour. Passe à l'action maintenant, la méthode du Système Viral 100K™ t'indique l'ordre exact pour gagner du temps.`;
-                } else if (
-                    profile.motivation >= 2 &&
-                    profile.perseverance >= 2
-                ) {
-                    recommendation = `Tu as le moteur et la discipline — excellent combo. Même avec ${timeText} et un niveau ${skillText}, vise 2 contenus courts/semaine et un aimant à prospects basique. En 30–45 jours tu auras des données concrètes et une liste qui grandit.`;
-                } else if (
-                    profile.motivation >= 2 &&
-                    profile.competences <= 1
-                ) {
-                    recommendation = `Ta motivation compense un niveau technique ${skillText}. Commence par un format très simple (scripts réutilisables + modèle de montage). Objectif: régularité > perfection. La structure en 3 étapes (vidéo → cadeau → email) te permettra de convertir sans complexité.`;
-                } else if (
-                    profile.temps <= 1 &&
-                    profile.perseverance >= 2
-                ) {
-                    recommendation = `Peu de temps mais régulier: mise sur des sessions de 45 minutes focalisées (idée → script → tournage en une prise). Un seul tunnel clair suffit pour transformer les vues en emails. Ton score de ${score}% est largement actionnable.`;
-                } else if (
-                    profile.competences <= 1 &&
-                    profile.audace <= 1
-                ) {
-                    recommendation = `Démarre en douceur: choisis une thématique simple et recycle des structures qui ont déjà fait leurs preuves. Publie 1 à 2 vidéos par semaine et offre un mini PDF en échange de l'email — progression sûre sans prise de risque excessive.`;
-                } else {
-                    recommendation =
-                        score >= 70
-                            ? `Bon potentiel: aligne tes efforts sur ce qui marche déjà, standardise tes scripts et mesure chaque semaine. Un système léger peut transformer tes vues en contacts dès ce mois-ci.`
-                            : `Potentiel naissant: clarifie ta promesse et adopte une cadence réaliste (1–2 vidéos/semaine). La priorité est la constance et un tunnel simple pour capter les premiers emails.`;
-                }
-
-                const recommendationHTML = `
-                    <h4>Recommandation personnalisée</h4>
-                    <p style="color: var(--text-secondary); line-height: 1.6; font-size: 16px; margin: 0;">
-                        ${recommendation}
-                    </p>
-                `;
-                recommendationsEl.innerHTML = recommendationHTML;
-            }
 
             restart() {
                 this.currentQuestionIndex = 0;
