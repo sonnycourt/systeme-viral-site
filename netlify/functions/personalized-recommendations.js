@@ -35,15 +35,44 @@ exports.handler = async (event, context) => {
   }
 
   try {
-    const { answers, score, userProfile } = JSON.parse(event.body);
-    console.log('📊 Score reçu:', score);
-    console.log('📝 Réponses:', answers);
-
-    if (!answers || !Array.isArray(answers)) {
+    console.log('📦 Event body:', event.body ? event.body.substring(0, 200) : 'EMPTY');
+    
+    let bodyData;
+    try {
+      bodyData = JSON.parse(event.body);
+    } catch (parseError) {
+      console.error('❌ Erreur parsing event.body:', parseError);
+      console.error('❌ Event.body:', event.body);
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ error: 'Réponses requises' }),
+        body: JSON.stringify({ 
+          error: 'Invalid JSON in request body',
+          message: parseError.message 
+        }),
+      };
+    }
+    
+    const { answers, score, userProfile } = bodyData;
+    console.log('📊 Score reçu:', score);
+    console.log('📝 Réponses:', answers);
+    console.log('👤 UserProfile:', userProfile);
+
+    if (!answers || !Array.isArray(answers)) {
+      console.error('❌ Réponses invalides:', answers);
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Réponses requises (array)' }),
+      };
+    }
+    
+    if (typeof score !== 'number') {
+      console.error('❌ Score invalide:', score);
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Score requis (number)' }),
       };
     }
 
