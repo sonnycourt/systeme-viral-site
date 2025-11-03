@@ -64,7 +64,7 @@ Tu publies enfin, convaincu que *« la qualité va parler d'elle-même »*.
 - **Mois 2-3** : engagement et capture d'emails
 - **Mois 3+** : création du produit basée sur les demandes réelles
 
-💡 **Value Nugget** : la Règle du 1000 – attends d'avoir 1000 vrais fans (emails) avant de créer quoi que ce soit. À ce stade, tu auras assez de feedback pour créer exactement ce qu'ils achèteront.
+💡 **Principe clé** : la Règle du 1000 – attends d'avoir 1000 vrais fans (emails) avant de créer quoi que ce soit. À ce stade, tu auras assez de feedback pour créer exactement ce qu'ils achèteront.
 
 ## ❌ Erreur #2 : Investir gros dès le départ
 
@@ -93,7 +93,7 @@ Donc tu claques (ou tu prévois de claquer)…
 
 > Commence par une offre simple nécessitant un investissement de départ minimal, puis améliore-la progressivement et crée de nouvelles offres plus premium à partir de là.
 
-💡 **Value Nugget** : le Test des 7 jours – si tu ne peux pas lancer une version basique de ton offre en 7 jours avec moins de 200 €, ton idée est trop complexe pour commencer. Simplifie !
+💡 **Principe clé** : le Test des 7 jours – si tu ne peux pas lancer une version basique de ton offre en 7 jours avec moins de 200 €, ton idée est trop complexe pour commencer. Simplifie !
 
 ## ❌ Erreur #3 : Miser uniquement sur les publicités payantes
 
@@ -134,7 +134,7 @@ Tu investis (ou tu envisages d'investir) **50 €/jour** en espérant que ça ca
 
 **= Tu dois être excellent avant même de toucher aux ads.**
 
-💡 **Value Nugget** : la Preuve Organique – si tu ne peux pas générer 10 ventes en organique, les ads ne sauveront pas ton business. Elles amplifient, elles ne créent pas la demande.
+💡 **Principe clé** : la Preuve Organique – si tu ne peux pas générer 10 ventes en organique, les ads ne sauveront pas ton business. Elles amplifient, elles ne créent pas la demande.
 
 ## ❌ Erreur #4 : Choisir une niche "passion" sans analyser le marché
 
@@ -177,7 +177,7 @@ Applique le **Triangle de Validation** :
 
 **Si c'est 3× OUI = fonce. Sinon = pivot.**
 
-💡 **Value Nugget** : les Big 5 – Santé, Richesse, Relations, Développement perso, Loisirs passionnants.
+💡 **Principe clé** : les Big 5 – Santé, Richesse, Relations, Développement perso, Loisirs passionnants.
 
 **89 %** des business en ligne rentables sont dans ces catégories.
 
@@ -232,7 +232,7 @@ La **Règle du 1 %** – convertis 1 % de tes vues en emails.
 1 million de vues/mois × 1 % = 10 K emails
 10 K emails × 3 % de conversion × 17,40 € = **5220 € de valeur créée/mois**
 
-💡 **Value Nugget** : la Règle Email First – récolte des emails dès que possible, c'est la fondation de tout business en ligne.
+💡 **Principe clé** : la Règle Email First – récolte des emails dès que possible, c'est la fondation de tout business en ligne.
 
 ## ❌ Erreur #6 : Tout faire seul sans système prouvé
 
@@ -270,7 +270,7 @@ La **Règle du 1 %** – convertis 1 % de tes vues en emails.
 - **Revenus générés plus vite** : 18 × 2000 € = 36 000 €
 - **→ ROI : 1700 %**
 
-💡 **Value Nugget** : le Test des 30 jours – un bon système doit te donner des résultats mesurables en 30 jours.
+💡 **Principe clé** : le Test des 30 jours – un bon système doit te donner des résultats mesurables en 30 jours.
 
 Si après 30 jours tu n'as pas au minimum 10 K vues → le système ne marche pas.
 
@@ -305,7 +305,7 @@ Si après 30 jours tu n'as pas au minimum 10 K vues → le système ne marche pa
 
 Et arrête d'attendre "le bon moment".
 
-💡 **Value Nugget** : la Règle des 10 – tes 10 premiers contenus sont de l'entraînement. Ne juge rien avant.
+💡 **Principe clé** : la Règle des 10 – tes 10 premiers contenus sont de l'entraînement. Ne juge rien avant.
 
 **Les créateurs qui dépassent 10 contenus ont 12× plus de chances de vivre de leur création.**
 
