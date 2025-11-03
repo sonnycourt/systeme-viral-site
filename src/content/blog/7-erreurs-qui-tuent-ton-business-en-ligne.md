@@ -111,7 +111,7 @@ Tu investis (ou tu envisages d'investir) **50 €/jour** en espérant que ça ca
 
 ### Les stats qui refroidissent
 
-- Le coût d'acquisition client dans l'e-learning peut **dépasser 100 €**, et être supérieur au prix moyen d'une formation
+- Le coût d'acquisition par client dans l'e-learning peut **dépasser 100 €**
 - % de débutants rentables en ads : **moins de 8 %**
 - Budget minimum pour tester correctement : **3000-5000 €**
 
