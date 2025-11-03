@@ -157,7 +157,7 @@ Structure:
 
 Obligatoire - Fin de la réponse:
 Tu DOIS terminer par une phrase incitative suivie d'un lien HTML cliquable. Format exact:
-"Clique ici pour t'inscrire maintenant : <a href=\"https://systemeviral.spiffy.co/checkout/systeme-viral#pop\" target=\"_blank\" style=\"color: #00d4aa; text-decoration: underline; font-weight: bold;\">COMMENCER LA FORMATION →</a>"
+"Clique ici pour t'inscrire maintenant : <a href=\"https://systemeviral.spiffy.co/checkout/systeme-viral#pop\" target=\"_blank\" style=\"color: #03F18D; text-decoration: underline; font-weight: bold;\">COMMENCER LA FORMATION →</a>"
 
 Ton: Bienveillant, rassurant, convaincant. Évite le jargon technique. Focus sur "dois-je investir ?" pas "comment faire".
 
@@ -201,7 +201,7 @@ ${userProfile}`;
       if (q1 >= 2) parts.push("Avec le temps que tu peux consacrer, cette formation est parfaite car elle est conçue pour les personnes disponibles comme toi.");
 
       // CTA avec lien cliquable
-      parts.push("Cette formation est faite pour quelqu'un comme toi. Clique ici pour t'inscrire maintenant : <a href=\"https://systemeviral.spiffy.co/checkout/systeme-viral#pop\" target=\"_blank\" style=\"color: #00d4aa; text-decoration: underline; font-weight: bold;\">COMMENCER LA FORMATION →</a>");
+      parts.push("Cette formation est faite pour quelqu'un comme toi. Clique ici pour t'inscrire maintenant : <a href=\"https://systemeviral.spiffy.co/checkout/systeme-viral#pop\" target=\"_blank\" style=\"color: #03F18D; text-decoration: underline; font-weight: bold;\">COMMENCER LA FORMATION →</a>");
 
       return parts.join(' ');
     };
