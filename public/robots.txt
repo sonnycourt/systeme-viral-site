@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://systemeviral.com/sitemap.xml
+Sitemap: https://systemeviral.com/sitemap-index.xml
