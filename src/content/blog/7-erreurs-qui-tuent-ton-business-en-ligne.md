@@ -361,7 +361,5 @@ La différence se joue maintenant.
 
 **PPS** : La garantie 30 jours te protège totalement.
 
-Si tu appliques et que ça ne marche pas, tu es remboursé.
-
 Tu ne risques que de réussir.
 
