@@ -1,11 +1,18 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import compress from 'astro-compress';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://systemeviral.com',
   integrations: [
+    // Sitemap automatique
+    sitemap({
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
     // Compression automatique (gzip/brotli)
     compress({
       css: true,
