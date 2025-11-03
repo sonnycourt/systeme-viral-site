@@ -145,26 +145,17 @@ exports.handler = async (event, context) => {
 
     userProfile += `Score total: ${score}%\n`;
 
-    const systemPrompt = `Tu es un expert en marketing digital et en système viral pour entrepreneurs. Tu dois analyser le profil d'un utilisateur qui vient de répondre à un questionnaire sur sa compatibilité avec le "Système Viral 100K™".
+    const systemPrompt = `Tu es un expert en acquisition pour créateurs. À partir des réponses ci-dessous, rédige UNE SEULE recommandation personnalisée sous forme d’un court paragraphe (60–100 mots), sans listes, claire et concrète.
 
-Voici les réponses de l'utilisateur:
+Contraintes:
+- Personnalise selon chaque réponse (temps dispo, motivation, niveau IA, audace, constance)
+- Donne 2–3 actions très précises à démarrer cette semaine
+- Ton: direct, motivant, orienté résultats
+- Termine par un appel à l’action explicite vers la formation (ex: « Clique sur \'Commencer la formation\' pour lancer ton système dès aujourd’hui. »)
+- Pas d’emojis, pas de listes, pas de titre
 
-${userProfile}
-
-Sur la base de ces réponses, génère 3 recommandations personnalisées et actionnables pour maximiser ses chances de succès avec le système viral. Chaque recommandation doit être:
-
-1. **Spécifique** : Dire exactement quoi faire
-2. **Actionnable** : Pouvoir être mise en œuvre immédiatement
-3. **Personnalisée** : Adaptée à son profil et à ses réponses
-4. **Optimiste** : Encourager et motiver
-
-Structure ta réponse comme suit:
-- Commence par une introduction personnalisée de 2-3 phrases
-- Liste ensuite les 3 recommandations numérotées
-- Chaque recommandation doit faire 2-3 phrases maximum
-- Termine par une conclusion motivante
-
-Utilise un ton professionnel mais accessible, encourageant et direct.`;
+Profil:
+${userProfile}`;
 
     // Helper: fallback local recommendations if API not available
     const buildLocalRecommendations = (answers, score) => {
@@ -174,50 +165,36 @@ Utilise un ton professionnel mais accessible, encourageant et direct.`;
       const q4 = answers[3] ?? 0; // inconfort/risque
       const q5 = answers[4] ?? 0; // constance
 
-      const tips = [];
-
-      // Constance / discipline
-      if (q5 <= 1) {
-        tips.push("Planifie 3 créneaux fixes de 45 min cette semaine (ex: lun/mer/ven, 19h00). Prépare tes scripts la veille et fais une seule prise. L'objectif: publier 3 vidéos, peu importe la perfection.");
-      } else if (q5 === 2) {
-        tips.push("Passe à un rythme 4x/semaine en batch: écris 4 hooks le lundi, tourne le mardi, monte le mercredi, publie du jeudi au dimanche. Garde des templates réutilisables.");
-      } else {
-        tips.push("Exploite ta discipline: crée un pipeline hebdo (idéation>scripts>tournage>montage>publication) et mesure 2 KPI clés: taux de rétention à 3s et CTR de la miniature.");
-      }
+      const parts = [];
+      // Intro personnalisée courte
+      parts.push(`Avec un score de ${score}%, tu as un potentiel ${score >= 70 ? 'élevé' : score >= 50 ? 'prometteur' : 'à structurer'} si tu passes à l’action dès cette semaine.`);
 
       // Temps disponible
-      if (q1 === 0) {
-        tips.push("Utilise des formats ultra-courts (20–30s) avec structure hook > 1 idée > CTA. Tourne en mode selfie, lumière naturelle, sans coupe complexe pour rester sous 15 min/montage.");
-      } else if (q1 === 1) {
-        tips.push("Optimise avec un template CapCut prêt-à-l'emploi (intro, sous-titres auto, fin). Objectif: 2 vidéos/jour en 30–45 min au total.");
-      } else {
-        tips.push("Passe au tournage par lot (8 scripts/tournage). Délègue le sous-titrage à un outil IA et garde ton temps sur les 10 premières secondes (impact maximum).");
-      }
-
-      // Compétences IA/digital
-      if (q3 <= 1) {
-        tips.push("Crée un pack d'IA minimal: ChatGPT pour scripts (prompt: 'Donne-moi 10 hooks polarisants sur [thématique]'), CapCut pour montage, Submagic pour sous-titres.");
-      } else {
-        tips.push("Mets en place un système d'analyse: tracke les patterns des 10% de vidéos top performance (hook, angle, gestures, rythme) et réplique-les chaque semaine.");
-      }
-
-      // Audace / passage à l'action
-      if (q4 <= 1) {
-        tips.push("Ajoute un élément polarisant par vidéo: une opinion tranchée, une comparaison choc ou un chiffre précis. Le but est d'augmenter l'arrêt de scroll et les commentaires.");
-      } else {
-        tips.push("Teste 3 hooks agressifs par idée (A/B/C) et choisis le meilleur après 30 minutes. Publie la version gagnante en premier, recycle les autres en stories.");
-      }
+      if (q1 === 0) parts.push("Travaille en ultra-court: 20–30 secondes par vidéo, structure hook > une idée > appel clair.");
+      if (q1 === 1) parts.push("Prépare un template de montage unique pour publier rapidement 2 formats par jour.");
+      if (q1 >= 2) parts.push("Tourne en lot (6–8 scripts à la suite) et concentre ton effort sur les 10 premières secondes.");
 
       // Motivation
-      if (q2 <= 1) {
-        tips.push("Installe une 'preuve de travail': un tracker visible (mur, Notion, Google Sheet). Coche chaque publication; objectif: 20 vidéos ce mois-ci.");
-      } else {
-        tips.push("Fixe un objectif de résultat: 1 vidéo à >50k vues ce mois-ci. Reverse-engineer 5 créateurs de ta niche et copie la structure de leur meilleur contenu.");
-      }
+      if (q2 <= 1) parts.push("Installe un tracker visible et vise 20 publications ce mois-ci, sans viser la perfection.");
+      if (q2 >= 2) parts.push("Fixe un objectif résultat (1 vidéo >50k vues) et décortique 5 leaders de ta niche pour répliquer leurs patterns.");
 
-      const intro = `Ton score (${score}%) montre un potentiel ${score >= 70 ? 'élevé' : score >= 50 ? 'prometteur' : 'en construction'}. Voici un plan court, concret et actionnable pour accélérer dès cette semaine.`;
-      const formatted = `\n${intro}\n\n1) ${tips[0]}\n\n2) ${tips[1]}\n\n3) ${tips[2]}`;
-      return formatted;
+      // IA/digital
+      if (q3 <= 1) parts.push("Pack minimal: ChatGPT pour scripts, CapCut pour montage, sous-titres auto.");
+      if (q3 >= 2) parts.push("Mets en place un mini tableau d’analyse: note hook, angle, rythme et rétention pour chaque vidéo.");
+
+      // Audace
+      if (q4 <= 1) parts.push("Ajoute un élément polarisant par vidéo (opinion tranchée, comparaison choc ou chiffre précis).");
+      if (q4 >= 2) parts.push("Teste 3 hooks par idée et publie la variante qui arrête le plus le scroll.");
+
+      // Constance
+      if (q5 <= 1) parts.push("Planifie 3 créneaux fixes de 45 min (lun/mer/ven) et publie quoi qu’il arrive.");
+      if (q5 === 2) parts.push("Passe à un pipeline hebdo simple: idéation lundi, tournage mardi, montage mercredi, publications échelonnées.");
+      if (q5 >= 3) parts.push("Capitalise sur ta discipline en mesurant chaque semaine rétention 3s et taux de complétion.");
+
+      // CTA
+      parts.push("Clique sur ‘Commencer la formation’ pour déployer le système étape par étape dès aujourd’hui.");
+
+      return parts.join(' ');
     };
 
     try {
@@ -228,8 +205,8 @@ Utilise un ton professionnel mais accessible, encourageant et direct.`;
           { role: 'system', content: systemPrompt },
           { role: 'user', content: 'Génère mes recommandations personnalisées basées sur mes réponses au questionnaire.' }
         ],
-        max_tokens: 800,
-        temperature: 0.7,
+        max_tokens: 220,
+        temperature: 0.5,
       });
 
       const recommendations = completion.choices[0].message.content;
