@@ -14266,13 +14266,36 @@ import Layout from "../layouts/Layout.astro";
                         },
                     );
 
-                    if (!response.ok) {
+                    // Lire la réponse
+                    const text = await response.text();
+                    let data;
+
+                    try {
+                        data = JSON.parse(text);
+                    } catch (jsonError) {
+                        console.error("Erreur parsing JSON:", jsonError);
+                        console.error("Response text:", text);
                         throw new Error(
-                            "Erreur lors de la génération des recommandations",
+                            `Erreur serveur (${response.status}): Réponse invalide`,
                         );
                     }
 
-                    const data = await response.json();
+                    if (!response.ok) {
+                        console.error(
+                            "Response not OK:",
+                            response.status,
+                            data,
+                        );
+                        throw new Error(
+                            data.error ||
+                                data.details ||
+                                `Erreur serveur (${response.status})`,
+                        );
+                    }
+
+                    if (!data || !data.recommendations) {
+                        throw new Error("Format de réponse invalide de l'API");
+                    }
 
                     if (recommendationsLoading) {
                         recommendationsLoading.style.display = "none";
@@ -14280,8 +14303,25 @@ import Layout from "../layouts/Layout.astro";
 
                     if (recommendationsContent) {
                         recommendationsContent.style.display = "block";
-                        recommendationsContent.innerHTML =
-                            data.recommendations.replace(/\n/g, "<br>");
+                        // Préserver le HTML (notamment les liens) et convertir les sauts de ligne
+                        let content = data.recommendations;
+                        
+                        // Protéger les balises HTML existantes avant de convertir les sauts de ligne
+                        const htmlTags = [];
+                        content = content.replace(/<[^>]+>/g, (match) => {
+                            htmlTags.push(match);
+                            return `__HTML_TAG_${htmlTags.length - 1}__`;
+                        });
+                        
+                        // Convertir les sauts de ligne
+                        content = content.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br>");
+                        
+                        // Restaurer les balises HTML
+                        htmlTags.forEach((tag, index) => {
+                            content = content.replace(`__HTML_TAG_${index}__`, tag);
+                        });
+                        
+                        recommendationsContent.innerHTML = `<p>${content}</p>`;
                     }
                 } catch (error) {
                     console.error(
@@ -14295,10 +14335,24 @@ import Layout from "../layouts/Layout.astro";
 
                     if (recommendationsContent) {
                         recommendationsContent.style.display = "block";
+                        // Afficher plus de détails en mode développement
+                        const errorMessage =
+                            error instanceof Error
+                                ? error.message
+                                : String(error);
+                        console.log("Erreur complète:", {
+                            message: errorMessage,
+                            answers: this.answers,
+                            score: this.calculateScore(),
+                        });
+
                         recommendationsContent.innerHTML = `
                             <div style="text-align: center; color: #666;">
                                 <p>⚠️ Impossible de charger les recommandations personnalisées pour le moment.</p>
                                 <p>Continue avec la formation - elle est adaptée à tous les profils !</p>
+                                <p style="font-size: 12px; margin-top: 10px; color: #444;">
+                                    (Erreur: ${errorMessage})
+                                </p>
                             </div>
                         `;
                     }

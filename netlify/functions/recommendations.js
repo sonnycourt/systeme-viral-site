@@ -153,7 +153,11 @@ Structure:
 1. Analyse son profil (temps disponible, motivation, niveau, audace, constance) et valide si la formation lui convient
 2. Rassure sur ses doutes ou faibles (ex: "Même avec peu de temps...", "Tu n'as pas besoin d'être expert en IA...")
 3. Montre comment la formation répond spécifiquement à ses besoins selon ses réponses
-4. Termine par un CTA clair vers l'inscription
+4. Termine TOUJOURS par un appel à l'action avec un lien HTML cliquable vers l'inscription
+
+Obligatoire - Fin de la réponse:
+Tu DOIS terminer par une phrase incitative suivie d'un lien HTML cliquable. Format exact:
+"Clique ici pour t'inscrire maintenant : <a href=\"https://systemeviral.spiffy.co/checkout/systeme-viral#pop\" target=\"_blank\" style=\"color: #00d4aa; text-decoration: underline; font-weight: bold;\">COMMENCER LA FORMATION →</a>"
 
 Ton: Bienveillant, rassurant, convaincant. Évite le jargon technique. Focus sur "dois-je investir ?" pas "comment faire".
 
@@ -195,8 +199,8 @@ ${userProfile}`;
       if (q2 >= 3 && q5 >= 2) parts.push("Avec ta motivation élevée et ta bonne discipline, la formation va t'équiper pour accélérer immédiatement et atteindre tes objectifs plus vite.");
       if (q1 >= 2) parts.push("Avec le temps que tu peux consacrer, tu vas pouvoir mettre en place le système rapidement et voir des résultats dès les premières semaines.");
 
-      // CTA
-      parts.push("La formation est faite pour quelqu'un comme toi. Clique sur 'Commencer la formation' pour démarrer dès aujourd'hui et transformer ton potentiel en revenus réels.");
+      // CTA avec lien cliquable
+      parts.push("La formation est faite pour quelqu'un comme toi. Clique ici pour t'inscrire maintenant : <a href=\"https://systemeviral.spiffy.co/checkout/systeme-viral#pop\" target=\"_blank\" style=\"color: #00d4aa; text-decoration: underline; font-weight: bold;\">COMMENCER LA FORMATION →</a>");
 
       return parts.join(' ');
     };
