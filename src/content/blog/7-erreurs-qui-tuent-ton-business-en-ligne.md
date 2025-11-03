@@ -148,9 +148,6 @@ Mais **passion + 0 demande = hobby coûteux.**
 
 - **73 %** des niches "passion pure" génèrent **moins de 100 €/mois**
 - Taille minimum viable d'un marché : **100 000 personnes intéressées**
-- Revenu moyen : 
-  - Niche passion = **340 €/mois**
-  - Niche demande = **3700 €/mois**
 
 ### Ce qu'il faut faire à la place
 
