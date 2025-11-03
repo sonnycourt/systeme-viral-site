@@ -38,15 +38,50 @@ exports.handler = async (event, context) => {
 
   try {
     console.log('📥 Parsing request body...');
-    const { answers, score } = JSON.parse(event.body);
+    console.log('📦 Raw body:', event.body);
+    
+    // Vérifier que le body existe
+    if (!event.body) {
+      console.error('❌ No body in request');
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Request body is required' }),
+      };
+    }
+
+    let parsedBody;
+    try {
+      parsedBody = JSON.parse(event.body);
+    } catch (parseError) {
+      console.error('❌ JSON parse error:', parseError);
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Invalid JSON in request body', details: parseError.message }),
+      };
+    }
+
+    const { answers, score } = parsedBody;
     console.log('📊 Answers received:', answers);
     console.log('📈 Score received:', score);
 
     if (!answers || !Array.isArray(answers)) {
+      console.error('❌ Answers is not an array:', typeof answers);
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ error: 'Answers array is required' }),
+        body: JSON.stringify({ error: 'Answers must be an array' }),
+      };
+    }
+
+    // Vérifier que OPENAI_API_KEY est configurée
+    if (!process.env.OPENAI_API_KEY) {
+      console.error('❌ OPENAI_API_KEY not configured');
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ error: 'OpenAI API key not configured on server' }),
       };
     }
 
@@ -131,34 +166,93 @@ Structure ta réponse comme suit:
 
 Utilise un ton professionnel mais accessible, encourageant et direct.`;
 
-    console.log('🤖 Calling OpenAI...');
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        {
-          role: 'system',
-          content: systemPrompt
-        },
-        {
-          role: 'user',
-          content: 'Génère mes recommandations personnalisées basées sur mes réponses au questionnaire.'
-        }
-      ],
-      max_tokens: 800,
-      temperature: 0.7,
-    });
+    // Helper: fallback local recommendations if API not available
+    const buildLocalRecommendations = (answers, score) => {
+      const q1 = answers[0] ?? 0; // temps dispo
+      const q2 = answers[1] ?? 0; // motivation
+      const q3 = answers[2] ?? 0; // IA/digital
+      const q4 = answers[3] ?? 0; // inconfort/risque
+      const q5 = answers[4] ?? 0; // constance
 
-    const recommendations = completion.choices[0].message.content;
-    console.log('✅ Recommendations generated successfully');
+      const tips = [];
 
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({
-        recommendations: recommendations,
-        success: true
-      }),
+      // Constance / discipline
+      if (q5 <= 1) {
+        tips.push("Planifie 3 créneaux fixes de 45 min cette semaine (ex: lun/mer/ven, 19h00). Prépare tes scripts la veille et fais une seule prise. L'objectif: publier 3 vidéos, peu importe la perfection.");
+      } else if (q5 === 2) {
+        tips.push("Passe à un rythme 4x/semaine en batch: écris 4 hooks le lundi, tourne le mardi, monte le mercredi, publie du jeudi au dimanche. Garde des templates réutilisables.");
+      } else {
+        tips.push("Exploite ta discipline: crée un pipeline hebdo (idéation>scripts>tournage>montage>publication) et mesure 2 KPI clés: taux de rétention à 3s et CTR de la miniature.");
+      }
+
+      // Temps disponible
+      if (q1 === 0) {
+        tips.push("Utilise des formats ultra-courts (20–30s) avec structure hook > 1 idée > CTA. Tourne en mode selfie, lumière naturelle, sans coupe complexe pour rester sous 15 min/montage.");
+      } else if (q1 === 1) {
+        tips.push("Optimise avec un template CapCut prêt-à-l'emploi (intro, sous-titres auto, fin). Objectif: 2 vidéos/jour en 30–45 min au total.");
+      } else {
+        tips.push("Passe au tournage par lot (8 scripts/tournage). Délègue le sous-titrage à un outil IA et garde ton temps sur les 10 premières secondes (impact maximum).");
+      }
+
+      // Compétences IA/digital
+      if (q3 <= 1) {
+        tips.push("Crée un pack d'IA minimal: ChatGPT pour scripts (prompt: 'Donne-moi 10 hooks polarisants sur [thématique]'), CapCut pour montage, Submagic pour sous-titres.");
+      } else {
+        tips.push("Mets en place un système d'analyse: tracke les patterns des 10% de vidéos top performance (hook, angle, gestures, rythme) et réplique-les chaque semaine.");
+      }
+
+      // Audace / passage à l'action
+      if (q4 <= 1) {
+        tips.push("Ajoute un élément polarisant par vidéo: une opinion tranchée, une comparaison choc ou un chiffre précis. Le but est d'augmenter l'arrêt de scroll et les commentaires.");
+      } else {
+        tips.push("Teste 3 hooks agressifs par idée (A/B/C) et choisis le meilleur après 30 minutes. Publie la version gagnante en premier, recycle les autres en stories.");
+      }
+
+      // Motivation
+      if (q2 <= 1) {
+        tips.push("Installe une 'preuve de travail': un tracker visible (mur, Notion, Google Sheet). Coche chaque publication; objectif: 20 vidéos ce mois-ci.");
+      } else {
+        tips.push("Fixe un objectif de résultat: 1 vidéo à >50k vues ce mois-ci. Reverse-engineer 5 créateurs de ta niche et copie la structure de leur meilleur contenu.");
+      }
+
+      const intro = `Ton score (${score}%) montre un potentiel ${score >= 70 ? 'élevé' : score >= 50 ? 'prometteur' : 'en construction'}. Voici un plan court, concret et actionnable pour accélérer dès cette semaine.`;
+      const formatted = `\n${intro}\n\n1) ${tips[0]}\n\n2) ${tips[1]}\n\n3) ${tips[2]}`;
+      return formatted;
     };
+
+    try {
+      console.log('🤖 Calling OpenAI...');
+      const completion = await openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: 'Génère mes recommandations personnalisées basées sur mes réponses au questionnaire.' }
+        ],
+        max_tokens: 800,
+        temperature: 0.7,
+      });
+
+      const recommendations = completion.choices[0].message.content;
+      console.log('✅ Recommendations generated successfully');
+
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ recommendations, success: true }),
+      };
+    } catch (aiError) {
+      // Fallback sur quota/rate limit ou toute erreur API
+      const msg = (aiError && aiError.message) ? aiError.message : '';
+      const isRateLimit = (aiError && (aiError.status === 429 || /quota|rate/i.test(msg)));
+      console.error('⚠️ OpenAI error, using fallback:', msg);
+
+      const fallback = buildLocalRecommendations(answers, score);
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ recommendations: fallback, success: false, reason: isRateLimit ? 'rate_limit' : 'fallback' }),
+      };
+    }
 
   } catch (error) {
     console.error('❌ Error in recommendations function:', error);
