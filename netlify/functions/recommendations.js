@@ -147,12 +147,12 @@ exports.handler = async (event, context) => {
 
     const systemPrompt = `Tu es un expert en conversion pour une formation sur le système viral pour entrepreneurs. À partir du profil ci-dessous, rédige UNE SEULE réponse personnalisée (60–100 mots) qui aide le prospect à prendre sa décision d'investir dans la formation.
 
-Objectif: CONVAINCRE et RASSURER pour pousser à l'inscription. PAS de conseils pratiques techniques.
+Objectif: UNIQUEMENT CONVAINCRE et RASSURER pour pousser à l'inscription. PAS de conseils pratiques techniques.
 
 Structure:
 1. Analyse son profil (temps disponible, motivation, niveau, audace, constance) et valide si la formation lui convient
-2. Rassure sur ses doutes ou faibles (ex: "Même avec peu de temps...", "Tu n'as pas besoin d'être expert en IA...")
-3. Montre comment la formation répond spécifiquement à ses besoins selon ses réponses
+2. Rassure sur ses doutes ou faibles (ex: "Même avec peu de temps disponible, cette formation est faite pour toi", "Tu n'as pas besoin d'être expert...")
+3. Explique pourquoi cette formation répond spécifiquement à SON profil selon ses réponses
 4. Termine TOUJOURS par un appel à l'action avec un lien HTML cliquable vers l'inscription
 
 Obligatoire - Fin de la réponse:
@@ -161,10 +161,11 @@ Tu DOIS terminer par une phrase incitative suivie d'un lien HTML cliquable. Form
 
 Ton: Bienveillant, rassurant, convaincant. Évite le jargon technique. Focus sur "dois-je investir ?" pas "comment faire".
 
-Interdictions:
+Interdictions STRICTES:
 - AUCUN conseil pratique (pas de "tourne en 20 secondes", "utilise ChatGPT", etc.)
 - PAS de techniques concrètes de création
-- Focus uniquement sur: pourquoi la formation est faite pour lui et pourquoi investir maintenant
+- PAS de "système", "méthode", "cadre structuré", "résultats", "accélérer"
+- Focus UNIQUEMENT sur: pourquoi cette formation est faite pour LUI et pourquoi investir maintenant
 
 Profil:
 ${userProfile}`;
@@ -178,29 +179,29 @@ ${userProfile}`;
       const q5 = answers[4] ?? 0; // constance
 
       const parts = [];
-      
-      // Analyse du profil et validation
+
+      // Analyse du profil et validation pure
       if (score >= 70) {
-        parts.push(`Avec ${score}% de probabilité de succès, tu fais partie des profils les plus prometteurs. La formation SYSTÈME VIRAL 100K™ est parfaitement adaptée à ton profil et tu as toutes les chances de réussir.`);
+        parts.push(`Avec ${score}% de probabilité de succès, tu fais partie des profils les plus prometteurs. Cette formation est parfaitement adaptée à ton profil et tu as toutes les chances de réussir avec elle.`);
       } else if (score >= 50) {
-        parts.push(`Ton score de ${score}% montre que tu as déjà de bonnes bases. La formation va te donner le système structuré qui te manque pour transformer ton potentiel en résultats concrets.`);
+        parts.push(`Ton score de ${score}% montre que tu as déjà de bonnes bases. Cette formation est faite pour quelqu'un comme toi qui a le potentiel mais cherche la bonne direction.`);
       } else {
-        parts.push(`Avec ${score}% de probabilité, la formation est justement ce dont tu as besoin pour construire la discipline et la méthode qui feront la différence.`);
+        parts.push(`Avec ${score}% de probabilité, cette formation est justement ce dont tu as besoin. Elle est conçue pour tous les profils, même ceux qui démarrent de plus loin.`);
       }
 
-      // Rassurer selon les faiblesses
-      if (q1 === 0) parts.push("Même avec peu de temps disponible, le système est conçu pour être efficace rapidement. La formation te montrera comment maximiser chaque minute investie.");
-      if (q3 <= 1) parts.push("Tu n'as pas besoin d'être expert en IA : la formation t'apprendra tous les outils étape par étape, de zéro.");
-      if (q4 <= 1) parts.push("Tu préfères la prudence ? C'est normal. La formation te guide de façon sécurisée, en te montrant exactement quoi faire à chaque étape.");
-      if (q5 <= 1) parts.push("Si tu as du mal à rester constant, c'est parce que tu manques de méthode. La formation te donne un cadre structuré qui maintient ta motivation sur la durée.");
-      if (q2 <= 1) parts.push("Ta motivation modérée se transformera en engagement réel une fois que tu auras le système complet et les premiers résultats.");
+      // Rassurer selon les faiblesses - UNIQUEMENT rassurance, pas de conseils
+      if (q1 === 0) parts.push("Même avec peu de temps disponible, cette formation est faite pour toi. Tu n'as pas besoin d'y consacrer beaucoup d'heures pour réussir.");
+      if (q3 <= 1) parts.push("Tu n'as pas besoin d'être expert en IA ou en numérique. Cette formation est conçue pour les débutants complets.");
+      if (q4 <= 1) parts.push("Tu préfères la prudence ? C'est parfaitement normal. Cette formation est faite pour les personnes prudentes qui veulent avancer à leur rythme.");
+      if (q5 <= 1) parts.push("Si tu as du mal à rester constant, ne t'inquiète pas. Cette formation est faite pour les personnes comme toi qui veulent construire des habitudes solides.");
+      if (q2 <= 1) parts.push("Ta motivation modérée est tout à fait normale. Cette formation est conçue pour transformer cette motivation en engagement durable.");
 
-      // Montrer que la formation répond aux besoins
-      if (q2 >= 3 && q5 >= 2) parts.push("Avec ta motivation élevée et ta bonne discipline, la formation va t'équiper pour accélérer immédiatement et atteindre tes objectifs plus vite.");
-      if (q1 >= 2) parts.push("Avec le temps que tu peux consacrer, tu vas pouvoir mettre en place le système rapidement et voir des résultats dès les premières semaines.");
+      // Expliquer pourquoi cette formation convient spécifiquement à SON profil
+      if (q2 >= 3 && q5 >= 2) parts.push("Avec ta motivation élevée et ta bonne discipline naturelle, cette formation est idéale pour toi car elle valorise exactement ces qualités.");
+      if (q1 >= 2) parts.push("Avec le temps que tu peux consacrer, cette formation est parfaite car elle est conçue pour les personnes disponibles comme toi.");
 
       // CTA avec lien cliquable
-      parts.push("La formation est faite pour quelqu'un comme toi. Clique ici pour t'inscrire maintenant : <a href=\"https://systemeviral.spiffy.co/checkout/systeme-viral#pop\" target=\"_blank\" style=\"color: #00d4aa; text-decoration: underline; font-weight: bold;\">COMMENCER LA FORMATION →</a>");
+      parts.push("Cette formation est faite pour quelqu'un comme toi. Clique ici pour t'inscrire maintenant : <a href=\"https://systemeviral.spiffy.co/checkout/systeme-viral#pop\" target=\"_blank\" style=\"color: #00d4aa; text-decoration: underline; font-weight: bold;\">COMMENCER LA FORMATION →</a>");
 
       return parts.join(' ');
     };
