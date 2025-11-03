@@ -125,12 +125,6 @@ Tu investis (ou tu envisages d'investir) **50 €/jour** en espérant que ça ca
 - **Mois 4-6** : test micro-budgets (10 €/jour max) – objectif : amplifier ce qui marche déjà
 - **Mois 7+** : scale progressif si et seulement si tu es rentable
 
-**Calcul révélateur** : pour être rentable en ads avec une formation à 97 €, il te faut :
-
-- CPM moyen : 15 €
-- Taux de clic : 2 % minimum
-- Taux de conversion : 3 % minimum
-
 **= Tu dois être excellent avant même de toucher aux ads.**
 
 💡 **Principe clé** : la Preuve Organique – si tu ne peux pas générer 10 ventes en organique, les ads ne sauveront pas ton business. Elles amplifient, elles ne créent pas la demande.
