@@ -171,11 +171,11 @@ Applique le **Triangle de Validation** :
 
 **89 %** des business en ligne rentables sont dans ces catégories.
 
-> [À ce stade, tu réalises probablement que tu fais plusieurs de ces erreurs. C'est normal : la majorité des créateurs en commettent au moins trois.
->
-> Si tu veux découvrir le système complet qui évite ces pièges → [Système Viral 100K™](/offre-speciale?utm_source=blog&utm_content=article_7_erreurs) pourrait t'intéresser.
->
-> Mais continuons d'abord avec les 3 dernières erreurs…]
+À ce stade, tu réalises probablement que tu fais plusieurs de ces erreurs. C'est normal : la majorité des créateurs en commettent au moins trois.
+
+Si tu veux découvrir le système complet qui évite ces pièges → [Système Viral 100K™](/offre-speciale?utm_source=blog&utm_content=article_7_erreurs) pourrait t'intéresser.
+
+Mais continuons d'abord avec les 3 dernières erreurs…
 
 ## ❌ Erreur #5 : Ignorer la capture d'emails
 
