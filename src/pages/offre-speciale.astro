@@ -2883,6 +2883,38 @@ import Layout from "../layouts/Layout.astro";
                             Refaire le test
                         </button>
                     </div>
+
+                    <!-- Personalized Recommendations Section -->
+                    <div
+                        class="recommendations-container"
+                        id="recommendations-container"
+                        style="display: none;"
+                    >
+                        <div class="recommendations-card">
+                            <div class="recommendations-header">
+                                <h3>🎯 Tes Recommandations Personnalisées</h3>
+                                <p>
+                                    Basées sur tes réponses, voici des conseils
+                                    adaptés à ton profil pour maximiser tes
+                                    chances de succès
+                                </p>
+                            </div>
+                            <div
+                                class="recommendations-loading"
+                                id="recommendations-loading"
+                            >
+                                <div class="loading-spinner"></div>
+                                <p>Analyse de ton profil en cours...</p>
+                            </div>
+                            <div
+                                class="recommendations-content"
+                                id="recommendations-content"
+                                style="display: none;"
+                            >
+                                <!-- Recommendations will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -12067,6 +12099,138 @@ import Layout from "../layouts/Layout.astro";
             }
         }
 
+        /* Personalized Recommendations Styles */
+        .recommendations-container {
+            margin-top: 40px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .recommendations-card {
+            background: linear-gradient(
+                145deg,
+                rgba(25, 25, 25, 0.95),
+                rgba(35, 35, 35, 0.9)
+            );
+            border: 2px solid rgba(0, 220, 130, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(0, 220, 130, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recommendations-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .recommendations-header h3 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+            margin: 0 0 12px 0;
+            background: linear-gradient(
+                135deg,
+                var(--accent),
+                var(--accent-bright)
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .recommendations-header p {
+            color: #bfbfbf;
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .recommendations-loading {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 220, 130, 0.2);
+            border-left: 4px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        .recommendations-loading p {
+            color: #bfbfbf;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .recommendations-content {
+            color: #fff;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .recommendations-content br {
+            margin-bottom: 8px;
+        }
+
+        /* Mobile styles for recommendations */
+        @media (max-width: 768px) {
+            .recommendations-container {
+                margin-top: 30px;
+            }
+
+            .recommendations-card {
+                padding: 20px;
+                border-radius: 16px;
+            }
+
+            .recommendations-header h3 {
+                font-size: 24px;
+            }
+
+            .recommendations-header p {
+                font-size: 14px;
+            }
+
+            .recommendations-content {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
+            .loading-spinner {
+                width: 32px;
+                height: 32px;
+                border-width: 3px;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         /* Video Section (from 100k-masterclass) */
         .video-section-offre {
             padding: 80px 0;
@@ -13866,6 +14030,14 @@ import Layout from "../layouts/Layout.astro";
                 if (calculatorContent) calculatorContent.style.display = "flex";
                 if (resultsContainer) resultsContainer.style.display = "none";
 
+                // Hide recommendations section
+                const recommendationsContainer = document.getElementById(
+                    "recommendations-container",
+                ) as HTMLElement;
+                if (recommendationsContainer) {
+                    recommendationsContainer.style.display = "none";
+                }
+
                 // Restart from first question
                 this.showQuestion(0);
                 this.updateUI();
@@ -14051,6 +14223,86 @@ import Layout from "../layouts/Layout.astro";
                 }
 
                 if (messageEl) messageEl.textContent = message;
+
+                // Generate personalized recommendations using OpenAI
+                this.generatePersonalizedRecommendations();
+            }
+
+            async generatePersonalizedRecommendations() {
+                const recommendationsContainer = document.getElementById(
+                    "recommendations-container",
+                );
+                const recommendationsLoading = document.getElementById(
+                    "recommendations-loading",
+                );
+                const recommendationsContent = document.getElementById(
+                    "recommendations-content",
+                );
+
+                if (recommendationsContainer) {
+                    recommendationsContainer.style.display = "block";
+                }
+
+                if (recommendationsLoading) {
+                    recommendationsLoading.style.display = "block";
+                }
+
+                if (recommendationsContent) {
+                    recommendationsContent.style.display = "none";
+                }
+
+                try {
+                    const response = await fetch(
+                        "/.netlify/functions/recommendations",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                answers: this.answers,
+                                score: this.calculateScore(),
+                            }),
+                        },
+                    );
+
+                    if (!response.ok) {
+                        throw new Error(
+                            "Erreur lors de la génération des recommandations",
+                        );
+                    }
+
+                    const data = await response.json();
+
+                    if (recommendationsLoading) {
+                        recommendationsLoading.style.display = "none";
+                    }
+
+                    if (recommendationsContent) {
+                        recommendationsContent.style.display = "block";
+                        recommendationsContent.innerHTML =
+                            data.recommendations.replace(/\n/g, "<br>");
+                    }
+                } catch (error) {
+                    console.error(
+                        "Erreur lors de la génération des recommandations:",
+                        error,
+                    );
+
+                    if (recommendationsLoading) {
+                        recommendationsLoading.style.display = "none";
+                    }
+
+                    if (recommendationsContent) {
+                        recommendationsContent.style.display = "block";
+                        recommendationsContent.innerHTML = `
+                            <div style="text-align: center; color: #666;">
+                                <p>⚠️ Impossible de charger les recommandations personnalisées pour le moment.</p>
+                                <p>Continue avec la formation - elle est adaptée à tous les profils !</p>
+                            </div>
+                        `;
+                    }
+                }
             }
 
             restart() {
