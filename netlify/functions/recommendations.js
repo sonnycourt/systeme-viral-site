@@ -145,14 +145,22 @@ exports.handler = async (event, context) => {
 
     userProfile += `Score total: ${score}%\n`;
 
-    const systemPrompt = `Tu es un expert en acquisition pour créateurs. À partir des réponses ci-dessous, rédige UNE SEULE recommandation personnalisée sous forme d’un court paragraphe (60–100 mots), sans listes, claire et concrète.
+    const systemPrompt = `Tu es un expert en conversion pour une formation sur le système viral pour entrepreneurs. À partir du profil ci-dessous, rédige UNE SEULE réponse personnalisée (60–100 mots) qui aide le prospect à prendre sa décision d'investir dans la formation.
 
-Contraintes:
-- Personnalise selon chaque réponse (temps dispo, motivation, niveau IA, audace, constance)
-- Donne 2–3 actions très précises à démarrer cette semaine
-- Ton: direct, motivant, orienté résultats
-- Termine par un appel à l’action explicite vers la formation (ex: « Clique sur \'Commencer la formation\' pour lancer ton système dès aujourd’hui. »)
-- Pas d’emojis, pas de listes, pas de titre
+Objectif: CONVAINCRE et RASSURER pour pousser à l'inscription. PAS de conseils pratiques techniques.
+
+Structure:
+1. Analyse son profil (temps disponible, motivation, niveau, audace, constance) et valide si la formation lui convient
+2. Rassure sur ses doutes ou faibles (ex: "Même avec peu de temps...", "Tu n'as pas besoin d'être expert en IA...")
+3. Montre comment la formation répond spécifiquement à ses besoins selon ses réponses
+4. Termine par un CTA clair vers l'inscription
+
+Ton: Bienveillant, rassurant, convaincant. Évite le jargon technique. Focus sur "dois-je investir ?" pas "comment faire".
+
+Interdictions:
+- AUCUN conseil pratique (pas de "tourne en 20 secondes", "utilise ChatGPT", etc.)
+- PAS de techniques concrètes de création
+- Focus uniquement sur: pourquoi la formation est faite pour lui et pourquoi investir maintenant
 
 Profil:
 ${userProfile}`;
@@ -166,33 +174,29 @@ ${userProfile}`;
       const q5 = answers[4] ?? 0; // constance
 
       const parts = [];
-      // Intro personnalisée courte
-      parts.push(`Avec un score de ${score}%, tu as un potentiel ${score >= 70 ? 'élevé' : score >= 50 ? 'prometteur' : 'à structurer'} si tu passes à l’action dès cette semaine.`);
+      
+      // Analyse du profil et validation
+      if (score >= 70) {
+        parts.push(`Avec ${score}% de probabilité de succès, tu fais partie des profils les plus prometteurs. La formation SYSTÈME VIRAL 100K™ est parfaitement adaptée à ton profil et tu as toutes les chances de réussir.`);
+      } else if (score >= 50) {
+        parts.push(`Ton score de ${score}% montre que tu as déjà de bonnes bases. La formation va te donner le système structuré qui te manque pour transformer ton potentiel en résultats concrets.`);
+      } else {
+        parts.push(`Avec ${score}% de probabilité, la formation est justement ce dont tu as besoin pour construire la discipline et la méthode qui feront la différence.`);
+      }
 
-      // Temps disponible
-      if (q1 === 0) parts.push("Travaille en ultra-court: 20–30 secondes par vidéo, structure hook > une idée > appel clair.");
-      if (q1 === 1) parts.push("Prépare un template de montage unique pour publier rapidement 2 formats par jour.");
-      if (q1 >= 2) parts.push("Tourne en lot (6–8 scripts à la suite) et concentre ton effort sur les 10 premières secondes.");
+      // Rassurer selon les faiblesses
+      if (q1 === 0) parts.push("Même avec peu de temps disponible, le système est conçu pour être efficace rapidement. La formation te montrera comment maximiser chaque minute investie.");
+      if (q3 <= 1) parts.push("Tu n'as pas besoin d'être expert en IA : la formation t'apprendra tous les outils étape par étape, de zéro.");
+      if (q4 <= 1) parts.push("Tu préfères la prudence ? C'est normal. La formation te guide de façon sécurisée, en te montrant exactement quoi faire à chaque étape.");
+      if (q5 <= 1) parts.push("Si tu as du mal à rester constant, c'est parce que tu manques de méthode. La formation te donne un cadre structuré qui maintient ta motivation sur la durée.");
+      if (q2 <= 1) parts.push("Ta motivation modérée se transformera en engagement réel une fois que tu auras le système complet et les premiers résultats.");
 
-      // Motivation
-      if (q2 <= 1) parts.push("Installe un tracker visible et vise 20 publications ce mois-ci, sans viser la perfection.");
-      if (q2 >= 2) parts.push("Fixe un objectif résultat (1 vidéo >50k vues) et décortique 5 leaders de ta niche pour répliquer leurs patterns.");
-
-      // IA/digital
-      if (q3 <= 1) parts.push("Pack minimal: ChatGPT pour scripts, CapCut pour montage, sous-titres auto.");
-      if (q3 >= 2) parts.push("Mets en place un mini tableau d’analyse: note hook, angle, rythme et rétention pour chaque vidéo.");
-
-      // Audace
-      if (q4 <= 1) parts.push("Ajoute un élément polarisant par vidéo (opinion tranchée, comparaison choc ou chiffre précis).");
-      if (q4 >= 2) parts.push("Teste 3 hooks par idée et publie la variante qui arrête le plus le scroll.");
-
-      // Constance
-      if (q5 <= 1) parts.push("Planifie 3 créneaux fixes de 45 min (lun/mer/ven) et publie quoi qu’il arrive.");
-      if (q5 === 2) parts.push("Passe à un pipeline hebdo simple: idéation lundi, tournage mardi, montage mercredi, publications échelonnées.");
-      if (q5 >= 3) parts.push("Capitalise sur ta discipline en mesurant chaque semaine rétention 3s et taux de complétion.");
+      // Montrer que la formation répond aux besoins
+      if (q2 >= 3 && q5 >= 2) parts.push("Avec ta motivation élevée et ta bonne discipline, la formation va t'équiper pour accélérer immédiatement et atteindre tes objectifs plus vite.");
+      if (q1 >= 2) parts.push("Avec le temps que tu peux consacrer, tu vas pouvoir mettre en place le système rapidement et voir des résultats dès les premières semaines.");
 
       // CTA
-      parts.push("Clique sur ‘Commencer la formation’ pour déployer le système étape par étape dès aujourd’hui.");
+      parts.push("La formation est faite pour quelqu'un comme toi. Clique sur 'Commencer la formation' pour démarrer dès aujourd'hui et transformer ton potentiel en revenus réels.");
 
       return parts.join(' ');
     };
