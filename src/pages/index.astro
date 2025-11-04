@@ -1,51 +1,415 @@
 ---
-import "../styles/global.css";
-
-const title = "Système Viral - En construction";
-const description =
-	"Site en cours de développement. Revenez bientôt découvrir notre méthode pour monétiser vos contenus courts.";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<!doctype html>
-<html lang="fr">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="shortcut icon" href="/favicon.ico" />
-		<title>{title}</title>
-		<meta name="description" content={description} />
+<Layout
+	title="SYSTÈME VIRAL 100K™ - 90 jours pour arrêter de vendre ton temps"
+	description="90 jours pour arrêter de vendre ton temps et générer tes premiers 10K€ récurrents avec des vidéos d'une minute. Système complet."
+	canonical="/"
+>
+	<Header />
+	<!-- Background effects -->
+	<div class="gradient-bg"></div>
 
-		<!-- SEO Meta Tags -->
-		<meta name="robots" content="index, follow" />
-	</head>
-	<body>
-		<!-- Background effects -->
-		<div class="gradient-bg"></div>
+	<!-- Hero Section -->
+	<section class="hero">
+		<div class="container">
+			<div class="hero-content">
+				<div class="badge">
+					<div class="badge-icon"></div>
+					<span class="badge-text"
+						>Meilleur business en ligne 2025</span
+					>
+				</div>
 
-		<!-- Coming Soon Section -->
-		<section class="hero">
-			<div class="container">
-				<div class="hero-content">
-					<div class="badge">
-						<div class="badge-icon"></div>
-						<span class="badge-text">En construction</span>
+				<h1>
+					SYSTÈME VIRAL 100K™
+					<span class="gradient-text"
+						>Comment j'ai généré 100k€ en 30 jours avec des vidéos
+						d'une minute</span
+					>
+				</h1>
+
+				<p class="hero-subtitle">
+					Les 3 secrets pour créer ton audience, obtenir tes premiers
+					emails et générer des revenus passifs.
+				</p>
+
+				<div class="cta-wrapper">
+					<button class="cta-btn" onclick="openModal()">
+						découvre le système
+					</button>
+				</div>
+
+				<div class="urgency-message">
+					<span class="urgency-text">PLACES DISPONIBLES LIMITÉES</span
+					>
+				</div>
+
+				<div class="trust-points">
+					<div class="trust-item">
+						<span class="trust-check">✓</span>
+						<span>0€ de budget pub</span>
 					</div>
+					<div class="trust-item">
+						<span class="trust-check">✓</span>
+						<span>0 expérience requise</span>
+					</div>
+					<div class="trust-item">
+						<span class="trust-check">✓</span>
+						<span>0 risque</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-					<h1>
-						Système Viral
-						<span class="gradient-text">arrive bientôt</span>
-					</h1>
+	<!-- Features Section -->
+	<section class="features">
+		<div class="container">
+			<h2 class="section-title">Le système en 3 étapes</h2>
 
-					<p class="hero-subtitle">
-						Nous travaillons dur pour vous offrir la meilleure
-						méthode<br />
-						pour monétiser vos contenus courts. Revenez très bientôt
-						!
+			<div class="features-grid">
+				<div class="feature-card">
+					<div class="step-number">1</div>
+					<h3 class="feature-title">Crée du contenu viral</h3>
+					<p class="feature-text">
+						Des vidéos d'une minute qui cartonnent.<br />
+						La formule exacte pour exploser sur tous les réseaux.<br
+						/>
+					</p>
+					<div class="step-image">
+						<img
+							src="/media/SV-etape-1-ps.webp"
+							alt="Étape 1: Créer du contenu viral"
+						/>
+					</div>
+					<p class="promise-container">
+						<span class="promise-text"
+							>→ Objectif : 100K vues en 30 jours</span
+						>
+					</p>
+				</div>
+
+				<div class="feature-card">
+					<div class="step-number">2</div>
+					<h3 class="feature-title">Capture les emails</h3>
+					<p class="feature-text">
+						Transforme tes vues en contacts qualifiés.<br />
+						Le système tourne H24 en automatique.<br />
+					</p>
+					<div class="step-image">
+						<img
+							src="/media/SV-etape-2-ps.webp"
+							alt="Étape 2: Capturer les emails"
+						/>
+					</div>
+					<p class="promise-container">
+						<span class="promise-text"
+							>→ Objectif : 1000 emails en 60 jours</span
+						>
+					</p>
+				</div>
+
+				<div class="feature-card">
+					<div class="step-number">3</div>
+					<h3 class="feature-title">Monétise ta liste</h3>
+					<p class="feature-text">
+						Convertis ta liste en revenus récurrents.<br />
+						Affiliation ou produit propre, je te guide étape par étape.<br
+						/>
+					</p>
+					<div class="step-image">
+						<img
+							src="/media/SV-etape-3-ps.webp"
+							alt="Étape 3: Monétiser ta liste"
+						/>
+					</div>
+					<p class="promise-container">
+						<span class="promise-text"
+							>→ Objectif : 10K€/mois en 90 jours<br />
+							<span class="guarantee-text"
+								>(Résultats variables selon l'engagement et
+								l'effort individuel.)</span
+							></span
+						>
 					</p>
 				</div>
 			</div>
-		</section>
-	</body>
-</html>
+		</div>
+	</section>
+
+	<!-- Popup Modal -->
+	<div class="modal-overlay" id="modalOverlay">
+		<div class="modal-content">
+			<button class="modal-close" onclick="closeModal()">×</button>
+
+			<form id="accessForm" onsubmit="handleSubmit(event)">
+				<!-- Step 1: Name and Email -->
+				<div class="form-step active" id="step1">
+					<h3 class="modal-title">Accès immédiat</h3>
+
+					<div class="input-group">
+						<label class="input-label">Prénom</label>
+						<input
+							type="text"
+							id="firstName"
+							placeholder="John"
+							required
+						/>
+					</div>
+
+					<div class="input-group">
+						<label class="input-label">Email</label>
+						<input
+							type="email"
+							id="email"
+							placeholder="john@exemple.com"
+							required
+						/>
+					</div>
+
+					<button
+						type="button"
+						class="form-button"
+						onclick="nextStep()"
+					>
+						Continuer →
+					</button>
+				</div>
+
+				<!-- Step 2: Avatar Selection -->
+				<div class="form-step hidden" id="step2">
+					<h3 class="modal-title">Sélectionne ton profil 👇</h3>
+
+					<div class="avatar-selection">
+						<div
+							class="avatar-option"
+							onclick="selectAvatar('entrepreneur')"
+							id="avatar-entrepreneur"
+						>
+							<div class="avatar-icon">🧑‍💼</div>
+							<div class="avatar-content">
+								<h4>L'Entrepreneur invisible</h4>
+								<p>
+									Tu as un business, mais personne ne te voit.
+									Tu veux exploser ta visibilité et scaler
+									sans t'épuiser.
+								</p>
+							</div>
+							<div class="avatar-radio"></div>
+						</div>
+
+						<div
+							class="avatar-option"
+							onclick="selectAvatar('influenceur')"
+							id="avatar-influenceur"
+						>
+							<div class="avatar-icon">🧑‍🎤</div>
+							<div class="avatar-content">
+								<h4>L'Influenceur fauché</h4>
+								<p>
+									Tu fais des vues, mais pas de ventes. Tu
+									veux enfin monétiser ton audience et créer
+									des revenus stables.
+								</p>
+							</div>
+							<div class="avatar-radio"></div>
+						</div>
+
+						<div
+							class="avatar-option"
+							onclick="selectAvatar('employe')"
+							id="avatar-employe"
+						>
+							<div class="avatar-icon">🙋</div>
+							<div class="avatar-content">
+								<h4>L'Employé frustré</h4>
+								<p>
+									Tu n'aimes plus ton job et sens que tu vaux
+									plus. Tu veux lancer ton business et
+									construire ta liberté.
+								</p>
+							</div>
+							<div class="avatar-radio"></div>
+						</div>
+					</div>
+
+					<button
+						type="button"
+						class="form-button"
+						onclick="nextStep()"
+						id="avatarNextBtn"
+						disabled
+					>
+						Continuer →
+					</button>
+				</div>
+
+				<!-- Step 3: Phone -->
+				<div class="form-step hidden" id="step3">
+					<h3 class="modal-title">Une dernière étape</h3>
+
+					<div class="input-group">
+						<label class="input-label">Téléphone</label>
+						<input
+							type="tel"
+							id="phone"
+							placeholder="Ton numéro de téléphone"
+							required
+						/>
+					</div>
+
+					<button type="submit" class="form-button" id="submitBtn">
+						<span id="btnText">Accéder maintenant →</span>
+						<div class="hidden" id="loader">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="lucide lucide-hourglass-icon lucide-hourglass"
+							>
+								<path d="M5 22h14"></path>
+								<path d="M5 2h14"></path>
+								<path
+									d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"
+								></path>
+								<path
+									d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"
+								></path>
+							</svg>
+						</div>
+					</button>
+				</div>
+
+				<!-- Success Message -->
+				<div
+					class="form-step hidden"
+					id="successStep"
+					style="text-align: center;"
+				>
+					<div style="font-size: 64px; margin-bottom: 24px;">✅</div>
+					<h3 class="modal-title">Accès confirmé !</h3>
+					<p class="modal-subtitle">
+						Tu vas recevoir les détails par email dans quelques
+						instants.
+					</p>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Loading Screen (en dehors du modal) -->
+	<div class="loading-screen hidden" id="loadingScreen">
+		<div class="loading-content">
+			<div class="loading-spinner">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="48"
+					height="48"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="lucide lucide-hourglass-icon lucide-hourglass"
+				>
+					<path d="M5 22h14"></path>
+					<path d="M5 2h14"></path>
+					<path
+						d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"
+					></path>
+					<path
+						d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"
+					></path>
+				</svg>
+			</div>
+			<p class="loading-text">Chargement de ton accès...</p>
+		</div>
+	</div>
+
+	<Footer />
+
+	<!-- intl-tel-input CSS -->
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"
+	/>
+	<!-- intl-tel-input JS -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"
+	></script>
+
+	<!-- Script principal pour la page d'accueil -->
+	<script src="/src/scripts/index.js"></script>
+
+	<style>
+		#loader svg {
+			color: #00dc82;
+			width: 20px;
+			height: 20px;
+			display: inline-block;
+			animation: spin 1s linear infinite;
+		}
+
+		@keyframes spin {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
+
+		/* Loading Screen Styles */
+		.loading-screen {
+			position: fixed !important;
+			top: 0 !important;
+			left: 0 !important;
+			right: 0 !important;
+			bottom: 0 !important;
+			background: rgba(0, 0, 0, 0.98) !important;
+			backdrop-filter: blur(10px);
+			z-index: 99999 !important;
+			display: flex !important;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.loading-screen.hidden {
+			display: none !important;
+		}
+
+		.loading-content {
+			text-align: center;
+			color: #ffffff;
+		}
+
+		.loading-spinner {
+			margin-bottom: 24px;
+		}
+
+		.loading-spinner svg {
+			color: #00dc82;
+			width: 48px;
+			height: 48px;
+			animation: spin 1.5s linear infinite;
+		}
+
+		.loading-text {
+			font-size: 18px;
+			color: rgba(255, 255, 255, 0.9);
+			font-weight: 500;
+			letter-spacing: 0.5px;
+		}
+	</style>
+</Layout>
