@@ -36,7 +36,7 @@ Voyons lesquelles tu fais (ou t'apprêtes à faire).
 
 Tu passes (ou tu prévois de passer) **3 mois** à peaufiner ton produit :
 
-- **Formation** : 50 modules, 200 vidéos…
+- **Formation** : 20 modules, des heures de contenu…
 - **E-commerce** : site parfait, achat de stock…
 - **Application** : toutes les fonctionnalités possibles, design parfait...
 
@@ -60,7 +60,7 @@ Tu publies enfin, convaincu que *« la qualité va parler d'elle-même »*.
 
 ### La formule gagnante
 
-- **Mois 1-2** : acquisition pure et organique sur les réseaux
+- **Mois 1-2** : acquisition pure et organique sur les réseaux sociaux
 - **Mois 2-3** : engagement et capture d'emails
 - **Mois 3+** : création du produit basée sur les demandes réelles
 
