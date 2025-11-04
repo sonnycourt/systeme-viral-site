@@ -1136,11 +1136,14 @@ import Layout from "../layouts/Layout.astro";
         initializeViewersCount();
     });
 
-    // Viewers count functionality - progression sur 20 minutes jusqu'à 179
+    // Viewers count functionality - synchronisé avec la vidéo, progression de 72 à 237
     function initializeViewersCount() {
         const viewersCountElement = document.getElementById("viewersCount");
         const viewersCountMobileElement =
             document.getElementById("viewersCountMobile");
+        const video = document.getElementById(
+            "masterclass-video",
+        ) as HTMLVideoElement | null;
 
         // Fonction pour mettre à jour les deux badges
         const updateBothBadges = (count: number) => {
@@ -1153,141 +1156,154 @@ import Layout from "../layouts/Layout.astro";
         };
 
         if (!viewersCountElement && !viewersCountMobileElement) return;
+        if (!video) return;
 
-        const startTime = Date.now();
-        const duration = 20 * 60 * 1000; // 20 minutes en millisecondes
         const startCount = 72;
-        const endCount = 179;
+        const endCount = 237;
         const totalIncrease = endCount - startCount;
 
         // Valeur initiale
         let currentCount = startCount;
         updateBothBadges(currentCount);
 
-        function updateViewersCount() {
-            if (!viewersCountElement && !viewersCountMobileElement) return;
+        let videoDuration = 0;
 
-            const elapsed = Date.now() - startTime;
-            let linearProgress = Math.min(1, elapsed / duration); // Entre 0 et 1
-
-            // Fonction easing : rapide au début, ralentit au milieu, accélère à la fin
-            // Utilise une courbe ease-in-out-cubic modifiée pour plus d'accélération aux extrémités
-            function easeInOutCubic(t: number): number {
-                return t < 0.5
-                    ? 4 * t * t * t
-                    : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        // Attendre que la vidéo soit chargée pour obtenir sa durée
+        const initViewersSync = () => {
+            if (video.duration && video.duration > 0) {
+                videoDuration = video.duration;
+            } else {
+                // Si la durée n'est pas encore disponible, réessayer
+                setTimeout(initViewersSync, 100);
+                return;
             }
 
-            // Appliquer l'easing pour une progression naturelle
-            const easedProgress = easeInOutCubic(linearProgress);
+            function updateViewersCount() {
+                if (!viewersCountElement && !viewersCountMobileElement) return;
+                if (!video) return;
 
-            // Calculer la valeur cible basée sur la progression avec easing
-            const targetCount =
-                startCount + Math.floor(totalIncrease * easedProgress);
+                const currentVideoTime = video.currentTime || 0;
 
-            // Ajouter une variation aléatoire positive (0 à +3) pour rendre plus naturel
-            // Mais s'assurer que le compteur ne redescend jamais
-            const variation = Math.floor(Math.random() * 4); // 0 à +3
-            let newCount = Math.min(endCount, targetCount + variation);
-
-            // Garantir que le compteur ne redescend jamais - toujours >= currentCount
-            newCount = Math.max(currentCount, newCount);
-
-            // Ne mettre à jour que si le nombre a changé
-            if (newCount !== currentCount) {
-                currentCount = newCount;
-
-                // Animation de changement pour les deux badges
-                if (viewersCountElement) {
-                    viewersCountElement.style.transform = "scale(1.1)";
-                    viewersCountElement.style.opacity = "0.7";
-                }
-                if (viewersCountMobileElement) {
-                    viewersCountMobileElement.style.transform = "scale(1.1)";
-                    viewersCountMobileElement.style.opacity = "0.7";
+                // Si la vidéo n'a pas encore commencé, rester à 72
+                if (currentVideoTime === 0 || videoDuration === 0) {
+                    return;
                 }
 
-                setTimeout(() => {
-                    updateBothBadges(newCount);
+                // Calculer la progression basée sur le temps de la vidéo
+                const linearProgress = Math.min(
+                    1,
+                    currentVideoTime / videoDuration,
+                );
 
+                // Fonction d'easing personnalisée pour une progression non-linéaire :
+                // Rapide au début, ralentit au milieu, accélère à la fin
+                // Garantit une progression dès le début
+                function customEasing(t: number): number {
+                    if (t <= 0) return 0;
+                    if (t >= 1) return 1;
+
+                    if (t < 0.25) {
+                        // Début (0-25%) : progression très rapide - 50% de la progression totale
+                        const normalized = t / 0.25;
+                        // Utiliser une courbe quadratique inversée pour un démarrage agressif
+                        return 0.5 * (1 - Math.pow(1 - normalized, 3));
+                    } else if (t < 0.65) {
+                        // Milieu (25-65%) : progression lente - 25% de la progression totale
+                        const normalized = (t - 0.25) / 0.4;
+                        return 0.5 + 0.25 * normalized;
+                    } else {
+                        // Fin (65-100%) : progression rapide - 25% de la progression totale
+                        const normalized = (t - 0.65) / 0.35;
+                        return 0.75 + 0.25 * Math.pow(normalized, 1.5);
+                    }
+                }
+
+                // Appliquer l'easing pour créer la courbe de progression souhaitée
+                const easedProgress = customEasing(linearProgress);
+
+                // Calculer la valeur cible basée sur la progression avec easing
+                const targetCountDecimal =
+                    startCount + totalIncrease * easedProgress;
+
+                // Utiliser Math.round pour avoir une progression fluide
+                let newCount = Math.round(targetCountDecimal);
+
+                // Forcer une progression minimale : dès que la vidéo dépasse 0.3 seconde, on doit être à 73 minimum
+                if (currentVideoTime > 0.3 && newCount <= startCount) {
+                    newCount = startCount + 1;
+                }
+
+                // Si la valeur calculée dépasse légèrement la valeur actuelle, forcer une progression
+                if (
+                    targetCountDecimal > startCount + 0.2 &&
+                    newCount <= startCount
+                ) {
+                    newCount = startCount + 1;
+                }
+
+                // Si on est très proche de la valeur cible mais qu'on arrondit vers le bas, forcer vers le haut
+                if (
+                    targetCountDecimal > newCount + 0.3 &&
+                    newCount < endCount
+                ) {
+                    newCount = Math.min(endCount, newCount + 1);
+                }
+
+                // Limiter au maximum
+                newCount = Math.min(endCount, newCount);
+
+                // Garantir que le compteur ne redescend jamais
+                newCount = Math.max(currentCount, newCount);
+
+                // Mettre à jour si le nombre a changé
+                // Pas de restriction de temps - on met à jour dès que la valeur change
+                if (newCount !== currentCount) {
+                    currentCount = newCount;
+
+                    // Animation de changement pour les deux badges
                     if (viewersCountElement) {
-                        viewersCountElement.style.transform = "scale(1)";
-                        viewersCountElement.style.opacity = "1";
+                        viewersCountElement.style.transform = "scale(1.1)";
+                        viewersCountElement.style.opacity = "0.7";
                     }
                     if (viewersCountMobileElement) {
-                        viewersCountMobileElement.style.transform = "scale(1)";
-                        viewersCountMobileElement.style.opacity = "1";
+                        viewersCountMobileElement.style.transform =
+                            "scale(1.1)";
+                        viewersCountMobileElement.style.opacity = "0.7";
                     }
-                }, 150);
-            }
 
-            // Continuer à mettre à jour toutes les 3 à 6 secondes pendant 20 minutes
-            if (linearProgress < 1) {
-                const delay =
-                    Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000; // Entre 3 et 6 secondes
-                setTimeout(() => {
-                    updateViewersCount();
-                }, delay);
-            } else {
-                // Après 20 minutes, continuer avec des variations aléatoires autour de 179
-                function continueAfterMax() {
-                    if (!viewersCountElement && !viewersCountMobileElement)
-                        return;
-                    const delay =
-                        Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
-                    // Variation positive seulement (0 à +3) pour éviter les descentes
-                    const finalVariation = Math.floor(Math.random() * 4); // 0 à +3
-                    let finalCount = Math.min(
-                        endCount,
-                        endCount + finalVariation,
-                    );
-                    // Garantir que le compteur ne redescend jamais
-                    finalCount = Math.max(currentCount, finalCount);
+                    setTimeout(() => {
+                        updateBothBadges(newCount);
 
-                    if (finalCount !== currentCount) {
-                        currentCount = finalCount;
-
-                        // Animation pour les deux badges
                         if (viewersCountElement) {
-                            viewersCountElement.style.transform = "scale(1.1)";
-                            viewersCountElement.style.opacity = "0.7";
+                            viewersCountElement.style.transform = "scale(1)";
+                            viewersCountElement.style.opacity = "1";
                         }
                         if (viewersCountMobileElement) {
                             viewersCountMobileElement.style.transform =
-                                "scale(1.1)";
-                            viewersCountMobileElement.style.opacity = "0.7";
+                                "scale(1)";
+                            viewersCountMobileElement.style.opacity = "1";
                         }
-
-                        setTimeout(() => {
-                            updateBothBadges(finalCount);
-
-                            if (viewersCountElement) {
-                                viewersCountElement.style.transform =
-                                    "scale(1)";
-                                viewersCountElement.style.opacity = "1";
-                            }
-                            if (viewersCountMobileElement) {
-                                viewersCountMobileElement.style.transform =
-                                    "scale(1)";
-                                viewersCountMobileElement.style.opacity = "1";
-                            }
-                        }, 150);
-                    }
-
-                    // Continuer les variations
-                    setTimeout(continueAfterMax, delay);
+                    }, 150);
                 }
-
-                const delay =
-                    Math.floor(Math.random() * (6000 - 3000 + 1)) + 3000;
-                setTimeout(continueAfterMax, delay);
             }
-        }
 
-        // Démarrer les mises à jour après 2 secondes
-        setTimeout(() => {
+            // Mettre à jour le compteur à chaque changement de temps de la vidéo
+            video.addEventListener("timeupdate", updateViewersCount);
+
+            // Mise à jour initiale
             updateViewersCount();
-        }, 2000);
+        };
+
+        // Démarrer la synchronisation une fois que la vidéo est prête
+        if (video.readyState >= 2) {
+            // Les métadonnées sont déjà chargées
+            initViewersSync();
+        } else {
+            // Attendre que les métadonnées soient chargées
+            video.addEventListener("loadedmetadata", initViewersSync, {
+                once: true,
+            });
+        }
     }
 
     // Timer functionality - synchronisé avec la vidéo, débloque à 17:28
