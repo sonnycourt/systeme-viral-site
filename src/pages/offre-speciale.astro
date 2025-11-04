@@ -13270,12 +13270,12 @@ import Layout from "../layouts/Layout.astro";
     <script>
         // Countdown timer - Updated 2025
         // Configuration des dates pour la logique de scarcity
-        const startDate = new Date("2025-11-03T21:00:00").getTime();
-        const transitionDate = new Date("2025-11-20T21:00:00").getTime();
+        const startDate = new Date("2025-11-04T18:20:00").getTime();
+        const transitionDate = new Date("2025-11-21T21:00:00").getTime();
         const phase2EndDate = new Date("2025-12-04T22:00:00").getTime();
         const endDate = new Date("2025-12-04T22:00:00").getTime();
 
-        let lastPhase1Places = 198;
+        let lastPhase1Places = 192;
         let lastPhase2Places = 200;
         let lastPhase3Places = 11;
 
@@ -13283,19 +13283,19 @@ import Layout from "../layouts/Layout.astro";
         const calculatePlaces = () => {
             const now = new Date().getTime();
 
-            // PHASE 0 (avant 3 nov 21h) : 198 places disponibles
+            // PHASE 0 (avant 3 nov 21h) : 192 places disponibles
             if (now < startDate) {
-                return { phase: 0, places: 198 };
+                return { phase: 0, places: 192 };
             }
 
-            // PHASE 1 (3 nov 21h → 20 nov 21h) : 198 → 0 places
+            // PHASE 1 (3 nov 21h → 20 nov 21h) : 192 → 0 places
             else if (now < transitionDate) {
                 const hoursElapsed = (now - startDate) / (1000 * 60 * 60);
                 const phase1TotalHours =
                     (transitionDate - startDate) / (1000 * 60 * 60);
                 const progress = hoursElapsed / phase1TotalHours;
                 const adjustedProgress = Math.pow(progress, 0.7);
-                let currentPlaces = Math.floor(198 * (1 - adjustedProgress));
+                let currentPlaces = Math.floor(192 * (1 - adjustedProgress));
 
                 if (currentPlaces > lastPhase1Places) {
                     currentPlaces = lastPhase1Places;
@@ -13365,7 +13365,7 @@ import Layout from "../layouts/Layout.astro";
                 return;
 
             if (phaseData.phase === 0) {
-                // PHASE 0 : Affichage des 198 places (avant le 3 nov 21h)
+                // PHASE 0 : Affichage des 192 places (avant le 3 nov 21h)
                 scarcityText.classList.remove("sold-out");
                 scarcityText.innerHTML = `<span class="places-count" id="places">${phaseData.places}</span> places disponibles sur 200`;
                 exceptionalOffer.style.display = "none";
