@@ -176,8 +176,8 @@ import Layout from "../layouts/Layout.astro";
                             en train de disparaître !
                         </div>
                         <p class="scarcity-text" id="scarcityText">
-                            <span class="places-count" id="places">278</span> places
-                            disponibles sur 200
+                            <span class="places-count" id="places">87</span> places
+                            disponibles sur 100
                         </p>
                         <div
                             class="exceptional-offer"
@@ -7441,8 +7441,8 @@ import Layout from "../layouts/Layout.astro";
                                 class="places-count"
                                 id="placesBottom"
                                 style="color: #ff4444; font-weight: 800; font-size: 1.6rem; animation: scarcityPulse 3s infinite; text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);"
-                                >154</span
-                            > places disponibles sur 200
+                                >87</span
+                            > places disponibles sur 100
                         </p>
                         <div
                             class="exceptional-offer"
@@ -13269,71 +13269,15 @@ import Layout from "../layouts/Layout.astro";
 
     <script>
         // Countdown timer - Updated 2025
-        // Configuration des dates pour la logique de scarcity
-        const startDate = new Date("2025-11-04T18:20:00").getTime();
-        const transitionDate = new Date("2025-11-21T21:00:00").getTime();
-        const phase2EndDate = new Date("2025-12-04T22:00:00").getTime();
         const endDate = new Date("2025-12-04T22:00:00").getTime();
 
-        let lastPhase1Places = 192;
-        let lastPhase2Places = 200;
-        let lastPhase3Places = 11;
-
-        // Fonction pour calculer les places disponibles
-        const calculatePlaces = () => {
-            const now = new Date().getTime();
-
-            // PHASE 0 (avant 3 nov 21h) : 192 places disponibles
-            if (now < startDate) {
-                return { phase: 0, places: 192 };
-            }
-
-            // PHASE 1 (3 nov 21h → 20 nov 21h) : 192 → 0 places
-            else if (now < transitionDate) {
-                const hoursElapsed = (now - startDate) / (1000 * 60 * 60);
-                const phase1TotalHours =
-                    (transitionDate - startDate) / (1000 * 60 * 60);
-                const progress = hoursElapsed / phase1TotalHours;
-                const adjustedProgress = Math.pow(progress, 0.7);
-                let currentPlaces = Math.floor(192 * (1 - adjustedProgress));
-
-                if (currentPlaces > lastPhase1Places) {
-                    currentPlaces = lastPhase1Places;
-                }
-
-                lastPhase1Places = currentPlaces;
-                return { phase: 1, places: currentPlaces };
-            }
-            // PHASE 2 (20 nov 21h → 4 déc 22h) : 200 → 0 places exceptionnelles
-            else if (now < phase2EndDate) {
-                const hoursElapsed = (now - transitionDate) / (1000 * 60 * 60);
-                const phase2TotalHours =
-                    (phase2EndDate - transitionDate) / (1000 * 60 * 60);
-                const progress = hoursElapsed / phase2TotalHours;
-                const adjustedProgress = Math.pow(progress, 0.76);
-
-                let currentPlaces = Math.floor(200 * (1 - adjustedProgress));
-
-                if (currentPlaces > lastPhase2Places) {
-                    currentPlaces = lastPhase2Places;
-                }
-
-                lastPhase2Places = currentPlaces;
-                return { phase: 2, places: currentPlaces };
-            }
-            // Phase terminée
-            return { phase: "ended", places: 0 };
-        };
-
-        // Mise à jour de l'affichage selon la phase
-        const updateScarcityDisplay = (phaseData) => {
+        // Mise à jour de l'affichage des places (valeur fixe)
+        const updateScarcityDisplay = () => {
             // Section du haut
             const scarcityText = document.getElementById("scarcityText");
             const placesSpan = document.getElementById("places");
             const exceptionalOffer =
                 document.getElementById("exceptionalOffer");
-            const exceptionalPlaces =
-                document.getElementById("exceptionalPlaces");
             const urgentWarning = document.getElementById("urgentWarning");
 
             // Section du bas
@@ -13343,9 +13287,6 @@ import Layout from "../layouts/Layout.astro";
             const exceptionalOfferBottom = document.getElementById(
                 "exceptionalOfferBottom",
             );
-            const exceptionalPlacesBottom = document.getElementById(
-                "exceptionalPlacesBottom",
-            );
             const urgentWarningBottom = document.getElementById(
                 "urgentWarningBottom",
             );
@@ -13353,123 +13294,22 @@ import Layout from "../layouts/Layout.astro";
             if (
                 !scarcityText ||
                 !placesSpan ||
-                !exceptionalOffer ||
-                !exceptionalPlaces ||
-                !urgentWarning ||
                 !scarcityTextBottom ||
-                !placesSpanBottom ||
-                !exceptionalOfferBottom ||
-                !exceptionalPlacesBottom ||
-                !urgentWarningBottom
+                !placesSpanBottom
             )
                 return;
 
-            if (phaseData.phase === 0) {
-                // PHASE 0 : Affichage des 192 places (avant le 3 nov 21h)
-                scarcityText.classList.remove("sold-out");
-                scarcityText.innerHTML = `<span class="places-count" id="places">${phaseData.places}</span> places disponibles sur 200`;
-                exceptionalOffer.style.display = "none";
-                urgentWarning.style.display = "none";
+            // Affichage fixe : 87 places disponibles sur 100
+            scarcityText.classList.remove("sold-out");
+            scarcityText.innerHTML = `<span class="places-count" id="places">87</span> places disponibles sur 100`;
+            if (exceptionalOffer) exceptionalOffer.style.display = "none";
+            if (urgentWarning) urgentWarning.style.display = "none";
 
-                // Section du bas
-                scarcityTextBottom.classList.remove("sold-out");
-                scarcityTextBottom.innerHTML = `<span class="places-count" id="placesBottom">${phaseData.places}</span> places disponibles sur 200`;
+            scarcityTextBottom.classList.remove("sold-out");
+            scarcityTextBottom.innerHTML = `<span class="places-count" id="placesBottom">87</span> places disponibles sur 100`;
+            if (exceptionalOfferBottom)
                 exceptionalOfferBottom.style.display = "none";
-                urgentWarningBottom.style.display = "none";
-            } else if (phaseData.phase === 1) {
-                // Section du haut
-                scarcityText.classList.remove("sold-out");
-                scarcityText.innerHTML = `<span class="places-count" id="places">${phaseData.places}</span> places disponibles sur 200`;
-                exceptionalOffer.style.display = "none";
-
-                // Section du bas
-                scarcityTextBottom.classList.remove("sold-out");
-                scarcityTextBottom.innerHTML = `<span class="places-count" id="placesBottom">${phaseData.places}</span> places disponibles sur 200`;
-                exceptionalOfferBottom.style.display = "none";
-
-                // Afficher l'avertissement d'urgence si peu de places
-                if (phaseData.places <= 10) {
-                    urgentWarning.style.display = "block";
-                    urgentWarningBottom.style.display = "block";
-                } else {
-                    urgentWarning.style.display = "none";
-                    urgentWarningBottom.style.display = "none";
-                }
-
-                if (phaseData.places <= 3) {
-                    const placesElement = document.getElementById("places");
-                    const placesElementBottom =
-                        document.getElementById("placesBottom");
-                    if (placesElement) {
-                        placesElement.style.fontSize = "1.75rem";
-                        placesElement.style.animation =
-                            "urgentPulse 0.8s infinite";
-                        placesElement.classList.add("urgent-red");
-                    }
-                    if (placesElementBottom) {
-                        placesElementBottom.style.fontSize = "1.75rem";
-                        placesElementBottom.style.animation =
-                            "urgentPulse 0.8s infinite";
-                        placesElementBottom.classList.add("urgent-red");
-                    }
-                }
-            } else if (phaseData.phase === 2) {
-                // Section du haut - Ligne 1: 0 places (Phase 1 terminée)
-                scarcityText.classList.add("sold-out");
-                scarcityText.innerHTML = `<span class="urgent-red">0</span> places disponibles sur 200`;
-
-                // Ligne 2: Places exceptionnelles
-                exceptionalOffer.style.display = "inline-block";
-                exceptionalPlaces.textContent = String(phaseData.places);
-                urgentWarning.style.display = "block";
-
-                // Section du bas - Même logique
-                scarcityTextBottom.classList.add("sold-out");
-                scarcityTextBottom.innerHTML = `<span class="urgent-red">0</span> places disponibles sur 200`;
-
-                exceptionalOfferBottom.style.display = "inline-block";
-                exceptionalPlacesBottom.textContent = String(phaseData.places);
-                urgentWarningBottom.style.display = "block";
-
-                if (phaseData.places < 30) {
-                    exceptionalPlaces.style.animation =
-                        "urgentFlash 0.5s infinite";
-                    exceptionalPlacesBottom.style.animation =
-                        "urgentFlash 0.5s infinite";
-                } else {
-                    exceptionalPlaces.style.animation = "";
-                    exceptionalPlacesBottom.style.animation = "";
-                }
-            } else if (phaseData.phase === 3) {
-                // Section du haut
-                scarcityText.classList.add("sold-out");
-                scarcityText.innerHTML = `<span class="urgent-red">0</span> places disponibles sur 200`;
-                exceptionalOffer.style.display = "inline-block";
-                exceptionalPlaces.textContent = String(phaseData.places);
-                exceptionalPlaces.style.animation = "urgentFlash 0.3s infinite";
-                urgentWarning.style.display = "block";
-
-                // Section du bas
-                scarcityTextBottom.classList.add("sold-out");
-                scarcityTextBottom.innerHTML = `<span class="urgent-red">0</span> places disponibles sur 200`;
-                exceptionalOfferBottom.style.display = "inline-block";
-                exceptionalPlacesBottom.textContent = String(phaseData.places);
-                exceptionalPlacesBottom.style.animation =
-                    "urgentFlash 0.3s infinite";
-                urgentWarningBottom.style.display = "block";
-            } else {
-                // Section du haut
-                scarcityText.classList.add("sold-out");
-                scarcityText.textContent = `L'offre est complètement terminée`;
-                exceptionalOffer.style.display = "none";
-                urgentWarning.style.display = "none";
-
-                // Section du bas
-                scarcityTextBottom.classList.add("sold-out");
-                scarcityTextBottom.textContent = `L'offre est complètement terminée`;
-                exceptionalOfferBottom.style.display = "none";
-                urgentWarningBottom.style.display = "none";
-            }
+            if (urgentWarningBottom) urgentWarningBottom.style.display = "none";
         };
 
         // Mise à jour du compte à rebours
@@ -13529,8 +13369,7 @@ import Layout from "../layouts/Layout.astro";
                 .toString()
                 .padStart(2, "0");
 
-            const phaseData = calculatePlaces();
-            updateScarcityDisplay(phaseData);
+            updateScarcityDisplay();
 
             if (days === 0) {
                 // Effets visuels pour le countdown du haut
@@ -13568,16 +13407,14 @@ import Layout from "../layouts/Layout.astro";
                 setInterval(updateCountdown, 1000);
 
                 // Initialiser l'affichage des places au chargement
-                const phaseData = calculatePlaces();
-                updateScarcityDisplay(phaseData);
+                updateScarcityDisplay();
             });
         } else {
             updateCountdown();
             setInterval(updateCountdown, 1000);
 
             // Initialiser l'affichage des places au chargement
-            const phaseData = calculatePlaces();
-            updateScarcityDisplay(phaseData);
+            updateScarcityDisplay();
         }
         // Chatbot functionality
         let chatbotOpen = false;
