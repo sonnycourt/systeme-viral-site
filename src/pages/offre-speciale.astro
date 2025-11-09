@@ -176,7 +176,7 @@ import Layout from "../layouts/Layout.astro";
                             en train de disparaître !
                         </div>
                         <p class="scarcity-text" id="scarcityText">
-                            <span class="places-count" id="places">87</span> places
+                            <span class="places-count" id="places">84</span> places
                             disponibles sur 100
                         </p>
                         <div
@@ -4722,7 +4722,6 @@ import Layout from "../layouts/Layout.astro";
         .timeline-card-content {
             color: #bfbfbf;
         }
-
         .timeline-description {
             font-size: 1rem;
             line-height: 1.6;
@@ -6149,9 +6148,15 @@ import Layout from "../layouts/Layout.astro";
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                             >
-                                <path
-                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                                <path d="M21.54 15H17a2 2 0 0 0-2 2v4.54"
                                 ></path>
+                                <path
+                                    d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"
+                                ></path>
+                                <path
+                                    d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"
+                                ></path>
+                                <circle cx="12" cy="12" r="10"></circle>
                             </svg>
                             Marge 95%
                         </h3>
@@ -6362,7 +6367,6 @@ import Layout from "../layouts/Layout.astro";
             </div>
         </div>
     </section>
-
     <!-- Target Audience Section -->
     <section class="target-audience-section">
         <div class="container">
@@ -7324,7 +7328,6 @@ import Layout from "../layouts/Layout.astro";
                 </div>
             </div>
         </section>
-
         <!-- Scarcity Section Bottom -->
         <section
             class="scarcity-bottom-section"
@@ -7441,7 +7444,7 @@ import Layout from "../layouts/Layout.astro";
                                 class="places-count"
                                 id="placesBottom"
                                 style="color: #ff4444; font-weight: 800; font-size: 1.6rem; animation: scarcityPulse 3s infinite; text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);"
-                                >87</span
+                                >84</span
                             > places disponibles sur 100
                         </p>
                         <div
@@ -7975,7 +7978,6 @@ import Layout from "../layouts/Layout.astro";
                 opacity: 0.8;
             }
         }
-
         @keyframes urgentPulse {
             0%,
             100% {
@@ -8620,7 +8622,6 @@ import Layout from "../layouts/Layout.astro";
             gap: 12px;
             align-items: center;
         }
-
         .chatbot-input {
             flex: 1;
             padding: 12px 16px;
@@ -9266,7 +9267,6 @@ import Layout from "../layouts/Layout.astro";
         .badge-icon {
             font-size: 20px;
         }
-
         /* Bulles de crédibilité */
         .credibility-badges {
             display: flex;
@@ -9797,7 +9797,6 @@ import Layout from "../layouts/Layout.astro";
                 padding: 4px 8px;
             }
         }
-
         /* Styles pour très petits écrans */
         @media (max-width: 480px) {
             .proof-image-main {
@@ -10448,7 +10447,6 @@ import Layout from "../layouts/Layout.astro";
             overflow: hidden;
             backdrop-filter: blur(10px);
         }
-
         .secrets-badge::before {
             content: "";
             position: absolute;
@@ -11083,7 +11081,6 @@ import Layout from "../layouts/Layout.astro";
             margin: 24px 0 0 0;
             text-align: center;
         }
-
         .profile-btn {
             background: linear-gradient(
                 135deg,
@@ -11730,7 +11727,6 @@ import Layout from "../layouts/Layout.astro";
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
         }
-
         .option-card-premium:hover .option-shine-effect {
             top: 100%;
             left: 100%;
@@ -12359,7 +12355,6 @@ import Layout from "../layouts/Layout.astro";
             display: block;
             background: #000;
         }
-
         .big-play-offre {
             position: absolute;
             inset: 0;
@@ -13010,7 +13005,6 @@ import Layout from "../layouts/Layout.astro";
             line-height: 1.4;
             margin: 0;
         }
-
         /* Placeholder */
         .clean-placeholder {
             text-align: center;
@@ -13299,14 +13293,14 @@ import Layout from "../layouts/Layout.astro";
             )
                 return;
 
-            // Affichage fixe : 87 places disponibles sur 100
+            // Affichage fixe : 84 places disponibles sur 100
             scarcityText.classList.remove("sold-out");
-            scarcityText.innerHTML = `<span class="places-count" id="places">87</span> places disponibles sur 100`;
+            scarcityText.innerHTML = `<span class="places-count" id="places">84</span> places disponibles sur 100`;
             if (exceptionalOffer) exceptionalOffer.style.display = "none";
             if (urgentWarning) urgentWarning.style.display = "none";
 
             scarcityTextBottom.classList.remove("sold-out");
-            scarcityTextBottom.innerHTML = `<span class="places-count" id="placesBottom">87</span> places disponibles sur 100`;
+            scarcityTextBottom.innerHTML = `<span class="places-count" id="placesBottom">84</span> places disponibles sur 100`;
             if (exceptionalOfferBottom)
                 exceptionalOfferBottom.style.display = "none";
             if (urgentWarningBottom) urgentWarningBottom.style.display = "none";
@@ -14129,7 +14123,6 @@ import Layout from "../layouts/Layout.astro";
                 // Generate personalized recommendations using OpenAI
                 this.generatePersonalizedRecommendations();
             }
-
             async generatePersonalizedRecommendations() {
                 const recommendationsContainer = document.getElementById(
                     "recommendations-container",
@@ -14757,7 +14750,6 @@ import Layout from "../layouts/Layout.astro";
         });
         spiffy.load("systemeviral");
     </script>
-
     <!-- Start of Async ProveSource Code -->
     <script>
         !(function (o, i) {
