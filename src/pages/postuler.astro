@@ -695,10 +695,21 @@ import Layout from "../layouts/Layout.astro";
                 setFeedback("Envoi en cours…");
 
                 const formData = new FormData(form);
+
+                // Récupérer le numéro complet avec indicatif
+                let telephoneComplet = (formData.get("telephone") ?? "").toString().trim();
+                if (window.iti && typeof window.iti.getNumber === 'function') {
+                    try {
+                        telephoneComplet = window.iti.getNumber();
+                    } catch (e) {
+                        console.log("[Postuler] Could not get full phone number:", e);
+                    }
+                }
+
                 const payload = {
                     prenom: (formData.get("prenom") ?? "").toString().trim(),
                     email: (formData.get("email") ?? "").toString().trim(),
-                    telephone: (formData.get("telephone") ?? "").toString().trim(),
+                    telephone: telephoneComplet,
                     profil: (formData.get("profil") ?? "").toString(),
                     objectif: (formData.get("objectif") ?? "").toString(),
                     motivation: (formData.get("motivation") ?? "").toString(),

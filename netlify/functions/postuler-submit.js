@@ -72,14 +72,14 @@ exports.handler = async (event) => {
       email,
       fields: {
         name: prenom,
-        phone: telephone,
-        // Champs personnalisés - à créer dans MailerLite si nécessaire
-        prenom_custom: prenom,
-        profil_custom: profil,
-        objectif_custom: objectif,
-        motivation_custom: motivation,
-        thematique_custom: thematique,
-        raison_custom: raison,
+        phone: telephone, // Maintenant envoyé avec indicatif depuis le frontend
+        // Champs personnalisés - noms simplifiés
+        prenom: prenom,
+        profil: profil,
+        objectif: objectif,
+        motivation: motivation,
+        thematique: thematique,
+        raison: raison,
         ...(utm?.utm_source ? { utm_source: utm.utm_source } : {}),
         ...(utm?.utm_content ? { utm_content: utm.utm_content } : {}),
       },
