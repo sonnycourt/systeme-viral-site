@@ -72,19 +72,21 @@ exports.handler = async (event) => {
       email,
       fields: {
         name: prenom,
-        prenom,
-        telephone,
-        profil,
-        objectif,
-        motivation,
-        thematique,
-        raison,
+        phone: telephone,
+        prenom: prenom,
+        profil: profil,
+        objectif: objectif,
+        motivation: motivation,
+        thematique: thematique,
+        raison: raison,
         ...(utm?.utm_source ? { utm_source: utm.utm_source } : {}),
         ...(utm?.utm_content ? { utm_content: utm.utm_content } : {}),
       },
       groups: [groupId],
       tags: [objectif, motivation, raison, "has_phone"],
     };
+
+    console.log("[postuler-submit] Sending data to MailerLite:", JSON.stringify(requestData, null, 2));
 
     const payload = JSON.stringify(requestData);
 

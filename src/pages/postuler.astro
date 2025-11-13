@@ -25,17 +25,32 @@ import Layout from "../layouts/Layout.astro";
             <div class="postuler-content">
                 <div class="postuler-card">
                     <header class="postuler-header">
+                        <div class="status-indicator">
+                            <div class="status-badge">
+                                <span class="status-dot"></span>
+                                Black Friday - Ouverture prioritaire
+                            </div>
+                            <div class="status-text">
+                                Ouverture inscription du 1 au 4 décembre — 72h seulement
+                            </div>
+                        </div>
+
                         <h1 class="postuler-title">
-                            Postule pour rejoindre SYSTÈME VIRAL 100K™
+                            Postule pour rejoindre<br />
+                            <span class="title-accent">SYSTÈME VIRAL 100K™</span>
                         </h1>
-                        <p class="postuler-subtitle">
-                            Les places pour l’ouverture Black Friday seront attribuées en priorité aux personnes ayant complété ce formulaire.<br />
-                            Réouverture du 1 au 4 décembre — 72h seulement.
-                        </p>
-                        <p class="postuler-description">
-                            Compléter ce formulaire te place en priorité sur la liste d’ouverture.<br />
-                            Si tu es sélectionné, tu recevras ton accès le 1er décembre à 18h.
-                        </p>
+
+                        <div class="key-points">
+                            <div class="key-point">
+                                Places prioritaires pour les inscrits Black Friday
+                            </div>
+                            <div class="key-point">
+                                Accès garanti le 1er décembre à 18h si sélectionné
+                            </div>
+                            <div class="key-point">
+                                Complète ce formulaire pour être en tête de liste
+                            </div>
+                        </div>
                     </header>
 
                     <form id="postuler-form" class="postuler-form">
@@ -236,28 +251,83 @@ import Layout from "../layouts/Layout.astro";
 
         .postuler-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        .status-indicator {
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background: rgba(1, 233, 136, 0.1);
+            border: 1px solid rgba(1, 233, 136, 0.2);
+            border-radius: 20px;
+            color: #01e988;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: #01e988;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: gentle-pulse 3s ease-in-out infinite;
+        }
+
+        .status-text {
+            font-size: 14px;
+            color: #bfbfbf;
+            font-weight: 500;
         }
 
         .postuler-title {
             font-size: 28px;
             font-weight: 700;
             color: #fff;
-            margin: 0 0 16px;
+            margin: 0 0 24px;
             line-height: 1.2;
         }
 
-        .postuler-subtitle {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #bfbfbf;
-            margin-bottom: 12px;
+        .title-accent {
+            color: #01e988;
+            display: block;
+            margin-top: 4px;
         }
 
-        .postuler-description {
+        .key-points {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .key-point {
             font-size: 14px;
             color: #bfbfbf;
-            line-height: 1.5;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        @keyframes gentle-pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
         }
 
         .postuler-form {
