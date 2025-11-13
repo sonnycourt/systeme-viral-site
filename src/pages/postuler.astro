@@ -8,204 +8,587 @@ import Layout from "../layouts/Layout.astro";
     description="Postule pour réserver ta place à la prochaine ouverture du Système Viral 100K™."
     canonical="/postuler"
 >
-    <section
-        style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px; background: radial-gradient(circle at top, rgba(1, 233, 136, 0.08), rgba(15, 15, 15, 1));"
-    >
-        <div
-            style="max-width: 760px; width: 100%; background: rgba(18, 18, 18, 0.88); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 28px; padding: clamp(36px, 6vw, 52px); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);"
-        >
-            <header style="text-align: center; margin-bottom: clamp(28px, 6vw, 40px);">
-                <h1
-                    style="margin: 0 0 12px; font-size: clamp(2.3rem, 4.8vw, 3rem); color: #ffffff; font-weight: 800; letter-spacing: -0.01em;"
-                >
-                    Postule pour rejoindre SYSTÈME VIRAL 100K™
-                </h1>
-                <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.05rem; line-height: 1.6; max-width: 520px; margin: 0 auto;">
-                    Les places pour l’ouverture Black Friday seront attribuées en priorité aux personnes ayant complété ce formulaire.<br />
-                    Réouverture du 1 au 4 décembre — 72h seulement.
-                </p>
-                <p style="color: rgba(255, 255, 255, 0.65); font-size: 0.95rem; line-height: 1.6; margin-top: 18px;">
-                    Compléter ce formulaire te place en priorité sur la liste d’ouverture.<br />
-                    Si tu es sélectionné, tu recevras ton accès le 1er décembre à 18h.
-                </p>
-            </header>
+    <!-- intl-tel-input CSS -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"
+    />
+    <!-- intl-tel-input JS -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"
+    ></script>
+    <!-- Background effects -->
+    <div class="gradient-bg"></div>
 
-            <form id="postuler-form" style="display: grid; gap: 24px;">
-                <div style="display: grid; gap: 16px;">
-                    <div>
-                        <label for="prenom" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
-                            1️⃣ Ton prénom
-                        </label>
-                        <input
-                            id="prenom"
-                            type="text"
-                            name="prenom"
-                            required
-                            placeholder="Ton prénom"
-                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem;"
-                        />
-                    </div>
-
-                    <div>
-                        <label for="email" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
-                            2️⃣ Ton meilleur email
-                        </label>
-                        <input
-                            id="email"
-                            type="email"
-                            name="email"
-                            required
-                            placeholder="ton@email.com"
-                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem;"
-                        />
-                        <p style="margin: 6px 0 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.55);">
-                            Utilise ton vrai email — c’est ici que tu recevras la confirmation.
+    <section class="postuler-hero">
+        <div class="container">
+            <div class="postuler-content">
+                <div class="postuler-card">
+                    <header class="postuler-header">
+                        <h1 class="postuler-title">
+                            Postule pour rejoindre SYSTÈME VIRAL 100K™
+                        </h1>
+                        <p class="postuler-subtitle">
+                            Les places pour l’ouverture Black Friday seront attribuées en priorité aux personnes ayant complété ce formulaire.<br />
+                            Réouverture du 1 au 4 décembre — 72h seulement.
                         </p>
-                    </div>
-
-                    <div>
-                        <label for="telephone" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
-                            3️⃣ Ton numéro WhatsApp / SMS
-                        </label>
-                        <input
-                            id="telephone"
-                            type="tel"
-                            name="telephone"
-                            required
-                            placeholder="Ex. +33 6 12 34 56 78"
-                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem;"
-                        />
-                        <p style="margin: 6px 0 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.55);">
-                            Sert uniquement à t’avertir lors de l’ouverture le 1er décembre.
+                        <p class="postuler-description">
+                            Compléter ce formulaire te place en priorité sur la liste d’ouverture.<br />
+                            Si tu es sélectionné, tu recevras ton accès le 1er décembre à 18h.
                         </p>
-                    </div>
+                    </header>
+
+                    <form id="postuler-form" class="postuler-form">
+                        <div class="form-section">
+                            <div class="input-group">
+                                <label for="prenom" class="input-label">
+                                    Ton prénom
+                                </label>
+                                <input
+                                    id="prenom"
+                                    type="text"
+                                    name="prenom"
+                                    required
+                                    placeholder="Ton prénom"
+                                    class="postuler-input"
+                                />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="email" class="input-label">
+                                    Ton meilleur email
+                                </label>
+                                <input
+                                    id="email"
+                                    type="email"
+                                    name="email"
+                                    required
+                                    placeholder="ton@email.com"
+                                    class="postuler-input"
+                                />
+                                <p class="input-help">
+                                    Utilise ton vrai email — c’est ici que tu recevras la confirmation.
+                                </p>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="telephone" class="input-label">
+                                    Ton numéro WhatsApp / SMS
+                                </label>
+                                <input
+                                    id="telephone"
+                                    type="tel"
+                                    name="telephone"
+                                    required
+                                    placeholder="06 12 34 56 78"
+                                    class="postuler-input iti"
+                                />
+                                <p class="input-help">
+                                    Sert uniquement à t’avertir lors de l’ouverture le 1er décembre.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-section-card">
+                            <div class="input-group">
+                                <label for="profil" class="input-label">
+                                    Tu es plutôt…
+                                </label>
+                                <select
+                                    id="profil"
+                                    name="profil"
+                                    required
+                                    class="postuler-select"
+                                >
+                                    <option value="" disabled selected>Choisis l’option qui te correspond</option>
+                                    <option value="employe">Employé frustré</option>
+                                    <option value="createur">Créateur / influenceur</option>
+                                    <option value="entrepreneur">Entrepreneur invisible</option>
+                                    <option value="reconversion">En reconversion</option>
+                                    <option value="autre">Autre</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="objectif" class="input-label">
+                                    Ton objectif principal
+                                </label>
+                                <select
+                                    id="objectif"
+                                    name="objectif"
+                                    required
+                                    class="postuler-select"
+                                >
+                                    <option value="" disabled selected>Quel résultat veux-tu atteindre ?</option>
+                                    <option value="quitter-job">Quitter mon job</option>
+                                    <option value="1000-5000">Générer 1 000 à 5 000€/mois</option>
+                                    <option value="plus-10000">Générer +10 000€/mois</option>
+                                    <option value="lancer-business">Lancer un business rentable</option>
+                                    <option value="trouver-thematique">Trouver ma thématique</option>
+                                    <option value="creer-systeme">Créer un système automatisé</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-section-card">
+                            <div class="input-group">
+                                <label for="motivation" class="input-label-range">
+                                    <span>Niveau de motivation (1 à 10)</span>
+                                    <span id="motivation-value" class="motivation-value">5</span>
+                                </label>
+                                <input
+                                    id="motivation"
+                                    type="range"
+                                    name="motivation"
+                                    min="1"
+                                    max="10"
+                                    value="5"
+                                    required
+                                    class="postuler-range"
+                                />
+                            </div>
+
+                            <div class="input-group">
+                                <label for="thematique" class="input-label">
+                                    As-tu déjà une thématique ?
+                                </label>
+                                <select
+                                    id="thematique"
+                                    name="thematique"
+                                    required
+                                    class="postuler-select"
+                                >
+                                    <option value="" disabled selected>Réponds en toute transparence</option>
+                                    <option value="oui">Oui</option>
+                                    <option value="hesite">J'hésite</option>
+                                    <option value="pas-encore">Pas encore</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="raison" class="input-label">
+                                    Pourquoi veux-tu absolument rejoindre Système Viral maintenant ?
+                                </label>
+                                <textarea
+                                    id="raison"
+                                    name="raison"
+                                    rows="2"
+                                    required
+                                    maxlength="240"
+                                    placeholder="Réponse courte — une phrase suffit."
+                                    class="postuler-textarea"
+                                ></textarea>
+                                <p class="input-help">
+                                    Plus ta réponse est convaincante plus tu as de chance d'obtenir une place
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="submit-section">
+                            <button
+                                type="submit"
+                                class="postuler-submit-btn"
+                            >
+                                POSTULER MAINTENANT
+                            </button>
+                            <p class="submit-disclaimer">
+                                Tu seras prévenu en priorité le 1er décembre à 18h.<br />
+                                Compléter ce formulaire ne garantit pas l’accès — les places sont limitées.
+                            </p>
+                            <div
+                                id="postuler-feedback"
+                                role="status"
+                                aria-live="polite"
+                                class="feedback-message"
+                            ></div>
+                        </div>
+                    </form>
                 </div>
-
-                <div style="background: rgba(255, 255, 255, 0.04); border-radius: 18px; padding: 24px 26px; border: 1px solid rgba(255, 255, 255, 0.06); display: grid; gap: 20px;">
-                    <h2 style="margin: 0; font-size: 1.1rem; color: #01e988; letter-spacing: 0.04em; text-transform: uppercase;">
-                        Section : Où en es-tu ?
-                    </h2>
-                    <div>
-                        <label for="profil" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
-                            4️⃣ Tu es plutôt…
-                        </label>
-                        <select
-                            id="profil"
-                            name="profil"
-                            required
-                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem;"
-                        >
-                            <option value="" disabled selected>Choisis l’option qui te correspond</option>
-                            <option value="employe">Employé frustré</option>
-                            <option value="createur">Créateur / influenceur</option>
-                            <option value="entrepreneur">Entrepreneur invisible</option>
-                            <option value="reconversion">En reconversion</option>
-                            <option value="autre">Autre</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="objectif" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
-                            5️⃣ Ton objectif principal
-                        </label>
-                        <select
-                            id="objectif"
-                            name="objectif"
-                            required
-                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem;"
-                        >
-                            <option value="" disabled selected>Quel résultat veux-tu atteindre ?</option>
-                            <option value="quitter-job">Quitter mon job</option>
-                            <option value="1000-5000">Générer 1 000 à 5 000€/mois</option>
-                            <option value="plus-10000">Générer +10 000€/mois</option>
-                            <option value="lancer-business">Lancer un business rentable</option>
-                            <option value="trouver-thematique">Trouver ma thématique</option>
-                            <option value="creer-systeme">Créer un système automatisé</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div style="background: rgba(255, 255, 255, 0.04); border-radius: 18px; padding: 24px 26px; border: 1px solid rgba(255, 255, 255, 0.06); display: grid; gap: 20px;">
-                    <h2 style="margin: 0; font-size: 1.1rem; color: #01e988; letter-spacing: 0.04em; text-transform: uppercase;">
-                        Section : Engagement & motivation
-                    </h2>
-                    <div>
-                        <label for="motivation" style="display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
-                            <span>6️⃣ Niveau de motivation (1 à 10)</span>
-                            <span id="motivation-value" style="font-size: 0.9rem; color: #01e988;">5</span>
-                        </label>
-                        <input
-                            id="motivation"
-                            type="range"
-                            name="motivation"
-                            min="1"
-                            max="10"
-                            value="5"
-                            required
-                            style="width: 100%;"
-                        />
-                    </div>
-
-                    <div>
-                        <label for="thematique" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
-                            7️⃣ As-tu déjà une thématique ?
-                        </label>
-                        <select
-                            id="thematique"
-                            name="thematique"
-                            required
-                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem;"
-                        >
-                            <option value="" disabled selected>Réponds en toute transparence</option>
-                            <option value="oui">Oui</option>
-                            <option value="hesite">J’hésite</option>
-                            <option value="pas-encore">Pas encore</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="raison" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
-                            8️⃣ Pourquoi veux-tu absolument rejoindre Système Viral maintenant ?
-                        </label>
-                        <textarea
-                            id="raison"
-                            name="raison"
-                            rows="2"
-                            required
-                            maxlength="240"
-                            placeholder="Réponse courte — une phrase suffit."
-                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem; line-height: 1.6;"
-                        ></textarea>
-                        <p style="margin: 6px 0 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.55);">
-                            Réponse courte — une phrase suffit.
-                        </p>
-                    </div>
-                </div>
-
-                <div style="text-align: center; display: grid; gap: 14px;">
-                    <button
-                        type="submit"
-                        style="padding: 20px; border-radius: 16px; background: linear-gradient(135deg, #01e988, #00c4ff); border: none; color: #03110b; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;"
-                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 18px 40px rgba(1, 233, 136, 0.35)'"
-                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'"
-                    >
-                        POSTULER MAINTENANT
-                    </button>
-                    <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.65); line-height: 1.6;">
-                        Tu seras prévenu en priorité le 1er décembre à 18h.<br />
-                        Compléter ce formulaire ne garantit pas l’accès — les places sont limitées.
-                    </p>
-                    <div
-                        id="postuler-feedback"
-                        role="status"
-                        aria-live="polite"
-                        style="text-align: center; font-size: 0.95rem; font-weight: 600; min-height: 24px;"
-                    ></div>
-                </div>
-            </form>
+            </div>
         </div>
     </section>
+
+    <style>
+        /* Postuler Page Styles - Inspired by comparison table */
+        .postuler-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .postuler-content {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .postuler-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+            overflow-x: auto;
+        }
+
+        .postuler-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .postuler-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 16px;
+            line-height: 1.2;
+        }
+
+        .postuler-subtitle {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #bfbfbf;
+            margin-bottom: 12px;
+        }
+
+        .postuler-description {
+            font-size: 14px;
+            color: #bfbfbf;
+            line-height: 1.5;
+        }
+
+        .postuler-form {
+            display: grid;
+            gap: 24px;
+        }
+
+        .form-section {
+            display: grid;
+            gap: 16px;
+        }
+
+        .form-section-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .section-title-accent {
+            margin: 0;
+            font-size: 14px;
+            color: #01e988;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .input-group {
+            display: grid;
+            gap: 6px;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #bfbfbf;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .input-label-range {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: #bfbfbf;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .motivation-value {
+            font-size: 12px;
+            color: #01e988;
+            font-weight: 600;
+            background: rgba(1, 233, 136, 0.1);
+            padding: 2px 8px;
+            border-radius: 12px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .postuler-input,
+        .postuler-select,
+        .postuler-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .postuler-input:focus,
+        .postuler-select:focus,
+        .postuler-textarea:focus {
+            outline: none;
+            border-color: #01e988;
+            background: rgba(1, 233, 136, 0.05);
+        }
+
+        .postuler-input::placeholder,
+        .postuler-textarea::placeholder {
+            color: #666;
+        }
+
+        .postuler-range {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .postuler-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #01e988;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(1, 233, 136, 0.3);
+        }
+
+        .postuler-range::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        .postuler-range::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #01e988;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(1, 233, 136, 0.3);
+        }
+
+        .input-help {
+            margin: 4px 0 0;
+            font-size: 12px;
+            color: #888;
+            line-height: 1.4;
+        }
+
+        .submit-section {
+            text-align: center;
+            display: grid;
+            gap: 16px;
+        }
+
+        .postuler-submit-btn {
+            padding: 16px 32px;
+            background: #01e988;
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .postuler-submit-btn:hover {
+            background: #00dc82;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(1, 233, 136, 0.4);
+        }
+
+        .postuler-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .submit-disclaimer {
+            font-size: 13px;
+            color: #bfbfbf;
+            line-height: 1.5;
+        }
+
+        .feedback-message {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #01e988;
+        }
+
+        /* intl-tel-input Styles */
+        .iti {
+            width: 100% !important;
+            margin-bottom: 0 !important;
+        }
+
+        .iti input {
+            width: 100% !important;
+            padding: 12px 16px 12px 90px !important;
+            background: rgba(255, 255, 255, 0.02) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 8px !important;
+            color: #fff !important;
+            font-size: 14px !important;
+            font-family: inherit !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .iti input:focus {
+            outline: none !important;
+            border-color: #01e988 !important;
+            background: rgba(1, 233, 136, 0.05) !important;
+        }
+
+        .iti input::placeholder {
+            color: #666 !important;
+        }
+
+        /* Container du drapeau sélectionné */
+        .iti .iti__selected-flag {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 8px 0 0 8px !important;
+            padding: 12px 8px !important;
+            width: 85px !important;
+            cursor: pointer !important;
+            font-size: 14px !important;
+        }
+
+        .iti .iti__selected-flag:hover {
+            background: rgba(1, 233, 136, 0.05) !important;
+        }
+
+        /* Flèche de la liste déroulante */
+        .iti .iti__arrow {
+            border-top: 4px solid #bfbfbf !important;
+            border-left: 4px solid transparent !important;
+            border-right: 4px solid transparent !important;
+            margin-left: 4px !important;
+        }
+
+        /* Liste déroulante avec style sombre */
+        .iti .iti__country-list {
+            background: rgba(0, 0, 0, 0.95) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 8px !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+            z-index: 999999 !important;
+            max-height: 200px !important;
+            position: absolute !important;
+            top: 100% !important;
+            left: 0 !important;
+            right: 0 !important;
+            margin-top: 2px !important;
+        }
+
+        /* Pays dans la liste */
+        .iti .iti__country {
+            color: #fff !important;
+            padding: 10px 12px !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .iti .iti__country:hover {
+            background: rgba(1, 233, 136, 0.1) !important;
+            color: #01e988 !important;
+        }
+
+        .iti .iti__country.iti__highlight {
+            background: rgba(1, 233, 136, 0.15) !important;
+            color: #01e988 !important;
+        }
+
+        /* Code du pays */
+        .iti .iti__dial-code {
+            color: #bfbfbf !important;
+            font-weight: 300 !important;
+        }
+
+        /* Nom du pays */
+        .iti .iti__country-name {
+            color: inherit !important;
+            font-weight: 400 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .postuler-hero {
+                padding: 40px 0;
+            }
+
+            .postuler-card {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .postuler-title {
+                font-size: 24px;
+            }
+
+            .postuler-subtitle {
+                font-size: 14px;
+            }
+
+            .form-section-card {
+                padding: 16px;
+            }
+
+            .postuler-submit-btn {
+                padding: 14px 24px;
+                font-size: 13px;
+            }
+        }
+    </style>
     <script type="module">
+        // Initialize intl-tel-input
+        const phoneInput = document.getElementById("telephone");
+        if (phoneInput && typeof window.intlTelInput !== "undefined") {
+            window.iti = window.intlTelInput(phoneInput, {
+                initialCountry: "auto",
+                geoIpLookup: function (callback) {
+                    fetch("https://ipapi.co/json/")
+                        .then((res) => res.json())
+                        .then((data) => callback(data.country_code))
+                        .catch(() => callback("fr"));
+                },
+                preferredCountries: ["fr", "ch", "be", "ca"],
+                separateDialCode: true,
+                utilsScript:
+                    "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+            });
+        }
+
         const API_ENDPOINT = window.location.hostname === "localhost"
             ? "http://localhost:8888/.netlify/functions/postuler-submit"
             : "/.netlify/functions/postuler-submit";

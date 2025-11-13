@@ -83,6 +83,7 @@ exports.handler = async (event) => {
         ...(utm?.utm_content ? { utm_content: utm.utm_content } : {}),
       },
       groups: [groupId],
+      tags: [objectif, motivation, raison, "has_phone"],
     };
 
     const payload = JSON.stringify(requestData);
