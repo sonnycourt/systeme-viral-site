@@ -73,13 +73,13 @@ exports.handler = async (event) => {
       fields: {
         name: prenom,
         phone: telephone, // Maintenant envoyé avec indicatif depuis le frontend
-        // Champs personnalisés - noms simplifiés
+        // Champs personnalisés - certains avec _custom existants
         prenom: prenom,
         profil: profil,
-        objectif: objectif,
-        motivation: motivation,
-        thematique: thematique,
-        raison: raison,
+        objectif_custom: objectif,
+        motivation_custom: motivation,
+        thematique_custom: thematique,
+        raison_custom: raison,
         ...(utm?.utm_source ? { utm_source: utm.utm_source } : {}),
         ...(utm?.utm_content ? { utm_content: utm.utm_content } : {}),
       },
