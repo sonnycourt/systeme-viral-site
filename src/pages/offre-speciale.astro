@@ -166,31 +166,6 @@ import Layout from "../layouts/Layout.astro";
                         </div>
                     </div>
 
-                    <div class="scarcity-section" id="scarcitySection">
-                        <div
-                            class="urgent-warning"
-                            id="urgentWarning"
-                            style="display: none;"
-                        >
-                            ⚠️ <span class="urgent-red">ATTENTION</span> : Places
-                            en train de disparaître !
-                        </div>
-                        <p class="scarcity-text" id="scarcityText">
-                            <span class="places-count" id="places">84</span> places
-                            disponibles sur 100
-                        </p>
-                        <div
-                            class="exceptional-offer"
-                            id="exceptionalOffer"
-                            style="display: none;"
-                        >
-                            🎁 EXCEPTIONNEL : <span
-                                class="exceptional-places"
-                                id="exceptionalPlaces">0</span
-                            > places supplémentaires disponibles !
-                        </div>
-                    </div>
-
                     <a
                         href="https://systemeviral.spiffy.co/checkout/systeme-viral#pop"
                         class="countdown-cta-button"
@@ -7422,44 +7397,6 @@ import Layout from "../layouts/Layout.astro";
                         </div>
                     </div>
 
-                    <!-- Scarcity Info -->
-                    <div class="scarcity-section" id="scarcitySectionBottom">
-                        <div
-                            class="urgent-warning"
-                            id="urgentWarningBottom"
-                            style="display: none; background: rgba(255, 68, 68, 0.1); border: 2px solid #ff4444; border-radius: 12px; padding: 15px 25px; margin-bottom: 20px; color: #fff; font-weight: 600; font-size: 1.1rem;"
-                        >
-                            ⚠️ <span
-                                class="urgent-red"
-                                style="color: #ff4444; font-weight: 800;"
-                                >ATTENTION</span
-                            > : Places en train de disparaître !
-                        </div>
-                        <p
-                            class="scarcity-text"
-                            id="scarcityTextBottom"
-                            style="color: #fff; font-size: 1.3rem; font-weight: 600; margin-bottom: 20px; text-align: center;"
-                        >
-                            <span
-                                class="places-count"
-                                id="placesBottom"
-                                style="color: #ff4444; font-weight: 800; font-size: 1.6rem; animation: scarcityPulse 3s infinite; text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);"
-                                >84</span
-                            > places disponibles sur 100
-                        </p>
-                        <div
-                            class="exceptional-offer"
-                            id="exceptionalOfferBottom"
-                            style="display: none; background: linear-gradient(135deg, #ff6b6b, #ff4444); border-radius: 12px; padding: 15px 25px; margin-bottom: 20px; color: #fff; font-weight: 700; font-size: 1.1rem;"
-                        >
-                            🚨 OFFRE EXCEPTIONNELLE : <span
-                                id="exceptionalPlacesBottom"
-                                style="color: #fff; font-weight: 800; font-size: 1.3rem;"
-                                >0</span
-                            > places supplémentaires libérées !
-                        </div>
-                    </div>
-
                     <!-- CTA Button -->
                     <div style="margin-top: 30px; text-align: center;">
                         <a
@@ -13265,47 +13202,6 @@ import Layout from "../layouts/Layout.astro";
         // Countdown timer - Updated 2025
         const endDate = new Date("2025-12-04T22:00:00").getTime();
 
-        // Mise à jour de l'affichage des places (valeur fixe)
-        const updateScarcityDisplay = () => {
-            // Section du haut
-            const scarcityText = document.getElementById("scarcityText");
-            const placesSpan = document.getElementById("places");
-            const exceptionalOffer =
-                document.getElementById("exceptionalOffer");
-            const urgentWarning = document.getElementById("urgentWarning");
-
-            // Section du bas
-            const scarcityTextBottom =
-                document.getElementById("scarcityTextBottom");
-            const placesSpanBottom = document.getElementById("placesBottom");
-            const exceptionalOfferBottom = document.getElementById(
-                "exceptionalOfferBottom",
-            );
-            const urgentWarningBottom = document.getElementById(
-                "urgentWarningBottom",
-            );
-
-            if (
-                !scarcityText ||
-                !placesSpan ||
-                !scarcityTextBottom ||
-                !placesSpanBottom
-            )
-                return;
-
-            // Affichage fixe : 84 places disponibles sur 100
-            scarcityText.classList.remove("sold-out");
-            scarcityText.innerHTML = `<span class="places-count" id="places">84</span> places disponibles sur 100`;
-            if (exceptionalOffer) exceptionalOffer.style.display = "none";
-            if (urgentWarning) urgentWarning.style.display = "none";
-
-            scarcityTextBottom.classList.remove("sold-out");
-            scarcityTextBottom.innerHTML = `<span class="places-count" id="placesBottom">84</span> places disponibles sur 100`;
-            if (exceptionalOfferBottom)
-                exceptionalOfferBottom.style.display = "none";
-            if (urgentWarningBottom) urgentWarningBottom.style.display = "none";
-        };
-
         // Mise à jour du compte à rebours
         const updateCountdown = () => {
             const now = new Date().getTime();
@@ -13363,8 +13259,6 @@ import Layout from "../layouts/Layout.astro";
                 .toString()
                 .padStart(2, "0");
 
-            updateScarcityDisplay();
-
             if (days === 0) {
                 // Effets visuels pour le countdown du haut
                 document.querySelectorAll(".time-value").forEach((el) => {
@@ -13399,16 +13293,10 @@ import Layout from "../layouts/Layout.astro";
             document.addEventListener("DOMContentLoaded", function () {
                 updateCountdown();
                 setInterval(updateCountdown, 1000);
-
-                // Initialiser l'affichage des places au chargement
-                updateScarcityDisplay();
             });
         } else {
             updateCountdown();
             setInterval(updateCountdown, 1000);
-
-            // Initialiser l'affichage des places au chargement
-            updateScarcityDisplay();
         }
         // Chatbot functionality
         let chatbotOpen = false;
