@@ -7289,10 +7289,6 @@ import Layout from "../layouts/Layout.astro";
                                 90 prochaines années de ta vie, alors c'est pour
                                 toi.
                             </p>
-                            <p style="color: #bfbfbf; font-style: italic;">
-                                Sinon, garde tes 1600€ et continue à chercher la
-                                pilule magique.
-                            </p>
                         </div>
                     </div>
 
@@ -13294,7 +13290,7 @@ import Layout from "../layouts/Layout.astro";
     </style>
     <script>
         // Countdown timer - Updated 2025
-        const endDate = new Date("2025-12-04T18:00:00").getTime();
+        const endDate = new Date("2025-12-01T18:00:00+01:00").getTime();
 
         const attachTimerToCta = (node: HTMLElement) => {
             if (node.querySelector(".cta-timer")) return;
