@@ -1,0 +1,314 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+---
+
+<Layout
+    title="Postuler - SYSTÈME VIRAL 100K™"
+    description="Postule pour réserver ta place à la prochaine ouverture du Système Viral 100K™."
+    canonical="/postuler"
+>
+    <section
+        style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px; background: radial-gradient(circle at top, rgba(1, 233, 136, 0.08), rgba(15, 15, 15, 1));"
+    >
+        <div
+            style="max-width: 760px; width: 100%; background: rgba(18, 18, 18, 0.88); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 28px; padding: clamp(36px, 6vw, 52px); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);"
+        >
+            <header style="text-align: center; margin-bottom: clamp(28px, 6vw, 40px);">
+                <h1
+                    style="margin: 0 0 12px; font-size: clamp(2.3rem, 4.8vw, 3rem); color: #ffffff; font-weight: 800; letter-spacing: -0.01em;"
+                >
+                    Postule pour rejoindre SYSTÈME VIRAL 100K™
+                </h1>
+                <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.05rem; line-height: 1.6; max-width: 520px; margin: 0 auto;">
+                    Les places pour l’ouverture Black Friday seront attribuées en priorité aux personnes ayant complété ce formulaire.<br />
+                    Réouverture du 1 au 4 décembre — 72h seulement.
+                </p>
+                <p style="color: rgba(255, 255, 255, 0.65); font-size: 0.95rem; line-height: 1.6; margin-top: 18px;">
+                    Compléter ce formulaire te place en priorité sur la liste d’ouverture.<br />
+                    Si tu es sélectionné, tu recevras ton accès le 1er décembre à 18h.
+                </p>
+            </header>
+
+            <form id="postuler-form" style="display: grid; gap: 24px;">
+                <div style="display: grid; gap: 16px;">
+                    <div>
+                        <label for="prenom" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
+                            1️⃣ Ton prénom
+                        </label>
+                        <input
+                            id="prenom"
+                            type="text"
+                            name="prenom"
+                            required
+                            placeholder="Ton prénom"
+                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem;"
+                        />
+                    </div>
+
+                    <div>
+                        <label for="email" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
+                            2️⃣ Ton meilleur email
+                        </label>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            required
+                            placeholder="ton@email.com"
+                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem;"
+                        />
+                        <p style="margin: 6px 0 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.55);">
+                            Utilise ton vrai email — c’est ici que tu recevras la confirmation.
+                        </p>
+                    </div>
+
+                    <div>
+                        <label for="telephone" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
+                            3️⃣ Ton numéro WhatsApp / SMS
+                        </label>
+                        <input
+                            id="telephone"
+                            type="tel"
+                            name="telephone"
+                            required
+                            placeholder="Ex. +33 6 12 34 56 78"
+                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem;"
+                        />
+                        <p style="margin: 6px 0 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.55);">
+                            Sert uniquement à t’avertir lors de l’ouverture le 1er décembre.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.04); border-radius: 18px; padding: 24px 26px; border: 1px solid rgba(255, 255, 255, 0.06); display: grid; gap: 20px;">
+                    <h2 style="margin: 0; font-size: 1.1rem; color: #01e988; letter-spacing: 0.04em; text-transform: uppercase;">
+                        Section : Où en es-tu ?
+                    </h2>
+                    <div>
+                        <label for="profil" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
+                            4️⃣ Tu es plutôt…
+                        </label>
+                        <select
+                            id="profil"
+                            name="profil"
+                            required
+                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem;"
+                        >
+                            <option value="" disabled selected>Choisis l’option qui te correspond</option>
+                            <option value="employe">Employé frustré</option>
+                            <option value="createur">Créateur / influenceur</option>
+                            <option value="entrepreneur">Entrepreneur invisible</option>
+                            <option value="reconversion">En reconversion</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="objectif" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
+                            5️⃣ Ton objectif principal
+                        </label>
+                        <select
+                            id="objectif"
+                            name="objectif"
+                            required
+                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem;"
+                        >
+                            <option value="" disabled selected>Quel résultat veux-tu atteindre ?</option>
+                            <option value="quitter-job">Quitter mon job</option>
+                            <option value="1000-5000">Générer 1 000 à 5 000€/mois</option>
+                            <option value="plus-10000">Générer +10 000€/mois</option>
+                            <option value="lancer-business">Lancer un business rentable</option>
+                            <option value="trouver-thematique">Trouver ma thématique</option>
+                            <option value="creer-systeme">Créer un système automatisé</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.04); border-radius: 18px; padding: 24px 26px; border: 1px solid rgba(255, 255, 255, 0.06); display: grid; gap: 20px;">
+                    <h2 style="margin: 0; font-size: 1.1rem; color: #01e988; letter-spacing: 0.04em; text-transform: uppercase;">
+                        Section : Engagement & motivation
+                    </h2>
+                    <div>
+                        <label for="motivation" style="display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
+                            <span>6️⃣ Niveau de motivation (1 à 10)</span>
+                            <span id="motivation-value" style="font-size: 0.9rem; color: #01e988;">5</span>
+                        </label>
+                        <input
+                            id="motivation"
+                            type="range"
+                            name="motivation"
+                            min="1"
+                            max="10"
+                            value="5"
+                            required
+                            style="width: 100%;"
+                        />
+                    </div>
+
+                    <div>
+                        <label for="thematique" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
+                            7️⃣ As-tu déjà une thématique ?
+                        </label>
+                        <select
+                            id="thematique"
+                            name="thematique"
+                            required
+                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem;"
+                        >
+                            <option value="" disabled selected>Réponds en toute transparence</option>
+                            <option value="oui">Oui</option>
+                            <option value="hesite">J’hésite</option>
+                            <option value="pas-encore">Pas encore</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="raison" style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 6px;">
+                            8️⃣ Pourquoi veux-tu absolument rejoindre Système Viral maintenant ?
+                        </label>
+                        <textarea
+                            id="raison"
+                            name="raison"
+                            rows="2"
+                            required
+                            maxlength="240"
+                            placeholder="Réponse courte — une phrase suffit."
+                            style="width: 100%; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.48); color: #fff; font-size: 1rem; line-height: 1.6;"
+                        ></textarea>
+                        <p style="margin: 6px 0 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.55);">
+                            Réponse courte — une phrase suffit.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; display: grid; gap: 14px;">
+                    <button
+                        type="submit"
+                        style="padding: 20px; border-radius: 16px; background: linear-gradient(135deg, #01e988, #00c4ff); border: none; color: #03110b; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 18px 40px rgba(1, 233, 136, 0.35)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'"
+                    >
+                        POSTULER MAINTENANT
+                    </button>
+                    <p style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.65); line-height: 1.6;">
+                        Tu seras prévenu en priorité le 1er décembre à 18h.<br />
+                        Compléter ce formulaire ne garantit pas l’accès — les places sont limitées.
+                    </p>
+                    <div
+                        id="postuler-feedback"
+                        role="status"
+                        aria-live="polite"
+                        style="text-align: center; font-size: 0.95rem; font-weight: 600; min-height: 24px;"
+                    ></div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script type="module">
+        const API_ENDPOINT = window.location.hostname === "localhost"
+            ? "http://localhost:8888/.netlify/functions/postuler-submit"
+            : "/.netlify/functions/postuler-submit";
+
+        const form = document.getElementById("postuler-form");
+        const feedback = document.getElementById("postuler-feedback");
+        const submitButton = form?.querySelector("button[type='submit']");
+        const motivationInput = document.getElementById("motivation");
+        const motivationValue = document.getElementById("motivation-value");
+
+        const setFeedback = (message, color = "#01e988") => {
+            if (!feedback) return;
+            feedback.textContent = message;
+            feedback.style.color = color;
+        };
+
+        if (motivationInput && motivationValue) {
+            motivationValue.textContent = motivationInput.value;
+            motivationInput.addEventListener("input", () => {
+                motivationValue.textContent = motivationInput.value;
+            });
+        }
+
+        if (form) {
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.style.opacity = "0.7";
+                    submitButton.style.cursor = "not-allowed";
+                }
+
+                setFeedback("Envoi en cours…");
+
+                const formData = new FormData(form);
+                const payload = {
+                    prenom: (formData.get("prenom") ?? "").toString().trim(),
+                    email: (formData.get("email") ?? "").toString().trim(),
+                    telephone: (formData.get("telephone") ?? "").toString().trim(),
+                    profil: (formData.get("profil") ?? "").toString(),
+                    objectif: (formData.get("objectif") ?? "").toString(),
+                    motivation: (formData.get("motivation") ?? "").toString(),
+                    thematique: (formData.get("thematique") ?? "").toString(),
+                    raison: (formData.get("raison") ?? "").toString().trim(),
+                    utm: window?.UTMTracker?.get?.() ?? {},
+                };
+
+                try {
+                    if (
+                        !payload.prenom ||
+                        !payload.email ||
+                        !payload.telephone ||
+                        !payload.profil ||
+                        !payload.objectif ||
+                        !payload.motivation ||
+                        !payload.thematique ||
+                        !payload.raison
+                    ) {
+                        throw new Error("missing-fields");
+                    }
+
+                    const response = await fetch(API_ENDPOINT, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(payload),
+                    });
+
+                    const result = await response.json().catch(() => ({}));
+
+                    if (!response.ok || result?.success !== true) {
+                        throw new Error(result?.error || "submit-failed");
+                    }
+
+                    form.reset();
+
+                    if (motivationInput) {
+                        motivationInput.value = "5";
+                    }
+
+                    if (motivationValue) {
+                        motivationValue.textContent = "5";
+                    }
+
+                    setFeedback("Candidature envoyée ! Tu recevras une confirmation le 1er décembre.");
+                } catch (error) {
+                    console.error("[Postuler] submission error", error);
+                    const fallbackMessage =
+                        error instanceof Error && error.message === "missing-fields"
+                            ? "Merci de remplir tous les champs avant d'envoyer."
+                            : "Oups… l'envoi a échoué. Réessaie dans un instant ou contacte l'équipe.";
+
+                    setFeedback(fallbackMessage, "#ff6b6b");
+                } finally {
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.style.opacity = "1";
+                        submitButton.style.cursor = "pointer";
+                    }
+                }
+            });
+        }
+    </script>
+</Layout>
