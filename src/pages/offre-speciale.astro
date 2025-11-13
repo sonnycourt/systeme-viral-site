@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout
     title="Offre Spéciale - SYSTÈME VIRAL 100K™ - Formation Complète"
-    description="Offre limitée : Formation complète + Bonus exclusifs pour générer tes premiers 10K€/mois. Garantie 30 jours satisfait ou remboursé."
+    description="Offre limitée : Formation complète + Bonus exclusifs pour générer tes premiers 10K€/mois. Les places seront attribuées en priorité aux personnes ayant postulé."
     image="/media/systeme-viral-banner-final.webp"
     canonical="/offre-speciale"
     noindex={true}
@@ -148,7 +148,7 @@ import Layout from "../layouts/Layout.astro";
                                     d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
                                 ></path><path d="m9 12 2 2 4-4"></path></svg
                             >
-                            Garantie 30 jours satisfait ou remboursé
+                            Les places seront attribuées en priorité aux personnes ayant postulé.
                         </p>
                     </div>
                 </div>
@@ -421,7 +421,7 @@ import Layout from "../layouts/Layout.astro";
                             ></path>
                             <path d="m9 12 2 2 4-4"></path>
                         </svg>
-                        Garantie 30 jours satisfait ou remboursé
+                        Les places seront attribuées en priorité aux personnes ayant postulé.
                     </p>
                 </div>
             </div>
@@ -1265,7 +1265,7 @@ import Layout from "../layouts/Layout.astro";
                                 ></path>
                                 <path d="m9 12 2 2 4-4"></path>
                             </svg>
-                            Garantie 30 jours satisfait ou remboursé
+                            Les places seront attribuées en priorité aux personnes ayant postulé.
                         </p>
                     </div>
                 </div>
@@ -2715,7 +2715,7 @@ import Layout from "../layouts/Layout.astro";
                                 ></path>
                                 <path d="m9 12 2 2 4-4"></path>
                             </svg>
-                            Garantie 30 jours satisfait ou remboursé
+                            Les places seront attribuées en priorité aux personnes ayant postulé.
                         </p>
                     </div>
                 </div>
@@ -13417,6 +13417,9 @@ import Layout from "../layouts/Layout.astro";
             document
                 .querySelectorAll<HTMLElement>(selectors)
                 .forEach((node) => {
+                    if (node.classList.contains("countdown-cta-button")) {
+                        return;
+                    }
                     node.classList.add("cta-disabled");
                     node.setAttribute("aria-disabled", "true");
                     node.setAttribute("tabindex", "-1");
@@ -13439,12 +13442,6 @@ import Layout from "../layouts/Layout.astro";
 
                     attachTimerToCta(node);
                 });
-            const primaryCta = document.querySelector(
-                ".countdown-cta-button",
-            ) as HTMLElement | null;
-            if (primaryCta) {
-                attachTimerToCta(primaryCta);
-            }
         };
 
         const updateCtaTimersDetailed = (
@@ -13576,6 +13573,84 @@ import Layout from "../layouts/Layout.astro";
             disablePurchaseCtas();
             updateCountdown();
             setInterval(updateCountdown, 1000);
+        }
+        // Chatbot functionality
+        let chatbotOpen = false;
+        const chatbotToggle = document.getElementById(
+            "chatbot-toggle",
+        ) as HTMLButtonElement | null;
+        const chatbotWindow = document.getElementById(
+            "chatbot-window",
+        ) as HTMLDivElement | null;
+        const chatbotClose = document.getElementById(
+            "chatbot-close",
+        ) as HTMLButtonElement | null;
+        const chatbotInput = document.getElementById(
+            "chatbot-input",
+        ) as HTMLInputElement | null;
+        const chatbotSend = document.getElementById(
+            "chatbot-send",
+        ) as HTMLButtonElement | null;
+        const chatbotMessages = document.getElementById(
+            "chatbot-messages",
+        ) as HTMLDivElement | null;
+        const typingIndicator = document.getElementById(
+            "typing-indicator",
+        ) as HTMLDivElement | null;
+
+        // Toggle chatbot window
+        function toggleChatbot() {
+            chatbotOpen = !chatbotOpen;
+            if (chatbotOpen && chatbotWindow && chatbotInput) {
+                chatbotWindow.classList.add("show");
+                chatbotInput.focus();
+            } else if (chatbotWindow) {
+                chatbotWindow.classList.remove("show");
+            }
+        }
+        // Add message to chat
+        function addMessage(content: string, isUser = false) {
+            if (!chatbotMessages) return;
+
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `message ${isUser ? "user-message" : "bot-message"}`;
+
+            const now = new Date();
+            const timeString = now.toLocaleTimeString("fr-FR", {
+                hour: "2-digit",
+                minute: "2-digit",
+            });
+
+            const botIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="avatar-icon-small"><path d="M12 6V2H8"/><path d="M15 11v2"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M20 16a2 2 0 0 1-2 2H8.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 4 20.286V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/><path d="M9 11v2"/></svg>`;
+            const userIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="avatar-icon-small"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    ${isUser ? userIcon : botIcon}
+                </div>
+                <div class="message-content">
+                    <div class="message-text">${content}</div>
+                    <div class="message-time">${timeString}</div>
+                </div>
+            `;
+
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        // Show typing indicator
+        function showTyping() {
+            if (typingIndicator && chatbotMessages) {
+                typingIndicator.style.display = "flex";
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+        }
+
+        // Hide typing indicator
+        function hideTyping() {
+            if (typingIndicator) {
+                typingIndicator.style.display = "none";
+            }
         }
         // Conversation history for context
         let conversationHistory: Array<{ role: string; content: string }> = [];
