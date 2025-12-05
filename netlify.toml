@@ -12,5 +12,12 @@
   status = 200
   force = false
 
+[[redirects]]
+  # Redirection de l'ancien slug vers le nouveau
+  from = "/prevente-felicitation"
+  to = "/100k-felicitations"
+  status = 301
+  force = true
+
 [functions]
   directory = "netlify/functions"
