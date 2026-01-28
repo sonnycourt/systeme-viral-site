@@ -40,7 +40,7 @@ import Layout from "../layouts/Layout.astro";
                 id="viewersBadgeMobile"
             >
                 <div class="live-dot-small"></div>
-                <span id="viewersCountMobile">72</span>
+                <span id="viewersCountMobile">12</span>
                 <span class="viewers-text">personnes regardent</span>
             </div>
 
@@ -152,7 +152,7 @@ import Layout from "../layouts/Layout.astro";
                     id="viewersBadge"
                 >
                     <div class="live-dot-small"></div>
-                    <span id="viewersCount">72</span>
+                    <span id="viewersCount">12</span>
                     <span class="viewers-text">personnes regardent</span>
                 </div>
 
@@ -1254,8 +1254,8 @@ import Layout from "../layouts/Layout.astro";
         // Initialize progress bar
         initializeProgressBar();
 
-        // Initialize viewers count
-        initializeViewersCount();
+        // Ancienne fonction viewers désactivée - remplacée par animation naturelle 9-16
+        // initializeViewersCount();
     });
 
     // Viewers count functionality - synchronisé avec la vidéo, progression de 72 à 237
@@ -1829,4 +1829,69 @@ import Layout from "../layouts/Layout.astro";
         // Initialiser la vitesse à 1x
         video.playbackRate = 1;
     }
+
+    // Animation naturelle du compteur de viewers
+    const viewersCountDesktop = document.getElementById('viewersCount');
+    const viewersCountMobile = document.getElementById('viewersCountMobile');
+    
+    let currentViewers = Math.floor(Math.random() * (16 - 9 + 1)) + 9; // Valeur initiale entre 9 et 16
+    
+    // Fonction pour mettre à jour le compteur avec animation
+    function updateViewersCount(newCount: number) {
+        if (viewersCountDesktop) {
+            viewersCountDesktop.style.opacity = '0.5';
+            viewersCountDesktop.style.transition = 'opacity 0.3s ease';
+            
+            setTimeout(() => {
+                viewersCountDesktop.textContent = newCount.toString();
+                viewersCountDesktop.style.opacity = '1';
+            }, 300);
+        }
+        
+        if (viewersCountMobile) {
+            viewersCountMobile.style.opacity = '0.5';
+            viewersCountMobile.style.transition = 'opacity 0.3s ease';
+            
+            setTimeout(() => {
+                viewersCountMobile.textContent = newCount.toString();
+                viewersCountMobile.style.opacity = '1';
+            }, 300);
+        }
+    }
+    
+    // Fonction pour générer un changement naturel
+    function naturalViewersChange() {
+        // Déterminer si on augmente ou diminue (50/50)
+        const direction = Math.random() > 0.5 ? 1 : -1;
+        
+        // Calculer la nouvelle valeur
+        let newViewers = currentViewers + direction;
+        
+        // S'assurer qu'on reste dans la plage 9-16
+        newViewers = Math.max(9, Math.min(16, newViewers));
+        
+        // Si on est aux limites, forcer la direction opposée
+        if (currentViewers === 9) {
+            newViewers = currentViewers + 1;
+        } else if (currentViewers === 16) {
+            newViewers = currentViewers - 1;
+        }
+        
+        // Mettre à jour si le nombre a changé
+        if (newViewers !== currentViewers) {
+            currentViewers = newViewers;
+            updateViewersCount(currentViewers);
+        }
+        
+        // Programmer le prochain changement avec un délai aléatoire entre 3 et 8 secondes
+        const nextDelay = Math.random() * (8000 - 3000) + 3000;
+        setTimeout(naturalViewersChange, nextDelay);
+    }
+    
+    // Initialiser le compteur avec la valeur de départ
+    updateViewersCount(currentViewers);
+    
+    // Démarrer l'animation après un délai initial aléatoire
+    const initialDelay = Math.random() * 3000 + 2000;
+    setTimeout(naturalViewersChange, initialDelay);
 </script>

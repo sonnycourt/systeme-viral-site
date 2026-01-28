@@ -243,14 +243,9 @@ async function handleStep1() {
     // Sauvegarder le prénom dans localStorage
     localStorage.setItem('userFirstName', firstName);
 
-    // Générer un token unique pour la séquence de 7 jours
-    const uniqueTokenSV = generateUniqueToken();
-    
-    // Stocker le token et la date de création dans localStorage
-    localStorage.setItem('unique_token_sv', uniqueTokenSV);
-    localStorage.setItem('unique_token_sv_created', new Date().toISOString());
-    
-    console.log('[Step 1] Token unique généré:', uniqueTokenSV);
+    // Générer un token unique temporaire (peut être remplacé par le token original du backend)
+    const tempTokenSV = generateUniqueToken();
+    console.log('[Step 1] Token unique généré (temporaire):', tempTokenSV);
 
     try {
         // Récupérer les paramètres UTM
@@ -261,7 +256,7 @@ async function handleStep1() {
             name: firstName,
             email: email,
             step: "1",
-            uniqueTokenSV: uniqueTokenSV,
+            uniqueTokenSV: tempTokenSV,
             utm_source: utmParams.utm_source || null,
             utm_content: utmParams.utm_content || null,
         };
@@ -284,6 +279,19 @@ async function handleStep1() {
         }
 
         console.log("Step 1 completed:", data);
+
+        // Utiliser le token retourné par le backend (peut être l'original si l'email existe déjà)
+        const finalToken = data.uniqueTokenSV || tempTokenSV;
+        
+        // Stocker le token final et la date de création dans localStorage
+        localStorage.setItem('unique_token_sv', finalToken);
+        localStorage.setItem('unique_token_sv_created', new Date().toISOString());
+        
+        if (data.isReturning) {
+            console.log('[Step 1] Email existant - Token original conservé:', finalToken);
+        } else {
+            console.log('[Step 1] Nouvel email - Nouveau token créé:', finalToken);
+        }
 
         // Move to step 2
         moveToStep("step1", "step2", "progress2");

@@ -1,6 +1,6 @@
-# Bloquer tous les robots pendant le développement
+# Autoriser tous les robots à indexer le site
 User-agent: *
-Disallow: /
+Allow: /
 
-# Autoriser l'accès aux sitemaps si nécessaire (commenté pour le moment)
-# Sitemap: https://systemeviral.com/sitemap.xml
+# Sitemap
+Sitemap: https://systemeviral.com/sitemap-index.xml

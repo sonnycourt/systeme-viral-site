@@ -248,6 +248,14 @@ import Layout from "../layouts/Layout.astro";
                     Non merci — Accéder à ma formation
                 </a>
             </div>
+            <p class="refund-note" role="note">
+                <svg class="refund-note-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/>
+                    <path d="M12 9v4"/>
+                    <path d="M12 17h.01"/>
+                </svg>
+                <span><strong>Note importante :</strong> Dès ma première réponse à l'une de tes questions, l'Accès Direct n'est plus remboursable (service consommé). Avant toute utilisation, remboursement possible sous 30 jours.</span>
+            </p>
             <p class="cta-note">
                 *Tu seras redirigé vers ton espace membre juste après.*
             </p>
@@ -684,6 +692,27 @@ import Layout from "../layouts/Layout.astro";
             font-size: 0.9rem;
             color: var(--text-muted);
             font-style: italic;
+        }
+
+        .refund-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            padding: 14px 18px;
+            background: rgba(3, 241, 141, 0.08);
+            border: 1px solid rgba(3, 241, 141, 0.25);
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .refund-note-icon {
+            flex-shrink: 0;
+            margin-top: 2px;
+            color: var(--primary-green);
         }
 
         /* Responsive */
