@@ -216,6 +216,13 @@ function nextStep() {
     }
 }
 
+// Fonction pour générer un token unique
+function generateUniqueToken() {
+    const timestamp = Date.now();
+    const randomPart = Math.random().toString(36).substring(2, 15);
+    return `sv_${timestamp}_${randomPart}`;
+}
+
 // Gestion de l'étape 1
 async function handleStep1() {
     const firstName = document.getElementById("firstName")?.value.trim();
@@ -236,6 +243,15 @@ async function handleStep1() {
     // Sauvegarder le prénom dans localStorage
     localStorage.setItem('userFirstName', firstName);
 
+    // Générer un token unique pour la séquence de 7 jours
+    const uniqueTokenSV = generateUniqueToken();
+    
+    // Stocker le token et la date de création dans localStorage
+    localStorage.setItem('unique_token_sv', uniqueTokenSV);
+    localStorage.setItem('unique_token_sv_created', new Date().toISOString());
+    
+    console.log('[Step 1] Token unique généré:', uniqueTokenSV);
+
     try {
         // Récupérer les paramètres UTM
         const utmParams = getUTMParams();
@@ -245,6 +261,7 @@ async function handleStep1() {
             name: firstName,
             email: email,
             step: "1",
+            uniqueTokenSV: uniqueTokenSV,
             utm_source: utmParams.utm_source || null,
             utm_content: utmParams.utm_content || null,
         };

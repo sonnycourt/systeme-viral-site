@@ -1,0 +1,500 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Checkout Direct - SYSTÈME VIRAL 100K™"
+    description="Accède directement à la formation Système Viral 100K™"
+    image="/media/systeme-viral-banner-final.webp"
+    canonical="/direct-checkout"
+    noindex={true}
+>
+    <!-- Spiffy Script - DOIT être dans le head -->
+    <script>
+        "use strict";!function(i,t){var f=t.spiffy=t.spiffy||[];if(!f.init){
+        if(f.invoked)return void(t.console&&console.error&&console.warn("Spiffy Elements included twice."));
+        f.invoked=!0,f.methods=["identify","config","debug","off","on"],f.factory=function(i){
+        return function(){var t=Array.prototype.slice.call(arguments);return t.unshift(i),f.push(t),f}},
+        f.methods.forEach(function(i){spiffy[i]=f.factory(i)}),f.load=function(t,f){if(!spiffy.ACCOUNT){
+        spiffy.ACCOUNT=t,spiffy.DOMAIN=f;var e=i.createElement("script");e.type="text/javascript",
+        e.async=!1,e.crossorigin="anonymous",e.src="https://js.static.spiffy.co/spiffy.js?a="+t;
+        var n=i.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)}}}}(document,window),
+        spiffy.SNIPPET_VERSION="1.1.0";
+        spiffy.config({ hideSidebar: false });
+        spiffy.load("systemeviral");
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+        }
+
+        .checkout-page {
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 60px 20px 40px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #03f18d 0%, #00f790 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        /* Places Counter Styles */
+        .places-container {
+            margin: 0 auto 40px;
+            max-width: 800px;
+            padding: 30px;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 20px;
+            border: 1px solid rgba(3, 241, 141, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .places-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(3, 241, 141, 0.1);
+            border: 1px solid rgba(3, 241, 141, 0.4);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #03f18d;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .places-badge .badge-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .places-badge .badge-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .places-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .places-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .places-number {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            color: #03f18d;
+            line-height: 1;
+        }
+
+        .places-slash {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .places-total {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .places-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        .places-message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: #03f18d;
+            margin-top: 15px;
+        }
+
+        .places-message svg {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Sold Out Container */
+        .soldout-container {
+            margin: 0 auto 40px;
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .soldout-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .soldout-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ef4444;
+            margin-bottom: 10px;
+        }
+
+        .soldout-message {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .soldout-button {
+            display: inline-block;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #03f18d, #00f790);
+            color: #000;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .soldout-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(3, 241, 141, 0.4);
+        }
+
+        /* Checkout Section - Full Width */
+        .checkout-section {
+            padding: 0;
+        }
+
+        .checkout-container {
+            width: 100%;
+        }
+
+        .spiffy-embed-wrapper {
+            width: 100%;
+        }
+
+        .spiffy-checkout__container {
+            min-height: 600px;
+            width: 100%;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 40px 16px 32px;
+            }
+
+            .places-container {
+                padding: 20px;
+                margin: 0 16px 30px;
+            }
+
+            .places-number {
+                font-size: 3rem;
+            }
+
+            .places-slash,
+            .places-total {
+                font-size: 1.8rem;
+            }
+
+            .places-message {
+                font-size: 0.8rem;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .checkout-section {
+                padding: 0 16px;
+            }
+
+            .soldout-container {
+                margin: 0 16px 30px;
+            }
+        }
+    </style>
+
+    <div class="checkout-page">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    SYSTÈME VIRAL 100K™<br />
+                    <span class="gradient-text">FORMATION COMPLÈTE</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Le système exact pour créer ton business en ligne et
+                    atteindre la liberté financière avec des vidéos d'une
+                    minute.
+                </p>
+                
+                <!-- Compteur de places -->
+                <div class="places-container" id="placesContainer" style="display: none;">
+                    <div class="places-badge" id="discount-badge-checkout">
+                        <span class="badge-text">OFFRE -33%</span>
+                    </div>
+                    <div class="places-label">Places restantes :</div>
+                    <div class="places-counter">
+                        <span class="places-number" id="currentPlaces">15</span>
+                        <span class="places-slash">/</span>
+                        <span class="places-total">50</span>
+                    </div>
+                    <div class="places-text">Places</div>
+                    <div class="places-message">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/>
+                            <path d="M12 9v4"/>
+                            <path d="M12 17h.01"/>
+                        </svg>
+                        <span>Ce compteur est réel. Une fois les 50 places réservées, cette offre ne sera plus accessible.</span>
+                    </div>
+                </div>
+
+                <!-- Message Sold Out -->
+                <div class="soldout-container" id="soldoutContainer" style="display: none;">
+                    <div class="soldout-icon">🔒</div>
+                    <h2 class="soldout-title">Portes fermées</h2>
+                    <p class="soldout-message">Toutes les places ont été réservées. Cette offre est maintenant terminée.</p>
+                    <a href="/offre-speciale" class="soldout-button">Voir nos autres offres</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout Section -->
+        <section class="checkout-section" id="checkoutSection">
+            <div class="checkout-container">
+                <div class="spiffy-embed-wrapper">
+                    <spiffy-checkout url="https://systemeviral.spiffy.co/checkout/systeme-viral"></spiffy-checkout>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Paliers horaires pour l'interpolation (identique à offre-speciale)
+        const hourlyThresholds = [
+            { hours: 0, places: 15 },    // 0h
+            { hours: 24, places: 12 },   // 24h
+            { hours: 48, places: 8 },    // 48h
+            { hours: 72, places: 6 },    // 72h
+            { hours: 96, places: 4 },    // 96h
+            { hours: 120, places: 3 },   // 120h
+            { hours: 144, places: 2 },   // 144h
+            { hours: 168, places: 0 }    // 168h (7 jours)
+        ];
+
+        // Config pour preview mode (par jour)
+        const previewConfigs: Record<number, { places: number, badgeText: string }> = {
+            1: { places: 15, badgeText: 'OFFRE -33%' },
+            2: { places: 12, badgeText: 'OFFRE -33%' },
+            3: { places: 8, badgeText: 'OFFRE -33%' },
+            4: { places: 6, badgeText: 'OFFRE -33%' },
+            5: { places: 4, badgeText: 'OFFRE -33%' },
+            6: { places: 3, badgeText: 'OFFRE -33%' },
+            7: { places: 2, badgeText: 'OFFRE -33%' }
+        };
+
+        // Fonction pour calculer les places restantes avec interpolation horaire
+        function calculatePlacesRemaining(): number {
+            // Check for preview mode
+            const urlParams = new URLSearchParams(window.location.search);
+            const previewParam = urlParams.get('preview');
+            
+            // Preview mode: ?preview=1 à ?preview=8 (8 = fermé)
+            if (previewParam) {
+                const day = parseInt(previewParam);
+                if (!isNaN(day)) {
+                    if (day >= 8) {
+                        console.log('🔍 Mode preview: Jour 8+ (Offre fermée)');
+                        return 0;
+                    }
+                    if (day >= 1 && day <= 7) {
+                        const config = previewConfigs[day];
+                        console.log(`🔍 Mode preview: Jour ${day} - ${config.places} places`);
+                        return config.places;
+                    }
+                }
+            }
+
+            // Get token from localStorage
+            const tokenCreated = localStorage.getItem('unique_token_sv_created');
+            
+            if (!tokenCreated) {
+                console.log('⚠️ Token non trouvé, utilisation de 15 places par défaut');
+                return 15;
+            }
+
+            // Calculate hours since token creation
+            const createdDate = new Date(tokenCreated);
+            const now = new Date();
+            const diffTime = Math.abs(now.getTime() - createdDate.getTime());
+            const diffHours = diffTime / (1000 * 60 * 60);
+            
+            // After 168 hours (7 days), offer is closed
+            if (diffHours >= 168) {
+                console.log('🔒 Offre fermée (plus de 168 heures / 7 jours)');
+                return 0;
+            }
+            
+            // Find the two thresholds to interpolate between
+            let lowerThreshold = hourlyThresholds[0];
+            let upperThreshold = hourlyThresholds[hourlyThresholds.length - 1];
+            
+            for (let i = 0; i < hourlyThresholds.length - 1; i++) {
+                if (diffHours >= hourlyThresholds[i].hours && diffHours < hourlyThresholds[i + 1].hours) {
+                    lowerThreshold = hourlyThresholds[i];
+                    upperThreshold = hourlyThresholds[i + 1];
+                    break;
+                }
+            }
+            
+            // Linear interpolation
+            const hoursDiff = upperThreshold.hours - lowerThreshold.hours;
+            const placesDiff = upperThreshold.places - lowerThreshold.places;
+            const progress = (diffHours - lowerThreshold.hours) / hoursDiff;
+            const interpolatedPlaces = lowerThreshold.places + (placesDiff * progress);
+            
+            // Round to nearest integer
+            const places = Math.round(interpolatedPlaces);
+            
+            console.log(`⏰ ${diffHours.toFixed(1)}h depuis inscription → ${places} places (interpolation entre ${lowerThreshold.places}@${lowerThreshold.hours}h et ${upperThreshold.places}@${upperThreshold.hours}h)`);
+            
+            return Math.max(0, places);
+        }
+
+        function initializeSequence() {
+            const placesRemaining = calculatePlacesRemaining();
+            
+            // Handle closed state
+            if (placesRemaining === 0) {
+                showSoldOutMessage();
+                return;
+            }
+            
+            // Determine badge text
+            const badgeText = placesRemaining > 0 ? 'OFFRE -33%' : 'PORTES FERMÉES';
+            const totalPlaces = 50;
+            const placesTaken = totalPlaces - placesRemaining;
+            const percentageTaken = Math.round((placesTaken / totalPlaces) * 100);
+
+            // Update UI elements
+            const discountBadge = document.getElementById('discount-badge-checkout');
+            const currentPlaces = document.getElementById('currentPlaces');
+            const placesContainer = document.getElementById('placesContainer');
+
+            if (discountBadge) {
+                const badgeTextEl = discountBadge.querySelector('.badge-text');
+                if (badgeTextEl) badgeTextEl.textContent = badgeText;
+            }
+            if (currentPlaces) currentPlaces.textContent = placesRemaining.toString();
+            
+            // Show places container
+            if (placesContainer) {
+                placesContainer.style.display = 'block';
+            }
+
+            console.log(`✅ Séquence initialisée: ${placesRemaining} places restantes / ${totalPlaces} (${placesTaken} prises = ${percentageTaken}%)`);
+            
+            return placesRemaining;
+        }
+
+        function showSoldOutMessage() {
+            // Masquer le compteur de places
+            const placesContainer = document.getElementById('placesContainer');
+            if (placesContainer) {
+                placesContainer.style.display = 'none';
+            }
+            
+            // Afficher le message sold out
+            const soldoutContainer = document.getElementById('soldoutContainer');
+            if (soldoutContainer) {
+                soldoutContainer.style.display = 'block';
+            }
+            
+            // Masquer le bouton "Voir nos autres offres"
+            const soldoutButton = document.querySelector('.soldout-button');
+            if (soldoutButton) {
+                (soldoutButton as HTMLElement).style.display = 'none';
+            }
+            
+            // Masquer le checkout
+            const checkoutSection = document.getElementById('checkoutSection');
+            if (checkoutSection) {
+                checkoutSection.style.display = 'none';
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial load
+            initializeSequence();
+
+            // Update every minute for real-time interpolation
+            setInterval(() => {
+                initializeSequence();
+            }, 60000); // Every minute
+        });
+    </script>
+</Layout>

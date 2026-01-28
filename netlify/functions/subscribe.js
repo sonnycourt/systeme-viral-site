@@ -28,7 +28,7 @@ export async function handler(event, context) {
   }
 
   try {
-    const { email, name, avatar, phone, step, utm_source, utm_content } = JSON.parse(event.body);
+    const { email, name, avatar, phone, step, utm_source, utm_content, uniqueTokenSV } = JSON.parse(event.body);
 
     // Validation de base
     if (!email || !step) {
@@ -41,7 +41,7 @@ export async function handler(event, context) {
 
     // Récupération des variables d'environnement
     const API_KEY = process.env.MAILERLITE_API_KEY;
-    const GROUP_ID = process.env.MAILERLITE_GROUP_ID;
+    const GROUP_ID = process.env.MAILERLITE_GROUP_ID_EVERGREEN_2026;
 
     if (!API_KEY || !GROUP_ID) {
       console.error('Missing MailerLite configuration');
@@ -79,6 +79,8 @@ export async function handler(event, context) {
             fields: {
               name: name,
               step: '1',
+              // Ajouter le token unique pour le système de séquence 7 jours
+              ...(uniqueTokenSV && { unique_token_sv: uniqueTokenSV }),
               // Ajouter les paramètres UTM comme champs personnalisés
               ...(utm_source && { utm_source: utm_source }),
               ...(utm_content && { utm_content: utm_content })
@@ -188,7 +190,8 @@ export async function handler(event, context) {
                 success: true,
                 step: step,
                 message: `Step ${step} completed successfully`,
-                redirect: step === '3' ? '/100k-masterclass' : null
+                redirect: step === '3' ? '/100k-masterclass' : null,
+                uniqueTokenSV: step === '1' ? uniqueTokenSV : undefined
               })
             });
           } else {
