@@ -9,6 +9,52 @@ import Layout from "../layouts/Layout.astro";
     canonical="/direct-checkout"
     noindex={true}
 >
+    <!-- Protection d'accès avec mode preview -->
+    <script is:inline>
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Vérifier si mode preview est actif
+            const previewMode = urlParams.get('preview');
+            
+            // Si preview=1 à 8, afficher le banner dev et continuer
+            if (previewMode && ['1', '2', '3', '4', '5', '6', '7', '8'].includes(previewMode)) {
+                // Créer le banner de dev
+                const banner = document.createElement('div');
+                banner.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; background: #00dc82; color: #000; padding: 12px; text-align: center; font-weight: 600; z-index: 999999; font-size: 14px;';
+                banner.textContent = `MODE DEV - Vision état jour ${previewMode}`;
+                document.body.prepend(banner);
+                
+                // Ajouter un padding-top au body pour compenser le banner
+                document.body.style.paddingTop = '48px';
+                return; // Ne pas vérifier le token, laisser accès
+            }
+            
+            // Vérifier si un token est présent dans l'URL
+            const tokenFromUrl = urlParams.get('token');
+            
+            // Si token dans l'URL, le sauvegarder dans localStorage
+            if (tokenFromUrl && tokenFromUrl.startsWith('sv_')) {
+                localStorage.setItem('unique_token_sv', tokenFromUrl);
+                console.log('Token sauvegardé depuis URL:', tokenFromUrl);
+                
+                // Nettoyer l'URL pour enlever le token (optionnel, pour la sécurité)
+                const cleanUrl = window.location.pathname + window.location.hash;
+                window.history.replaceState({}, '', cleanUrl);
+                
+                return; // Token valide, laisser accès
+            }
+            
+            // Vérifier le token unique dans localStorage
+            const uniqueToken = localStorage.getItem('unique_token_sv');
+            
+            // Si pas de token, rediriger vers inscription
+            if (!uniqueToken) {
+                window.location.href = '/inscription';
+            }
+        })();
+    </script>
+
     <!-- Spiffy Script - DOIT être dans le head -->
     <script>
         "use strict";!function(i,t){var f=t.spiffy=t.spiffy||[];if(!f.init){
