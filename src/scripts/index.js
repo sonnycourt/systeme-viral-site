@@ -283,14 +283,17 @@ async function handleStep1() {
         // Utiliser le token retourné par le backend (peut être l'original si l'email existe déjà)
         const finalToken = data.uniqueTokenSV || tempTokenSV;
         
+        // Utiliser la date renvoyée par le backend (source de vérité) au lieu de new Date()
+        const dateToStore = data.firstOptinDate || new Date().toISOString();
+        
         // Stocker le token final et la date de création dans localStorage
         localStorage.setItem('unique_token_sv', finalToken);
-        localStorage.setItem('unique_token_sv_created', new Date().toISOString());
+        localStorage.setItem('unique_token_sv_created', dateToStore);
         
         if (data.isReturning) {
-            console.log('[Step 1] Email existant - Token original conservé:', finalToken);
+            console.log('[Step 1] Email existant - Token + date originaux conservés:', finalToken, dateToStore);
         } else {
-            console.log('[Step 1] Nouvel email - Nouveau token créé:', finalToken);
+            console.log('[Step 1] Nouvel email - Nouveau token + date créés:', finalToken, dateToStore);
         }
 
         // Move to step 2

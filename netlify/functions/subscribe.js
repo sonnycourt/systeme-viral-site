@@ -204,7 +204,8 @@ export async function handler(event, context) {
                       step: '1',
                       message: 'Step 1 completed successfully',
                       uniqueTokenSV: tokenToUse,
-                      isReturning: existingSubscriber.exists
+                      isReturning: existingSubscriber.exists,
+                      firstOptinDate: firstOptinDate
                     })
                   });
                 })
@@ -218,7 +219,8 @@ export async function handler(event, context) {
                       step: '1',
                       message: 'Step 1 completed successfully',
                       uniqueTokenSV: tokenToUse,
-                      isReturning: existingSubscriber.exists
+                      isReturning: existingSubscriber.exists,
+                      firstOptinDate: firstOptinDate
                     })
                   });
                 });
