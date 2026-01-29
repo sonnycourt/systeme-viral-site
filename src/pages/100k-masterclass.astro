@@ -1457,9 +1457,11 @@ import Layout from "../layouts/Layout.astro";
                 timerLabel.textContent = "OFFRE DISPONIBLE";
                 isUnlocked = true;
 
-                // Ajouter le lien de redirection
+                // Ajouter le lien de redirection avec token dans URL
                 timerButton.addEventListener("click", () => {
-                    window.location.href = "/offre-speciale";
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const token = urlParams.get('token');
+                    window.location.href = token ? `/offre-speciale?token=${token}` : '/offre-speciale';
                 });
             } else {
                 // Afficher le temps restant
