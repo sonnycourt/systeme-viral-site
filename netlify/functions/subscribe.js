@@ -1,5 +1,18 @@
 const https = require('https');
 
+// Enregistrer le token dans Netlify Blobs pour la scarcity (source de vérité par token, comme sonnycourt manifest)
+async function registerTokenInBlobs(token, startTime) {
+  const { getStore } = await import('@netlify/blobs');
+  const store = getStore('sv-places-tokens');
+  const existing = await store.get(token);
+  if (existing) {
+    console.log('Token already in Blobs, keeping original startTime:', token);
+    return;
+  }
+  await store.set(token, JSON.stringify({ startTime }));
+  console.log('Token registered in Blobs:', token, 'startTime:', startTime);
+}
+
 // Fonction helper pour récupérer un subscriber par email
 function getSubscriberByEmail(email, apiKey) {
   return new Promise((resolve, reject) => {
@@ -177,17 +190,38 @@ export async function handler(event, context) {
 
             if (res.statusCode >= 200 && res.statusCode < 300) {
               console.log(`Step 1 completed successfully for ${email}`);
-              resolve({
-                statusCode: 200,
-                headers,
-                body: JSON.stringify({
-                  success: true,
-                  step: '1',
-                  message: 'Step 1 completed successfully',
-                  uniqueTokenSV: tokenToUse,
-                  isReturning: existingSubscriber.exists
+              // Enregistrer le token dans Blobs pour la scarcity (comme sonnycourt manifest)
+              const startTime = firstOptinDate
+                ? Math.floor(new Date(firstOptinDate).getTime() / 1000)
+                : Math.floor(Date.now() / 1000);
+              registerTokenInBlobs(tokenToUse, startTime)
+                .then(() => {
+                  resolve({
+                    statusCode: 200,
+                    headers,
+                    body: JSON.stringify({
+                      success: true,
+                      step: '1',
+                      message: 'Step 1 completed successfully',
+                      uniqueTokenSV: tokenToUse,
+                      isReturning: existingSubscriber.exists
+                    })
+                  });
                 })
-              });
+                .catch((err) => {
+                  console.error('Blobs register error (non-blocking):', err);
+                  resolve({
+                    statusCode: 200,
+                    headers,
+                    body: JSON.stringify({
+                      success: true,
+                      step: '1',
+                      message: 'Step 1 completed successfully',
+                      uniqueTokenSV: tokenToUse,
+                      isReturning: existingSubscriber.exists
+                    })
+                  });
+                });
             } else {
               console.error(`MailerLite Step 1 Error (${res.statusCode}):`, data);
               resolve({

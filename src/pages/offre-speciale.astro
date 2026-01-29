@@ -16226,9 +16226,36 @@ import Layout from "../layouts/Layout.astro";
             return Math.max(0, places);
         }
 
-        function initializeSequence() {
-            const placesRemaining = calculatePlacesRemaining();
-            
+        async function initializeSequence() {
+            let placesRemaining: number;
+            const token = localStorage.getItem('unique_token_sv');
+            if (token) {
+                try {
+                    const res = await fetch(`/.netlify/functions/check-places-sv?token=${encodeURIComponent(token)}`);
+                    const data = await res.json();
+                    if (data.valid && typeof data.placesRemaining === 'number') {
+                        placesRemaining = data.placesRemaining;
+                        console.log('Places from API (token):', placesRemaining);
+                    } else {
+                        // Backfill: si token pas encore en Blobs mais on a la date en localStorage
+                        const created = localStorage.getItem('unique_token_sv_created');
+                        if (created) {
+                            const startTime = Math.floor(new Date(created).getTime() / 1000);
+                            fetch('/.netlify/functions/init-places-sv', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ token, startTime })
+                            }).catch(() => {});
+                        }
+                        placesRemaining = calculatePlacesRemaining();
+                    }
+                } catch (e) {
+                    placesRemaining = calculatePlacesRemaining();
+                }
+            } else {
+                placesRemaining = calculatePlacesRemaining();
+            }
+
             // Handle closed state
             if (placesRemaining === 0) {
                 // Hide urgent counter (top)
@@ -16279,9 +16306,9 @@ import Layout from "../layouts/Layout.astro";
                 }
 
                 console.log('🔒 Offre fermée - Sections scarcity mises à jour, boutons désactivés, sticker visiteurs masqué');
-                return;
+                return 0;
             }
-            
+
             // Determine badge text
             const badgeText = placesRemaining > 0 ? 'OFFRE LANCEMENT 2.0' : 'PORTES FERMÉES';
             const totalPlaces = 50;
@@ -16405,10 +16432,10 @@ import Layout from "../layouts/Layout.astro";
         }
 
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initial load
-            const placesRemaining = initializeSequence();
-            
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initial load (API first if token, else localStorage)
+            const placesRemaining = await initializeSequence();
+
             // Only show visitor sticker if offer is not closed
             if (placesRemaining !== undefined && placesRemaining > 0) {
                 animateVisitorCount(placesRemaining);
@@ -16421,8 +16448,8 @@ import Layout from "../layouts/Layout.astro";
             }
 
             // Update every minute for real-time interpolation
-            setInterval(() => {
-                const currentPlaces = initializeSequence();
+            setInterval(async () => {
+                const currentPlaces = await initializeSequence();
                 if (currentPlaces !== undefined) {
                     // Hide sticker if offer is closed
                     if (currentPlaces === 0) {

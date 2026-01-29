@@ -470,15 +470,41 @@ import Layout from "../layouts/Layout.astro";
             return Math.max(0, places);
         }
 
-        function initializeSequence() {
-            const placesRemaining = calculatePlacesRemaining();
-            
+        async function initializeSequence() {
+            let placesRemaining: number;
+            const token = localStorage.getItem('unique_token_sv');
+            if (token) {
+                try {
+                    const res = await fetch(`/.netlify/functions/check-places-sv?token=${encodeURIComponent(token)}`);
+                    const data = await res.json();
+                    if (data.valid && typeof data.placesRemaining === 'number') {
+                        placesRemaining = data.placesRemaining;
+                        console.log('Places from API (token):', placesRemaining);
+                    } else {
+                        const created = localStorage.getItem('unique_token_sv_created');
+                        if (created) {
+                            const startTime = Math.floor(new Date(created).getTime() / 1000);
+                            fetch('/.netlify/functions/init-places-sv', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ token, startTime })
+                            }).catch(() => {});
+                        }
+                        placesRemaining = calculatePlacesRemaining();
+                    }
+                } catch (e) {
+                    placesRemaining = calculatePlacesRemaining();
+                }
+            } else {
+                placesRemaining = calculatePlacesRemaining();
+            }
+
             // Handle closed state
             if (placesRemaining === 0) {
                 showSoldOutMessage();
-                return;
+                return 0;
             }
-            
+
             // Determine badge text
             const badgeText = placesRemaining > 0 ? 'OFFRE -33%' : 'PORTES FERMÉES';
             const totalPlaces = 50;
@@ -533,13 +559,13 @@ import Layout from "../layouts/Layout.astro";
         }
 
         // Initialize on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initial load
-            initializeSequence();
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Initial load (API first if token, else localStorage)
+            await initializeSequence();
 
             // Update every minute for real-time interpolation
-            setInterval(() => {
-                initializeSequence();
+            setInterval(async () => {
+                await initializeSequence();
             }, 60000); // Every minute
         });
     </script>
