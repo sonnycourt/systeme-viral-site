@@ -402,9 +402,11 @@ import Layout from "../layouts/Layout.astro";
             7: { places: 2, badgeText: 'OFFRE -33%' }
         };
 
-        // Fonction pour calculer les places restantes avec interpolation horaire
-        function calculatePlacesRemaining(): number {
-            // Check for preview mode
+        // Variable globale pour stocker les places (plus besoin de localStorage)
+        let globalPlacesRemaining = 15;
+
+        // Fonction pour obtenir les places en mode preview uniquement
+        function getPreviewPlaces(): number | null {
             const urlParams = new URLSearchParams(window.location.search);
             const previewParam = urlParams.get('preview');
             
@@ -423,91 +425,59 @@ import Layout from "../layouts/Layout.astro";
                     }
                 }
             }
-
-            // Get token from localStorage
-            const tokenCreated = localStorage.getItem('unique_token_sv_created');
             
-            if (!tokenCreated) {
-                console.log('⚠️ Token non trouvé, utilisation de 15 places par défaut');
-                return 15;
-            }
-
-            // Calculate hours since token creation
-            const createdDate = new Date(tokenCreated);
-            const now = new Date();
-            const diffTime = Math.abs(now.getTime() - createdDate.getTime());
-            const diffHours = diffTime / (1000 * 60 * 60);
-            
-            // After 168 hours (7 days), offer is closed
-            if (diffHours >= 168) {
-                console.log('🔒 Offre fermée (plus de 168 heures / 7 jours)');
-                return 0;
-            }
-            
-            // Find the two thresholds to interpolate between
-            let lowerThreshold = hourlyThresholds[0];
-            let upperThreshold = hourlyThresholds[hourlyThresholds.length - 1];
-            
-            for (let i = 0; i < hourlyThresholds.length - 1; i++) {
-                if (diffHours >= hourlyThresholds[i].hours && diffHours < hourlyThresholds[i + 1].hours) {
-                    lowerThreshold = hourlyThresholds[i];
-                    upperThreshold = hourlyThresholds[i + 1];
-                    break;
-                }
-            }
-            
-            // Linear interpolation
-            const hoursDiff = upperThreshold.hours - lowerThreshold.hours;
-            const placesDiff = upperThreshold.places - lowerThreshold.places;
-            const progress = (diffHours - lowerThreshold.hours) / hoursDiff;
-            const interpolatedPlaces = lowerThreshold.places + (placesDiff * progress);
-            
-            // Round to nearest integer
-            const places = Math.round(interpolatedPlaces);
-            
-            console.log(`⏰ ${diffHours.toFixed(1)}h depuis inscription → ${places} places (interpolation entre ${lowerThreshold.places}@${lowerThreshold.hours}h et ${upperThreshold.places}@${upperThreshold.hours}h)`);
-            
-            return Math.max(0, places);
+            return null; // Pas en mode preview
         }
 
         async function initializeSequence() {
             let placesRemaining: number;
-            const token = localStorage.getItem('unique_token_sv');
-            if (token) {
-                try {
-                    const res = await fetch(`/.netlify/functions/check-places-sv?token=${encodeURIComponent(token)}`);
-                    const data = await res.json();
-                    if (data.valid && typeof data.placesRemaining === 'number') {
-                        placesRemaining = data.placesRemaining;
-                        console.log('✅ Places from Blobs:', placesRemaining);
-                    } else {
-                        // Token pas dans Blobs → l'enregistrer MAINTENANT avec timestamp actuel
-                        console.log('⚠️ Token not in Blobs, registering now');
-                        const startTime = Math.floor(Date.now() / 1000);
-                        try {
-                            await fetch('/.netlify/functions/init-places-sv', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ token, startTime })
-                            });
-                            // Token vient d'être créé → 15 places (début de séquence)
-                            placesRemaining = 15;
-                            console.log('✅ Token registered in Blobs, starting with 15 places');
-                        } catch (initError) {
-                            console.error('❌ Failed to register token:', initError);
-                            placesRemaining = 15;
+            
+            // Check for preview mode first
+            const previewPlaces = getPreviewPlaces();
+            if (previewPlaces !== null) {
+                placesRemaining = previewPlaces;
+            } else {
+                // Production mode: use Netlify Blobs as single source of truth
+                const token = localStorage.getItem('unique_token_sv');
+                if (token) {
+                    try {
+                        const res = await fetch(`/.netlify/functions/check-places-sv?token=${encodeURIComponent(token)}`);
+                        const data = await res.json();
+                        if (data.valid && typeof data.placesRemaining === 'number') {
+                            placesRemaining = data.placesRemaining;
+                            console.log('✅ Places from Blobs:', placesRemaining);
+                        } else {
+                            // Token pas dans Blobs → l'enregistrer MAINTENANT avec timestamp actuel
+                            console.log('⚠️ Token not in Blobs, registering now');
+                            const startTime = Math.floor(Date.now() / 1000);
+                            try {
+                                await fetch('/.netlify/functions/init-places-sv', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ token, startTime })
+                                });
+                                // Token vient d'être créé → 15 places (début de séquence)
+                                placesRemaining = 15;
+                                console.log('✅ Token registered in Blobs, starting with 15 places');
+                            } catch (initError) {
+                                console.error('❌ Failed to register token:', initError);
+                                placesRemaining = 15;
+                            }
                         }
+                    } catch (e) {
+                        console.error('❌ API error:', e);
+                        // Erreur réseau → par défaut 15 places
+                        placesRemaining = 15;
                     }
-                } catch (e) {
-                    console.error('❌ API error:', e);
-                    // Erreur réseau → par défaut 15 places
+                } else {
+                    // Pas de token → par défaut 15 places
+                    console.log('⚠️ No token found, defaulting to 15 places');
                     placesRemaining = 15;
                 }
-            } else {
-                // Pas de token → par défaut 15 places
-                console.log('⚠️ No token found, defaulting to 15 places');
-                placesRemaining = 15;
             }
+            
+            // Store globally (plus besoin de localStorage)
+            globalPlacesRemaining = placesRemaining;
 
             // Handle closed state
             if (placesRemaining === 0) {
