@@ -13,48 +13,32 @@ export default async function handler(event, context) {
   };
 
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
+    return new Response('', { status: 200, headers });
   }
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
   }
 
   try {
     const body = typeof event.body === 'string' ? JSON.parse(event.body || '{}') : event.body || {};
     const { token, startTime: startTimeParam } = body;
     if (!token || !String(token).startsWith('sv_')) {
-      return {
-        statusCode: 400,
-        headers,
-        body: JSON.stringify({ error: 'Token invalide ou manquant' })
-      };
+      return new Response(JSON.stringify({ error: 'Token invalide ou manquant' }), { status: 400, headers });
     }
 
     const store = getStore('sv-places-tokens');
     const existing = await store.get(token);
     if (existing) {
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({ success: true, alreadyExists: true })
-      };
+      return new Response(JSON.stringify({ success: true, alreadyExists: true }), { status: 200, headers });
     }
 
     const startTime = typeof startTimeParam === 'number' && startTimeParam > 0
       ? Math.floor(startTimeParam)
       : Math.floor(Date.now() / 1000);
     await store.set(token, JSON.stringify({ startTime }));
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ success: true, startTime })
-    };
+    return new Response(JSON.stringify({ success: true, startTime }), { status: 200, headers });
   } catch (err) {
     console.error('init-places-sv error:', err);
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ valid: false, error: 'Erreur serveur' })
-    };
+    return new Response(JSON.stringify({ valid: false, error: 'Erreur serveur' }), { status: 500, headers });
   }
 }

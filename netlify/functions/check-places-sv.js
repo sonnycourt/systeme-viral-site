@@ -47,51 +47,35 @@ export default async function handler(event, context) {
   };
 
   if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers, body: '' };
+    return new Response('', { status: 200, headers });
   }
   if (event.httpMethod !== 'GET') {
-    return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method not allowed' }) };
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
   }
 
   try {
     const token = event.queryStringParameters?.token || null;
     if (!token) {
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({ valid: false, error: 'Token manquant' })
-      };
+      return new Response(JSON.stringify({ valid: false, error: 'Token manquant' }), { status: 200, headers });
     }
 
     const store = getStore('sv-places-tokens');
     const raw = await store.get(token);
     if (!raw) {
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({ valid: false, error: 'Token non trouvé' })
-      };
+      return new Response(JSON.stringify({ valid: false, error: 'Token non trouvé' }), { status: 200, headers });
     }
 
     const data = JSON.parse(raw);
     const startTime = data.startTime;
     const placesRemaining = calculatePlacesRemaining(startTime);
 
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({
-        valid: true,
-        placesRemaining,
-        startTime
-      })
-    };
+    return new Response(JSON.stringify({
+      valid: true,
+      placesRemaining,
+      startTime
+    }), { status: 200, headers });
   } catch (err) {
     console.error('check-places-sv error:', err);
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ valid: false, error: 'Erreur serveur' })
-    };
+    return new Response(JSON.stringify({ valid: false, error: 'Erreur serveur' }), { status: 500, headers });
   }
 }
