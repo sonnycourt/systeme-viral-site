@@ -507,9 +507,10 @@ function showSuccess() {
         loadingScreen.style.opacity = "1";
     }
 
-    // Redirect to 100k-masterclass après un délai
+    // Redirect to 100k-masterclass avec token dans URL
     setTimeout(() => {
-        window.location.href = "/100k-masterclass";
+        const token = localStorage.getItem('unique_token_sv');
+        window.location.href = token ? `/100k-masterclass?token=${token}` : '/100k-masterclass';
     }, 2000);
 }
 

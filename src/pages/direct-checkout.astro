@@ -30,28 +30,16 @@ import Layout from "../layouts/Layout.astro";
                 return; // Ne pas vérifier le token, laisser accès
             }
             
-            // Vérifier si un token est présent dans l'URL
+            // Vérifier si un token est présent dans l'URL (source unique)
             const tokenFromUrl = urlParams.get('token');
             
-            // Si token dans l'URL, le sauvegarder dans localStorage
-            if (tokenFromUrl && tokenFromUrl.startsWith('sv_')) {
-                localStorage.setItem('unique_token_sv', tokenFromUrl);
-                console.log('Token sauvegardé depuis URL:', tokenFromUrl);
-                
-                // Nettoyer l'URL pour enlever le token (optionnel, pour la sécurité)
-                const cleanUrl = window.location.pathname + window.location.hash;
-                window.history.replaceState({}, '', cleanUrl);
-                
-                return; // Token valide, laisser accès
-            }
-            
-            // Vérifier le token unique dans localStorage
-            const uniqueToken = localStorage.getItem('unique_token_sv');
-            
-            // Si pas de token, rediriger vers inscription
-            if (!uniqueToken) {
+            // Si pas de token dans l'URL, rediriger vers inscription
+            if (!tokenFromUrl || !tokenFromUrl.startsWith('sv_')) {
                 window.location.href = '/inscription';
+                return;
             }
+            
+            // Token valide dans URL, laisser accès (pas de localStorage)
         })();
     </script>
 
@@ -437,9 +425,11 @@ import Layout from "../layouts/Layout.astro";
             if (previewPlaces !== null) {
                 placesRemaining = previewPlaces;
             } else {
-                // Production mode: use Netlify Blobs as single source of truth
-                const token = localStorage.getItem('unique_token_sv');
-                if (token) {
+                // Production mode: lire token depuis URL uniquement (pas localStorage)
+                const urlParams = new URLSearchParams(window.location.search);
+                const token = urlParams.get('token');
+                
+                if (token && token.startsWith('sv_')) {
                     try {
                         const res = await fetch(`/.netlify/functions/check-places-sv?token=${encodeURIComponent(token)}`);
                         const data = await res.json();
@@ -471,7 +461,7 @@ import Layout from "../layouts/Layout.astro";
                     }
                 } else {
                     // Pas de token → par défaut 15 places
-                    console.log('⚠️ No token found, defaulting to 15 places');
+                    console.log('⚠️ No token in URL, defaulting to 15 places');
                     placesRemaining = 15;
                 }
             }
