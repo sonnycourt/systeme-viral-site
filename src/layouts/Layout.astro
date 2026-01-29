@@ -3,7 +3,6 @@ import SEO from "../components/SEO.astro";
 import Header from "../components/Header.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 import GAConsentMode from "../components/GAConsentMode.astro";
-import PasswordProtection from "../components/PasswordProtection.astro";
 import "../styles/global.css";
 
 export interface Props {
@@ -87,7 +86,6 @@ const { title, description, image, canonical, noindex, ogImage, twitterImage } =
 		<script is:inline src="/scripts/utm-tracker.js"></script>
 	</head>
 	<body>
-		<PasswordProtection />
 		<GAConsentMode />
 		<main>
 			<slot />
