@@ -16235,25 +16235,34 @@ import Layout from "../layouts/Layout.astro";
                     const data = await res.json();
                     if (data.valid && typeof data.placesRemaining === 'number') {
                         placesRemaining = data.placesRemaining;
-                        console.log('Places from API (token):', placesRemaining);
+                        console.log('✅ Places from Blobs:', placesRemaining);
                     } else {
-                        // Backfill: si token pas encore en Blobs mais on a la date en localStorage
-                        const created = localStorage.getItem('unique_token_sv_created');
-                        if (created) {
-                            const startTime = Math.floor(new Date(created).getTime() / 1000);
-                            fetch('/.netlify/functions/init-places-sv', {
+                        // Token pas dans Blobs → l'enregistrer MAINTENANT avec timestamp actuel
+                        console.log('⚠️ Token not in Blobs, registering now');
+                        const startTime = Math.floor(Date.now() / 1000);
+                        try {
+                            await fetch('/.netlify/functions/init-places-sv', {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({ token, startTime })
-                            }).catch(() => {});
+                            });
+                            // Token vient d'être créé → 15 places (début de séquence)
+                            placesRemaining = 15;
+                            console.log('✅ Token registered in Blobs, starting with 15 places');
+                        } catch (initError) {
+                            console.error('❌ Failed to register token:', initError);
+                            placesRemaining = 15;
                         }
-                        placesRemaining = calculatePlacesRemaining();
                     }
                 } catch (e) {
-                    placesRemaining = calculatePlacesRemaining();
+                    console.error('❌ API error:', e);
+                    // Erreur réseau → par défaut 15 places
+                    placesRemaining = 15;
                 }
             } else {
-                placesRemaining = calculatePlacesRemaining();
+                // Pas de token → par défaut 15 places
+                console.log('⚠️ No token found, defaulting to 15 places');
+                placesRemaining = 15;
             }
 
             // Handle closed state
