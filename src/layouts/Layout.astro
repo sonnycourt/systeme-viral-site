@@ -21,7 +21,30 @@ const { title, description, image, canonical, noindex, ogImage, twitterImage } =
 
 <!doctype html>
 <html lang="fr">
-	<head>
+    <head>
+        <!-- Protection par mot de passe globale -->
+        <script is:inline>
+            (function() {
+                const CORRECT_PASSWORD = 'systemeviral2025';
+                const STORAGE_KEY = 'site_password_sv';
+                
+                // Vérifier si déjà authentifié
+                if (localStorage.getItem(STORAGE_KEY) === CORRECT_PASSWORD) {
+                    return; // Accès autorisé
+                }
+                
+                // Demander le mot de passe
+                const password = prompt('Mot de passe requis pour accéder au site :');
+                
+                if (password === CORRECT_PASSWORD) {
+                    localStorage.setItem(STORAGE_KEY, password);
+                } else {
+                    alert('Mot de passe incorrect. Accès refusé.');
+                    document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif;font-size:24px;color:#666;">Accès refusé</div>';
+                }
+            })();
+        </script>
+    <head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
