@@ -4,7 +4,7 @@
 
 import { getStore } from '@netlify/blobs';
 
-export default async function handler(event, context) {
+export default async (request, context) => {
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -12,15 +12,15 @@ export default async function handler(event, context) {
     'Content-Type': 'application/json'
   };
 
-  if (event.httpMethod === 'OPTIONS') {
+  if (request.method === 'OPTIONS') {
     return new Response('', { status: 200, headers });
   }
-  if (event.httpMethod !== 'POST') {
+  if (request.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
   }
 
   try {
-    const body = typeof event.body === 'string' ? JSON.parse(event.body || '{}') : event.body || {};
+    const body = await request.json().catch(() => ({}));
     const { token, startTime: startTimeParam } = body;
     if (!token || !String(token).startsWith('sv_')) {
       return new Response(JSON.stringify({ error: 'Token invalide ou manquant' }), { status: 400, headers });

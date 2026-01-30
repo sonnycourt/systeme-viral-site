@@ -38,7 +38,7 @@ function calculatePlacesRemaining(startTime) {
   return Math.max(0, Math.round(interpolated));
 }
 
-export default async function handler(event, context) {
+export default async (request, context) => {
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -46,15 +46,15 @@ export default async function handler(event, context) {
     'Content-Type': 'application/json'
   };
 
-  if (event.httpMethod === 'OPTIONS') {
+  if (request.method === 'OPTIONS') {
     return new Response('', { status: 200, headers });
   }
-  if (event.httpMethod !== 'GET') {
+  if (request.method !== 'GET') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
   }
 
   try {
-    const token = event.queryStringParameters?.token || null;
+    const token = new URL(request.url).searchParams.get('token');
     if (!token) {
       return new Response(JSON.stringify({ valid: false, error: 'Token manquant' }), { status: 200, headers });
     }
