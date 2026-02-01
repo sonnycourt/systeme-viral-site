@@ -8,9 +8,12 @@ async function getAllSubscribersFromMailerLite(apiKey, groupId) {
   let cursor = null;
   
   do {
+    // Utiliser l'endpoint groupe au lieu du filtre
     const url = cursor 
-      ? `https://connect.mailerlite.com/api/subscribers?filter[groups]=${groupId}&limit=100&cursor=${cursor}`
-      : `https://connect.mailerlite.com/api/subscribers?filter[groups]=${groupId}&limit=100`;
+      ? `https://connect.mailerlite.com/api/groups/${groupId}/subscribers?limit=100&cursor=${cursor}`
+      : `https://connect.mailerlite.com/api/groups/${groupId}/subscribers?limit=100`;
+    
+    console.log('Fetching:', url);
     
     const response = await fetch(url, {
       headers: {
@@ -20,11 +23,13 @@ async function getAllSubscribersFromMailerLite(apiKey, groupId) {
     });
     
     if (!response.ok) {
-      console.error('MailerLite API error:', response.status);
+      const text = await response.text();
+      console.error('MailerLite API error:', response.status, text);
       break;
     }
     
     const data = await response.json();
+    console.log(`Fetched ${data.data?.length || 0} subscribers`);
     subscribers.push(...(data.data || []));
     
     // Pagination
