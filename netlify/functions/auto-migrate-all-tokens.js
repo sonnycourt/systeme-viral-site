@@ -76,20 +76,29 @@ export default async (request, context) => {
         continue;
       }
 
-      if (!firstOptinDate) {
-        results.skipped++;
-        results.details.push({ email: sub.email, token, status: 'skipped', reason: 'no date' });
-        continue;
-      }
-
-      const startTime = Math.floor(new Date(firstOptinDate).getTime() / 1000);
+      // Extraire le timestamp du token (format: sv_TIMESTAMP_xxx)
+      let startTime;
       
-      if (isNaN(startTime) || startTime <= 0) {
-        results.errors++;
-        results.details.push({ email: sub.email, token, status: 'error', reason: 'invalid date' });
+      if (firstOptinDate) {
+        // Utiliser la date MailerLite si disponible
+        startTime = Math.floor(new Date(firstOptinDate).getTime() / 1000);
+      } else {
+        // Sinon extraire du token (sv_1769790367353_xxx → 1769790367353 ms)
+        const tokenParts = token.split('_');
+        if (tokenParts.length >= 2) {
+          const timestampMs = parseInt(tokenParts[1]);
+          if (!isNaN(timestampMs) && timestampMs > 1700000000000) {
+            startTime = Math.floor(timestampMs / 1000);
+          }
+        }
+      }
+      
+      if (!startTime) {
+        results.skipped++;
+        results.details.push({ email: sub.email, token, status: 'skipped', reason: 'cannot extract date' });
         continue;
       }
-
+      
       // Vérifier si existe déjà
       const existing = await store.get(token);
       if (existing) {
