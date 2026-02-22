@@ -55,7 +55,7 @@ import Layout from "../layouts/Layout.astro";
         if (urlParams.get('preview') !== 'promo') return;
 
         // Remplacer les liens checkout après que le DOM est prêt
-        var promoUrl = 'https://sonnycourt.spiffy.co/checkout/pack-complet#pop';
+        var promoUrl = 'https://systemeviral.spiffy.co/checkout/systeme-viral?code=FB1MILLION#pop';
         function replaceCheckoutLinks() {
             document.querySelectorAll('a[href*="systemeviral.spiffy.co"]').forEach(function(el) {
                 el.setAttribute('href', promoUrl);
@@ -16603,7 +16603,7 @@ import Layout from "../layouts/Layout.astro";
         var btn = document.getElementById('sticky-cta-btn');
         if (!btn) return;
         if (new URLSearchParams(window.location.search).get('preview') === 'promo') {
-            btn.setAttribute('href', 'https://sonnycourt.spiffy.co/checkout/pack-complet#pop');
+            btn.setAttribute('href', 'https://systemeviral.spiffy.co/checkout/systeme-viral?code=FB1MILLION#pop');
         }
     })();
     </script>
