@@ -54,12 +54,11 @@ import Layout from "../layouts/Layout.astro";
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('preview') !== 'promo') return;
 
-        // Forcer le lien promo sur TOUS les boutons en permanence
+        // Filet de sécurité : forcer le lien promo en continu
         var promoUrl = 'https://systemeviral.spiffy.co/checkout/systeme-viral?code=FB1MILLION#pop';
         function replaceCheckoutLinks() {
-            var allCtas = document.querySelectorAll(
+            document.querySelectorAll(
                 'a[href*="systemeviral.spiffy.co"],' +
-                'a[href*="spiffy.co/checkout"],' +
                 'a[data-original-href],' +
                 '.scarcity-cta-button,' +
                 '.result-cta,' +
@@ -68,29 +67,19 @@ import Layout from "../layouts/Layout.astro";
                 '.recap-cta-button,' +
                 '.profile-btn,' +
                 '.cta-button-final,' +
-                '#sticky-cta-btn,' +
-                '#scarcity-cta-link,' +
-                '#scarcity-cta-link-bottom'
-            );
-            allCtas.forEach(function(el) {
+                '#sticky-cta-btn'
+            ).forEach(function(el) {
                 if (el.tagName === 'A') {
-                    var current = el.getAttribute('href');
-                    if (current !== promoUrl) {
+                    if (el.getAttribute('href') !== promoUrl) {
                         el.setAttribute('href', promoUrl);
                     }
-                    el.setAttribute('target', '_blank');
                     el.classList.remove('cta-disabled');
                     el.removeAttribute('aria-disabled');
                 }
             });
         }
-        // Lancer dès que le DOM est prêt, puis forcer en continu toutes les 500ms
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', replaceCheckoutLinks);
-        } else {
-            replaceCheckoutLinks();
-        }
-        setInterval(replaceCheckoutLinks, 500);
+        document.addEventListener('DOMContentLoaded', replaceCheckoutLinks);
+        setInterval(replaceCheckoutLinks, 2000);
 
         fetch('https://sonnycourt.com/api/promo.json')
             .then(function(res) { return res.json(); })
@@ -15912,6 +15901,16 @@ import Layout from "../layouts/Layout.astro";
         spiffy.config({
             hideSidebar: false,
         });
+        // Promo: changer les href AVANT que Spiffy ne scanne la page
+        (function() {
+            if (new URLSearchParams(window.location.search).get('preview') !== 'promo') return;
+            var promoUrl = 'https://systemeviral.spiffy.co/checkout/systeme-viral?code=FB1MILLION#pop';
+            document.querySelectorAll('a[href*="systemeviral.spiffy.co"]').forEach(function(el) {
+                el.setAttribute('href', promoUrl);
+            });
+            var btn = document.getElementById('sticky-cta-btn');
+            if (btn) btn.setAttribute('href', promoUrl);
+        })();
         spiffy.load("systemeviral");
     </script>
     <!-- Start of Async ProveSource Code -->
