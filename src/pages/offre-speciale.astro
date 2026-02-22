@@ -121,6 +121,40 @@ import Layout from "../layouts/Layout.astro";
                 var badgeEls = document.querySelectorAll('#badge-text-top, #scarcityBadge .badge-text');
                 badgeEls.forEach(function(el) { el.textContent = promo.badgeText; });
 
+                // Compteur de places proportionnel à la deadline
+                var promoDeadline = new Date(promo.deadline).getTime();
+                var promoStart = promoDeadline - (4 * 24 * 60 * 60 * 1000); // 4 jours avant deadline
+                var maxPlaces = 15;
+                var calcPromoPlaces = function() {
+                    var now = Date.now();
+                    if (now >= promoDeadline) return 0;
+                    if (now <= promoStart) return maxPlaces;
+                    var ratio = 1 - (now - promoStart) / (promoDeadline - promoStart);
+                    return Math.max(0, Math.ceil(ratio * maxPlaces));
+                };
+                var promoPlaces = calcPromoPlaces();
+                var totalPlaces = 50;
+                var pct = Math.round((promoPlaces / totalPlaces) * 100);
+                // Top counter
+                var cpEl = document.getElementById('current-places');
+                if (cpEl) cpEl.textContent = promoPlaces.toString();
+                var meterEl = document.getElementById('places-meter-fill');
+                if (meterEl) (meterEl as HTMLElement).style.width = pct + '%';
+                // Bottom counter
+                var cpBottomEl = document.getElementById('current-places-bottom');
+                if (cpBottomEl) cpBottomEl.textContent = promoPlaces.toString();
+                var meterBottomEl = document.getElementById('places-meter-fill-bottom');
+                if (meterBottomEl) (meterBottomEl as HTMLElement).style.width = pct + '%';
+                // Update every minute
+                setInterval(function() {
+                    var p = calcPromoPlaces();
+                    var pctNew = Math.round((p / totalPlaces) * 100);
+                    if (cpEl) cpEl.textContent = p.toString();
+                    if (cpBottomEl) cpBottomEl.textContent = p.toString();
+                    if (meterEl) (meterEl as HTMLElement).style.width = pctNew + '%';
+                    if (meterBottomEl) (meterBottomEl as HTMLElement).style.width = pctNew + '%';
+                }, 60000);
+
                 // Prix
                 var sv = promo.formations && promo.formations.systemeViral;
                 if (sv) {
