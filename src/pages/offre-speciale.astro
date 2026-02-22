@@ -90,9 +90,15 @@ import Layout from "../layouts/Layout.astro";
                         var priceOriginalEl = document.getElementById('sv-price-original');
                         var pricePromoEl = document.getElementById('sv-price-promo');
                         var installmentEl = document.getElementById('sv-price-installment');
+                        var badgeDesktopEl = document.getElementById('sv-badge-desktop');
+                        var badgeMobileEl = document.getElementById('sv-badge-mobile');
                         if (priceOriginalEl) priceOriginalEl.textContent = sv.priceOriginal.toLocaleString('fr-FR') + '€';
                         if (pricePromoEl) pricePromoEl.textContent = sv.pricePromo.toLocaleString('fr-FR') + '€';
                         if (installmentEl) installmentEl.textContent = 'Ou seulement ' + sv.installmentCount + ' paiements de ' + sv.installmentPrice + '€';
+                        if (sv.badgeText) {
+                            if (badgeDesktopEl) badgeDesktopEl.textContent = sv.badgeText;
+                            if (badgeMobileEl) badgeMobileEl.textContent = sv.badgeText;
+                        }
                     }
                 });
 
@@ -6473,7 +6479,7 @@ import Layout from "../layouts/Layout.astro";
                 <!-- Badge au-dessus sur desktop -->
                 <div class="recap-badge-desktop" style="display: none; margin-bottom: 20px;">
                     <div style="display: inline-block; background: rgba(0, 220, 130, 0.15); border: 1px solid rgba(0, 220, 130, 0.3); border-radius: 8px; padding: 8px 16px;">
-                        <p style="color: #00dc82; font-size: 0.9rem; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">OFFRE DE LANCEMENT -33%</p>
+                        <p id="sv-badge-desktop" style="color: #00dc82; font-size: 0.9rem; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">OFFRE DE LANCEMENT -33%</p>
                     </div>
                 </div>
                 
@@ -6487,7 +6493,7 @@ import Layout from "../layouts/Layout.astro";
                     </div>
                     <!-- Badge à droite sur mobile -->
                     <div class="recap-badge-mobile" style="background: rgba(0, 220, 130, 0.15); border: 1px solid rgba(0, 220, 130, 0.3); border-radius: 8px; padding: 8px 16px;">
-                        <p style="color: #00dc82; font-size: 0.9rem; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">OFFRE DE LANCEMENT -33%</p>
+                        <p id="sv-badge-mobile" style="color: #00dc82; font-size: 0.9rem; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">OFFRE DE LANCEMENT -33%</p>
                     </div>
                 </div>
                 <p id="sv-price-installment" style="color: #bfbfbf; font-size: 1rem; margin: 0;">
