@@ -54,6 +54,11 @@ import Layout from "../layouts/Layout.astro";
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('preview') !== 'promo') return;
 
+        // Remplacer tous les liens checkout par le lien promo
+        document.querySelectorAll('a[href*="systemeviral.spiffy.co/checkout"]').forEach(function(el) {
+            el.setAttribute('href', 'https://systemeviral.spiffy.co/checkout/systeme-viral?code=FB1MILLION#pop');
+        });
+
         fetch('https://sonnycourt.com/api/promo.json')
             .then(function(res) { return res.json(); })
             .then(function(promo) {
