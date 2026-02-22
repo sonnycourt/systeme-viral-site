@@ -30,6 +30,11 @@ import Layout from "../layouts/Layout.astro";
                 return; // Ne pas vérifier le token, laisser accès
             }
             
+            // Si preview=promo, accès direct sans token (mode promo sonnycourt.com)
+            if (previewMode === 'promo') {
+                return;
+            }
+            
             // Vérifier si un token est présent dans l'URL (source unique)
             const tokenFromUrl = urlParams.get('token');
             
@@ -41,6 +46,40 @@ import Layout from "../layouts/Layout.astro";
             
             // Token valide dans URL, laisser accès (pas de localStorage)
         })();
+    </script>
+
+    <!-- Mode promo sonnycourt.com : fetch config et mise à jour badge + countdown -->
+    <script is:inline>
+    (function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('preview') !== 'promo') return;
+
+        fetch('https://sonnycourt.com/api/promo.json')
+            .then(function(res) { return res.json(); })
+            .then(function(promo) {
+                if (!promo.active) {
+                    window.location.href = 'https://sonnycourt.com/fin-promo/';
+                    return;
+                }
+                const deadline = new Date(promo.deadline).getTime();
+                if (Date.now() >= deadline) {
+                    window.location.href = 'https://sonnycourt.com/fin-promo/';
+                    return;
+                }
+
+                // Mettre à jour le badge
+                document.addEventListener('DOMContentLoaded', function() {
+                    const badgeEls = document.querySelectorAll('#badge-text-top, #scarcityBadge .badge-text');
+                    badgeEls.forEach(function(el) { el.textContent = promo.badgeText; });
+                });
+
+                // Overrider le countdown avec la deadline promo
+                window.__PROMO_DEADLINE__ = deadline;
+            })
+            .catch(function(err) {
+                console.warn('Promo config fetch failed:', err);
+            });
+    })();
     </script>
 
     <!-- Background effects -->
@@ -14117,7 +14156,7 @@ import Layout from "../layouts/Layout.astro";
     </style>
     <script>
         // Countdown timer - Updated 2025
-        const endDate = new Date("2026-01-03T23:59:59+01:00").getTime();
+        const endDate = (window as any).__PROMO_DEADLINE__ || new Date("2026-01-03T23:59:59+01:00").getTime();
 
         const attachTimerToCta = (node: HTMLElement) => {
             if (node.querySelector(".cta-timer")) return;
