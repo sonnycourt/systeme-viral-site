@@ -16505,4 +16505,26 @@ import Layout from "../layouts/Layout.astro";
             }, 60000); // Every minute
         });
     </script>
+
+    <!-- Sticky CTA Button -->
+    <a
+        id="sticky-cta-btn"
+        href="https://systemeviral.spiffy.co/checkout/systeme-viral#pop"
+        target="_blank"
+        style="position:fixed;bottom:24px;right:24px;z-index:99998;display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#00dc82 0%,#00c878 100%);color:#000;font-weight:700;font-size:15px;padding:14px 22px;border-radius:50px;text-decoration:none;box-shadow:0 8px 25px rgba(0,220,130,0.45);transition:all 0.3s ease;white-space:nowrap;"
+        onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 35px rgba(0,220,130,0.6)'"
+        onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 25px rgba(0,220,130,0.45)'"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Lancer mon bizz
+    </a>
+    <script is:inline>
+    (function() {
+        var btn = document.getElementById('sticky-cta-btn');
+        if (!btn) return;
+        if (new URLSearchParams(window.location.search).get('preview') === 'promo') {
+            btn.setAttribute('href', 'https://systemeviral.spiffy.co/checkout/systeme-viral?code=FB1MILLION#pop');
+        }
+    })();
+    </script>
 </Layout>
