@@ -117,28 +117,26 @@ import Layout from "../layouts/Layout.astro";
                     updateSvBanner(); setInterval(updateSvBanner, 1000);
                 }
 
-                // Mettre à jour le badge et les prix après chargement du DOM
-                document.addEventListener('DOMContentLoaded', function() {
-                    var badgeEls = document.querySelectorAll('#badge-text-top, #scarcityBadge .badge-text');
-                    badgeEls.forEach(function(el) { el.textContent = promo.badgeText; });
+                // Mettre à jour le badge et les prix (DOM déjà prêt car fetch est async)
+                var badgeEls = document.querySelectorAll('#badge-text-top, #scarcityBadge .badge-text');
+                badgeEls.forEach(function(el) { el.textContent = promo.badgeText; });
 
-                    // Prix
-                    var sv = promo.formations && promo.formations.systemeViral;
-                    if (sv) {
-                        var priceOriginalEl = document.getElementById('sv-price-original');
-                        var pricePromoEl = document.getElementById('sv-price-promo');
-                        var installmentEl = document.getElementById('sv-price-installment');
-                        var badgeDesktopEl = document.getElementById('sv-badge-desktop');
-                        var badgeMobileEl = document.getElementById('sv-badge-mobile');
-                        if (priceOriginalEl) priceOriginalEl.textContent = sv.priceOriginal.toLocaleString('fr-FR') + '€';
-                        if (pricePromoEl) pricePromoEl.textContent = sv.pricePromo.toLocaleString('fr-FR') + '€';
-                        if (installmentEl) installmentEl.textContent = 'Ou seulement ' + sv.installmentCount + ' paiements de ' + sv.installmentPrice + '€';
-                        if (sv.badgeText) {
-                            if (badgeDesktopEl) badgeDesktopEl.textContent = sv.badgeText;
-                            if (badgeMobileEl) badgeMobileEl.textContent = sv.badgeText;
-                        }
+                // Prix
+                var sv = promo.formations && promo.formations.systemeViral;
+                if (sv) {
+                    var priceOriginalEl = document.getElementById('sv-price-original');
+                    var pricePromoEl = document.getElementById('sv-price-promo');
+                    var installmentEl = document.getElementById('sv-price-installment');
+                    var badgeDesktopEl = document.getElementById('sv-badge-desktop');
+                    var badgeMobileEl = document.getElementById('sv-badge-mobile');
+                    if (priceOriginalEl) priceOriginalEl.textContent = sv.priceOriginal.toLocaleString('fr-FR') + '€';
+                    if (pricePromoEl) pricePromoEl.textContent = sv.pricePromo.toLocaleString('fr-FR') + '€';
+                    if (installmentEl) installmentEl.textContent = 'Ou seulement ' + sv.installmentCount + ' paiements de ' + sv.installmentPrice + '€';
+                    if (sv.badgeText) {
+                        if (badgeDesktopEl) badgeDesktopEl.textContent = sv.badgeText;
+                        if (badgeMobileEl) badgeMobileEl.textContent = sv.badgeText;
                     }
-                });
+                }
 
                 // Overrider le countdown avec la deadline promo
                 window.__PROMO_DEADLINE__ = deadline;
