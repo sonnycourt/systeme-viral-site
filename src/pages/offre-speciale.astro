@@ -79,10 +79,21 @@ import Layout from "../layouts/Layout.astro";
                     return;
                 }
 
-                // Mettre à jour le badge
+                // Mettre à jour le badge et les prix après chargement du DOM
                 document.addEventListener('DOMContentLoaded', function() {
-                    const badgeEls = document.querySelectorAll('#badge-text-top, #scarcityBadge .badge-text');
+                    var badgeEls = document.querySelectorAll('#badge-text-top, #scarcityBadge .badge-text');
                     badgeEls.forEach(function(el) { el.textContent = promo.badgeText; });
+
+                    // Prix
+                    var sv = promo.formations && promo.formations.systemeViral;
+                    if (sv) {
+                        var priceOriginalEl = document.getElementById('sv-price-original');
+                        var pricePromoEl = document.getElementById('sv-price-promo');
+                        var installmentEl = document.getElementById('sv-price-installment');
+                        if (priceOriginalEl) priceOriginalEl.textContent = sv.priceOriginal.toLocaleString('fr-FR') + '€';
+                        if (pricePromoEl) pricePromoEl.textContent = sv.pricePromo.toLocaleString('fr-FR') + '€';
+                        if (installmentEl) installmentEl.textContent = 'Ou seulement ' + sv.installmentCount + ' paiements de ' + sv.installmentPrice + '€';
+                    }
                 });
 
                 // Overrider le countdown avec la deadline promo
@@ -6468,18 +6479,18 @@ import Layout from "../layouts/Layout.astro";
                 
                 <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
                     <div>
-                        <p style="color: #666; font-size: 1.2rem; margin: 0; text-decoration: line-through;">3 000€</p>
+                        <p id="sv-price-original" style="color: #666; font-size: 1.2rem; margin: 0; text-decoration: line-through;">3 000€</p>
                     </div>
                     <div style="font-size: 2rem; color: #00dc82; font-weight: 700;">→</div>
                     <div>
-                        <p style="color: #00dc82; font-size: 3.5rem; font-weight: 800; margin: 0; text-shadow: 0 0 20px rgba(0, 220, 130, 0.5);">1 997€</p>
+                        <p id="sv-price-promo" style="color: #00dc82; font-size: 3.5rem; font-weight: 800; margin: 0; text-shadow: 0 0 20px rgba(0, 220, 130, 0.5);">1 997€</p>
                     </div>
                     <!-- Badge à droite sur mobile -->
                     <div class="recap-badge-mobile" style="background: rgba(0, 220, 130, 0.15); border: 1px solid rgba(0, 220, 130, 0.3); border-radius: 8px; padding: 8px 16px;">
                         <p style="color: #00dc82; font-size: 0.9rem; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">OFFRE DE LANCEMENT -33%</p>
                     </div>
                 </div>
-                <p style="color: #bfbfbf; font-size: 1rem; margin: 0;">
+                <p id="sv-price-installment" style="color: #bfbfbf; font-size: 1rem; margin: 0;">
                     Ou seulement 6 paiements de 367€
                 </p>
             </div>
