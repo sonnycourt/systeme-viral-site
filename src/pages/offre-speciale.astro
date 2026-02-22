@@ -54,21 +54,51 @@ import Layout from "../layouts/Layout.astro";
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('preview') !== 'promo') return;
 
-        // Remplacer les liens checkout après que le DOM est prêt
+        // Remplacer TOUS les liens checkout par le lien promo
         var promoUrl = 'https://systemeviral.spiffy.co/checkout/systeme-viral?code=FB1MILLION#pop';
         function replaceCheckoutLinks() {
+            // Cibler par href (liens encore intacts)
             document.querySelectorAll('a[href*="systemeviral.spiffy.co"]').forEach(function(el) {
                 el.setAttribute('href', promoUrl);
+                el.setAttribute('target', '_blank');
+            });
+            // Cibler par classes/IDs (liens dont le href a été retiré par disablePurchaseCtas)
+            var selectors = [
+                '.scarcity-cta-button',
+                '.result-cta',
+                '.video-cta-btn',
+                '.guarantee-btn',
+                '.recap-cta-button',
+                '.profile-btn',
+                '#sticky-cta-btn'
+            ];
+            document.querySelectorAll(selectors.join(',')).forEach(function(el) {
+                if (el.tagName === 'A') {
+                    el.setAttribute('href', promoUrl);
+                    el.setAttribute('target', '_blank');
+                    el.classList.remove('cta-disabled');
+                    el.removeAttribute('aria-disabled');
+                }
+            });
+            // Cibler les liens inline (Accéder à la formation)
+            document.querySelectorAll('a[data-original-href]').forEach(function(el) {
+                el.setAttribute('href', promoUrl);
+                el.setAttribute('target', '_blank');
+                el.classList.remove('cta-disabled');
+                el.removeAttribute('aria-disabled');
             });
         }
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', replaceCheckoutLinks);
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(replaceCheckoutLinks, 100);
+            });
         } else {
-            replaceCheckoutLinks();
+            setTimeout(replaceCheckoutLinks, 100);
         }
-        // Re-run après 1s et 3s pour attraper les liens injectés dynamiquement
-        setTimeout(replaceCheckoutLinks, 1000);
-        setTimeout(replaceCheckoutLinks, 3000);
+        // Re-run pour attraper les liens modifiés par d'autres scripts
+        setTimeout(replaceCheckoutLinks, 1500);
+        setTimeout(replaceCheckoutLinks, 4000);
+        setTimeout(replaceCheckoutLinks, 8000);
 
         fetch('https://sonnycourt.com/api/promo.json')
             .then(function(res) { return res.json(); })
