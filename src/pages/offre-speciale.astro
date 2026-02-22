@@ -143,20 +143,20 @@ import Layout from "../layouts/Layout.astro";
                 var cpEl = document.getElementById('current-places');
                 if (cpEl) cpEl.textContent = promoPlaces.toString();
                 var meterEl = document.getElementById('places-meter-fill');
-                if (meterEl) (meterEl as HTMLElement).style.width = pct + '%';
+                if (meterEl) meterEl.style.width = pct + '%';
                 // Bottom counter
                 var cpBottomEl = document.getElementById('current-places-bottom');
                 if (cpBottomEl) cpBottomEl.textContent = promoPlaces.toString();
                 var meterBottomEl = document.getElementById('places-meter-fill-bottom');
-                if (meterBottomEl) (meterBottomEl as HTMLElement).style.width = pct + '%';
+                if (meterBottomEl) meterBottomEl.style.width = pct + '%';
                 // Update every minute
                 setInterval(function() {
                     var p = calcPromoPlaces();
                     var pctNew = Math.round((p / totalPlaces) * 100);
                     if (cpEl) cpEl.textContent = p.toString();
                     if (cpBottomEl) cpBottomEl.textContent = p.toString();
-                    if (meterEl) (meterEl as HTMLElement).style.width = pctNew + '%';
-                    if (meterBottomEl) (meterBottomEl as HTMLElement).style.width = pctNew + '%';
+                    if (meterEl) meterEl.style.width = pctNew + '%';
+                    if (meterBottomEl) meterBottomEl.style.width = pctNew + '%';
                 }, 60000);
 
                 // Prix
