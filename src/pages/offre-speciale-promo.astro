@@ -16532,4 +16532,16 @@ import Layout from "../layouts/Layout.astro";
         Lancer mon bizz
     </a>
 
+    <script is:inline>
+    (function() {
+        var scrollPos = 0;
+        document.addEventListener('click', function(e) {
+            var link = e.target.closest('a[href*="#pop"]');
+            if (link) scrollPos = window.scrollY;
+        }, true);
+        window.addEventListener('hashchange', function() {
+            window.scrollTo(0, scrollPos);
+        });
+    })();
+    </script>
 </Layout>
