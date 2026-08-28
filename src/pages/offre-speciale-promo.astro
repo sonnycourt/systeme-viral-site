@@ -30,6 +30,9 @@ import Layout from "../layouts/Layout.astro";
             .then(function(res) { return res.json(); })
             .then(function(promo) {
                 var deadline = new Date(promo.deadline).getTime();
+                var campaignName = promo.name || 'La Rentrée';
+                var campaignLabel = (promo.emoji ? promo.emoji + ' ' : '') + campaignName.toUpperCase();
+                var campaignBadge = campaignName.toUpperCase() + ' -75%';
 
                 // Banner promo
                 var svBanner = promo.formations && promo.formations.systemeViral && promo.formations.systemeViral.banner;
@@ -39,7 +42,7 @@ import Layout from "../layouts/Layout.astro";
                     bannerEl.style.cssText = 'position:fixed;top:0;left:0;right:0;width:100%;background:linear-gradient(180deg,#0b3d2e 0%,#166534 45%,#34a853 100%);border-bottom:1px solid rgba(255,255,255,0.1);min-height:60px;z-index:99999;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;';
                     bannerEl.innerHTML = '<div style="max-width:1400px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;">' +
                         '<div style="display:flex;flex-direction:column;gap:4px;align-items:flex-start;text-align:left;">' +
-                            '<span style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.85);font-weight:700;">🎉 DEMI-MILLION INSTAGRAM</span>' +
+                            '<span style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.85);font-weight:700;">' + campaignLabel + '</span>' +
                             '<span style="font-size:22px;font-weight:900;color:transparent;background:linear-gradient(100deg,#ecfdf5 0%,#bbf7d0 70%);-webkit-background-clip:text;background-clip:text;line-height:1.1;">-75% sur la formation complète</span>' +
                         '</div>' +
                         '<div id="sv-banner-countdown" style="display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.2);border-radius:999px;padding:6px 16px;color:#fff;">' +
@@ -69,7 +72,7 @@ import Layout from "../layouts/Layout.astro";
 
                 // Badge
                 var badgeEls = document.querySelectorAll('#badge-text-top, #scarcityBadge .badge-text');
-                badgeEls.forEach(function(el) { el.textContent = promo.badgeText; });
+                badgeEls.forEach(function(el) { el.textContent = campaignBadge; });
 
                 // Places proportionnel à la deadline
                 var promoStart = deadline - (4 * 24 * 60 * 60 * 1000);
@@ -106,8 +109,8 @@ import Layout from "../layouts/Layout.astro";
                     if (el1) el1.textContent = sv.priceOriginal.toLocaleString('fr-FR') + '€';
                     if (el2) el2.textContent = '997€';
                     if (el3) el3.textContent = 'Ou seulement 6 paiements de 189€';
-                    if (el4) el4.textContent = 'DEMI-MILLION INSTAGRAM -75%';
-                    if (el5) el5.textContent = 'DEMI-MILLION INSTAGRAM -75%';
+                    if (el4) el4.textContent = campaignBadge;
+                    if (el5) el5.textContent = campaignBadge;
                 }
 
                 window.__PROMO_DEADLINE__ = deadline;
@@ -6484,7 +6487,7 @@ import Layout from "../layouts/Layout.astro";
                 <!-- Badge au-dessus sur desktop -->
                 <div class="recap-badge-desktop" style="display: none; margin-bottom: 20px;">
                     <div style="display: inline-block; background: rgba(0, 220, 130, 0.15); border: 1px solid rgba(0, 220, 130, 0.3); border-radius: 8px; padding: 8px 16px;">
-                        <p id="sv-badge-desktop" style="color: #00dc82; font-size: 0.9rem; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">DEMI-MILLION INSTAGRAM -75%</p>
+                        <p id="sv-badge-desktop" style="color: #00dc82; font-size: 0.9rem; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">LA RENTRÉE -75%</p>
                     </div>
                 </div>
                 
@@ -6498,7 +6501,7 @@ import Layout from "../layouts/Layout.astro";
                     </div>
                     <!-- Badge à droite sur mobile -->
                     <div class="recap-badge-mobile" style="background: rgba(0, 220, 130, 0.15); border: 1px solid rgba(0, 220, 130, 0.3); border-radius: 8px; padding: 8px 16px;">
-                        <p id="sv-badge-mobile" style="color: #00dc82; font-size: 0.9rem; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">DEMI-MILLION INSTAGRAM -75%</p>
+                        <p id="sv-badge-mobile" style="color: #00dc82; font-size: 0.9rem; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">LA RENTRÉE -75%</p>
                     </div>
                 </div>
                 <p id="sv-price-installment" style="color: #bfbfbf; font-size: 1rem; margin: 0;">
