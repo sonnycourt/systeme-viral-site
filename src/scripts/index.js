@@ -15,6 +15,13 @@ function getUTMParams() {
     return {};
 }
 
+function getTrackingContext() {
+    if (window.SVTracking && typeof window.SVTracking.context === "function") {
+        return window.SVTracking.context() || {};
+    }
+    return {};
+}
+
 // Configuration du son d'ouverture
 function setOpenSoundStyle(style) {
     openSoundStyle = style;
@@ -124,6 +131,7 @@ function openModal() {
     playOpenSound();
     document.getElementById("modalOverlay").classList.add("active");
     document.body.style.overflow = "hidden";
+    if (window.SVTracking) window.SVTracking.track("popup_open");
 }
 
 function closeModal() {
@@ -249,8 +257,6 @@ async function handleStep1() {
 
     // Générer un token unique temporaire (peut être remplacé par le token original du backend)
     const tempTokenSV = generateUniqueToken();
-    console.log('[Step 1] Token unique généré (temporaire):', tempTokenSV);
-
     const step1Btn = document.getElementById("step1Btn");
     const step1BtnText = document.getElementById("step1BtnText");
     if (step1Btn) step1Btn.disabled = true;
@@ -259,7 +265,7 @@ async function handleStep1() {
     try {
         // Récupérer les paramètres UTM
         const utmParams = getUTMParams();
-        console.log('[Step 1] UTM params retrieved:', utmParams);
+        const trackingContext = getTrackingContext();
         
         const requestBody = {
             name: firstName,
@@ -268,8 +274,9 @@ async function handleStep1() {
             uniqueTokenSV: tempTokenSV,
             utm_source: utmParams.utm_source || null,
             utm_content: utmParams.utm_content || null,
+            attribution: trackingContext,
         };
-        console.log('[Step 1] Sending to MailerLite:', requestBody);
+        if (window.SVTracking) window.SVTracking.track("lead_submit");
         
         // Send to MailerLite - Step 1
         const response = await fetch("/.netlify/functions/subscribe", {
@@ -290,8 +297,6 @@ async function handleStep1() {
             // L'ancien funnel conserve son comportement historique.
         }
 
-        console.log("Step 1 completed:", data);
-
         // Utiliser le token retourné par le backend (peut être l'original si l'email existe déjà)
         const finalToken = data.uniqueTokenSV || tempTokenSV;
         
@@ -301,12 +306,7 @@ async function handleStep1() {
         // Stocker le token final et la date de création dans localStorage
         localStorage.setItem('unique_token_sv', finalToken);
         localStorage.setItem('unique_token_sv_created', dateToStore);
-        
-        if (data.isReturning) {
-            console.log('[Step 1] Email existant - Token + date originaux conservés:', finalToken, dateToStore);
-        } else {
-            console.log('[Step 1] Nouvel email - Nouveau token + date créés:', finalToken, dateToStore);
-        }
+        if (window.SVTracking) window.SVTracking.setToken(finalToken);
 
         // Sur /inscription, l'étape 2 est directement le téléphone.
         moveToStep("step1", "step2", "progress2");
@@ -338,7 +338,6 @@ async function handleStep2() {
         const userData = getUserData();
         // Récupérer les paramètres UTM
         const utmParams = getUTMParams();
-        console.log('[Step 2] UTM params retrieved:', utmParams);
         
         const requestBody = {
             email: userData.email,
@@ -346,8 +345,9 @@ async function handleStep2() {
             step: "2",
             utm_source: utmParams.utm_source || null,
             utm_content: utmParams.utm_content || null,
+            uniqueTokenSV: localStorage.getItem('unique_token_sv'),
+            attribution: getTrackingContext(),
         };
-        console.log('[Step 2] Sending to MailerLite:', requestBody);
         
         // Send to MailerLite - Step 2
         const response = await fetch("/.netlify/functions/subscribe", {
@@ -364,8 +364,6 @@ async function handleStep2() {
             console.error("MailerLite Step 2 Error:", data);
             // Continue anyway to not block the user
         }
-
-        console.log("Step 2 completed:", data);
 
         // Move to step 3
         moveToStep("step2", "step3", "progress3");
@@ -468,12 +466,12 @@ async function handleSubmit(event) {
         phoneNumber = phoneInput.value.trim();
     }
 
-    console.log("Submitting with phone:", phoneNumber);
-
     try {
         // Récupérer les paramètres UTM
         const utmParams = getUTMParams();
-        console.log('[Step 3] UTM params retrieved:', utmParams);
+        const country = window.iti && window.iti.getSelectedCountryData
+            ? window.iti.getSelectedCountryData()?.iso2 || null
+            : null;
         
         const requestBody = {
             email: getUserData().email,
@@ -481,8 +479,10 @@ async function handleSubmit(event) {
             step: isTwoStepFunnel() ? "2" : "3",
             utm_source: utmParams.utm_source || null,
             utm_content: utmParams.utm_content || null,
+            country: country,
+            uniqueTokenSV: localStorage.getItem('unique_token_sv'),
+            attribution: getTrackingContext(),
         };
-        console.log('[Step 3] Sending to MailerLite:', requestBody);
         
         // Send to MailerLite - Step 3 (Final)
         const response = await fetch("/.netlify/functions/subscribe", {
@@ -503,7 +503,9 @@ async function handleSubmit(event) {
             // L'ancien funnel conserve son comportement historique.
         }
 
-        console.log("Step 3 completed:", data);
+        if (data.uniqueTokenSV && window.SVTracking) {
+            window.SVTracking.setToken(data.uniqueTokenSV);
+        }
 
         // Show success
         showSuccess();

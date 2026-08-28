@@ -1254,6 +1254,9 @@ import Layout from "../layouts/Layout.astro";
         // Initialize progress bar
         initializeProgressBar();
 
+        // Mesurer la consommation réelle de la VSL dans Supabase
+        initializeVslTracking();
+
         // Ancienne fonction viewers désactivée - remplacée par animation naturelle 9-16
         // initializeViewersCount();
     });
@@ -1428,6 +1431,63 @@ import Layout from "../layouts/Layout.astro";
         }
     }
 
+    function initializeVslTracking() {
+        const video = document.getElementById(
+            "masterclass-video",
+        ) as HTMLVideoElement | null;
+        const tracking = (window as any).SVTracking;
+        if (!video || !tracking) return;
+
+        const milestones = [10, 25, 50, 75, 90, 100];
+        const sent = new Set<number>();
+        let started = false;
+
+        video.addEventListener("play", () => {
+            if (started) return;
+            started = true;
+            tracking.track("vsl_started", null, {
+                seconds: Math.floor(video.currentTime || 0),
+                duration: Math.floor(video.duration || 0),
+            });
+        });
+
+        video.addEventListener("timeupdate", () => {
+            if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+            const seconds = Math.floor(video.currentTime || 0);
+            const percent = Math.min(
+                100,
+                Math.floor((video.currentTime / video.duration) * 100),
+            );
+            milestones.forEach((milestone) => {
+                if (percent < milestone || sent.has(milestone)) return;
+                sent.add(milestone);
+                tracking.track("vsl_progress", milestone, {
+                    seconds,
+                    percent: milestone,
+                    milestone,
+                    duration: Math.floor(video.duration),
+                });
+                if (milestone === 100) {
+                    tracking.track("vsl_completed", 100, {
+                        seconds,
+                        percent: 100,
+                        duration: Math.floor(video.duration),
+                    });
+                }
+            });
+        });
+
+        video.addEventListener("ended", () => {
+            if (sent.has(100)) return;
+            sent.add(100);
+            tracking.track("vsl_completed", 100, {
+                seconds: Math.floor(video.duration || video.currentTime || 0),
+                percent: 100,
+                duration: Math.floor(video.duration || 0),
+            });
+        });
+    }
+
     // Timer functionality - synchronisé avec la vidéo, débloque à 17:28
     function initializeTimer() {
         const timerElement = document.getElementById("timerCountdown");
@@ -1456,9 +1516,20 @@ import Layout from "../layouts/Layout.astro";
                 timerButton.removeAttribute("disabled");
                 timerLabel.textContent = "OFFRE DISPONIBLE";
                 isUnlocked = true;
+                if ((window as any).SVTracking) {
+                    (window as any).SVTracking.track("offer_revealed", null, {
+                        seconds: Math.floor(video.currentTime || 0),
+                    });
+                }
 
                 // Ajouter le lien de redirection avec token dans URL
                 timerButton.addEventListener("click", () => {
+                    if ((window as any).SVTracking) {
+                        (window as any).SVTracking.track("offer_clicked", "vsl_timer", {
+                            button_id: "timerButton",
+                            seconds: Math.floor(video.currentTime || 0),
+                        });
+                    }
                     const urlParams = new URLSearchParams(window.location.search);
                     const token = urlParams.get('token');
                     window.location.href = token ? `/offre-speciale?token=${token}` : '/offre-speciale';

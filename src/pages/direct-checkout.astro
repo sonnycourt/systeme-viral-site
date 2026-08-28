@@ -435,7 +435,7 @@ import Layout from "../layouts/Layout.astro";
                         const data = await res.json();
                         if (data.valid && typeof data.placesRemaining === 'number') {
                             placesRemaining = data.placesRemaining;
-                            console.log('✅ Places from Blobs:', placesRemaining);
+                            console.log('✅ Places from Supabase:', placesRemaining);
                         } else {
                             // Token pas dans Blobs → l'enregistrer MAINTENANT avec timestamp actuel
                             console.log('⚠️ Token not in Blobs, registering now');

@@ -16354,7 +16354,7 @@ import Layout from "../layouts/Layout.astro";
                         const data = await res.json();
                         if (data.valid && typeof data.placesRemaining === 'number') {
                             placesRemaining = data.placesRemaining;
-                            console.log('✅ Places from Blobs:', placesRemaining);
+                            console.log('✅ Places from Supabase:', placesRemaining);
                         } else {
                             // Token pas dans Blobs → l'enregistrer MAINTENANT avec timestamp actuel
                             console.log('⚠️ Token not in Blobs, registering now');
@@ -16539,7 +16539,7 @@ import Layout from "../layouts/Layout.astro";
 
             // Update every 30-60 seconds
             setInterval(() => {
-                // Use global places value (from Blobs, not localStorage)
+                // Utiliser la valeur globale issue de Supabase, pas du localStorage
                 const currentRange = getVisitorRange(globalPlacesRemaining);
                 
                 if (currentRange.min === 0 && currentRange.max === 0) {
