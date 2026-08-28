@@ -216,6 +216,10 @@ function nextStep() {
     }
 }
 
+function isTwoStepFunnel() {
+    return document.getElementById("accessForm")?.dataset.flow === "sv-two-step";
+}
+
 // Fonction pour générer un token unique
 function generateUniqueToken() {
     const timestamp = Date.now();
@@ -247,6 +251,11 @@ async function handleStep1() {
     const tempTokenSV = generateUniqueToken();
     console.log('[Step 1] Token unique généré (temporaire):', tempTokenSV);
 
+    const step1Btn = document.getElementById("step1Btn");
+    const step1BtnText = document.getElementById("step1BtnText");
+    if (step1Btn) step1Btn.disabled = true;
+    if (step1BtnText) step1BtnText.textContent = "Inscription...";
+
     try {
         // Récupérer les paramètres UTM
         const utmParams = getUTMParams();
@@ -275,7 +284,10 @@ async function handleStep1() {
 
         if (!response.ok) {
             console.error("MailerLite Step 1 Error:", data);
-            // Continue anyway to not block the user
+            if (isTwoStepFunnel()) {
+                throw new Error(data?.error || "Impossible d'enregistrer l'inscription");
+            }
+            // L'ancien funnel conserve son comportement historique.
         }
 
         console.log("Step 1 completed:", data);
@@ -296,12 +308,22 @@ async function handleStep1() {
             console.log('[Step 1] Nouvel email - Nouveau token + date créés:', finalToken, dateToStore);
         }
 
-        // Move to step 2
+        // Sur /inscription, l'étape 2 est directement le téléphone.
         moveToStep("step1", "step2", "progress2");
+        if (isTwoStepFunnel()) {
+            setTimeout(initPhoneInput, 100);
+        }
     } catch (error) {
         console.error("Error in step 1:", error);
-        // Continue to step 2 even if API fails
-        moveToStep("step1", "step2", "progress2");
+        if (isTwoStepFunnel()) {
+            alert("L'inscription n'a pas pu être enregistrée. Merci de réessayer.");
+        } else {
+            // L'ancien funnel conserve son comportement historique.
+            moveToStep("step1", "step2", "progress2");
+        }
+    } finally {
+        if (step1Btn) step1Btn.disabled = false;
+        if (step1BtnText) step1BtnText.textContent = "Continuer →";
     }
 }
 
@@ -456,7 +478,7 @@ async function handleSubmit(event) {
         const requestBody = {
             email: getUserData().email,
             phone: phoneNumber,
-            step: "3",
+            step: isTwoStepFunnel() ? "2" : "3",
             utm_source: utmParams.utm_source || null,
             utm_content: utmParams.utm_content || null,
         };
@@ -475,7 +497,10 @@ async function handleSubmit(event) {
 
         if (!response.ok) {
             console.error("MailerLite Step 3 Error:", data);
-            // Continue with success flow even if API fails
+            if (isTwoStepFunnel()) {
+                throw new Error(data?.error || "Impossible d'ajouter le téléphone");
+            }
+            // L'ancien funnel conserve son comportement historique.
         }
 
         console.log("Step 3 completed:", data);
@@ -484,8 +509,15 @@ async function handleSubmit(event) {
         showSuccess();
     } catch (error) {
         console.error("Error in step 3:", error);
-        // Show success anyway and redirect
-        showSuccess();
+        if (isTwoStepFunnel()) {
+            alert("Le numéro n'a pas pu être enregistré. Vérifie-le puis réessaie.");
+            if (btnText) btnText.style.display = "inline";
+            if (loader) loader.classList.add("hidden");
+            if (submitBtn) submitBtn.disabled = false;
+        } else {
+            // L'ancien funnel conserve son comportement historique.
+            showSuccess();
+        }
     }
 }
 

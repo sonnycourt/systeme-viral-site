@@ -168,8 +168,36 @@ export default async (request, context) => {
       }
     }
 
-    // STEP 2 : Avatar
+    // STEP 2 : Avatar (ancien funnel) ou téléphone (funnel /inscription simplifié)
     if (step === '2') {
+      if (phone) {
+        const requestData = {
+          email: email,
+          fields: {
+            phone: phone,
+            step: '2',
+            ...(utm_source && { utm_source }),
+            ...(utm_content && { utm_content })
+          }
+        };
+
+        const result = await postToMailerLite('/api/subscribers', requestData, API_KEY);
+
+        if (result.status >= 200 && result.status < 300) {
+          return new Response(JSON.stringify({
+            success: true,
+            step: '2',
+            message: 'Phone added successfully',
+            redirect: '/100k-masterclass'
+          }), { status: 200, headers });
+        }
+
+        return new Response(JSON.stringify({
+          error: 'Failed to add phone',
+          details: result.data
+        }), { status: result.status || 500, headers });
+      }
+
       if (!avatar) {
         return new Response(JSON.stringify({ error: 'Avatar is required for step 2' }), { status: 400, headers });
       }
